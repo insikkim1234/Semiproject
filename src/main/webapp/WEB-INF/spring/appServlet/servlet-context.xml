@@ -16,17 +16,16 @@
 	<resources mapping="/resources/**" location="/resources/" />
  
 
- 	<!-- 수업 초반에 사용한 Resolver 방식 혹시 몰라 놔둠 -->
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<!-- 
+ 	<!-- 수업 초반에 사용한 Resolver 방식 -->
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory --> 
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="prefix" value="/WEB-INF/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean> 
-	-->
 	
-	<!-- 미니 프로젝트 때 사용한 Resolver 방식 -->
+	<!-- 미니 프로젝트 때 사용한 Resolver 방식 혹시 몰라 놔둠 -->
 	<!-- Tiles Resolver -->
+	<!--
 	<beans:bean id="tilesConfigurer"
 	   class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<beans:property name="definitions">
@@ -37,7 +36,8 @@
 		<beans:property name="preparerFactoryClass"
 			value="org.springframework.web.servlet.view.tiles3.SpringBeanPreparerFactory"/>
 	</beans:bean>
-		
+	-->
+			
 	<!-- File Upload Setting -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="defaultEncoding" value="utf-8"></beans:property>
