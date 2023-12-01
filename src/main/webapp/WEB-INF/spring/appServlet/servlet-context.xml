@@ -15,6 +15,8 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
  
+
+ 	<!-- 수업 초반에 사용한 Resolver 방식 혹시 몰라 놔둠 -->
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<!-- 
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -23,12 +25,7 @@
 	</beans:bean> 
 	-->
 	
-	<!-- File Upload Setting -->
-	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="defaultEncoding" value="utf-8"></beans:property>
-		<beans:property name="maxUploadSize" value="4000000"></beans:property> <!-- 3기가 살짝 넘는 정도 -->
-	</beans:bean>
-
+	<!-- 미니 프로젝트 때 사용한 Resolver 방식 -->
 	<!-- Tiles Resolver -->
 	<beans:bean id="tilesConfigurer"
 	   class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
@@ -39,6 +36,12 @@
 		</beans:property>
 		<beans:property name="preparerFactoryClass"
 			value="org.springframework.web.servlet.view.tiles3.SpringBeanPreparerFactory"/>
+	</beans:bean>
+		
+	<!-- File Upload Setting -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="defaultEncoding" value="utf-8"></beans:property>
+		<beans:property name="maxUploadSize" value="4000000"></beans:property> <!-- 3기가 살짝 넘는 정도 -->
 	</beans:bean>
 	
 	<beans:bean id="viewResolver"
