@@ -58,4 +58,8 @@ test-output
 atlassian-ide-plugin.xml
 
 
+# sensitive data
+env.properties
+
+
 
