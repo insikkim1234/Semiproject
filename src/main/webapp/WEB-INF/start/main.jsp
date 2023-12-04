@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>apple,samsung</h1>
+<h1>apple,samsung나다 </h1>
 </body>
 </html>
