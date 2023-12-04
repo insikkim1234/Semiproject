@@ -56,3 +56,4 @@ classes/
 out
 test-output
 atlassian-ide-plugin.xml
+/.metadata/
