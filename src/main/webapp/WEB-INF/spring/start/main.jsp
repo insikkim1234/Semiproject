@@ -8,7 +8,8 @@
 </head>
 <body>
 	<h1>메인입니다.</h1>
-	<h2>login</h2>
+	<h2>login</h2>.
+	
 	<h1>수정테스트</h1>
 </body>
 </html>
