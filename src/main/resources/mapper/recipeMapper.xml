@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="semi.dao.RecipeDao">
+	<insert id="insertRecipe" parameterType="RecipeDto">
+    	insert into tRecipeBoard (sRecipeTitle, sRecipeName, sRecipePhoto, sRecipeContent, sRecipeTime, sRecipeDifficulty, sRecipeServing, sRecipeIngredient, dtRecipeCreatedAt, dtRecipeUpdatedAt) values (#{sRecipeTitle}, #{sRecipeName}, #{sRecipePhoto}, #{sRecipeContent}, #{sRecipeTime}, #{sRecipeDifficulty}, #{sRecipeServing}, #{sRecipeIngredient}, now(), now());
+	</insert>
+</mapper>
