@@ -11,4 +11,9 @@ public class BoardController {
 		 return "board/boardlist";
 	 }
 	 
+	 @GetMapping("/form")
+	 public String boardForm() {
+		 return "board/boardform";
+	 }
+	 
 }
