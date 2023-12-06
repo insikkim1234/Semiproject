@@ -24,10 +24,10 @@
 	<h6 class="alert alert-success" role="alert">
 		총 ${totalCount}개의 글이 있습니다
 		
-		<c:if test="${sessionScope.loginok!=null}">
+		
 			<button type="button" class="btn btn-outline-danger btn-sm"
 			onclick="location.href='./form'" style="margin-left:300px;">글쓰기</button>
-		</c:if>
+		
 	</h6>
 	<table class="table table-bordered">
 		<thead>
