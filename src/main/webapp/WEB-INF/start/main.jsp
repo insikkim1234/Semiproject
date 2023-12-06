@@ -38,6 +38,7 @@
   <button class="btn btn-warning">예약</button>
   <button class="btn btn-danger">리뷰</button>
   <button class="btn btn-info">고객센터</button>  
+  <a href="/semi/board">게시판 목록</a>
 </div>
 
 </body>
