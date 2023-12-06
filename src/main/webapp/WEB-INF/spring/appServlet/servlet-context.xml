@@ -44,13 +44,13 @@
 		<beans:property name="maxUploadSize" value="4000000"></beans:property> <!-- 3기가 살짝 넘는 정도 -->
 	</beans:bean>
 	
-	<beans:bean id="viewResolver"
+	<!-- <beans:bean id="viewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<beans:property name="viewClass"
 		  value="org.springframework.web.servlet.view.tiles3.TilesView"/>
-	</beans:bean>
+	</beans:bean> -->
 	
-	<context:component-scan base-package="bitcamp.project.semi" />
+	<context:component-scan base-package="bitcamp.project.semi,semi.*" />
 	
 	
 	
