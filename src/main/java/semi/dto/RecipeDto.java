@@ -11,7 +11,7 @@ public class RecipeDto {
 	private String sRecipeTitle;
 	private String sRecipeName;
 	private int sRecipeViewCount;
-	private List<String> sRecipePhoto;
+	private String sRecipePhoto;
 	private String sRecipeContent;
 	private String sRecipeTime;
 	private String sRecipeDifficulty;
