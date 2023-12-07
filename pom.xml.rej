@@ -1,9 +1,0 @@
-diff a/pom.xml b/pom.xml	(rejected hunks)
-@@ -237,6 +237,7 @@
-                     <compilerArgument>-Xlint:all</compilerArgument>
-                     <showWarnings>true</showWarnings>
-                     <showDeprecation>true</showDeprecation>
-+					<encoding>UTF-8</encoding>
-                 </configuration>
-             </plugin>
-             <plugin>
