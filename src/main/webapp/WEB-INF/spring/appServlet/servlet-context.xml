@@ -50,7 +50,7 @@
 		  value="org.springframework.web.servlet.view.tiles3.TilesView"/>
 	</beans:bean> -->
 	
-	<context:component-scan base-package="bitcamp.project.semi, semi.*" />
+	<context:component-scan base-package="bitcamp.project.semi, semi.*, naver.storage" />
 
 	
 	
