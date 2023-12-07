@@ -34,6 +34,12 @@ public class RecipeController {
     
     String storagename = "semi-project-eatingalone";
     String storagefolder = "photo";
+    
+    @GetMapping("/recipe/board")
+    public String board() {
+        return "recipe/recipeBoard";
+    }
+    
     @GetMapping("/recipe/sample")
     public String sample() {
         return "recipe/recipeSample";
