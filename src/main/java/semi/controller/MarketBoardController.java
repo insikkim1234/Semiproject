@@ -52,44 +52,43 @@ public class MarketBoardController {
 		@GetMapping("/mboard/list")
 		public String list(Model model,@RequestParam(defaultValue = "1") int currentPage)
 		{
-			////
-			//����¡ó��
-			//����¡�� ó���� �ʿ��� ������
-			int perPage=5; //���������� �������� �Խñ��� ����
-			int totalCount=0; //�� ���ñ��� ����
-			int totalPage;//����������
-			int startNum;//���������� �������� ���� ���۹�ȣ
-			int perBlock=5; //�Ѻ��� �������� �������� ����
-			int startPage; //������ �������� �������� ���۹�ȣ
+			//페이징처리
+			//페이징에 처리에 필요한 변수들
+			int perPage=5; //한페이지당 보여지는 게시글의 갯수
+			int totalCount=0; //총 개시글의 개수
+			int totalPage;//총페이지수
+			int startNum;//각페이지당 보여지는 글의 시작번호
+			int perBlock=5; //한블럭당 보여지는 페이지의 개수
+			int startPage; //각블럭당 보여지는 페이지의 시작번호
 			int endPage;
 
-			//�� �۰���
+			//총 글갯수
 			totalCount=marketBoardService.getTotalCount();
 
 
-			//����������,�������� ������ �����ǿø�
-			//�ѰԽñ��� 37-�������� 3-12.3333....13������
+			//총페이지수,나머지가 있으면 무조건올림
+			//총게시글이 37-한페이지 3-12.3333....13페이지
 			totalPage=totalCount/perPage+(totalCount%perPage>0?1:0);
 
-			//������ ������������ ��������
+			//각블럭의 시작페이지와 끝페이지
 			startPage=(currentPage-1)/perBlock*perBlock+1;
 			endPage=startPage+perBlock-1;
 
-			//endPage�� totalPage�� �����ʵ��� �Ѵ�
+			//endPage는 totalPage를 넘지않도록 한다
 			if(endPage>totalPage)
 				endPage=totalPage;
 
-			//���������� �ҷ��� ���� ��ȣ
-			//10�����ϰ�� ����
-			//1������:0~9 2������:10~19 
+			//각페이지당 불러올 글의 번호
+			//10개씩일경우 기준
+			//1페이지:0~9 2페이지:10~19 
 			startNum=(currentPage-1)*perPage;
 
-			//�� �������� ���� ��ȣ
+			//각 페이지의 시작 번호
 			int no=totalCount-(currentPage-1)*perPage;
 
-			//�ش��������� ������ �Խ��� ���
+			//해당페이지에 보여줄 게시판 목록
 			List<MarketBoardDto> list=marketBoardService.getList(startNum, perPage);
-			//�� dto �� ÷�ε� ������ ���� ����
+			//각 dto 에 첨부된 사진의 갯수 저장
 			/*
 			for(MarketBoardDto dto:list)
 			{
@@ -97,12 +96,13 @@ public class MarketBoardController {
 				//System.out.println(dto.getNum()+":"+ pcount);
 				dto.setPhotocount(pcount);
 				
-				//��� ���� ����
+				//댓글 갯수 저장
 				int acount=answerService.getAnswerBoard(dto.getNum()).size();
 				dto.setAcount(acount);
 			}
 			*/
-			//request �� ���� ����
+			
+			//request 에 담을 값들
 			model.addAttribute("list",list);
 			model.addAttribute("totalCount",totalCount);
 			model.addAttribute("totalPage",totalPage);
@@ -114,11 +114,11 @@ public class MarketBoardController {
 			return "market/marketboardlist";
 		}
 
-		//�����϶�
+		//새글일때/답글일때 모두 호출
 		@GetMapping("/mboard/form")
 		public String form(
 				Model model,
-				/*�����ϰ�� ���� �ȳѾ���Ƿ� defaultValue ���� ����ȴ�*/
+				/*새글일경우 값이 안넘어오므로 defaultValue 값이 적용된다*/
 				@RequestParam(defaultValue = "1") int currentPage,
 				@RequestParam(defaultValue = "0") int num
 				
@@ -131,7 +131,7 @@ public class MarketBoardController {
 		}
 
 		/*
-		//����/��� ����
+		//새글/답글 저장
 		@PostMapping("/board/addboard")
 		public String addBoard(
 				@ModelAttribute BoardDto dto,
@@ -141,34 +141,34 @@ public class MarketBoardController {
 				HttpSession session
 				)
 		{
-			//���� ���ε��� ���
+			//파일 업로드할 경로
 			String path=request.getSession().getServletContext().getRealPath("/resources/upload");
-			//db �� ������ �α�������
+			//db 에 저장할 로그인정보
 			String myid=(String)session.getAttribute("myid");
 			String writer=(String)session.getAttribute("myname");
-			//dto �� �ֱ�
+			//dto에 넣기
 			dto.setMyid(myid);
 			dto.setWriter(writer);
 
-			//�ϴ� BoardDto ���� ����
+			//일단 BoardDto 먼저 저장
 			boardService.insertBoard(dto);
-			//selectKey : num �� �Ѿ�Դ��� Ȯ��
+			//selectKey : num 값 넘어왔는지 확인
 			System.out.println("num="+dto.getNum());
 
-			//������ ���ε�
-			//���� ���ε带 ��������� ����Ʈ�� ù����Ÿ�� ���ϸ��� ���ڿ��� �ȴ�
-			//�� ���ε�������쿡�� db �� ������ �Ѵ�
+			//사진들 업로드
+			//사진 업로드를 안했을경우 리스트의 첫데이타의 파일명이 빈문자열이 된다
+			//즉 업로드했을경우에만 db 에 저장을 한다
 			if(!upload.get(0).getOriginalFilename().equals("")) {
 				for(MultipartFile multi:upload)
 				{
-					//���� ���ϸ� ����
+					//랜덤 파일명 생성
 					String fileName=UUID.randomUUID().toString();
-					//���ε�
+					//업로드
 					try {
 						multi.transferTo(new File(path+"/"+fileName));
-						//������ ���� db �� insert �Ѵ�
+						//파일은 따로 db 에 insert 한다
 						BoardFileDto fdto=new BoardFileDto();
-						fdto.setNum(dto.getNum());//boarddb �� ��� insert �� num��
+						fdto.setNum(dto.getNum());//boarddb 에 방금 insert 된 num값
 						fdto.setPhotoname(fileName);
 
 						boardFileService.insertPhoto(fdto);
@@ -183,62 +183,62 @@ public class MarketBoardController {
 				}
 			}
 
-			//�����ΰ��� 1��������, ����ΰ��� ���� �������� �̵��Ѵ�
+			//새글인경우는 1페이지로, 답글인경우는 보던 페이지로 이동한다
 			return "redirect:list?currentPage="+currentPage;
 		}
 
 		@GetMapping("/board/content")
 		public String getContent(Model model,@RequestParam int num,@RequestParam(defaultValue = "1") int currentPage)
 		{
-			//��ȸ�� ����
+			//조회수 증가
 			boardService.updateReadCount(num);
-			//num �� �ش��ϴ� dto ���
+			//num 에 해당하는 dto 얻기
 			BoardDto dto=boardService.getData(num);
-			//������ ���� ��������
+			//프로필 사진 가져오기
 			String profile_photo=memberDao.getData(dto.getMyid()).getPhoto();
-			//������ ���� ����
+			//사진과 사진 갯수
 			List<String> photos=boardFileService.getPhotoByNum(num);
-			dto.setPhotocount(photos.size());//��������
-			dto.setPhotoNames(photos);//���� ���ϸ��
-
-			//model �� ����
+			dto.setPhotocount(photos.size());//사진갯수
+			dto.setPhotoNames(photos);//사진 파일명들
+	
+			//model 에 저장
 			model.addAttribute("profile_photo", profile_photo);
 			model.addAttribute("dto", dto);
 			model.addAttribute("currentPage",currentPage);		
-
+	
 			return "board/content";
 		}
-
+	
 		@GetMapping("/board/delete")
 		public String deleteBoard(@RequestParam int num,@RequestParam int currentPage)
 		{
-			//����
+			//삭제
 			boardService.deleteBoard(num);
-
+	
 			return "redirect:./list?currentPage="+currentPage;
 		}
-
+	
 		@GetMapping("/board/updateform")
 		public String updateForm(Model model,@RequestParam int num,@RequestParam int currentPage)
 		{
 			BoardDto dto=boardService.getData(num);
 			List<BoardFileDto> flist=boardFileService.getFileDataByNum(num);
-
+	
 			model.addAttribute("currentPage", currentPage);
 			model.addAttribute("dto", dto);
 			model.addAttribute("flist", flist);		
-
+	
 			return "board/updateform";
 		}
-
+	
 		@GetMapping("/board/delphoto")
 		@ResponseBody public void deletePhoto(@RequestParam int idx)
 		{
-			//�ش� ���� ����
+			//해당 사진 삭제
 			boardFileService.deletePhoto(idx);
 		}
-
-		//�Խ��� ����
+	
+		//게시판 수정
 		@PostMapping("/board/updateboard")
 		public String updateBoard(
 				@ModelAttribute BoardDto dto,
@@ -248,30 +248,30 @@ public class MarketBoardController {
 				HttpSession session
 				)
 		{
-			//���� ���ε��� ���
+			//파일 업로드할 경로
 			String path=request.getSession().getServletContext().getRealPath("/resources/upload");
 			
-			//����
+			//수정
 			boardService.updateBoard(dto);
 			
-			//������ ���ε�
-			//���� ���ε带 ��������� ����Ʈ�� ù����Ÿ�� ���ϸ��� ���ڿ��� �ȴ�
-			//�� ���ε�������쿡�� db �� ������ �Ѵ�
+			//사진들 업로드
+			//사진 업로드를 안했을경우 리스트의 첫데이타의 파일명이 빈문자열이 된다
+			//즉 업로드했을경우에만 db 에 저장을 한다
 			if(!upload.get(0).getOriginalFilename().equals("")) {
 				for(MultipartFile multi:upload)
 				{
-					//���� ���ϸ� ����
+					//랜덤 파일명 생성
 					String fileName=UUID.randomUUID().toString();
-					//���ε�
+					//업로드
 					try {
 						multi.transferTo(new File(path+"/"+fileName));
-						//������ ���� db �� insert �Ѵ�
+						//파일은 따로 db 에 insert 한다
 						BoardFileDto fdto=new BoardFileDto();
 						fdto.setNum(dto.getNum());
 						fdto.setPhotoname(fileName);
-
+	
 						boardFileService.insertPhoto(fdto);
-
+	
 					} catch (IllegalStateException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -281,8 +281,8 @@ public class MarketBoardController {
 					}
 				}
 			}
-
-			//������ ���뺸��� �̵��Ѵ�
+	
+			//수정후 내용보기로 이동한다
 			return "redirect:./content?currentPage="+currentPage+"&num="+dto.getNum();
 		}
 		*/
