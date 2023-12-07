@@ -6,5 +6,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="semi.dto.RecipeDto" alias="RecipeDto"/>
+		<typeAlias type="semi.dto.MarketBoardDto" alias="MarketBoardDto"/>
 	</typeAliases>
 </configuration>

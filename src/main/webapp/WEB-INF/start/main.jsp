@@ -39,8 +39,12 @@
   <button class="btn btn-danger">리뷰</button>
   <button class="btn btn-info">고객센터</button>  
   <a href="/semi/board">게시판 목록</a>
+
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="/semi/recipe/sample">레시피 샘플</a>
+
+  <a href="/semi/mboard">중고마켓 목록</a>
+
 </div>
 
 </body>
