@@ -53,43 +53,43 @@ public class MarketBoardController {
 		public String list(Model model,@RequestParam(defaultValue = "1") int currentPage)
 		{
 			////
-			//ÆäÀÌÂ¡Ã³¸®
-			//ÆäÀÌÂ¡¿¡ Ã³¸®¿¡ ÇÊ¿äÇÑ º¯¼öµé
-			int perPage=5; //ÇÑÆäÀÌÁö´ç º¸¿©Áö´Â °Ô½Ã±ÛÀÇ °¹¼ö
-			int totalCount=0; //ÃÑ °³½Ã±ÛÀÇ °³¼ö
-			int totalPage;//ÃÑÆäÀÌÁö¼ö
-			int startNum;//°¢ÆäÀÌÁö´ç º¸¿©Áö´Â ±ÛÀÇ ½ÃÀÛ¹øÈ£
-			int perBlock=5; //ÇÑºí·°´ç º¸¿©Áö´Â ÆäÀÌÁöÀÇ °³¼ö
-			int startPage; //°¢ºí·°´ç º¸¿©Áö´Â ÆäÀÌÁöÀÇ ½ÃÀÛ¹øÈ£
+			//ï¿½ï¿½ï¿½ï¿½Â¡Ã³ï¿½ï¿½
+			//ï¿½ï¿½ï¿½ï¿½Â¡ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			int perPage=5; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½Ã±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			int totalCount=0; //ï¿½ï¿½ ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			int totalPage;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			int startNum;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¹ï¿½È£
+			int perBlock=5; //ï¿½Ñºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			int startPage; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¹ï¿½È£
 			int endPage;
 
-			//ÃÑ ±Û°¹¼ö
+			//ï¿½ï¿½ ï¿½Û°ï¿½ï¿½ï¿½
 			totalCount=marketBoardService.getTotalCount();
 
 
-			//ÃÑÆäÀÌÁö¼ö,³ª¸ÓÁö°¡ ÀÖÀ¸¸é ¹«Á¶°Ç¿Ã¸²
-			//ÃÑ°Ô½Ã±ÛÀÌ 37-ÇÑÆäÀÌÁö 3-12.3333....13ÆäÀÌÁö
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¿Ã¸ï¿½
+			//ï¿½Ñ°Ô½Ã±ï¿½ï¿½ï¿½ 37-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 3-12.3333....13ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			totalPage=totalCount/perPage+(totalCount%perPage>0?1:0);
 
-			//°¢ºí·°ÀÇ ½ÃÀÛÆäÀÌÁö¿Í ³¡ÆäÀÌÁö
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			startPage=(currentPage-1)/perBlock*perBlock+1;
 			endPage=startPage+perBlock-1;
 
-			//endPage´Â totalPage¸¦ ³ÑÁö¾Êµµ·Ï ÇÑ´Ù
+			//endPageï¿½ï¿½ totalPageï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½
 			if(endPage>totalPage)
 				endPage=totalPage;
 
-			//°¢ÆäÀÌÁö´ç ºÒ·¯¿Ã ±ÛÀÇ ¹øÈ£
-			//10°³¾¿ÀÏ°æ¿ì ±âÁØ
-			//1ÆäÀÌÁö:0~9 2ÆäÀÌÁö:10~19 
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+			//10ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			//1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:0~9 2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:10~19 
 			startNum=(currentPage-1)*perPage;
 
-			//°¢ ÆäÀÌÁöÀÇ ½ÃÀÛ ¹øÈ£
+			//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
 			int no=totalCount-(currentPage-1)*perPage;
 
-			//ÇØ´çÆäÀÌÁö¿¡ º¸¿©ÁÙ °Ô½ÃÆÇ ¸ñ·Ï
+			//ï¿½Ø´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 			List<MarketBoardDto> list=marketBoardService.getList(startNum, perPage);
-			//°¢ dto ¿¡ Ã·ºÎµÈ »çÁøÀÇ °¹¼ö ÀúÀå
+			//ï¿½ï¿½ dto ï¿½ï¿½ Ã·ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			/*
 			for(MarketBoardDto dto:list)
 			{
@@ -97,12 +97,12 @@ public class MarketBoardController {
 				//System.out.println(dto.getNum()+":"+ pcount);
 				dto.setPhotocount(pcount);
 				
-				//´ñ±Û °¹¼ö ÀúÀå
+				//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				int acount=answerService.getAnswerBoard(dto.getNum()).size();
 				dto.setAcount(acount);
 			}
 			*/
-			//request ¿¡ ´ãÀ» °ªµé
+			//request ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			model.addAttribute("list",list);
 			model.addAttribute("totalCount",totalCount);
 			model.addAttribute("totalPage",totalPage);
@@ -114,11 +114,11 @@ public class MarketBoardController {
 			return "market/marketboardlist";
 		}
 
-		//»õ±ÛÀÏ¶§
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½
 		@GetMapping("/mboard/form")
 		public String form(
 				Model model,
-				/*»õ±ÛÀÏ°æ¿ì °ªÀÌ ¾È³Ñ¾î¿À¹Ç·Î defaultValue °ªÀÌ Àû¿ëµÈ´Ù*/
+				/*ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½È³Ñ¾ï¿½ï¿½ï¿½Ç·ï¿½ defaultValue ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È´ï¿½*/
 				@RequestParam(defaultValue = "1") int currentPage,
 				@RequestParam(defaultValue = "0") int num
 				
@@ -131,7 +131,7 @@ public class MarketBoardController {
 		}
 
 		/*
-		//»õ±Û/´ä±Û ÀúÀå
+		//ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		@PostMapping("/board/addboard")
 		public String addBoard(
 				@ModelAttribute BoardDto dto,
@@ -141,34 +141,34 @@ public class MarketBoardController {
 				HttpSession session
 				)
 		{
-			//ÆÄÀÏ ¾÷·ÎµåÇÒ °æ·Î
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 			String path=request.getSession().getServletContext().getRealPath("/resources/upload");
-			//db ¿¡ ÀúÀåÇÒ ·Î±×ÀÎÁ¤º¸
+			//db ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			String myid=(String)session.getAttribute("myid");
 			String writer=(String)session.getAttribute("myname");
-			//dto ¿¡ ³Ö±â
+			//dto ï¿½ï¿½ ï¿½Ö±ï¿½
 			dto.setMyid(myid);
 			dto.setWriter(writer);
 
-			//ÀÏ´Ü BoardDto ¸ÕÀú ÀúÀå
+			//ï¿½Ï´ï¿½ BoardDto ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			boardService.insertBoard(dto);
-			//selectKey : num °ª ³Ñ¾î¿Ô´ÂÁö È®ÀÎ
+			//selectKey : num ï¿½ï¿½ ï¿½Ñ¾ï¿½Ô´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 			System.out.println("num="+dto.getNum());
 
-			//»çÁøµé ¾÷·Îµå
-			//»çÁø ¾÷·Îµå¸¦ ¾ÈÇßÀ»°æ¿ì ¸®½ºÆ®ÀÇ Ã¹µ¥ÀÌÅ¸ÀÇ ÆÄÀÏ¸íÀÌ ºó¹®ÀÚ¿­ÀÌ µÈ´Ù
-			//Áï ¾÷·ÎµåÇßÀ»°æ¿ì¿¡¸¸ db ¿¡ ÀúÀåÀ» ÇÑ´Ù
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµå¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Ã¹ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½È´ï¿½
+			//ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì¿¡ï¿½ï¿½ db ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½
 			if(!upload.get(0).getOriginalFilename().equals("")) {
 				for(MultipartFile multi:upload)
 				{
-					//·£´ý ÆÄÀÏ¸í »ý¼º
+					//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 					String fileName=UUID.randomUUID().toString();
-					//¾÷·Îµå
+					//ï¿½ï¿½ï¿½Îµï¿½
 					try {
 						multi.transferTo(new File(path+"/"+fileName));
-						//ÆÄÀÏÀº µû·Î db ¿¡ insert ÇÑ´Ù
+						//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ db ï¿½ï¿½ insert ï¿½Ñ´ï¿½
 						BoardFileDto fdto=new BoardFileDto();
-						fdto.setNum(dto.getNum());//boarddb ¿¡ ¹æ±Ý insert µÈ num°ª
+						fdto.setNum(dto.getNum());//boarddb ï¿½ï¿½ ï¿½ï¿½ï¿½ insert ï¿½ï¿½ numï¿½ï¿½
 						fdto.setPhotoname(fileName);
 
 						boardFileService.insertPhoto(fdto);
@@ -183,25 +183,25 @@ public class MarketBoardController {
 				}
 			}
 
-			//»õ±ÛÀÎ°æ¿ì´Â 1ÆäÀÌÁö·Î, ´ä±ÛÀÎ°æ¿ì´Â º¸´ø ÆäÀÌÁö·Î ÀÌµ¿ÇÑ´Ù
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Î°ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½Î°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ñ´ï¿½
 			return "redirect:list?currentPage="+currentPage;
 		}
 
 		@GetMapping("/board/content")
 		public String getContent(Model model,@RequestParam int num,@RequestParam(defaultValue = "1") int currentPage)
 		{
-			//Á¶È¸¼ö Áõ°¡
+			//ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			boardService.updateReadCount(num);
-			//num ¿¡ ÇØ´çÇÏ´Â dto ¾ò±â
+			//num ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ dto ï¿½ï¿½ï¿½
 			BoardDto dto=boardService.getData(num);
-			//ÇÁ·ÎÇÊ »çÁø °¡Á®¿À±â
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			String profile_photo=memberDao.getData(dto.getMyid()).getPhoto();
-			//»çÁø°ú »çÁø °¹¼ö
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			List<String> photos=boardFileService.getPhotoByNum(num);
-			dto.setPhotocount(photos.size());//»çÁø°¹¼ö
-			dto.setPhotoNames(photos);//»çÁø ÆÄÀÏ¸íµé
+			dto.setPhotocount(photos.size());//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			dto.setPhotoNames(photos);//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½
 
-			//model ¿¡ ÀúÀå
+			//model ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			model.addAttribute("profile_photo", profile_photo);
 			model.addAttribute("dto", dto);
 			model.addAttribute("currentPage",currentPage);		
@@ -212,7 +212,7 @@ public class MarketBoardController {
 		@GetMapping("/board/delete")
 		public String deleteBoard(@RequestParam int num,@RequestParam int currentPage)
 		{
-			//»èÁ¦
+			//ï¿½ï¿½ï¿½ï¿½
 			boardService.deleteBoard(num);
 
 			return "redirect:./list?currentPage="+currentPage;
@@ -234,11 +234,11 @@ public class MarketBoardController {
 		@GetMapping("/board/delphoto")
 		@ResponseBody public void deletePhoto(@RequestParam int idx)
 		{
-			//ÇØ´ç »çÁø »èÁ¦
+			//ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			boardFileService.deletePhoto(idx);
 		}
 
-		//°Ô½ÃÆÇ ¼öÁ¤
+		//ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		@PostMapping("/board/updateboard")
 		public String updateBoard(
 				@ModelAttribute BoardDto dto,
@@ -248,24 +248,24 @@ public class MarketBoardController {
 				HttpSession session
 				)
 		{
-			//ÆÄÀÏ ¾÷·ÎµåÇÒ °æ·Î
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 			String path=request.getSession().getServletContext().getRealPath("/resources/upload");
 			
-			//¼öÁ¤
+			//ï¿½ï¿½ï¿½ï¿½
 			boardService.updateBoard(dto);
 			
-			//»çÁøµé ¾÷·Îµå
-			//»çÁø ¾÷·Îµå¸¦ ¾ÈÇßÀ»°æ¿ì ¸®½ºÆ®ÀÇ Ã¹µ¥ÀÌÅ¸ÀÇ ÆÄÀÏ¸íÀÌ ºó¹®ÀÚ¿­ÀÌ µÈ´Ù
-			//Áï ¾÷·ÎµåÇßÀ»°æ¿ì¿¡¸¸ db ¿¡ ÀúÀåÀ» ÇÑ´Ù
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµå¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Ã¹ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½È´ï¿½
+			//ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì¿¡ï¿½ï¿½ db ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½
 			if(!upload.get(0).getOriginalFilename().equals("")) {
 				for(MultipartFile multi:upload)
 				{
-					//·£´ý ÆÄÀÏ¸í »ý¼º
+					//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 					String fileName=UUID.randomUUID().toString();
-					//¾÷·Îµå
+					//ï¿½ï¿½ï¿½Îµï¿½
 					try {
 						multi.transferTo(new File(path+"/"+fileName));
-						//ÆÄÀÏÀº µû·Î db ¿¡ insert ÇÑ´Ù
+						//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ db ï¿½ï¿½ insert ï¿½Ñ´ï¿½
 						BoardFileDto fdto=new BoardFileDto();
 						fdto.setNum(dto.getNum());
 						fdto.setPhotoname(fileName);
@@ -282,9 +282,10 @@ public class MarketBoardController {
 				}
 			}
 
-			//¼öÁ¤ÈÄ ³»¿ëº¸±â·Î ÀÌµ¿ÇÑ´Ù
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ëº¸ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ñ´ï¿½
 			return "redirect:./content?currentPage="+currentPage+"&num="+dto.getNum();
 		}
 		*/
 
 }
+

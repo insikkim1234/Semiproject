@@ -42,26 +42,26 @@ public class MarketBoardService {
 	 */
 	/*
 	public void insertMarketBoard(MarketBoardDto dto) {
-		int num=dto.getNum();//»õ±ÛÀÏ°æ¿ì 0,´ä±ÛÀÏ°æ¿ì 0º¸´Ù Å«°ªÀÌ µé¾îÀÖ´Ù
-		int regroup=dto.getRegroup();//´ä±ÛÀ» ´Ü ±ÛÀÇ regroup
-		int restep=dto.getRestep();//´ä±ÛÀ» ´Ü ±ÛÀÇ restep
-		int relevel=dto.getRelevel();//´ä±ÛÀ» ´Ü ±ÛÀÇ relevel
+		int num=dto.getNum();//ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ 0,ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ Å«ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ö´ï¿½
+		int regroup=dto.getRegroup();//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ regroup
+		int restep=dto.getRestep();//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ restep
+		int relevel=dto.getRelevel();//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ relevel
 		
 		if(num==0) {
-			//»õ±ÛÀÎ°æ¿ì
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Î°ï¿½ï¿½
 			regroup=boardDao.getMaxNum()+1;
 			restep=0;
 			relevel=0;			
 		}else {
-			//´ä±ÛÀÎ°æ¿ì ±×·ìÀº ±×´ë·Î »ç¿ëÇÏ¹Ç·Î regroup Àº µû·Î ¾È±¸ÇÑ´Ù
-			//´ä±ÛÀÎ°æ¿ì
-			this.updateRestep(regroup, restep);//°°Àº ±×·ìÁß Àü´Þ¹ÞÀº restepº¸´Ù Å«°ªÀÌ ÀÖ´Â±ÛµéÀº ¸ðµÎ +1À» ÇØÁØ´Ù
-			//±×¸®°í ³ª¼­ °¢°¢ÀÇ °ª¿¡ 1À» ´õÇÑ´Ù
+			//ï¿½ï¿½ï¿½ï¿½Î°ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ ï¿½×´ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¹Ç·ï¿½ regroup ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½È±ï¿½ï¿½Ñ´ï¿½
+			//ï¿½ï¿½ï¿½ï¿½Î°ï¿½ï¿½
+			this.updateRestep(regroup, restep);//ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Þ¹ï¿½ï¿½ï¿½ restepï¿½ï¿½ï¿½ï¿½ Å«ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Â±Ûµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ +1ï¿½ï¿½ ï¿½ï¿½ï¿½Ø´ï¿½
+			//ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½
 			restep=restep+1;
 			relevel=relevel+1;
 		}
 		
-		//°¢°¢ »õ·Î ±¸ÇÑ°ªµéÀ» ´Ù½Ã dto ¿¡ ´ã´Â´Ù
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ dto ï¿½ï¿½ ï¿½ï¿½Â´ï¿½
 		dto.setRegroup(regroup);
 		dto.setRestep(restep);
 		dto.setRelevel(relevel);
@@ -88,3 +88,4 @@ public class MarketBoardService {
 	}
 
 }
+

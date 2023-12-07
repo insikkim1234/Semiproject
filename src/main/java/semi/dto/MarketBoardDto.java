@@ -15,3 +15,4 @@ public class MarketBoardDto {
 	private Timestamp dtCreateDate;	
 	private Timestamp dtUpdateDate;	
 }
+
