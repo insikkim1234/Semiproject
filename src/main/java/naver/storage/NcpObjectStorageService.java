@@ -21,7 +21,7 @@ public class NcpObjectStorageService implements ObjectStorageService {
 	AmazonS3 s3;
 	
 	public NcpObjectStorageService(NaverConfig naverConfig) {
-		System.out.println("NcpObjectStorageService ����");
+		System.out.println("NcpObjectStorageService 생성");
 		s3 = AmazonS3ClientBuilder.standard()
 				.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(
 						naverConfig.getEndPoint(), naverConfig.getRegionName()))
@@ -56,7 +56,7 @@ public class NcpObjectStorageService implements ObjectStorageService {
 			return filename;
 
 		} catch (Exception e) {
-			throw new RuntimeException("���� ���ε� ����", e);
+			throw new RuntimeException("파일 업로드 오류", e);
 		}
 	}
 
@@ -65,14 +65,13 @@ public class NcpObjectStorageService implements ObjectStorageService {
 		// TODO Auto-generated method stub
 		String path=directoryPath+"/"+fileName;
 		System.out.println("path="+path);
-		//�ش� ��Ŷ�� ������ �����ϸ� true ��ȯ
+		//해당 버킷에 파일이 존재하면 true 반환
 		boolean isfind=s3.doesObjectExist(bucketName, path);
 		System.out.println("isfind="+isfind);
-		//�����Ұ�� ����
+		//존재할경우 삭제
 		if(isfind) {
 			s3.deleteObject(bucketName, path);
-			System.out.println(path+":�����Ϸ�!");
+			System.out.println(path+":삭제완료!");
 		}				
 	}
 }
-
