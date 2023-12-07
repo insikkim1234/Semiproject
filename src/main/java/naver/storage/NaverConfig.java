@@ -22,5 +22,4 @@ public class NaverConfig {
 
 	@Value("ZeKnvpSKnxC6wFDpc10YySrQpOV4YYkkhmjhyYRr")
 	private String secretKey;
-
 }
