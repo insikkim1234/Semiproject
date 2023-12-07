@@ -18,7 +18,7 @@ body * {
 </head>
 <body>
 	<h1>recipe sample</h1>
-	<form action="./sample" method="get" enctype="multipart/form-data">
+	<form action="./insertRecipeApi" method="post" enctype="multipart/form-data">
 		<table class="table table-bordered" style="width: 500px;">
 			<tr>
 				<th width="100">제목</th>
