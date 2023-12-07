@@ -32,13 +32,21 @@ public class RecipeController {
     @Autowired
     NcpObjectStorageService storageService;
     
+    // 스토리지 연결 - 사진 업로드
     String storagename = "semi-project-eatingalone";
     String storagefolder = "photo";
     @GetMapping("/recipe/sample")
     public String sample() {
         return "recipe/recipeSample";
     }
+    
+    // 레시피 게시판
+    @GetMapping("/recipe/board")
+    public String board() {
+        return "recipe/recipeBoard";
+    }
 
+    // 레시피 업로드 된 사진 스토리지에 업로드 
     @PostMapping("/recipe/insertRecipeApi")
     public String insertRecipeApi(@ModelAttribute RecipeDto dto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload) {
 //        String path = request.getSession().getServletContext().getRealPath("/resources/upload");
