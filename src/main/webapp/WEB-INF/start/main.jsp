@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,7 +25,7 @@
 </style>
 
 </head>
-
+<c:set var="root" value="<%=request.getContextPath()%>"/>
 <body>
 
 <h1>
@@ -43,7 +44,13 @@
   <a href="/semi/recipe/sample">recipe 샘플</a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="/semi/mboard">중고마켓 목록</a>
-  
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="${root}/member/save">회원가입</a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="/member/login">로그인</a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="/member/semi/">회원목록조회</a>
+
 </div>
 
 </body>
