@@ -37,29 +37,29 @@ public class MarketBoardDao {
 		session.update(nameSpace+"updateRestepOfBoard", map);
 	}
 	
-	public void insertBoard(MarketBoardDto dto)
+	public void insertMarketBoard(MarketBoardDto dto)
 	{
-		session.insert(nameSpace+"insertBoard", dto);
+		session.insert(nameSpace+"insertMarketBoard", dto);
 	}
 	
-	public void updateReadCount(int num)
+	public void updateReadCount(int nBoardSeq)
 	{
-		session.update(nameSpace+"updateReadCountOfBoard", num);
+		session.update(nameSpace+"updateReadCountOfBoard", nBoardSeq);
 	}
 	
-	public MarketBoardDto getData(int num)
+	public MarketBoardDto getData(int nBoardSeq)
 	{
-		return session.selectOne(nameSpace+"selectDataByNum", num);
+		return session.selectOne(nameSpace+"selectDataByNBoardSeq", nBoardSeq);
 	}
 	
-	public void updateBoard(MarketBoardDto dto)
+	public void updateMarketBoard(MarketBoardDto dto)
 	{
-		session.update(nameSpace+"updateBoard", dto);
+		session.update(nameSpace+"updateMarketBoard", dto);
 	}
 	
-	public void deleteBoard(int num)
+	public void deleteMarketBoard(int nBoardSeq)
 	{
-		session.delete(nameSpace+"deleteBoard", num);
+		session.delete(nameSpace+"deleteMarketBoard", nBoardSeq);
 	}
 	
 }
