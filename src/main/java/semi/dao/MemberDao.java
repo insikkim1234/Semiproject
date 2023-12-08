@@ -12,7 +12,7 @@ public class MemberDao {
 
     private String nameSpace = "semi.dto.MemberDto.";
 
-    private void insertMember(MemberDto dto) {
+    public void insertMember(MemberDto dto) {
         session.insert(nameSpace + "insertMember", dto);
     }
 }

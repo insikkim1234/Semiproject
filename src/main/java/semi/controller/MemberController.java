@@ -19,13 +19,13 @@ public class MemberController {
         return "loginviews/save";
     }
 
-    @PostMapping("/save")
-    public String save(@ModelAttribute MemberDto memberDto) {
-        int saveResult = memberService.save(memberDto);
-        if (saveResult > 0) {
-            return "login";
-        } else {
-            return "save";
-        }
-    }
+//    @PostMapping("/save")
+//    public String save(@ModelAttribute MemberDto memberDto) {
+//        int saveResult = memberService.save(memberDto);
+//        if (saveResult > 0) {
+//            return "login";
+//        } else {
+//            return "save";
+//        }
+//    }
 }
