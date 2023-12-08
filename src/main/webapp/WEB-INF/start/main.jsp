@@ -1,30 +1,13 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>나 혼자 먹는다</title>
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<style>
-  h1 {
-    font-family: "핑프 째즈체"; 
-    text-align: center;
-  }
-  
-  .btn-bar {
-    display: flex;
-    justify-content: center; 
-  }
-  
-  .btn-bar button {
-    margin: 0 10px;
-  }
-</style>
-
+  <tiles:insertAttribute name="" />
 </head>
-
+<c:set var="root" value="<%=request.getContextPath()%>"/>
 <body>
 
 <h1>
@@ -40,10 +23,16 @@
   <button class="btn btn-info">고객센터</button>  
   <a href="/semi/board">게시판 목록</a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="/semi/recipe/sample">레시피 샘플</a>
+  <a href="/semi/recipe/sample">recipe 샘플</a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="/semi/mboard">중고마켓 목록</a>
-  
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="${root}/member/save">회원가입</a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="/member/login">로그인</a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="/member/semi/">회원목록조회</a>
+
 </div>
 
 </body>
