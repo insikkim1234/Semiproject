@@ -16,7 +16,7 @@ public class RecipeRestController {
 	
 	//dto 불러오기
 	@GetMapping("/recipe/view")
-	public List<RecipeDto> getAllTour(){
+	public List<RecipeDto> getAllReicpe(){
 		return recipeDao.getAlltRecipe();
 	}
 }
