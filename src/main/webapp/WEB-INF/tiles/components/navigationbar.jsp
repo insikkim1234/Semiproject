@@ -6,21 +6,23 @@
 </h1>
 
 <div class="btn-bar">
-    <button class="btn btn-primary">첫화면</button>
-    <button class="btn btn-success">메뉴</button>
-    <button class="btn btn-warning">예약</button>
-    <button class="btn btn-danger">리뷰</button>
-    <button class="btn btn-info">고객센터</button>
-    <a href="/semi/board">게시판 목록</a>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="/semi/recipe/sample">recipe 샘플</a>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="/semi/mboard">중고마켓 목록</a>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="${root}/member/save">회원가입</a>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="/member/login">로그인</a>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="/member/semi/">회원목록조회</a>
+    <form action="/semi/board">
+  <button type="submit" class="btn btn-primary">게시판 목록</button>
+</form>
+<form action="/semi/recipe/sample">
+  <button type="submit" class="btn btn-success">recipe 샘플</button>
+</form>
+<form action="/semi/mboard">
+  <button type="submit" class="btn btn-warning">중고마켓</button>
+</form>
+<form action="${root}/member/save">
+  <button type="submit" class="btn btn-danger">회원가입</button>
+</form>
+<form action="/member/login">
+  <button type="submit" class="btn btn-info">로그인</button>
+</form>
+ <form action="/member/semi/">
+  <button type="submit" class="btn btn-info">회원목록조회</button>
+</form>
 
 </div>
