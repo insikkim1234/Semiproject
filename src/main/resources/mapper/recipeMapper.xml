@@ -4,4 +4,8 @@
 	<insert id="insertRecipe" parameterType="RecipeDto">
     	insert into tRecipeBoard (sRecipeTitle, sRecipeName, sRecipePhoto, sRecipeContent, sRecipeTime, sRecipeDifficulty, sRecipeServing, sRecipeIngredient, dtRecipeCreatedAt, dtRecipeUpdatedAt) values (#{sRecipeTitle}, #{sRecipeName}, #{sRecipePhoto}, #{sRecipeContent}, #{sRecipeTime}, #{sRecipeDifficulty}, #{sRecipeServing}, #{sRecipeIngredient}, now(), now());
 	</insert>
+	
+	<select id="selectAlltRecipe" resultType="RecipeDto">
+		select * from tRecipeBoard order by sRecipeTitle
+	</select>
 </mapper>
