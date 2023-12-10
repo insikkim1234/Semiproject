@@ -8,18 +8,30 @@ import lombok.Data;
 
 @Data
 public class RecipeDto {
-
-	@JsonProperty private int nRecipeIdx;
-	@JsonProperty private String sRecipeTitle;
-	@JsonProperty private String sRecipeName;
-	@JsonProperty private int sRecipeViewCount;
-	@JsonProperty private String sRecipePhoto;
-	@JsonProperty private String sRecipeContent;
-	@JsonProperty private String sRecipeTime;
-	@JsonProperty private String sRecipeDifficulty;
-	@JsonProperty private String sRecipeServing;
-	@JsonProperty private String sRecipeIngredient;
-	@JsonProperty private String sRecipeReply;
-	@JsonProperty private Timestamp dtRecipeCreatedAt;
-	@JsonProperty private Timestamp dtRecipeUpdatedAt;
+	@JsonProperty("nRecipeIdx")
+	private int nRecipeIdx;
+	@JsonProperty("sRecipeTitle")
+	private String sRecipeTitle;
+	@JsonProperty("sRecipeName")
+	private String sRecipeName;
+	@JsonProperty("sRecipeViewCount")
+	private int sRecipeViewCount;
+	@JsonProperty("sRecipePhoto")
+	private String sRecipePhoto;
+	@JsonProperty("sRecipeContent")
+	private String sRecipeContent;
+	@JsonProperty("sRecipeTime")
+	private String sRecipeTime;
+	@JsonProperty("sRecipeDifficulty")
+	private String sRecipeDifficulty;
+	@JsonProperty("sRecipeServing")
+	private String sRecipeServing;
+	@JsonProperty("sRecipeIngredient")
+	private String sRecipeIngredient;
+	@JsonProperty("sRecipeReply")
+	private String sRecipeReply;
+	@JsonProperty("sRecipeCreatedAt")
+	private Timestamp sRecipeCreatedAt;
+	@JsonProperty("sRecipeUpdatedAt")
+	private Timestamp sRecipeUpdatedAt;
 }
