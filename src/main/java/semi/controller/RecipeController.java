@@ -60,4 +60,19 @@ public class RecipeController {
 
         return "recipe/recipeSample/" + recipeIdx;
     }
+    
+    // 레시피 게시물 상세 페이지
+    @GetMapping("/recipe/board/detail")
+    public String detail(Model model, @RequestParam int nRecipeIdx) {
+    	// 조회수 증가
+    	recipeService.updateViewCount(nRecipeIdx);
+    	
+    	// nRecipeIdx에 해당하는 dto 얻기
+    	RecipeDto dto = recipeService.getData(nRecipeIdx);
+    	
+    	model.addAttribute("dto", dto);
+    	
+    	return "recipe/recipeBoardDetail";
+    }
+	
 }
