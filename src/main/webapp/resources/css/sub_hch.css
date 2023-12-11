@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+
+/* marketboardlist */
+.mlist_head{
+	background-color: #74B243;
+	color: white;
+	padding: 10px;
+}
+
+.mlist_head>.btn{
+	background-color: white;
+	color: #74B243;
+	margin-left: 10px;
+	font-weight: 700;
+}
+
+.cGreen{
+	color: #74B243;
+}
+
+.borderOrange{
+	border: 2px solid #ff6f0f !important;
+}
+
+.w10{
+	width:20%;
+}
+

@@ -25,7 +25,7 @@ import semi.service.MarketProductService;
 
 @Controller
 public class MarketBoardController {
-
+	/*
 	 @GetMapping("/mboard")
 	 public String boardList() {
 		 return "market/marketboardlist";
@@ -35,7 +35,7 @@ public class MarketBoardController {
 	 public String boardForm() {
 		 return "market/marketboardform";
 	 }
-	 
+	 */
 	 @Autowired
 		private MarketBoardService marketBoardService;
 
