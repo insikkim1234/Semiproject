@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <h1>
-    <img src="../../../resources/photo/대표사진.png" style="height:50px; margin-right:10px;">
-    나 혼자 먹는다
+	<img src="https://kr.object.ncloudstorage.com/semi-project-eatingalone/photo/logo.jpg" style="height:50px; margin-right:1px;">
+	나 혼자 먹는다
 </h1>
 
 <div class="btn-bar">
