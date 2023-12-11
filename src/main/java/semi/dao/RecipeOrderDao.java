@@ -12,7 +12,7 @@ public class RecipeOrderDao {
 	@Autowired
 	private SqlSession session;
 
-	public List<RecipeOrderDto> getRecipeOrderById(int recipeIdx) {
-		return session.selectList("getRecipeOrderById", recipeIdx);
+	public List<RecipeOrderDto> getRecipeOrdersById(int recipeIdx) {
+		return session.selectList("getRecipeOrdersById", recipeIdx);
 	}
 }
