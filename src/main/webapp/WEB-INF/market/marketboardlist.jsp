@@ -26,7 +26,7 @@
 		
 		
 			<button type="button" class="btn btn-sm btn_product"
-			onclick="location.href='./form'">나의 물품등록</button>
+			onclick="location.href='./mboard/form'">나의 물품등록</button>
 		
 	</div>
 	<table class="table table-bordered">

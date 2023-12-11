@@ -19,11 +19,39 @@
 	color: #74B243;
 }
 
-.borderOrange{
-	border: 2px solid #ff6f0f !important;
+.borderGreen{
+	border: 2px solid #74B243 !important;
+}
+
+.backGreen{
+	background-color: #74B243;
+	color: white;
+	text-align: center;
+}
+
+.borderGreen.col{
+	padding: 0;
 }
 
 .w10{
+	width:10%;
+}
+
+.w20{
 	width:20%;
+}
+
+.w100p{
+	width: 100px;
+}
+
+
+#product-preview {
+    max-width: 100%;
+    margin-top: 10px;
+}
+
+#product-preview>img{
+	width: 200px; 
 }
 
