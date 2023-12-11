@@ -12,6 +12,9 @@
 <form action="/semi/recipe/sample">
   <button type="submit" class="btn btn-success">recipe 샘플</button>
 </form>
+<form action="/semi/recipe/board">
+  <button type="submit" class="btn btn-info">레시피 보드</button>
+</form>
 <form action="/semi/mboard">
   <button type="submit" class="btn btn-warning">중고마켓</button>
 </form>
