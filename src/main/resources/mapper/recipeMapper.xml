@@ -16,4 +16,8 @@
 	<select id="selectDataBynRecipeIdx" parameterType="int" resultType="RecipeDto">
 		select * from tRecipeBoard where nRecipeIdx = #{nRecipeIdx};
 	</select>
+
+	<select id="totalCountOfRecipe" resultType="int">
+   		 select count(*) from tRecipeBoard
+    </select>
 </mapper>

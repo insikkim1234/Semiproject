@@ -43,7 +43,10 @@ public class RecipeController {
     
     // 레시피 게시판
     @GetMapping("/recipe/board")
-    public String board() {
+    public String getRecipeList(Model model) {
+        //총 레시피 개수 얻기
+        int totalCount = recipeDao.getTotalCount();
+        model.addAttribute("totalCount", totalCount);
         return "recipe/recipeBoard";
     }
 
