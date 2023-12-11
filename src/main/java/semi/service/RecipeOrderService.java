@@ -13,7 +13,7 @@ public class RecipeOrderService {
 	
 	private RecipeOrderDao recipeOrderDao;
 	
-	public List<RecipeOrderDto> getRecipeOrderById(int recipeIdx) {
-		return recipeOrderDao.getRecipeOrderAll(recipeIdx);
+	public List<RecipeOrderDto> getRecipeOrdersById(int recipeIdx) {
+		return recipeOrderDao.getRecipeOrdersById(recipeIdx);
 	}
 }
