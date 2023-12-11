@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,27 +50,7 @@ public class RecipeController {
     // 레시피 업로드 된 사진 스토리지에 업로드 
     @PostMapping("/recipe/insertRecipeApi")
     public String insertRecipeApi(@ModelAttribute RecipeDto dto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload) {
-//        String path = request.getSession().getServletContext().getRealPath("/resources/upload");
-//        String realPath = "";
-//        if(!upload.get(0).getOriginalFilename().equals("")) {
-//            for(MultipartFile multi : upload) {
-//                String photo = UUID.randomUUID().toString();
-//                String extension = multi.getOriginalFilename().substring(multi.getOriginalFilename().lastIndexOf("."));
-//                realPath = path + "/" + photo + extension;
-//                try {
-//                    multi.transferTo(new File(realPath));
-//
-//                } catch (IllegalStateException e) {
-//                    // TODO Auto-generated catch block
-//                    e.printStackTrace();
-//                } catch (IOException e) {
-//                    // TODO Auto-generated catch block
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//        }
-    	
+
         String photo=storageService.uploadFile(storagename, storagefolder, upload);
    
         dto.setSRecipePhoto(photo);
@@ -77,4 +58,19 @@ public class RecipeController {
 
         return "redirect:../";
     }
+    
+    // 레시피 게시물 상세 페이지
+    @GetMapping("/recipe/board/detail")
+    public String detail(Model model, @RequestParam int nRecipeIdx) {
+    	// 조회수 증가
+    	recipeService.updateViewCount(nRecipeIdx);
+    	
+    	// nRecipeIdx에 해당하는 dto 얻기
+    	RecipeDto dto = recipeService.getData(nRecipeIdx);
+    	
+    	model.addAttribute("dto", dto);
+    	
+    	return "recipe/recipeBoardDetail";
+    }
+	
 }

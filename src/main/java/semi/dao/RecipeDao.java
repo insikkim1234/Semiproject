@@ -26,5 +26,11 @@ public class RecipeDao {
 		return session.selectList(nameSpace + "selectAlltRecipe");
 	}
 	
+	public void updateViewCount(int nRecipeIdx) {
+		session.update(nameSpace + "updateViewCount", nRecipeIdx);
+	}
 	
+	public RecipeDto getData(int nRecipeIdx) {
+		return session.selectOne(nameSpace + "selectDataBynRecipeIdx", nRecipeIdx);
+	}
 }

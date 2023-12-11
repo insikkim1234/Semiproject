@@ -8,4 +8,12 @@
 	<select id="selectAlltRecipe" resultType="RecipeDto">
 		select * from tRecipeBoard order by sRecipeTitle
 	</select>
+	
+	<update id="updateViewCount" parameterType="int">
+		update tRecipeBoard set nRecipeViewCount = nRecipeViewCount + 1 where nRecipeIdx = #{nRecipeIdx};
+	</update>
+	
+	<select id="selectDataBynRecipeIdx" parameterType="int" resultType="RecipeDto">
+		select * from tRecipeBoard where nRecipeIdx = #{nRecipeIdx};
+	</select>
 </mapper>
