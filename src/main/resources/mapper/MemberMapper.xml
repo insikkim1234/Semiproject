@@ -8,4 +8,11 @@
     <select id="checkDuplicatedEmail" parameterType="semi.dto.MemberDto" resultType="int">
         SELECT COUNT(*) FROM tUser WHERE sUserEmail = #{sUserEmail}
     </select>
+    <select id="selectAllMembers" resultType="semi.dto.MemberDto" parameterType="Map">
+		select * from tUser
+		<if test="searchword!=null">
+		where ${searchfield} like concat('%',#{searchword},'%')
+		</if>
+		order by num desc
+	</select>
 </mapper>
