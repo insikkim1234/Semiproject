@@ -45,7 +45,12 @@
     div.box figure img{
        width:160px;
        height: 160px;
-       border-radius: 30px;
+       margin-top:5px;
+    }
+    
+    .recipe_img{
+       width:160px;
+       height: 160px;
        margin-top:5px;
     }
     
@@ -59,31 +64,29 @@
       display: none;   
    } 
 </style>
-
 <script type="text/javascript">
-	$(function(){
-		//처음 시작시 그리드모양 이미지형태로 출력하기
-		grid();
-		
-		list();
-		
-		$(".simplelist").css("color","green");
-		
-		$(".simplegrid").click(function(){
-			$(this).css("color","green");
-			$(".simplelist").css("color","black");
-			grid();
-		});
-		
-		$(".simplelist").click(function(){
-			$(this).css("color","green");
-			$(".simplegrid").css("color","black");
-			list();
+   $(function(){
+      //처음 시작시 그리드모양 이미지형태로 출력하기
+      grid();
+      
+      
+      $(".simplegrid").css("color","brown");
+      
+      $(".simplegrid").click(function(){
+         $(this).css("color","brown");
+         $(".simplelist").css("color","black");
+         grid();
+      });
+      
+      $(".simplelist").click(function(){
+         $(this).css("color","brown");
+         $(".simplegrid").css("color","black");
+         list();
+        
 
-		});
-		
-	});
-	
+      });
+      
+   });
 	function grid()
 	{
 		$.ajax({
@@ -94,17 +97,17 @@
 				let s="";
 				$.each(res,function(idx,item){
 					var sRecipeName=item.sRecipeName;
-					console.log(sRecipeName);
+					console.log(item.sRecipePhoto);
 					s+=
 						`
 						<div class="box" style="background-color:#FFFFF0;">
 							<figure>
-								<img src="">
+							<img src="https://kr.object.ncloudstorage.com/semi-project-eatingalone/photo/\${item.sRecipePhoto}" ><br>
 								<figcaption>
 									<b>\${item.sRecipeTitle}</b><br>
 									<span style="color:gray;">\${item.sRecipeName}</span>
 									<br>
-									<span class="day">작성자
+									<span class="day">작성자<br>
 										&nbsp;&nbsp;&nbsp;
 									조회수\${item.nRecipeViewCount}</span>
 								</figcaption>
@@ -117,57 +120,58 @@
 		});
 	}
 	
-	function list()
-	{
-		$.ajax({
-			type:"get",
-			dataType:"json",
-			url:"./view",
-			success:function(res){
-				let s="";
-				s+=
-				`
-				<table class="table table-bordered" style="450px">
-				`;
-				$.each(res,function(idx,item){
-					var sRecipeName=item.sRecipeName;
-					console.log(sRecipeName);
-					s+=
-					`
-					<tr>
-						<td>
-							<h5><b class="subject" style="cursor:pointer">\${item.sRecipeTitle}</b></h5>
-							<div style="margin-left:20px;color:black;" class="content">
-								<pre>\${item.sRecipeContent}</pre>
-								</div>
-								<div>
-									<span>${item.sRecipeName}</span>&nbsp;&nbsp;
-									<span class="day">작성일
-										&nbsp;&nbsp;
-										조회수
-									</span>
-								</div>
-							</td>
-						</tr>
-					`;
-				});
-				s+="</table>";
-				$(".list").html(s);
-				//첫번째 content만 일단 보이도록
-				$("div.content").eq(0).css("display","block");
-			}
-		});
-		}
-</script>
-</head>
-<body>
-   <div class="simpleicon">
-      <i class="bi bi-grid simplegrid"></i>
-      <i class="bi bi-card-list simplelist"></i>
-   </div>
-   
-   <div class="list">
-     123
-   </div>
-</body>
-</html>
+	 function list()
+	   {
+	      $.ajax({
+	         type:"get",
+	         dataType:"json",
+	         url:"./view",
+	         success:function(res){
+	            let s="";
+	            s+=
+	            `
+	            <table class="table table-bordered" style="450px">
+	            `;
+	            $.each(res,function(idx,item){
+	               var sRecipeName=item.sRecipeName;
+	               console.log(sRecipeName);
+	               s+=
+	               `
+	               <tr>
+	                  <td>
+	                  <img class="recipe_img" src="https://kr.object.ncloudstorage.com/semi-project-eatingalone/photo/\${item.sRecipePhoto}" >
+	                     <h5><b class="subject" style="cursor:pointer">\${item.sRecipeTitle}</b></h5>
+	                     <div style="margin-left:20px;color:black;" class="content">
+	                        <pre>\${item.sRecipeContent}</pre>
+	                        </div>
+	                        <div>
+	                           <span>${item.sRecipeName}</span>&nbsp;&nbsp;
+	                           <span class="day">작성일<br>
+	                              &nbsp;&nbsp;
+	                              조회수
+	                           </span>
+	                        </div>
+	                     </td>
+	                  </tr>
+	               `;
+	            });
+	            s+="</table>";
+	            $(".list").html(s);
+	            //첫번째 content만 일단 보이도록
+	            $("div.content").eq(0).css("display","block");
+	         }
+	      });
+	      }
+	</script>
+	</head>
+	<body>
+	   <div class="simpleicon">
+	      <i class="bi bi-grid simplegrid"></i>
+	      <i class="bi bi-list-ul simplelist"></i>
+	   </div>
+	   
+	   <div class="list">
+	     123
+	   </div>
+	</body>
+	</html>
