@@ -19,13 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import semi.dto.MarketBoardDto;
-import semi.dto.MarketProductDto;
 import semi.service.MarketBoardService;
-import semi.service.MarketProductService;
 
 @Controller
 public class MarketBoardController {
-	
+
 	 @GetMapping("/mboard")
 	 public String boardList() {
 		 return "market/marketboardlist";
@@ -39,12 +37,12 @@ public class MarketBoardController {
 	 @Autowired
 		private MarketBoardService marketBoardService;
 
-		
-		@Autowired private MarketProductService marketProductService;
+		/*
+		@Autowired private MarketBoardProductService boardFileService;
 	
 		
-		/*
-		@Autowired private MarketBoardCommetnService answerService;
+		
+		@Autowired private MArketBoardCommetnService answerService;
 		
 
 		@Autowired
@@ -132,11 +130,11 @@ public class MarketBoardController {
 			return "market/marketboardform";
 		}
 
-		
+		/*
 		//새글/답글 저장
-		@PostMapping("/mboard/addboard")
+		@PostMapping("/board/addboard")
 		public String addBoard(
-				@ModelAttribute MarketBoardDto dto,
+				@ModelAttribute BoardDto dto,
 				@RequestParam int currentPage,
 				@RequestParam List<MultipartFile> upload,
 				HttpServletRequest request,
@@ -145,8 +143,6 @@ public class MarketBoardController {
 		{
 			//파일 업로드할 경로
 			String path=request.getSession().getServletContext().getRealPath("/resources/upload");
-			
-			/*
 			//db 에 저장할 로그인정보
 			String myid=(String)session.getAttribute("myid");
 			String writer=(String)session.getAttribute("myname");
@@ -155,11 +151,9 @@ public class MarketBoardController {
 			dto.setWriter(writer);
 
 			//일단 BoardDto 먼저 저장
-			marketBoardService.insertBoard(dto);
+			boardService.insertBoard(dto);
 			//selectKey : num 값 넘어왔는지 확인
 			System.out.println("num="+dto.getNum());
-			*/
-
 
 			//사진들 업로드
 			//사진 업로드를 안했을경우 리스트의 첫데이타의 파일명이 빈문자열이 된다
@@ -173,11 +167,11 @@ public class MarketBoardController {
 					try {
 						multi.transferTo(new File(path+"/"+fileName));
 						//파일은 따로 db 에 insert 한다
-						MarketProductDto fdto=new MarketProductDto();
-						fdto.setNBoardSeq(dto.getNBoardSeq());//boarddb 에 방금 insert 된 num값
-						fdto.setSProductImage1(fileName);
+						BoardFileDto fdto=new BoardFileDto();
+						fdto.setNum(dto.getNum());//boarddb 에 방금 insert 된 num값
+						fdto.setPhotoname(fileName);
 
-						marketProductService.insertProductImage(fdto);
+						boardFileService.insertPhoto(fdto);
 
 					} catch (IllegalStateException e) {
 						// TODO Auto-generated catch block
@@ -193,67 +187,61 @@ public class MarketBoardController {
 			return "redirect:list?currentPage="+currentPage;
 		}
 
-		@GetMapping("/mboard/content")
-		public String getContent(Model model,@RequestParam int nBoardSeq,@RequestParam(defaultValue = "1") int currentPage)
+		@GetMapping("/board/content")
+		public String getContent(Model model,@RequestParam int num,@RequestParam(defaultValue = "1") int currentPage)
 		{
 			//조회수 증가
-			marketBoardService.updateReadCount(nBoardSeq);
+			boardService.updateReadCount(num);
 			//num 에 해당하는 dto 얻기
-			MarketBoardDto dto=marketBoardService.getData(nBoardSeq);
-			                                   
-			/*
+			BoardDto dto=boardService.getData(num);
 			//프로필 사진 가져오기
 			String profile_photo=memberDao.getData(dto.getMyid()).getPhoto();
-			*/
-			
-			/*
 			//사진과 사진 갯수
-			List<String> photos=marketProductService.getProductImageByNBoardSeq(nBoardSeq);
+			List<String> photos=boardFileService.getPhotoByNum(num);
 			dto.setPhotocount(photos.size());//사진갯수
-			dto.setSBoardImage(photos);//사진 파일명들
-			*/
+			dto.setPhotoNames(photos);//사진 파일명들
 	
 			//model 에 저장
-			//model.addAttribute("profile_photo", profile_photo);
+			model.addAttribute("profile_photo", profile_photo);
 			model.addAttribute("dto", dto);
 			model.addAttribute("currentPage",currentPage);		
 	
-			return "market/content";
+			return "board/content";
 		}
 	
-		@GetMapping("/mboard/delete")
-		public String deleteBoard(@RequestParam int nBoardSeq,@RequestParam int currentPage)
+		@GetMapping("/board/delete")
+		public String deleteBoard(@RequestParam int num,@RequestParam int currentPage)
 		{
 			//삭제
-			marketBoardService.deleteMarketBoard(nBoardSeq);
+			boardService.deleteBoard(num);
 	
 			return "redirect:./list?currentPage="+currentPage;
 		}
 	
 		@GetMapping("/board/updateform")
-		public String updateForm(Model model,@RequestParam int nBoardSeq,@RequestParam int currentPage)
+		public String updateForm(Model model,@RequestParam int num,@RequestParam int currentPage)
 		{
-			MarketBoardDto dto=marketBoardService.getData(nBoardSeq);
-			List<MarketProductDto> flist=marketProductService.getFileDataByNBoardSeq(nBoardSeq);
+			BoardDto dto=boardService.getData(num);
+			List<BoardFileDto> flist=boardFileService.getFileDataByNum(num);
 	
 			model.addAttribute("currentPage", currentPage);
 			model.addAttribute("dto", dto);
 			model.addAttribute("flist", flist);		
 	
-			return "market/updateform";
+			return "board/updateform";
 		}
 	
-		@GetMapping("/mboard/delphoto")
-		@ResponseBody public void deleteProductImage(@RequestParam int nProductSeq)
+		@GetMapping("/board/delphoto")
+		@ResponseBody public void deletePhoto(@RequestParam int idx)
 		{
 			//해당 사진 삭제
-			marketProductService.deleteProductImage(nProductSeq);
+			boardFileService.deletePhoto(idx);
 		}
 	
 		//게시판 수정
-		@PostMapping("/mboard/updateboard")
+		@PostMapping("/board/updateboard")
 		public String updateBoard(
-				@ModelAttribute MarketBoardDto dto,
+				@ModelAttribute BoardDto dto,
 				@RequestParam int currentPage,
 				@RequestParam List<MultipartFile> upload,
 				HttpServletRequest request,
@@ -264,7 +252,7 @@ public class MarketBoardController {
 			String path=request.getSession().getServletContext().getRealPath("/resources/upload");
 			
 			//수정
-			marketBoardService.updateMarketBoard(dto);
+			boardService.updateBoard(dto);
 			
 			//사진들 업로드
 			//사진 업로드를 안했을경우 리스트의 첫데이타의 파일명이 빈문자열이 된다
@@ -278,11 +266,11 @@ public class MarketBoardController {
 					try {
 						multi.transferTo(new File(path+"/"+fileName));
 						//파일은 따로 db 에 insert 한다
-						MarketProductDto fdto=new MarketProductDto();
-						fdto.setNBoardSeq(dto.getNBoardSeq());
-						fdto.setSProductImage1(fileName);
+						BoardFileDto fdto=new BoardFileDto();
+						fdto.setNum(dto.getNum());
+						fdto.setPhotoname(fileName);
 	
-						marketProductService.insertProductImage(fdto);
+						boardFileService.insertPhoto(fdto);
 	
 					} catch (IllegalStateException e) {
 						// TODO Auto-generated catch block
@@ -295,9 +283,9 @@ public class MarketBoardController {
 			}
 	
 			//수정후 내용보기로 이동한다
-			return "redirect:./content?currentPage="+currentPage+"&num="+dto.getNBoardSeq();
+			return "redirect:./content?currentPage="+currentPage+"&num="+dto.getNum();
 		}
-		
+		*/
 
 }
 
