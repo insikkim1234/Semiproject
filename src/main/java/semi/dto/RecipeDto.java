@@ -14,8 +14,8 @@ public class RecipeDto {
 	private String sRecipeTitle;
 	@JsonProperty("sRecipeName")
 	private String sRecipeName;
-	@JsonProperty("sRecipeViewCount")
-	private int sRecipeViewCount;
+	@JsonProperty("nRecipeViewCount")
+	private int nRecipeViewCount;
 	@JsonProperty("sRecipePhoto")
 	private String sRecipePhoto;
 	@JsonProperty("sRecipeContent")
