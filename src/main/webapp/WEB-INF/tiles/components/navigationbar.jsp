@@ -18,13 +18,13 @@
 	<form action="/semi/mboard">
 	  <button type="submit" class="btn btn-warning">중고마켓</button>
 	</form>
-	<form action="${root}/member/save">
+	<form action="/semi/member/register">
 	  <button type="submit" class="btn btn-danger">회원가입</button>
 	</form>
-	<form action="/member/login">
+	<form action="/semi/member/login">
 	  <button type="submit" class="btn btn-info">로그인</button>
 	</form>
-	 <form action="/member/semi/">
+	 <form action="/semi/member/semi/">
 	  <button type="submit" class="btn btn-info">회원목록조회</button>
 	</form>
 
