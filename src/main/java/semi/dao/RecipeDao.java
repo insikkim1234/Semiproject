@@ -24,5 +24,10 @@ public class RecipeDao {
 		return session.selectList(nameSpace + "selectAlltRecipe");
 	}
 	
+	public int getTotalCount()
+	{
+		return session.selectOne(nameSpace+"totalCountOfRecipe");
+	}
+	
 	
 }

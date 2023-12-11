@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,7 +43,10 @@ public class RecipeController {
     
     // 레시피 게시판
     @GetMapping("/recipe/board")
-    public String board() {
+    public String getRecipeList(Model model) {
+        //총 레시피 개수 얻기
+        int totalCount = recipeDao.getTotalCount();
+        model.addAttribute("totalCount", totalCount);
         return "recipe/recipeBoard";
     }
 

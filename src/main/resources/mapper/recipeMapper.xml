@@ -8,4 +8,8 @@
 	<select id="selectAlltRecipe" resultType="RecipeDto">
 		select * from tRecipeBoard order by sRecipeTitle
 	</select>
+	
+	<select id="totalCountOfRecipe" resultType="int">
+   		 select count(*) from tRecipeBoard
+    </select>
 </mapper>
