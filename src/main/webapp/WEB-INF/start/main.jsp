@@ -27,11 +27,11 @@
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="/semi/mboard">중고마켓 목록</a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="/member/register">회원가입</a>
+  <a href="/semi/member/register">회원가입</a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="/member/login">로그인</a>
+  <a href="/semi/member/login">로그인</a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="/member/semi/">회원목록조회</a>
+  <a href="/semi/member/memberlist/">회원목록조회</a>
 
 </div>
 
