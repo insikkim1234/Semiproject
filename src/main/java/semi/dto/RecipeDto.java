@@ -33,4 +33,21 @@ public class RecipeDto {
 	private Timestamp sRecipeCreatedAt;
 	@JsonProperty("sRecipeUpdatedAt")
 	private Timestamp sRecipeUpdatedAt;
+	public String getsRecipeTitle() {
+		return sRecipeTitle;
+	}
+	public int getnRecipeViewCount() {
+		return nRecipeViewCount;
+	}
+	public String getsRecipePhoto() {
+		return sRecipePhoto;
+	}
+	public String getsRecipeContent() {
+		return sRecipeContent;
+	}
+	public String getsRecipeName() {
+		return sRecipeName;
+	}
+	
+	
 }
