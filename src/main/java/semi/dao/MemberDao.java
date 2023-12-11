@@ -10,10 +10,18 @@ public class MemberDao {
     @Autowired
     private SqlSession session;
 
-    private String nameSpace = "semi.dto.MemberDto.";
+    private String nameSpace = "semi.dao.MemberDao.";
 
-    public void insertMember(MemberDto dto) {
-        session.insert(nameSpace + "insertMember", dto);
+    public int insertMember(MemberDto dto) {
+        return session.insert(nameSpace + "insertMember", dto);
+    }
+
+    //중복 회원가입 체크로직
+    public int duplicatesEmailCheck(MemberDto dto) {
+        return session.selectOne(nameSpace + "checkDuplicatedEmail",dto);
+    }
+
+    public int loginExecute(MemberDto dto) {
+        return session.selectOne(nameSpace + "insertMember", dto);
     }
 }
-
