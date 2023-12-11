@@ -1,5 +1,7 @@
 package semi.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,4 +18,10 @@ public class RecipeDao {
 	public void insertRecipe(RecipeDto dto) {
 		session.insert(nameSpace + "insertRecipe", dto);
 	}
+	
+	public List<RecipeDto> selectAllRecipe() {
+		return session.selectList(nameSpace + "selectAllRecipe");
+	}
+	
+	
 }
