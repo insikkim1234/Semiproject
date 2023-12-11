@@ -1,36 +1,23 @@
 package semi.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
-import naver.storage.NcpObjectStorageService;
+import org.springframework.web.bind.annotation.PathVariable;
 import semi.dao.RecipeDao;
-import semi.dto.RecipeDto;
-import semi.service.RecipeService;
+import semi.dto.RecipeOrderDto;
+import semi.service.RecipeOrderService;
+
+import java.util.List;
+
 
 @Controller
 public class RecipeController {
-    @Autowired
-    private RecipeService recipeService;
+    @Autowired private RecipeOrderService recipeOrderService;
+    @Autowired private RecipeDao recipeDao;
 
-    @Autowired
-    private RecipeDao recipeDao;
-    
-    @Autowired
-    NcpObjectStorageService storageService;
-    
-    // 스토리지 연결 - 사진 업로드
-    String storagename = "semi-project-eatingalone";
-    String storagefolder = "photo";
     @GetMapping("/recipe/sample")
     public String sample() {
         return "recipe/recipeSample";
@@ -45,14 +32,12 @@ public class RecipeController {
         return "recipe/recipeBoard";
     }
 
-    // 레시피 업로드 된 사진 스토리지에 업로드 
-    @PostMapping("/recipe/insertRecipeApi")
-    public String insertRecipeApi(@ModelAttribute RecipeDto dto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload) {
-        String photo=storageService.uploadFile(storagename, storagefolder, upload);
-   
-        dto.setSRecipePhoto(photo);
-        recipeService.insertRecipe(dto);
+    @GetMapping("/recipe/orderSample/{recipeIdx}")
+    public String getRecipeDetail(Model model, @PathVariable int recipeIdx) {
+        List<RecipeOrderDto> dto = recipeOrderService.getRecipeOrdersById(recipeIdx);
+        model.addAttribute("RecipeOrderDtoList", dto);
 
-        return "redirect:../";
+        return "recipe/orderSample/" + recipeIdx;
     }
+
 }

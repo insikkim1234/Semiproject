@@ -2,24 +2,30 @@ package semi.controller;
 
 import java.util.List;
 
+import naver.storage.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.multipart.MultipartFile;
 import semi.dao.RecipeDao;
-import semi.dao.RecipeOrderDao;
 import semi.dto.RecipeDto;
 import semi.dto.RecipeOrderDto;
 import semi.service.RecipeOrderService;
+import semi.service.RecipeService;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @RestController
 public class RecipeRestController {
-	@Autowired
-	private RecipeDao recipeDao;
+	@Autowired NcpObjectStorageService storageService;
+	@Autowired private RecipeDao recipeDao;
+	@Autowired private RecipeOrderService recipeOrderService;
+	@Autowired private RecipeService recipeService;
 
-	@Autowired
-	private RecipeOrderService recipeOrderService;
+
+	private String storagename = "semi-project-eatingalone";
+	private String storagefolder = "photo";
 
 	//dto 불러오기
 	@GetMapping("/recipe/view")
@@ -27,6 +33,15 @@ public class RecipeRestController {
 		return recipeDao.getAlltRecipe();
 	}
 
+	@PostMapping("/recipe/insertRecipeApi")
+	public String insertRecipeApi(@ModelAttribute RecipeDto dto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload) {
+		String photo=storageService.uploadFile(storagename, storagefolder, upload);
+
+		dto.setSRecipePhoto(photo);
+		recipeService.insertRecipe(dto);
+
+		return "redirect:../";
+	}
 
 	// region RecipeOrder
 
