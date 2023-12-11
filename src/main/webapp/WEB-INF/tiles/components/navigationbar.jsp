@@ -7,22 +7,22 @@
 
 <div class="btn-bar">
     <form action="/semi/board">
-  <button type="submit" class="btn btn-primary">게시판 목록</button>
-</form>
-<form action="/semi/recipe/sample">
-  <button type="submit" class="btn btn-success">recipe 샘플</button>
-</form>
-<form action="/semi/mboard">
-  <button type="submit" class="btn btn-warning">중고마켓</button>
-</form>
-<form action="${root}/member/save">
-  <button type="submit" class="btn btn-danger">회원가입</button>
-</form>
-<form action="/member/login">
-  <button type="submit" class="btn btn-info">로그인</button>
-</form>
- <form action="/member/semi/">
-  <button type="submit" class="btn btn-info">회원목록조회</button>
-</form>
+        <button type="submit" class="btn btn-primary">게시판 목록</button>
+    </form>
+    <form action="/semi/recipe/sample">
+        <button type="submit" class="btn btn-success">recipe 샘플</button>
+    </form>
+    <form action="/semi/mboard">
+        <button type="submit" class="btn btn-warning">중고마켓</button>
+    </form>
+    <form action="/semi/member/register">
+        <button type="submit" class="btn btn-danger">회원가입</button>
+    </form>
+    <form action="/semi/member/login">
+        <button type="submit" class="btn btn-info">로그인</button>
+    </form>
+    <form action="/semi/member/semi">
+        <button type="submit" class="btn btn-info">회원목록조회</button>
+    </form>
 
 </div>

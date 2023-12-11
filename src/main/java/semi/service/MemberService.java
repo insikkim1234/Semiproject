@@ -12,7 +12,15 @@ public class MemberService {
 
     private final MemberDao memberDao;
 
-    public void insertMember(MemberDto dto) {
-        memberDao.insertMember(dto);
+    public int insertMember(MemberDto dto) {
+        return memberDao.insertMember(dto);
+    }
+
+    public int duplicatedEmailCheck(MemberDto memberDto) {
+        return memberDao.duplicatesEmailCheck(memberDto);
+    }
+
+    public int loginExecute(MemberDto memberDto){
+        return memberDao.loginExecute(memberDto);
     }
 }
