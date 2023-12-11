@@ -15,4 +15,12 @@ public class RecipeService {
 	public void insertRecipe(RecipeDto dto) {
 		recipeDao.insertRecipe(dto);
 	}
+	
+	public void updateViewCount(int nRecipeIdx) {
+		recipeDao.updateViewCount(nRecipeIdx);
+	}
+	
+	public RecipeDto getData(int nRecipeIdx) {
+		return recipeDao.getData(nRecipeIdx);
+	}
 }
