@@ -14,4 +14,8 @@
         <put-attribute name="content" value="/WEB-INF/{1}/{2}.jsp" />
     </definition>
 
+    <definition name="recipe/recipeSample/*" extends="default_layout">
+        <put-attribute name="content" value="/WEB-INF/recipe/recipeOrderFragment.jsp" />
+    </definition>
+
 </tiles-definitions>

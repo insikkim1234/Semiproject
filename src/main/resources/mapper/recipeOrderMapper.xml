@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="semi.dao.RecipeOrderDao">
-	<select id="getRecipeOrdersById" parameterType="int" resultType="RecipeOrderDto">
+	<resultMap id="RecipeOrderDtoRm" type="RecipeOrderDto">
+		<result property="recipeIdx" column="nRecipeIdx" />
+		<result property="recipeNumber" column="nRecipeNumber" />
+		<result property="recipeOrderContent" column="sRecipeOrderContent" />
+		<result property="recipeOrderPhoto" column="sRecipeOrderPhoto" />
+	</resultMap>
+
+	<select id="getRecipeOrdersById" parameterType="int" resultType="RecipeOrderDto" resultMap="RecipeOrderDtoRm">
 		select * from tRecipeOrder where nRecipeIdx = #{recipeIdx} order by nRecipeNumber
 	</select>
 </mapper>
