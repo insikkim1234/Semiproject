@@ -1,15 +1,20 @@
 package semi.controller;
 
+import naver.storage.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.multipart.MultipartFile;
 import semi.dao.RecipeDao;
+import semi.dto.RecipeDto;
 import semi.dto.RecipeOrderDto;
 import semi.service.RecipeOrderService;
+import semi.service.RecipeService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -17,6 +22,11 @@ import java.util.List;
 public class RecipeController {
     @Autowired private RecipeOrderService recipeOrderService;
     @Autowired private RecipeDao recipeDao;
+    @Autowired private RecipeService recipeService;
+    @Autowired NcpObjectStorageService storageService;
+
+    private String storagename = "semi-project-eatingalone";
+    private String storagefolder = "photo";
 
     @GetMapping("/recipe/sample")
     public String sample() {
@@ -32,12 +42,22 @@ public class RecipeController {
         return "recipe/recipeBoard";
     }
 
+    @PostMapping("/recipe/insertRecipe")
+    public String insertRecipe(@ModelAttribute RecipeDto dto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload) {
+        String photo=storageService.uploadFile(storagename, storagefolder, upload);
+
+        dto.setSRecipePhoto(photo);
+        recipeService.insertRecipe(dto);
+
+        return "redirect:../";
+    }
+
     @GetMapping("/recipe/orderSample/{recipeIdx}")
     public String getRecipeDetail(Model model, @PathVariable int recipeIdx) {
         List<RecipeOrderDto> dto = recipeOrderService.getRecipeOrdersById(recipeIdx);
-        model.addAttribute("RecipeOrderDtoList", dto);
+        model.addAttribute("recipeOrderDtoList", dto);
+        model.addAttribute("recipeIdx", recipeIdx);
 
-        return "recipe/orderSample/" + recipeIdx;
+        return "recipe/recipeSample/" + recipeIdx;
     }
-
 }
