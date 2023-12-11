@@ -1,10 +1,5 @@
 package semi.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-import java.util.UUID;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -53,27 +48,6 @@ public class RecipeController {
     // 레시피 업로드 된 사진 스토리지에 업로드 
     @PostMapping("/recipe/insertRecipeApi")
     public String insertRecipeApi(@ModelAttribute RecipeDto dto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload) {
-//        String path = request.getSession().getServletContext().getRealPath("/resources/upload");
-//        String realPath = "";
-//        if(!upload.get(0).getOriginalFilename().equals("")) {
-//            for(MultipartFile multi : upload) {
-//                String photo = UUID.randomUUID().toString();
-//                String extension = multi.getOriginalFilename().substring(multi.getOriginalFilename().lastIndexOf("."));
-//                realPath = path + "/" + photo + extension;
-//                try {
-//                    multi.transferTo(new File(realPath));
-//
-//                } catch (IllegalStateException e) {
-//                    // TODO Auto-generated catch block
-//                    e.printStackTrace();
-//                } catch (IOException e) {
-//                    // TODO Auto-generated catch block
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//        }
-    	
         String photo=storageService.uploadFile(storagename, storagefolder, upload);
    
         dto.setSRecipePhoto(photo);
