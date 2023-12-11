@@ -31,7 +31,7 @@ public class RecipeRestController {
 	// region RecipeOrder
 
 	@GetMapping("recipe/orderView/{recipeIdx}")
-	public List<RecipeOrderDto> getRecipeOrderAll(@PathVariable int recipeIdx) {
+	public List<RecipeOrderDto> getRecipeOrderById(@PathVariable int recipeIdx) {
 		return recipeOrderService.getRecipeOrderById(recipeIdx);
 	}
 }

@@ -14,6 +14,6 @@ public class RecipeOrderService {
 	private RecipeOrderDao recipeOrderDao;
 	
 	public List<RecipeOrderDto> getRecipeOrderById(int recipeIdx) {
-		return recipeOrderDao.getRecipeOrderAll(recipeIdx);
+		return recipeOrderDao.getRecipeOrderById(recipeIdx);
 	}
 }
