@@ -1,3 +1,4 @@
 [submodule "src/main/resources/config/env"]
 	path = src/main/resources/config/env
 	url = https://github.com/cyanO94/bitcampSensitiveInfo.git
+	branch = main

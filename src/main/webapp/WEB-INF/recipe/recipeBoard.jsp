@@ -93,7 +93,7 @@
 			success:function(res){
 				let s="";
 				$.each(res,function(idx,item){
-					var sRecipeName=item.srecipeName;
+					var sRecipeName=item.sRecipeName;
 					console.log(sRecipeName);
 					s+=
 						`
@@ -101,12 +101,12 @@
 							<figure>
 								<img src="">
 								<figcaption>
-									<b>\${item.srecipeTitle}</b><br>
-									<span style="color:gray;">\${item.srecipeName}</span>
+									<b>\${item.sRecipeTitle}</b><br>
+									<span style="color:gray;">\${item.sRecipeName}</span>
 									<br>
 									<span class="day">작성자
 										&nbsp;&nbsp;&nbsp;
-									조회수\${item.nrecipeViewCount}</span>
+									조회수\${item.nRecipeViewCount}</span>
 								</figcaption>
 							</figure>
 						</div>
@@ -130,18 +130,18 @@
 				<table class="table table-bordered" style="450px">
 				`;
 				$.each(res,function(idx,item){
-					var sRecipeName=item.srecipeName;
+					var sRecipeName=item.sRecipeName;
 					console.log(sRecipeName);
 					s+=
 					`
 					<tr>
 						<td>
-							<h5><b class="subject" style="cursor:pointer">\${item.srecipeTitle}</b></h5>
+							<h5><b class="subject" style="cursor:pointer">\${item.sRecipeTitle}</b></h5>
 							<div style="margin-left:20px;color:black;" class="content">
-								<pre>\${item.srecipeContent}</pre>
+								<pre>\${item.sRecipeContent}</pre>
 								</div>
 								<div>
-									<span>${item.srecipeName}</span>&nbsp;&nbsp;
+									<span>${item.sRecipeName}</span>&nbsp;&nbsp;
 									<span class="day">작성일
 										&nbsp;&nbsp;
 										조회수

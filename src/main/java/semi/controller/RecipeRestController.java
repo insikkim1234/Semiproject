@@ -16,7 +16,21 @@ public class RecipeRestController {
 	
 	//dto 불러오기
 	@GetMapping("/recipe/view")
-	public List<RecipeDto> getAllReicpe(){
+	public List<RecipeDto> getAllRecipe(){
 		return recipeDao.getAlltRecipe();
+	}
+
+	@GetMapping("/recipe/selectAllDataTest")
+	public String selectAllDataTest(){
+		List<RecipeDto> recipeData = recipeDao.getAlltRecipe();
+
+		StringBuilder sb = new StringBuilder();
+		for (RecipeDto data: recipeData) {
+			sb.append("<p>");
+			sb.append(data);
+			sb.append("</p>");
+		}
+
+		return sb.toString();
 	}
 }

@@ -29,9 +29,9 @@
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="${root}/member/save">회원가입</a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="/member/login">로그인</a>
+  <a href="${root}/member/login">로그인</a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="/member/semi/">회원목록조회</a>
+  <a href="${root}/member/semi/">회원목록조회</a>
 
 </div>
 
