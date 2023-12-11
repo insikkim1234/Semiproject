@@ -40,10 +40,11 @@ public class MarketBoardService {
 	 * 
 	 * boardDao.updateRestep(map); }
 	 */
-	/*
+	
 	public void insertMarketBoard(MarketBoardDto dto) 
 	{
-		int num=dto.getNum();//새글일경우 0,답글일경우 0보다 큰값이 들어있다
+		int nBoardSeq=dto.getNBoardSeq();//새글일경우 0,답글일경우 0보다 큰값이 들어있다
+		/*
 		int regroup=dto.getRegroup();//답글을 단 글의 regroup
 		int restep=dto.getRestep();//답글을 단 글의 restep
 		int relevel=dto.getRelevel();//답글을 단 글의 relevel
@@ -66,26 +67,26 @@ public class MarketBoardService {
 		dto.setRegroup(regroup);
 		dto.setRestep(restep);
 		dto.setRelevel(relevel);
-		
+		*/
 		// db insert
 		marketBoardDao.insertMarketBoard(dto);
 	}
-	*/
+	
 
-	public void updateReadCount(int num) {
-		marketBoardDao.updateReadCount(num);
+	public void updateReadCount(int nBoardSeq) {
+		marketBoardDao.updateReadCount(nBoardSeq);
 	}
 
-	public MarketBoardDto getData(int num) {
-		return marketBoardDao.getData(num);
+	public MarketBoardDto getData(int nBoardSeq) {
+		return marketBoardDao.getData(nBoardSeq);
 	}
 
-	public void updateBoard(MarketBoardDto dto) {
-		marketBoardDao.updateBoard(dto);
+	public void updateMarketBoard(MarketBoardDto dto) {
+		marketBoardDao.updateMarketBoard(dto);
 	}
 
-	public void deleteBoard(int num) {
-		marketBoardDao.deleteBoard(num);
+	public void deleteMarketBoard(int nBoardSeq) {
+		marketBoardDao.deleteMarketBoard(nBoardSeq);
 	}
 
 }
