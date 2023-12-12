@@ -1,4 +1,4 @@
-<%@ page import="naver.storage.NcpObjectStorageService" %>
+<%@ page import="naver.storage.NcpObjectStorageService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -35,36 +35,33 @@
 		<div class="collapse navbar-collapse" id="mynavbar">
 			<div class="navbar-nav me-auto">
 				<div class="nav-item align-items-center d-flex">
-					<form action="/semi/board" style="margin:0;">
+					<form action="/semi/board" style="margin: 0;">
 						<button type="submit" class="btn headmenu_btn">게시판 목록</button>
 					</form>
 				</div>
 				<div class="nav-item align-items-center d-flex">
-					<form action="/semi/recipe/sample" style="margin:0;">
+					<form action="/semi/recipe/sample" style="margin: 0;">
 						<button type="submit" class="btn headmenu_btn">recipe 샘플</button>
 					</form>
 				</div>
 				<div class="nav-item align-items-center d-flex">
-					<form action="/semi/recipe/board" style="margin:0;">
+					<form action="/semi/recipe/board" style="margin: 0;">
 						<button type="submit" class="btn headmenu_btn">레시피 보드</button>
 					</form>
 				</div>
 				<div class="nav-item align-items-center d-flex">
-					<form action="/semi/mboard" style="margin:0;">
+					<form action="/semi/mboard" style="margin: 0;">
 						<button type="submit" class="btn headmenu_btn">중고마켓</button>
 					</form>
 				</div>
 			</div>
-			<div>
-			<div>
-				<form class="d-flex m-0 justify-content-end">
+
+			<form class="d-flex m-0 justify-content-end">
 				<input class="form-control me-2" type="text" placeholder="Search">
-				<button class="btn ml-2"
+				<button class="btn "
 					style="background-color: white; color: #74B243;" type="button">검색</button>
 			</form>
-			</div>
-			
-			</div>
+
 		</div>
 	</div>
 </nav>
