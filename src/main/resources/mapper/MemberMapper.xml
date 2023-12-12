@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="semi.dao.MemberDao">
     <insert id="insertMember" parameterType="semi.dto.MemberDto">
-        INSERT INTO tUser (sUserName,sUserEmail,sUserPassword,sUserImage,sUserPhoneNumber)
-        VALUES (#{sUserName},#{sUserEmail},#{sUserPassword},#{sUserImage},#{sUserPhoneNumber});
+        INSERT INTO tUser (userName,userEmail,userPassword,userImage,userPhoneNumber)
+        VALUES (#{userName},#{userEmail},#{userPassword},#{userImage},#{userPhoneNumber});
     </insert>
     <select id="checkDuplicatedEmail" parameterType="semi.dto.MemberDto" resultType="int">
-        SELECT COUNT(*) FROM tUser WHERE sUserEmail = #{sUserEmail}
+        SELECT COUNT(*) FROM tUser WHERE userEmail = #{userEmail}
     </select>
     <select id="selectAllMembers" resultType="semi.dto.MemberDto" parameterType="Map">
 		select * from tUser
@@ -15,4 +15,7 @@
 		</if>
 		order by num desc
 	</select>
+    <select id="loginCheck" parameterType="Map" resultType="int">
+        select count(*) from tUser where sUserEmail=#{sUserEmail} and sUserPassword=#{sUserPassword};
+    </select>
 </mapper>
