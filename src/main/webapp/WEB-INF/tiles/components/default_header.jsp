@@ -5,3 +5,5 @@
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/default_css.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common_hch.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sub_hch.css">

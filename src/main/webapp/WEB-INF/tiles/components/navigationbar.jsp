@@ -6,7 +6,7 @@
 </h1>
 
 <div class="btn-bar">
-	<form action="/semi/board">
+	<form action="/semi/board/list">
 	  <button type="submit" class="btn btn-primary">게시판 목록</button>
 	</form>
 	<form action="/semi/recipe/sample">
@@ -24,7 +24,7 @@
 	<form action="/semi/member/login">
 	  <button type="submit" class="btn btn-info">로그인</button>
 	</form>
-	 <form action="/semi/member/memberlist/">
+	 <form action="/semi/member/semi/">
 	  <button type="submit" class="btn btn-info">회원목록조회</button>
 	</form>
 
