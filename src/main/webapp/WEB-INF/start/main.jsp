@@ -31,7 +31,7 @@
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="/semi/member/login">로그인</a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="/semi/member/memberlist/">회원목록조회</a>
+  <a href="/semi/member/memberlist">회원목록조회</a>
 
 </div>
 

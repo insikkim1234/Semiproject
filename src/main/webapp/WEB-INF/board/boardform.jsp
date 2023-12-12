@@ -22,20 +22,20 @@
 	<form action="./addboard" method="post" enctype="multipart/form-data">
 		<!-- hidden -->
 		<input type="hidden" name="currentPage" value="${currentPage}">
-		<input type="hidden" name="num" value="${num}">
-		<input type="hidden" name="regroup" value="${regroup}">
-		<input type="hidden" name="restep" value="${restep}">
-		<input type="hidden" name="relevel" value="${relevel}">		
+		<input type="hidden" name="nComBoardSeq" value="${nComBoardSeq}">
+		<input type="hidden" name="nComBoardRegroup" value="${nComBoardRegroup}">
+		<input type="hidden" name="nComBoardRestep" value="${nComBoardRestep}">
+		<input type="hidden" name="nComBoardRelevel" value="${nComBoardRelevel}">		
 		
 		<table class="table table-bordered" style="width:500px;">
 			<caption align="top">
-				<b>${num==0?"새글쓰기":"답글쓰기"}</b>
+				<b>${nComBoardSeq==0?"새글쓰기":"답글쓰기"}</b>
 			</caption>
 			<tr>
 				<th width="100">제목</th>
 				<td>
-					<input type="text" name="subject" class="form-control"
-					required autofocus value="${subject}">
+					<input type="text" name="sComBoardSubject" class="form-control"
+					required autofocus value="${sComBoardSubject}">
 				</td>
 			</tr>
 			<tr>

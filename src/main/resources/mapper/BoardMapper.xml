@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "hthtp://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="semi.dao.BoardDao">
+	<select id="totalCountOfBoard" resultType="int">
+		select count(*) from tComBoard
+	</select>
+	<select id="selectPagingOfBoard" parameterType="Map" resultType="BoardDto">
+		select * from tComBoard order by nComBoardRegroup desc,nComBoardRestep asc limit #{start},#{perpage}
+	</select>
+	<select id="selectMaxNumOfBoard" resultType="int">
+		select ifnull(max(nComBoardSeq),0) from tComBoard
+	</select>
+	<update id="updateRestepOfBoard" parameterType="Map">
+		update tComBoard set nComBoardRestep=nComBoardRestep+1 where nComBoardRegroup=#{nComBoardRegroup} and nComBoardRestep&gt;#{nComBoardRestep}
+	</update>
+	<insert id="insertBoard" parameterType="BoardDto">
+		insert into tComBoard (sUserName,sUserEmail,sComBoardSubject,sComBoardContent,nComBoardRegroup,nComBoardRestep,nComBoardRelevel,dtWriteDay)
+		values (#{sUserName},#{sUserEmail},#{sComBoardSubject},#{sComBoardContent},#{nComBoardRegroup},#{nComBoardRestep},#{nComBoardRelevel},now())
+		<selectKey keyProperty="nComBoardSeq" resultType="int" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	<update id="updateReadCountOfBoard" parameterType="int">
+		update tComBoard set readcount=readcount+1 where nComBoardSeq=#{nComBoardSeq}
+	</update>
+	<select id="selectDataByNum" parameterType="int" resultType="BoardDto">
+		select * from tComBoard where nComBoardSeq=#{nComBoardSeq}
+	</select>
+</mapper>
