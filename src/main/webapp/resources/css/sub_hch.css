@@ -3,16 +3,27 @@
 
 /* marketboardlist */
 .mlist_head{
-	background-color: #74B243;
-	color: white;
+	color: 74B243;
 	padding: 10px;
+	font-size: 36px;
+	font-weight: 600;
+	text-align: center;
 }
 
 .mlist_head>.btn{
-	background-color: white;
-	color: #74B243;
+	background-color: #74B243;
+	color: #fff;
 	margin-left: 10px;
 	font-weight: 700;
+	font-size: 20px;
+	border: 3px solid #fff;
+	border-radius: 10px;
+}
+
+.mlist_head>.btn:hover{
+	background-color: #EBEE48;
+	color:#33672B;
+	border: 3px solid #74B243;
 }
 
 .cGreen{
@@ -50,4 +61,25 @@
 	border: 0;
 	font-size: 18px;
 	font-weight: 600;
+}
+
+
+.member_btns{
+	position: absolute;
+	top:10px;
+	right: 10px;
+}
+
+.member_logo_btn{
+	width: 40px;
+}
+
+.btn_headersearch {
+	background-color: white; 
+	color: #74B243;
+}
+
+.btn_headersearch:hover {
+	background-color: #EBEE48;
+	color:#33672B;
 }
