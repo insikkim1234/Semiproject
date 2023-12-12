@@ -103,7 +103,7 @@ div.content {
             let s="";
             $.each(res,function(idx,item){
                var recipeName=item.recipeName;
-               console.log(item.recipeTitle);
+               console.log(item.recipePhoto);
                s+=
                   `
                   <div class="box" style="background-color:#FFFFF0;">
@@ -173,20 +173,22 @@ div.content {
 <body>
    <div style="margin: 30px;">
       <div class="input-group" style="width: 400px;">
-         <h5>상품명 검색</h5>
+         <h5>레시피 검색</h5>
          <input type="text" class="form-control"
             style="width: 150px; margin-left: 50px;" autofocus
-            placeholder="검색단어입력" id="txtword">
+            placeholder="검색레시피입력" id="word">
+         <button type="button" class="btn btn-primary" id="btnsearch"
+           onclick="searchRecipe()" style="margin-left: 10px;">검색</button>
       </div>
-      <div style="margin: 20px; font-size: 22px;" class="result">출력</div>
+      <div style="margin: 20px; font-size: 22px;" class="result"></div>
    </div>
    <div class="simpleicon">
       <i class="bi bi-grid simplegrid"></i> <i
          class="bi bi-list-ul simplelist"></i>
    </div>
-	<div>
-	<h4>현재 총 ${totalCount }개의 레시피가 있습니다.</h4>
-	</div>
+   <div>
+   <h4>현재 총 ${totalCount }개의 레시피가 있습니다.</h4>
+   </div>
    <div class="list">123</div>
 </body>
 </html>
