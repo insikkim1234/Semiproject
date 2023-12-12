@@ -59,8 +59,8 @@ public class RecipeController {
     }
     
     // 레시피 게시물 상세 페이지
-    @GetMapping("/recipe/board/detail")
-    public String detail(Model model, @RequestParam int recipeIdx) {
+    @GetMapping("/recipe/board/{recipeIdx}")
+    public String detail(Model model, @PathVariable int recipeIdx) {
     	// 조회수 증가
     	recipeService.updateViewCount(recipeIdx);
     	
@@ -69,7 +69,7 @@ public class RecipeController {
     	
     	model.addAttribute("dto", dto);
     	
-    	return "recipe/recipeBoardDetail";
+    	return "recipe/recipeBoardDetail/" + recipeIdx;
     }
 	
 }
