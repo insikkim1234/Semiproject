@@ -231,6 +231,21 @@ public class MarketBoardController {
 			return "board/updateform";
 		}
 	
+
+		/*
+		 * @GetMapping("/board/updateform") 
+		 * public String updateForm(Model
+		 * model,@RequestParam int nBoardSeq,@RequestParam int currentPage) {
+		 * MarketBoardDto dto=marketBoardService.getData(nBoardSeq);
+		 * List<MarketProductDto>
+		 * flist=marketProductService.getFileDataByNBoardSeq(nBoardSeq);
+		 * 
+		 * model.addAttribute("currentPage", currentPage); model.addAttribute("dto",
+		 * dto); model.addAttribute("flist", flist);
+		 * 
+		 * return "market/updateform"; }
+		 */
+
 		@GetMapping("/board/delphoto")
 		@ResponseBody public void deletePhoto(@RequestParam int idx)
 		{
