@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import semi.dao.RecipeDao;
 import semi.dto.RecipeDto;
 import semi.dto.RecipeOrderDto;
 import semi.service.RecipeOrderService;
@@ -22,7 +24,8 @@ public class RecipeController {
     @Autowired private RecipeOrderService recipeOrderService;
     @Autowired private RecipeService recipeService;
     @Autowired NcpObjectStorageService storageService;
-
+    @Autowired private RecipeDao recipeDao;
+    
     @GetMapping("/recipe/sample")
     public String sample() {
         return "recipe/recipeSample";
@@ -36,6 +39,9 @@ public class RecipeController {
         model.addAttribute("totalCount", totalCount);
         return "recipe/recipeBoard";
     }
+    
+  
+
 
     @PostMapping("/recipe/insertRecipe")
     public String insertRecipe(@ModelAttribute RecipeDto dto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload) {
@@ -53,8 +59,6 @@ public class RecipeController {
         List<RecipeOrderDto> dto = recipeOrderService.getRecipeOrdersById(recipeIdx);
         model.addAttribute("recipeOrderDtoList", dto);
         model.addAttribute("recipeIdx", recipeIdx);
-        model.addAttribute("STORAGE_PHOTO_PATH", NcpObjectStorageService.STORAGE_PHOTO_PATH);
-
 
         return "recipe/recipeSample/" + recipeIdx;
     }
@@ -73,8 +77,6 @@ public class RecipeController {
         List<RecipeOrderDto> orderDto = recipeOrderService.getRecipeOrdersById(recipeIdx);
         model.addAttribute("recipeOrderDtoList", orderDto);
         model.addAttribute("recipeIdx", recipeIdx);
-        model.addAttribute("STORAGE_PHOTO_PATH", NcpObjectStorageService.STORAGE_PHOTO_PATH);
-
     	
     	return "recipe/recipeBoardDetail/" + recipeIdx;
     }
