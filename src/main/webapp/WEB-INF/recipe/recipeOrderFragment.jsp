@@ -1,3 +1,4 @@
+<%@ page import="naver.storage.NcpObjectStorageService" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -45,7 +46,7 @@
                 <c:out value="${orderItem.recipeOrderContent}" />
             </div>
             <div class="div_recipeOrderImg">
-                <img class="img_recipeOrder" src="${STORAGE_PHOTO_PATH}${orderItem.recipeOrderPhoto}" />
+                <img class="img_recipeOrder" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${orderItem.recipeOrderPhoto}" />
             </div>
         </div>
     </c:forEach>
