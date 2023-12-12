@@ -2,21 +2,52 @@ package semi.dto;
 
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
 public class RecipeDto {
-	private int recipeIdx;
-	private String recipeTitle;
-	private String recipeName;
-	private int recipeViewCount;
-	private String recipePhoto;
-	private String recipeContent;
-	private String recipeTime;
-	private String recipeDifficulty;
-	private String recipeServing;
-	private String recipeIngredient;
-	private String recipeReply;
-	private Timestamp recipeCreatedAt;
-	private Timestamp recipeUpdatedAt;	
+	@JsonProperty("nRecipeIdx")
+	private int nRecipeIdx;
+	@JsonProperty("sRecipeTitle")
+	private String sRecipeTitle;
+	@JsonProperty("sRecipeName")
+	private String sRecipeName;
+	@JsonProperty("nRecipeViewCount")
+	private int nRecipeViewCount;
+	@JsonProperty("sRecipePhoto")
+	private String sRecipePhoto;
+	@JsonProperty("sRecipeContent")
+	private String sRecipeContent;
+	@JsonProperty("sRecipeTime")
+	private String sRecipeTime;
+	@JsonProperty("sRecipeDifficulty")
+	private String sRecipeDifficulty;
+	@JsonProperty("sRecipeServing")
+	private String sRecipeServing;
+	@JsonProperty("sRecipeIngredient")
+	private String sRecipeIngredient;
+	@JsonProperty("sRecipeReply")
+	private String sRecipeReply;
+	@JsonProperty("sRecipeCreatedAt")
+	private Timestamp sRecipeCreatedAt;
+	@JsonProperty("sRecipeUpdatedAt")
+	private Timestamp sRecipeUpdatedAt;
+	public String getsRecipeTitle() {
+		return sRecipeTitle;
+	}
+	public int getnRecipeViewCount() {
+		return nRecipeViewCount;
+	}
+	public String getsRecipePhoto() {
+		return sRecipePhoto;
+	}
+	public String getsRecipeContent() {
+		return sRecipeContent;
+	}
+	public String getsRecipeName() {
+		return sRecipeName;
+	}
+	
+	
 }

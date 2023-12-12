@@ -84,15 +84,11 @@ public class MemberController {
 //        int result = 1;
         if (result == 1){
             httpSession.setAttribute("sUserEmail",memberDto.getSUserEmail());
-//            System.out.println("로그인 성공");
-            return "redirect:./login";
-            
+            return "redirect:/member/";
         }
 
         redirectAttributes.addFlashAttribute("message","아이디 혹은 비밀번호를 확인해주세요");
-//        System.out.println("로그인 실패");
-        return "redirect:/";
-        
+        return "redirect:/home";
     }
 
     // 로그인 Page 보여주는 메서드
@@ -100,6 +96,4 @@ public class MemberController {
     public String loginPage(){
         return "loginviews/login";
     }
-    
-    
 }

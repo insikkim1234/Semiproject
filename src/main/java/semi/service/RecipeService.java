@@ -16,15 +16,11 @@ public class RecipeService {
 		recipeDao.insertRecipe(dto);
 	}
 	
-	public void updateViewCount(int recipeIdx) {
-		recipeDao.updateViewCount(recipeIdx);
+	public void updateViewCount(int nRecipeIdx) {
+		recipeDao.updateViewCount(nRecipeIdx);
 	}
 	
-	public RecipeDto getData(int recipeIdx) {
-		return recipeDao.getData(recipeIdx);
-	}
-
-	public int getTotalCount() {
-		return recipeDao.getTotalCount();
+	public RecipeDto getData(int nRecipeIdx) {
+		return recipeDao.getData(nRecipeIdx);
 	}
 }

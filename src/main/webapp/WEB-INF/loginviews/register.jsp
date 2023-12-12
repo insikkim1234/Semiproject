@@ -5,7 +5,7 @@
     <title>register</title>
 </head>
 <body>
-    <form action="/semi/member/register" method="post">
+    <form action="/member/register" method="post">
         <input type="text" name="sUserName" placeholder="이름">
         <input type="text" name="sUserEmail" placeholder="이메일">
         <input type="text" name="sUserPassword" placeholder="비밀번호">

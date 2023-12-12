@@ -23,17 +23,17 @@
 </head>
 <body>
 	<div>
-		<b style="font-size: 40px;">${dto.recipeTitle}</b>
+		<b style="font-size: 40px;">${dto.sRecipeTitle}</b>
 		<br>
 		<div style="align: center; font-size: 25px;">
-			<img class="recipe_img" src="https://kr.object.ncloudstorage.com/semi-project-eatingalone/photo/${dto.recipePhoto}" >
-			<b>${dto.recipeName}</b>&nbsp;
+			<img class="recipe_img" src="https://kr.object.ncloudstorage.com/semi-project-eatingalone/photo/${dto.sRecipePhoto}" >
+			<b>${dto.sRecipeName}</b>&nbsp;
 			<span class="day" style="font-size: 20px;">
-				조회 : ${dto.recipeViewCount}
+				조회 : ${dto.nRecipeViewCount}
 			</span>
 		</div>
 		<br>
-		<pre style="font-size: 17px;">${dto.recipeContent}</pre>
+		<pre style="font-size: 17px;">${dto.sRecipeContent}</pre>
 	</div>
 </body>
 </html>
