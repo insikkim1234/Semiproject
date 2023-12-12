@@ -35,4 +35,9 @@ public class HomeController {
 		return "views/main";
 	}
 	
+	@GetMapping(value = "/board")
+	public String board(Locale locale, Model model) {
+		return "/board/boardlist";
+	}
+	
 }
