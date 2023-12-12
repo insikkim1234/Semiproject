@@ -8,9 +8,9 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
  	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
       <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-      <property name="url" value="${db.DATABASE}" />
-      <property name="username" value="${db.USER}" />
-      <property name="password" value="${db.PASSWORD}" />
+      <property name="url" value="jdbc:mysql://db-jtlfu-kr.vpc-pub-cdb.ntruss.com:3306/EATINGALONE?serverTimezone=Asia/Seoul"></property>
+      <property name="username" value="eaDBUser" />
+      <property name="password" value="ncl0ud_EAdb" />
    </bean>
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
