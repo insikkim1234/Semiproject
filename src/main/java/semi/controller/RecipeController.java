@@ -25,9 +25,6 @@ public class RecipeController {
     @Autowired private RecipeService recipeService;
     @Autowired NcpObjectStorageService storageService;
 
-    private String storagename = "semi-project-eatingalone";
-    private String storagefolder = "photo";
-
     @GetMapping("/recipe/sample")
     public String sample() {
         return "recipe/recipeSample";
@@ -44,7 +41,8 @@ public class RecipeController {
 
     @PostMapping("/recipe/insertRecipe")
     public String insertRecipe(@ModelAttribute RecipeDto dto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload) {
-        String photo=storageService.uploadFile(storagename, storagefolder, upload);
+        String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+                NcpObjectStorageService.DIR_PHOTO, upload);
 
         dto.setSRecipePhoto(photo);
         recipeService.insertRecipe(dto);
