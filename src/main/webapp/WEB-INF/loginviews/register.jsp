@@ -15,6 +15,11 @@
             width: 100%;
             box-sizing: border-box; 
         }
+        input {
+            width: 300px;
+            padding: 10px;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
