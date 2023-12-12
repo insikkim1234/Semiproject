@@ -22,7 +22,7 @@
 		
 		
 			<button type="button" class="btn btn-outline-danger btn-sm"
-			onclick="location.href='./mboardform'" style="margin-left:300px;">글쓰기</button>
+			onclick="location.href='./mboard/form'" style="margin-left:300px;">글쓰기</button>
 		
 	</h6>
 	<table class="table table-bordered">
