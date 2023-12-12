@@ -70,6 +70,12 @@ public class RecipeController {
     	
     	model.addAttribute("dto", dto);
     	
+        List<RecipeOrderDto> orderDto = recipeOrderService.getRecipeOrdersById(recipeIdx);
+        model.addAttribute("recipeOrderDtoList", orderDto);
+        model.addAttribute("recipeIdx", recipeIdx);
+        model.addAttribute("STORAGE_PHOTO_PATH", NcpObjectStorageService.STORAGE_PHOTO_PATH);
+
+    	
     	return "recipe/recipeBoardDetail/" + recipeIdx;
     }
 	

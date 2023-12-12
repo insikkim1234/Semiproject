@@ -21,7 +21,7 @@
 	</insert>
 	
 	<select id="selectAlltRecipe" resultType="RecipeDto" resultMap="RecipeDtoRm">
-		select * from tRecipeBoard order by sRecipeTitle
+		select * from tRecipeBoard order by nRecipeIdx desc
 	</select>
 	
 	<update id="updateViewCount" parameterType="int">
