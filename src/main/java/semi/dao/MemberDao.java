@@ -22,6 +22,6 @@ public class MemberDao {
     }
 
     public int loginExecute(MemberDto dto) {
-        return session.selectOne(nameSpace + "insertMember", dto);
+        return session.selectOne(nameSpace + "loginCheck", dto);
     }
 }
