@@ -21,7 +21,6 @@ import java.util.List;
 @Controller
 public class RecipeController {
     @Autowired private RecipeOrderService recipeOrderService;
-    @Autowired private RecipeDao recipeDao;
     @Autowired private RecipeService recipeService;
     @Autowired NcpObjectStorageService storageService;
 
@@ -34,7 +33,7 @@ public class RecipeController {
     @GetMapping("/recipe/board")
     public String getRecipeList(Model model) {
         //총 레시피 개수 얻기
-        int totalCount = recipeDao.getTotalCount();
+        int totalCount = recipeService.getTotalCount();
         model.addAttribute("totalCount", totalCount);
         return "recipe/recipeBoard";
     }

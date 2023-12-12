@@ -23,4 +23,8 @@ public class RecipeService {
 	public RecipeDto getData(int nRecipeIdx) {
 		return recipeDao.getData(nRecipeIdx);
 	}
+
+	public int getTotalCount() {
+		return recipeDao.getTotalCount();
+	}
 }
