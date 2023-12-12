@@ -1,20 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="semi.dao.RecipeDao">
+	<resultMap id="RecipeDtoRm" type="RecipeDto">
+		<result property="recipeIdx" column="nRecipeIdx" />
+		<result property="recipeTitle" column="sRecipeTitle" />
+		<result property="recipeName" column="sRecipeName" />
+		<result property="recipeViewCount" column="nRecipeViewCount" />
+		<result property="recipePhoto" column="sRecipePhoto" />
+		<result property="recipeContent" column="sRecipeContent" />
+		<result property="recipeTime" column="sRecipeTime" />
+		<result property="recipeDifficulty" column="sRecipeDifficulty" />
+		<result property="recipeServing" column="sRecipeServing" />
+		<result property="recipeIngredient" column="sRecipeIngredient" />
+		<result property="recipeCreatedAt" column="dtRecipeCreatedAt" />
+		<result property="recipeUpdatedAt" column="dtRecipeUpdatedAt" />
+	</resultMap>
+
 	<insert id="insertRecipe" parameterType="RecipeDto">
-    	insert into tRecipeBoard (sRecipeTitle, sRecipeName, sRecipePhoto, sRecipeContent, sRecipeTime, sRecipeDifficulty, sRecipeServing, sRecipeIngredient, dtRecipeCreatedAt, dtRecipeUpdatedAt) values (#{sRecipeTitle}, #{sRecipeName}, #{sRecipePhoto}, #{sRecipeContent}, #{sRecipeTime}, #{sRecipeDifficulty}, #{sRecipeServing}, #{sRecipeIngredient}, now(), now());
+    	insert into tRecipeBoard (sRecipeTitle, sRecipeName, sRecipePhoto, sRecipeContent, sRecipeTime, sRecipeDifficulty, sRecipeServing, sRecipeIngredient, dtRecipeCreatedAt, dtRecipeUpdatedAt) values (#{recipeTitle}, #{recipeName}, #{recipePhoto}, #{recipeContent}, #{recipeTime}, #{recipeDifficulty}, #{recipeServing}, #{recipeIngredient}, now(), now())
 	</insert>
 	
-	<select id="selectAlltRecipe" resultType="RecipeDto">
+	<select id="selectAlltRecipe" resultType="RecipeDto" resultMap="RecipeDtoRm">
 		select * from tRecipeBoard order by sRecipeTitle
 	</select>
 	
 	<update id="updateViewCount" parameterType="int">
-		update tRecipeBoard set nRecipeViewCount = nRecipeViewCount + 1 where nRecipeIdx = #{nRecipeIdx};
+		update tRecipeBoard set nRecipeViewCount = nRecipeViewCount + 1 where nRecipeIdx = #{recipeIdx}
 	</update>
 	
-	<select id="selectDataBynRecipeIdx" parameterType="int" resultType="RecipeDto">
-		select * from tRecipeBoard where nRecipeIdx = #{nRecipeIdx};
+	<select id="selectDataBynRecipeIdx" parameterType="int" resultType="RecipeDto" resultMap="RecipeDtoRm">
+		select * from tRecipeBoard where nRecipeIdx = #{recipeIdx}
 	</select>
 
 	<select id="totalCountOfRecipe" resultType="int">
