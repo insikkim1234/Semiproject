@@ -142,6 +142,7 @@ div.content {
             type:"get",
             dataType:"json",
             url:"./view",
+            data:{"word":searchword},
             success:function(res){
                let s="";
                s+=
@@ -197,7 +198,7 @@ div.content {
          class="bi bi-list-ul simplelist"></i>
    </div>
    <div>
-   <h4>현재 총 ${totalCount }개의 레시피가 있습니다.</h4>
+   <h4>현재 총<b style="color: green; font-size: 40px;"> ${totalCount }</b>개의 레시피가 있습니다.</h4>
    </div>
    <div class="list">123</div>
 </body>
