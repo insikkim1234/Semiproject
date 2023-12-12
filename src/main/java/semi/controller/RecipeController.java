@@ -53,8 +53,6 @@ public class RecipeController {
         List<RecipeOrderDto> dto = recipeOrderService.getRecipeOrdersById(recipeIdx);
         model.addAttribute("recipeOrderDtoList", dto);
         model.addAttribute("recipeIdx", recipeIdx);
-        model.addAttribute("STORAGE_PHOTO_PATH", NcpObjectStorageService.STORAGE_PHOTO_PATH);
-
 
         return "recipe/recipeSample/" + recipeIdx;
     }
@@ -73,8 +71,6 @@ public class RecipeController {
         List<RecipeOrderDto> orderDto = recipeOrderService.getRecipeOrdersById(recipeIdx);
         model.addAttribute("recipeOrderDtoList", orderDto);
         model.addAttribute("recipeIdx", recipeIdx);
-        model.addAttribute("STORAGE_PHOTO_PATH", NcpObjectStorageService.STORAGE_PHOTO_PATH);
-
     	
     	return "recipe/recipeBoardDetail/" + recipeIdx;
     }

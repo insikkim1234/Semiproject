@@ -1,3 +1,4 @@
+<%@ page import="naver.storage.NcpObjectStorageService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -32,7 +33,7 @@
 				<span class="day" style="font-size: 20px;">조회수 : </span>
 				<b>${dto.recipeViewCount}</b>
 				<br><br>
-				<img class="recipe_img" src="https://kr.object.ncloudstorage.com/semi-project-eatingalone/photo/${dto.recipePhoto}" >
+				<img class="recipe_img" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${dto.recipePhoto}" >
 			</div>
 			<br>
 			<div>

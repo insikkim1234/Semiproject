@@ -1,5 +1,6 @@
+<%@ page import="naver.storage.NcpObjectStorageService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
  <!DOCTYPE html>
@@ -70,6 +71,7 @@ div.content {
    display: none;
 }
 </style>
+
 <script type="text/javascript">
    $(function(){
       //처음 시작시 그리드모양 이미지형태로 출력하기
@@ -108,7 +110,7 @@ div.content {
                   `
                   <div class="box" style="background-color:#FFFFF0;">
                      <figure>
-                     <img src="https://kr.object.ncloudstorage.com/semi-project-eatingalone/photo/\${item.recipePhoto}" ><br>
+                     <img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.recipePhoto}"><br>
                         <figcaption>
                            <b>\${item.recipeTitle}</b><br>
                            <span style="color:gray;">\${item.recipeName}</span>
@@ -145,7 +147,7 @@ div.content {
                   `
                   <tr>
                      <td>
-                     <img class="recipe_img" src="https://kr.object.ncloudstorage.com/semi-project-eatingalone/photo/\${item.recipePhoto}" >
+                     <img class="recipe_img" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.recipePhoto}" >
                         <h5><b class="subject" style="cursor:pointer">\${item.recipeTitle}</b></h5>
                         <div style="margin-left:20px;color:black;" class="content">
                            <pre>\${item.recipeContent}</pre>
