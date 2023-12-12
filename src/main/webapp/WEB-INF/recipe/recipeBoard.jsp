@@ -1,5 +1,6 @@
+<%@ page import="naver.storage.NcpObjectStorageService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
  <!DOCTYPE html>
@@ -70,6 +71,7 @@ div.content {
    display: none;
 }
 </style>
+
 <script type="text/javascript">
    $(function(){
       //처음 시작시 그리드모양 이미지형태로 출력하기
@@ -103,12 +105,12 @@ div.content {
             let s="";
             $.each(res,function(idx,item){
                var recipeName=item.recipeName;
-               console.log(item.recipeTitle);
+               console.log(item.recipePhoto);
                s+=
                   `
                   <div class="box" style="background-color:#FFFFF0;">
                      <figure>
-                     <img src="https://kr.object.ncloudstorage.com/semi-project-eatingalone/photo/\${item.recipePhoto}" ><br>
+                     <img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.recipePhoto}"><br>
                         <figcaption>
                            <b>\${item.recipeTitle}</b><br>
                            <span style="color:gray;">\${item.recipeName}</span>
@@ -145,7 +147,7 @@ div.content {
                   `
                   <tr>
                      <td>
-                     <img class="recipe_img" src="https://kr.object.ncloudstorage.com/semi-project-eatingalone/photo/\${item.recipePhoto}" >
+                     <img class="recipe_img" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.recipePhoto}" >
                         <h5><b class="subject" style="cursor:pointer">\${item.recipeTitle}</b></h5>
                         <div style="margin-left:20px;color:black;" class="content">
                            <pre>\${item.recipeContent}</pre>
@@ -173,20 +175,22 @@ div.content {
 <body>
    <div style="margin: 30px;">
       <div class="input-group" style="width: 400px;">
-         <h5>상품명 검색</h5>
+         <h5>레시피 검색</h5>
          <input type="text" class="form-control"
             style="width: 150px; margin-left: 50px;" autofocus
-            placeholder="검색단어입력" id="txtword">
+            placeholder="검색레시피입력" id="word">
+         <button type="button" class="btn btn-primary" id="btnsearch"
+           onclick="searchRecipe()" style="margin-left: 10px;">검색</button>
       </div>
-      <div style="margin: 20px; font-size: 22px;" class="result">출력</div>
+      <div style="margin: 20px; font-size: 22px;" class="result"></div>
    </div>
    <div class="simpleicon">
       <i class="bi bi-grid simplegrid"></i> <i
          class="bi bi-list-ul simplelist"></i>
    </div>
-	<div>
-	<h4>현재 총 ${totalCount }개의 레시피가 있습니다.</h4>
-	</div>
+   <div>
+   <h4>현재 총 ${totalCount }개의 레시피가 있습니다.</h4>
+   </div>
    <div class="list">123</div>
 </body>
 </html>

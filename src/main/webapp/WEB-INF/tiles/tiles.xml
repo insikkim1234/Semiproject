@@ -17,5 +17,18 @@
     <definition name="recipe/recipeSample/*" extends="default_layout">
         <put-attribute name="content" value="/WEB-INF/recipe/recipeOrderFragment.jsp" />
     </definition>
+ 
+<!--
+    <definition name="recipe/recipeBoardDetail/*" extends="default_layout">
+        <put-attribute name="content" value="/WEB-INF/recipe/recipeBoardDetail.jsp" />
+    </definition>
+ -->
+ 
+    <definition name="recipe/recipeBoardDetail/*" template="/WEB-INF/tiles/layouts/recipe_detail_layout.jsp">
+        <put-attribute name="head" value="/WEB-INF/tiles/components/default_header.jsp" />
+        <put-attribute name="navigationbar" value="/WEB-INF/tiles/components/navigationbar.jsp" />
+        <put-attribute name="detail_main" value="/WEB-INF/recipe/recipeBoardDetail.jsp" />
+        <put-attribute name="detail_order" value ="/WEB-INF/recipe/recipeOrderFragment.jsp" />
+    </definition>
 
 </tiles-definitions>

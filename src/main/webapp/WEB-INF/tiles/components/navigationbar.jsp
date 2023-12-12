@@ -1,9 +1,10 @@
+<%@ page import="naver.storage.NcpObjectStorageService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <div class="text-center">
 	<a href=""> <img
-		src="https://kr.object.ncloudstorage.com/semi-project-eatingalone/photo/eating_alone_mainlogo2.png"
+		src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>eating_alone_mainlogo2.png"
 		class="img-fluid" style="width: 400px; padding: 10px 0;">
 	</a>
 </div>

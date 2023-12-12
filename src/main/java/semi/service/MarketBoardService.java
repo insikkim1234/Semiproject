@@ -8,30 +8,18 @@ import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 
-import semi.dao.MarketBoardDao;
+
 import semi.dto.MarketBoardDto;
 
 @Service
 @AllArgsConstructor
 public class MarketBoardService {
 
-	private MarketBoardDao marketBoardDao;
+	
 
-	public int getTotalCount() {
-		return marketBoardDao.getTotalCount();
-	}
+	
 
-	public List<MarketBoardDto> getList(int start, int perpage) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("start", start);
-		map.put("perpage", perpage);
-
-		return marketBoardDao.getList(map);
-	}
-
-	public int getMaxNum() {
-		return marketBoardDao.getMaxNum();
-	}
+	
 
 	/*
 	 * public void updateRestep(int regroup,int restep) { Map<String, Integer>
@@ -40,11 +28,10 @@ public class MarketBoardService {
 	 * 
 	 * boardDao.updateRestep(map); }
 	 */
-	
+	/*
 	public void insertMarketBoard(MarketBoardDto dto) 
 	{
-		int nBoardSeq=dto.getNBoardSeq();//새글일경우 0,답글일경우 0보다 큰값이 들어있다
-		/*
+		int num=dto.getNum();//새글일경우 0,답글일경우 0보다 큰값이 들어있다
 		int regroup=dto.getRegroup();//답글을 단 글의 regroup
 		int restep=dto.getRestep();//답글을 단 글의 restep
 		int relevel=dto.getRelevel();//답글을 단 글의 relevel
@@ -67,27 +54,13 @@ public class MarketBoardService {
 		dto.setRegroup(regroup);
 		dto.setRestep(restep);
 		dto.setRelevel(relevel);
-		*/
+		
 		// db insert
 		marketBoardDao.insertMarketBoard(dto);
 	}
+	*/
+
 	
-
-	public void updateReadCount(int nBoardSeq) {
-		marketBoardDao.updateReadCount(nBoardSeq);
-	}
-
-	public MarketBoardDto getData(int nBoardSeq) {
-		return marketBoardDao.getData(nBoardSeq);
-	}
-
-	public void updateMarketBoard(MarketBoardDto dto) {
-		marketBoardDao.updateMarketBoard(dto);
-	}
-
-	public void deleteMarketBoard(int nBoardSeq) {
-		marketBoardDao.deleteMarketBoard(nBoardSeq);
-	}
 
 }
 

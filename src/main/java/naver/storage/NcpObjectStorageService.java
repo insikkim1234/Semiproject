@@ -20,9 +20,11 @@ public class NcpObjectStorageService implements ObjectStorageService {
 	
 	AmazonS3 s3;
 
-	public static final String STORAGE_EATINGALONE = "semi-project-eatingalone";
-	public static final String DIR_PHOTO = "photo";
-	
+	public static final String STORAGE_EATINGALONE = "semi-project-eatingalone/";
+	public static final String DIR_PHOTO = "photo/";
+	public static final String STORAGE_URL = "https://kr.object.ncloudstorage.com/";
+	public static final String STORAGE_PHOTO_PATH = STORAGE_URL + STORAGE_EATINGALONE + DIR_PHOTO;
+
 	public NcpObjectStorageService(NaverConfig naverConfig) {
 		System.out.println("NcpObjectStorageService 생성");
 		s3 = AmazonS3ClientBuilder.standard()
