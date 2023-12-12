@@ -8,30 +8,18 @@ import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 
-import semi.dao.MarketBoardDao;
+
 import semi.dto.MarketBoardDto;
 
 @Service
 @AllArgsConstructor
 public class MarketBoardService {
 
-	private MarketBoardDao marketBoardDao;
+	
 
-	public int getTotalCount() {
-		return marketBoardDao.getTotalCount();
-	}
+	
 
-	public List<MarketBoardDto> getList(int start, int perpage) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("start", start);
-		map.put("perpage", perpage);
-
-		return marketBoardDao.getList(map);
-	}
-
-	public int getMaxNum() {
-		return marketBoardDao.getMaxNum();
-	}
+	
 
 	/*
 	 * public void updateRestep(int regroup,int restep) { Map<String, Integer>
@@ -72,21 +60,7 @@ public class MarketBoardService {
 	}
 	*/
 
-	public void updateReadCount(int num) {
-		marketBoardDao.updateReadCount(num);
-	}
-
-	public MarketBoardDto getData(int num) {
-		return marketBoardDao.getData(num);
-	}
-
-	public void updateBoard(MarketBoardDto dto) {
-		marketBoardDao.updateBoard(dto);
-	}
-
-	public void deleteBoard(int num) {
-		marketBoardDao.deleteBoard(num);
-	}
+	
 
 }
 
