@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import semi.dto.MarketBoardDto;
-import semi.dto.MarketProductDto;
+
 import semi.service.MarketBoardService;
-import semi.service.MarketProductService;
+
 
 @Controller
 public class MarketBoardController {
@@ -40,7 +40,7 @@ public class MarketBoardController {
 		private MarketBoardService marketBoardService;
 
 		
-		@Autowired private MarketProductService marketProductService;
+		//@Autowired private MarketProductService marketProductService;
 	
 		
 		/*
@@ -134,17 +134,18 @@ public class MarketBoardController {
 
 		
 		//새글/답글 저장
-		@PostMapping("/mboard/addboard")
-		public String addBoard(
-				@ModelAttribute MarketBoardDto dto,
-				@RequestParam int currentPage,
-				@RequestParam List<MultipartFile> upload,
-				HttpServletRequest request,
-				HttpSession session
-				)
-		{
+		/*
+		 * @PostMapping("/mboard/addboard") public String addBoard(
+		 * 
+		 * @ModelAttribute MarketBoardDto dto,
+		 * 
+		 * @RequestParam int currentPage,
+		 * 
+		 * @RequestParam List<MultipartFile> upload, HttpServletRequest request,
+		 * HttpSession session ) {
+		 */
 			//파일 업로드할 경로
-			String path=request.getSession().getServletContext().getRealPath("/resources/upload");
+			//String path=request.getSession().getServletContext().getRealPath("/resources/upload");
 			
 			/*
 			//db 에 저장할 로그인정보
@@ -164,71 +165,71 @@ public class MarketBoardController {
 			//사진들 업로드
 			//사진 업로드를 안했을경우 리스트의 첫데이타의 파일명이 빈문자열이 된다
 			//즉 업로드했을경우에만 db 에 저장을 한다
-			if(!upload.get(0).getOriginalFilename().equals("")) {
-				for(MultipartFile multi:upload)
-				{
-					//랜덤 파일명 생성
-					String fileName=UUID.randomUUID().toString();
-					//업로드
-					try {
-						multi.transferTo(new File(path+"/"+fileName));
-						//파일은 따로 db 에 insert 한다
-						MarketProductDto fdto=new MarketProductDto();
-						fdto.setNBoardSeq(dto.getNBoardSeq());//boarddb 에 방금 insert 된 num값
-						fdto.setSProductImage1(fileName);
-
-						marketProductService.insertProductImage(fdto);
-
-					} catch (IllegalStateException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			}
+//			if(!upload.get(0).getOriginalFilename().equals("")) {
+//				for(MultipartFile multi:upload)
+//				{
+//					//랜덤 파일명 생성
+//					String fileName=UUID.randomUUID().toString();
+//					//업로드
+//					try {
+//						multi.transferTo(new File(path+"/"+fileName));
+//						//파일은 따로 db 에 insert 한다
+//						MarketProductDto fdto=new MarketProductDto();
+//						fdto.setNBoardSeq(dto.getNBoardSeq());//boarddb 에 방금 insert 된 num값
+//						fdto.setSProductImage1(fileName);
+//
+//						marketProductService.insertProductImage(fdto);
+//
+//					} catch (IllegalStateException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					} catch (IOException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//				}
+//			}
 
 			//새글인경우는 1페이지로, 답글인경우는 보던 페이지로 이동한다
-			return "redirect:list?currentPage="+currentPage;
-		}
-
-		@GetMapping("/mboard/content")
-		public String getContent(Model model,@RequestParam int nBoardSeq,@RequestParam(defaultValue = "1") int currentPage)
-		{
-			//조회수 증가
-			marketBoardService.updateReadCount(nBoardSeq);
-			//num 에 해당하는 dto 얻기
-			MarketBoardDto dto=marketBoardService.getData(nBoardSeq);
-			                                   
-			/*
-			//프로필 사진 가져오기
-			String profile_photo=memberDao.getData(dto.getMyid()).getPhoto();
-			*/
-			
-			/*
-			//사진과 사진 갯수
-			List<String> photos=marketProductService.getProductImageByNBoardSeq(nBoardSeq);
-			dto.setPhotocount(photos.size());//사진갯수
-			dto.setSBoardImage(photos);//사진 파일명들
-			*/
+//			return "redirect:list?currentPage="+currentPage;
+//		}
+//
+//		@GetMapping("/mboard/content")
+//		public String getContent(Model model,@RequestParam int nBoardSeq,@RequestParam(defaultValue = "1") int currentPage)
+//		{
+//			//조회수 증가
+//			marketBoardService.updateReadCount(nBoardSeq);
+//			//num 에 해당하는 dto 얻기
+//			MarketBoardDto dto=marketBoardService.getData(nBoardSeq);
+//			                                   
+//			/*
+//			//프로필 사진 가져오기
+//			String profile_photo=memberDao.getData(dto.getMyid()).getPhoto();
+//			*/
+//			
+//			/*
+//			//사진과 사진 갯수
+//			List<String> photos=marketProductService.getProductImageByNBoardSeq(nBoardSeq);
+//			dto.setPhotocount(photos.size());//사진갯수
+//			dto.setSBoardImage(photos);//사진 파일명들
+//			*/
+//	
+//			//model 에 저장
+//			//model.addAttribute("profile_photo", profile_photo);
+//			model.addAttribute("dto", dto);
+//			model.addAttribute("currentPage",currentPage);		
+//	
+//			return "market/content";
+//		}
 	
-			//model 에 저장
-			//model.addAttribute("profile_photo", profile_photo);
-			model.addAttribute("dto", dto);
-			model.addAttribute("currentPage",currentPage);		
-	
-			return "market/content";
-		}
-	
-		@GetMapping("/mboard/delete")
-		public String deleteBoard(@RequestParam int nBoardSeq,@RequestParam int currentPage)
-		{
-			//삭제
-			marketBoardService.deleteMarketBoard(nBoardSeq);
-	
-			return "redirect:./list?currentPage="+currentPage;
-		}
+//		@GetMapping("/mboard/delete")
+//		public String deleteBoard(@RequestParam int nBoardSeq,@RequestParam int currentPage)
+//		{
+//			//삭제
+//			marketBoardService.deleteMarketBoard(nBoardSeq);
+//	
+//			return "redirect:./list?currentPage="+currentPage;
+//		}
 	
 		/*
 		 * @GetMapping("/board/updateform") public String updateForm(Model
