@@ -43,7 +43,7 @@ public class RecipeController {
         String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
                 NcpObjectStorageService.DIR_PHOTO, upload);
 
-        dto.setSRecipePhoto(photo);
+        dto.setRecipePhoto(photo);
         recipeService.insertRecipe(dto);
 
         return "redirect:../";
@@ -60,12 +60,12 @@ public class RecipeController {
     
     // 레시피 게시물 상세 페이지
     @GetMapping("/recipe/board/detail")
-    public String detail(Model model, @RequestParam int nRecipeIdx) {
+    public String detail(Model model, @RequestParam int recipeIdx) {
     	// 조회수 증가
-    	recipeService.updateViewCount(nRecipeIdx);
+    	recipeService.updateViewCount(recipeIdx);
     	
     	// nRecipeIdx에 해당하는 dto 얻기
-    	RecipeDto dto = recipeService.getData(nRecipeIdx);
+    	RecipeDto dto = recipeService.getData(recipeIdx);
     	
     	model.addAttribute("dto", dto);
     	

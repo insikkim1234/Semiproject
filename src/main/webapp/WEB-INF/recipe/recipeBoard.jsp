@@ -102,20 +102,20 @@ div.content {
          success:function(res){
             let s="";
             $.each(res,function(idx,item){
-               var sRecipeName=item.sRecipeName;
-               console.log(item.sRecipePhoto);
+               var recipeName=item.recipeName;
+               console.log(item.recipeTitle);
                s+=
                   `
                   <div class="box" style="background-color:#FFFFF0;">
                      <figure>
-                     <img src="https://kr.object.ncloudstorage.com/semi-project-eatingalone/photo/\${item.sRecipePhoto}" ><br>
+                     <img src="https://kr.object.ncloudstorage.com/semi-project-eatingalone/photo/\${item.recipePhoto}" ><br>
                         <figcaption>
-                           <b>\${item.sRecipeTitle}</b><br>
-                           <span style="color:gray;">\${item.sRecipeName}</span>
+                           <b>\${item.recipeTitle}</b><br>
+                           <span style="color:gray;">\${item.recipeName}</span>
                            <br>
                            <span class="day">작성자<br>
                               &nbsp;&nbsp;&nbsp;
-                           조회수\${item.nRecipeViewCount}</span>
+                           조회수\${item.recipeViewCount}</span>
                         </figcaption>
                      </figure>
                   </div>
@@ -139,19 +139,19 @@ div.content {
                <table class="table table-bordered" style="450px">
                `;
                $.each(res,function(idx,item){
-                  var sRecipeName=item.sRecipeName;
-                  console.log(sRecipeName);
+                  var recipeName=item.recipeName;
+                  console.log(recipeName);
                   s+=
                   `
                   <tr>
                      <td>
-                     <img class="recipe_img" src="https://kr.object.ncloudstorage.com/semi-project-eatingalone/photo/\${item.sRecipePhoto}" >
-                        <h5><b class="subject" style="cursor:pointer">\${item.sRecipeTitle}</b></h5>
+                     <img class="recipe_img" src="https://kr.object.ncloudstorage.com/semi-project-eatingalone/photo/\${item.recipePhoto}" >
+                        <h5><b class="subject" style="cursor:pointer">\${item.recipeTitle}</b></h5>
                         <div style="margin-left:20px;color:black;" class="content">
-                           <pre>\${item.sRecipeContent}</pre>
+                           <pre>\${item.recipeContent}</pre>
                            </div>
                            <div>
-                              <span>${item.sRecipeName}</span>&nbsp;&nbsp;
+                              <span>${item.recipeName}</span>&nbsp;&nbsp;
                               <span class="day">작성일<br>
                                  &nbsp;&nbsp;
                                  조회수
