@@ -21,12 +21,8 @@ import java.util.List;
 @Controller
 public class RecipeController {
     @Autowired private RecipeOrderService recipeOrderService;
-    @Autowired private RecipeDao recipeDao;
     @Autowired private RecipeService recipeService;
     @Autowired NcpObjectStorageService storageService;
-
-    private String storagename = "semi-project-eatingalone";
-    private String storagefolder = "photo";
 
     @GetMapping("/recipe/sample")
     public String sample() {
@@ -37,16 +33,17 @@ public class RecipeController {
     @GetMapping("/recipe/board")
     public String getRecipeList(Model model) {
         //총 레시피 개수 얻기
-        int totalCount = recipeDao.getTotalCount();
+        int totalCount = recipeService.getTotalCount();
         model.addAttribute("totalCount", totalCount);
         return "recipe/recipeBoard";
     }
 
     @PostMapping("/recipe/insertRecipe")
     public String insertRecipe(@ModelAttribute RecipeDto dto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload) {
-        String photo=storageService.uploadFile(storagename, storagefolder, upload);
+        String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+                NcpObjectStorageService.DIR_PHOTO, upload);
 
-        dto.setSRecipePhoto(photo);
+        dto.setRecipePhoto(photo);
         recipeService.insertRecipe(dto);
 
         return "redirect:../";
@@ -62,12 +59,13 @@ public class RecipeController {
     }
     
     // 레시피 게시물 상세 페이지
-
+    @GetMapping("/recipe/board/{recipeIdx}")
+    public String detail(Model model, @PathVariable int recipeIdx) {
     	// 조회수 증가
-    	recipeService.updateViewCount(nRecipeIdx);
+    	recipeService.updateViewCount(recipeIdx);
     	
     	// nRecipeIdx에 해당하는 dto 얻기
-    	RecipeDto dto = recipeService.getData(nRecipeIdx);
+    	RecipeDto dto = recipeService.getData(recipeIdx);
     	
     	model.addAttribute("dto", dto);
     	

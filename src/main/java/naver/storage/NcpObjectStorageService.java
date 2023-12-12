@@ -19,6 +19,9 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 public class NcpObjectStorageService implements ObjectStorageService {
 	
 	AmazonS3 s3;
+
+	public static final String STORAGE_EATINGALONE = "semi-project-eatingalone";
+	public static final String DIR_PHOTO = "photo";
 	
 	public NcpObjectStorageService(NaverConfig naverConfig) {
 		System.out.println("NcpObjectStorageService 생성");

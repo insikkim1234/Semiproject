@@ -23,17 +23,23 @@
 </head>
 <body>
 	<div>
-		<b style="font-size: 40px;">${dto.sRecipeTitle}</b>
-		<br>
-		<div style="align: center; font-size: 25px;">
-			<img class="recipe_img" src="https://kr.object.ncloudstorage.com/semi-project-eatingalone/photo/${dto.sRecipePhoto}" >
-			<b>${dto.sRecipeName}</b>&nbsp;
-			<span class="day" style="font-size: 20px;">
-				조회 : ${dto.nRecipeViewCount}
-			</span>
+		<div>
+			<b style="font-size: 40px;">${dto.recipeTitle}</b>
+			<br>
+			<div style="align: center; font-size: 25px;">
+				<span class="day" style="font-size: 20px;">작성자 : </span>
+				<b>${dto.recipeName}</b>&nbsp;
+				<span class="day" style="font-size: 20px;">조회수 : </span>
+				<b>${dto.recipeViewCount}</b>
+				<br><br>
+				<img class="recipe_img" src="https://kr.object.ncloudstorage.com/semi-project-eatingalone/photo/${dto.recipePhoto}" >
+			</div>
+			<br>
+			<div>
+				내용<br>
+				<pre style="font-size: 17px;">${dto.recipeContent}</pre>
+			</div>
 		</div>
-		<br>
-		<pre style="font-size: 17px;">${dto.sRecipeContent}</pre>
 	</div>
 </body>
 </html>
