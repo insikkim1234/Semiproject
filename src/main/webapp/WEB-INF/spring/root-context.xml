@@ -5,14 +5,14 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
     <context:property-placeholder location="classpath:config/env/env.properties" />
 
-	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 데이타베이스 이름 및 계정 확인 -->
  	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
       <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
       <property name="url" value="jdbc:mysql://db-jtlfu-kr.vpc-pub-cdb.ntruss.com:3306/EATINGALONE?serverTimezone=Asia/Seoul"></property>
       <property name="username" value="eaDBUser" />
       <property name="password" value="ncl0ud_EAdb" />
    </bean>
-
+    <!-- 파일 모두 생성했는지 확인 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
       <property name="dataSource" ref="dataSource"/>
       <property name="configLocation"  value="classpath:mybatis-config.xml"/>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="default_layout" template="/WEB-INF/tiles/layouts/default_layout.jsp">
+        <put-attribute name="head" value="/WEB-INF/tiles/components/default_header.jsp" />
+        <put-attribute name="navigationbar" value="/WEB-INF/tiles/components/navigationbar.jsp" />
+        <put-attribute name="content" value="" />
+        <put-attribute name="footer" value = "" />
+    </definition>
+
+    <definition name="*/*" extends="default_layout">
+        <put-attribute name="content" value="/WEB-INF/{1}/{2}.jsp" />
+    </definition>
+
+    <definition name="recipe/recipeSample/*" extends="default_layout">
+        <put-attribute name="content" value="/WEB-INF/recipe/recipeOrderFragment.jsp" />
+    </definition>
+
+</tiles-definitions>

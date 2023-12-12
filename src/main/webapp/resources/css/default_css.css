@@ -1,0 +1,13 @@
+h1 {
+    font-family: "핑프 째즈체";
+    text-align: center;
+}
+
+.btn-bar {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-bar button {
+    margin: 0 10px;
+}
