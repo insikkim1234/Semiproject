@@ -22,13 +22,13 @@ body * {
 		<table class="table table-bordered" style="width: 500px;">
 			<tr>
 				<th width="100">제목</th>
-				<td><input type="text" name="sRecipeTitle" class="form-control"
-					required autofocus value="${sRecipeTitle}"></td>
+				<td><input type="text" name="recipeTitle" class="form-control"
+					required autofocus value="${recipeTitle}"></td>
 			</tr>
 			<tr>
 				<th width="100">닉네임</th>
-				<td><input type="text" name="sRecipeName" class="form-control"
-					required autofocus value="${sRecipeName}"></td>
+				<td><input type="text" name="recipeName" class="form-control"
+					required autofocus value="${recipeName}"></td>
 			</tr>
 			<tr>
 				<th width="100">사진</th>
@@ -37,32 +37,32 @@ body * {
 			</tr>
 			<tr>
 				<th width="100">설명</th>
-				<td><input type="text" name="sRecipeContent"
-					class="form-control" required autofocus value="${sRecipeContent}">
+				<td><input type="text" name="recipeContent"
+					class="form-control" required autofocus value="${recipeContent}">
 				</td>
 			</tr>
 			<tr>
 				<th width="100">조리시간</th>
-				<td><input type="text" name="sRecipeTime" class="form-control"
-					required autofocus value="${sRecipeTime}"></td>
+				<td><input type="text" name="recipeTime" class="form-control"
+					required autofocus value="${recipeTime}"></td>
 			</tr>
 			<tr>
 				<th width="100">난이도</th>
-				<td><input type="text" name="sRecipeDifficulty"
+				<td><input type="text" name="recipeDifficulty"
 					class="form-control" required autofocus
-					value="${sRecipeDifficulty}"></td>
+					value="${recipeDifficulty}"></td>
 			</tr>
 			<tr>
 				<th width="100">인분</th>
-				<td><input type="text" name="sRecipeServing"
-					class="form-control" required autofocus value="${sRecipeServing}">
+				<td><input type="text" name="recipeServing"
+					class="form-control" required autofocus value="${recipeServing}">
 				</td>
 			</tr>
 			<tr>
 				<th width="100">재료</th>
-				<td><input type="text" name="sRecipeIngredient"
+				<td><input type="text" name="recipeIngredient"
 					class="form-control" required autofocus
-					value="${sRecipeIngredient}"></td>
+					value="${recipeIngredient}"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
