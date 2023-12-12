@@ -25,9 +25,12 @@ public class RecipeRestController {
 
 	//dto 불러오기
 	@GetMapping("/recipe/view")
-	public List<RecipeDto> getAllRecipe(){
-		return recipeDao.getAlltRecipe();
-	}
+	@ResponseBody List<RecipeDto> getSearchList(@RequestParam(required = false) String word)
+    {
+       return recipeDao.getSearchRecipe(word);
+    }
+	
+	
 
 	// region RecipeOrder
 
