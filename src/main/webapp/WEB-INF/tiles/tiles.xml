@@ -17,5 +17,9 @@
     <definition name="recipe/recipeSample/*" extends="default_layout">
         <put-attribute name="content" value="/WEB-INF/recipe/recipeOrderFragment.jsp" />
     </definition>
+ 
+    <definition name="recipe/recipeBoardDetail/*" extends="default_layout">
+        <put-attribute name="content" value="/WEB-INF/recipe/recipeBoardDetail.jsp" />
+    </definition>
 
 </tiles-definitions>
