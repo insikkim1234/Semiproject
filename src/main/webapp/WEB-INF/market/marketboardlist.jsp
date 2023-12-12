@@ -9,10 +9,6 @@
 <title>Insert title here</title>
 
 <style>
-body * {
-	font-family: 'Jua';
-}
-
 div.simpleicon {
 	margin: 30px 100px;
 }
@@ -146,14 +142,14 @@ div.content {
 				});
 				$(".list").html(s);
 		    },
-			statusCode:{
+			/* statusCode:{
 				404:function(){
 					alert("json 파일을 찾을수 없어요!");
 				},
 				500:function(){
 				   alert("서버 오류..코드를 다시한버너 보세요");
 				}
-			}
+			} */
 		});
 	}
 	
