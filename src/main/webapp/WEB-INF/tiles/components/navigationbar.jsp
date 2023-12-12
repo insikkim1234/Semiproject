@@ -16,7 +16,7 @@
 	<form action="/semi/member/login">
 		<button type="submit" class="btn btn-info">로그인</button>
 	</form>
-	<form action="/semi/member/semi/">
+	<form action="/semi/member/memberlist">
 		<button type="submit" class="btn btn-info">회원목록조회</button>
 	</form>
 </div>
