@@ -242,62 +242,6 @@ public class MarketBoardController {
 		 * 
 		 * return "market/updateform"; }
 		 */
-	
-		@GetMapping("/mboard/delphoto")
-		@ResponseBody public void deleteProductImage(@RequestParam int nProductSeq)
-		{
-			//해당 사진 삭제
-			marketProductService.deleteProductImage(nProductSeq);
-		}
-	
-		//게시판 수정
-		@PostMapping("/mboard/updateboard")
-		public String updateBoard(
-				@ModelAttribute MarketBoardDto dto,
-				@RequestParam int currentPage,
-				@RequestParam List<MultipartFile> upload,
-				HttpServletRequest request,
-				HttpSession session
-				)
-		{
-			//파일 업로드할 경로
-			String path=request.getSession().getServletContext().getRealPath("/resources/upload");
-			
-			//수정
-			marketBoardService.updateMarketBoard(dto);
-			
-			//사진들 업로드
-			//사진 업로드를 안했을경우 리스트의 첫데이타의 파일명이 빈문자열이 된다
-			//즉 업로드했을경우에만 db 에 저장을 한다
-			if(!upload.get(0).getOriginalFilename().equals("")) {
-				for(MultipartFile multi:upload)
-				{
-					//랜덤 파일명 생성
-					String fileName=UUID.randomUUID().toString();
-					//업로드
-					try {
-						multi.transferTo(new File(path+"/"+fileName));
-						//파일은 따로 db 에 insert 한다
-						MarketProductDto fdto=new MarketProductDto();
-						fdto.setNBoardSeq(dto.getNBoardSeq());
-						fdto.setSProductImage1(fileName);
-	
-						marketProductService.insertProductImage(fdto);
-	
-					} catch (IllegalStateException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			}
-	
-			//수정후 내용보기로 이동한다
-			return "redirect:./content?currentPage="+currentPage+"&num="+dto.getNBoardSeq();
-		}
-		
 
 }
 
