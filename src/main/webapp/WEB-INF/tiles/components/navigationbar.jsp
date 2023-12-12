@@ -6,7 +6,7 @@
 </h1>
 
 <div class="btn-bar">
-	<form action="/semi/board/list">
+	<form action="/semi/board">
 	  <button type="submit" class="btn btn-primary">게시판 목록</button>
 	</form>
 	<form action="/semi/recipe/sample">
