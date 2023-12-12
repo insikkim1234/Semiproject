@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.multipart.MultipartFile;
-import semi.dao.RecipeDao;
 import semi.dto.RecipeDto;
 import semi.dto.RecipeOrderDto;
 import semi.service.RecipeOrderService;
@@ -54,6 +53,8 @@ public class RecipeController {
         List<RecipeOrderDto> dto = recipeOrderService.getRecipeOrdersById(recipeIdx);
         model.addAttribute("recipeOrderDtoList", dto);
         model.addAttribute("recipeIdx", recipeIdx);
+        model.addAttribute("STORAGE_PHOTO_PATH", NcpObjectStorageService.STORAGE_PHOTO_PATH);
+
 
         return "recipe/recipeSample/" + recipeIdx;
     }
