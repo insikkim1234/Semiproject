@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import semi.dao.RecipeDao;
 import semi.dto.RecipeDto;
 import semi.dto.RecipeOrderDto;
 import semi.service.RecipeOrderService;
@@ -22,7 +24,8 @@ public class RecipeController {
     @Autowired private RecipeOrderService recipeOrderService;
     @Autowired private RecipeService recipeService;
     @Autowired NcpObjectStorageService storageService;
-
+    @Autowired private RecipeDao recipeDao;
+    
     @GetMapping("/recipe/sample")
     public String sample() {
         return "recipe/recipeSample";
@@ -36,6 +39,9 @@ public class RecipeController {
         model.addAttribute("totalCount", totalCount);
         return "recipe/recipeBoard";
     }
+    
+  
+
 
     @PostMapping("/recipe/insertRecipe")
     public String insertRecipe(@ModelAttribute RecipeDto dto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload) {

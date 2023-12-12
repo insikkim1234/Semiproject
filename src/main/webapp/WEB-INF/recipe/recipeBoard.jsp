@@ -73,9 +73,16 @@ div.content {
 </style>
 
 <script type="text/javascript">
+   let searchword="";
+   
    $(function(){
-      //처음 시작시 그리드모양 이미지형태로 출력하기
-      grid();
+      grid(); //처음 시작시 그리드모양 이미지형태로 출력하기
+      
+      $("#btnsearch").click(function() {
+    	//  alert(1);
+       searchword=$("#word").val();
+       grid();
+       });
       
       
       $(".simplegrid").css("color","brown");
@@ -91,16 +98,17 @@ div.content {
          $(".simplegrid").css("color","black");
          list();
         
-
       });
       
    });
+
    function grid()
    {
       $.ajax({
          type:"get",
          dataType:"json",
          url:"./view",
+         data:{"word":searchword},
          success:function(res){
             let s="";
             $.each(res,function(idx,item){
@@ -180,7 +188,7 @@ div.content {
             style="width: 150px; margin-left: 50px;" autofocus
             placeholder="검색레시피입력" id="word">
          <button type="button" class="btn btn-primary" id="btnsearch"
-           onclick="searchRecipe()" style="margin-left: 10px;">검색</button>
+            style="margin-left: 10px;">검색</button>
       </div>
       <div style="margin: 20px; font-size: 22px;" class="result"></div>
    </div>
