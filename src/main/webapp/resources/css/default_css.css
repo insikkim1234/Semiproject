@@ -1,3 +1,12 @@
+:root {
+    <!-- https://materialui.co/colors/grey/500 -->
+    --gray500 : #9E9E9E;
+    --white: #FFFFFF;
+    --black: #000000;
+
+}
+
+
 h1 {
     font-family: "핑프 째즈체";
     text-align: center;
