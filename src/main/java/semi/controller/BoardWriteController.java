@@ -19,7 +19,7 @@ import semi.dto.BoardDto;
 @AllArgsConstructor
 public class BoardWriteController {
 	private BoardDao boardDao;
-	@GetMapping("/boardform")
+	@GetMapping("/board/boardform")
 	public String form() {
 		return "boardform";
 	}

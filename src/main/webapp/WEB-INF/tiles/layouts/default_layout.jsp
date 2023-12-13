@@ -11,11 +11,11 @@
 </div>
 
     <div class="container">
-    <tiles:insertAttribute name="content" ignore="true" />
+    <tiles:insertAttribute name="content" />
 </div>
 
 <div class="footer">
-    <tiles:insertAttribute name="footer" ignore="true" />
+    <tiles:insertAttribute name="footer"  />
 </div>
 
 </div>

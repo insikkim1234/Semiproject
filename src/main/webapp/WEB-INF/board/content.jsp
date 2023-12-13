@@ -28,7 +28,7 @@
          let num=$(this).attr("num");
          let a=confirm("해당 댓글을 삭제하려면 [확인]을 눌러주세요");
          if(a){
-            location.href=`./answerdel?num=\${num}&idx=\${idx}`;
+            location.href=`./answerdel?num=\${num}&idx=\${idx}`;h
          }
       });
    });
