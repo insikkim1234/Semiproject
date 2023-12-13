@@ -18,13 +18,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import naver.storage.NcpObjectStorageService;
+import semi.dao.MarketBoardDao;
+import semi.dto.BoardDto;
+import semi.dto.BoardFileDto;
 import semi.dto.MarketBoardDto;
-
+import semi.dto.RecipeDto;
+import semi.service.BoardFileService;
+import semi.service.BoardService;
 import semi.service.MarketBoardService;
 
 
 @Controller
 public class MarketBoardController {
+	@Autowired
+	private MarketBoardService marketBoardService;
+	@Autowired NcpObjectStorageService storageService;
+	@Autowired private MarketBoardDao marketBoardDao;
+	
 	
 	 @GetMapping("/mboard")
 	 public String boardList() {
@@ -35,86 +46,27 @@ public class MarketBoardController {
 	 public String boardForm() {
 		 return "market/marketboardform";
 	 }
+	
 	 
-	 @Autowired
-		private MarketBoardService marketBoardService;
+	 @PostMapping("/mboard/insertMarketBoard")
+	    public String insertMarketBoard(@ModelAttribute MarketBoardDto dto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload) {
+	        String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+	                NcpObjectStorageService.DIR_PHOTO, upload);
+
+	        dto.setSBoardImage(photo);
+	        marketBoardService.insertMarketBoard(dto);
+
+	        return "redirect:../";
+	    }
+		
 
 		
-		//@Autowired private MarketProductService marketProductService;
+		
 	
 		
-		/*
-		@Autowired private MarketBoardCommetnService answerService;
 		
-
-		@Autowired
-		private MemberDao memberDao;
-		 */
 	 
-//		@GetMapping("/mboard/list")
-//		public String list(Model model,@RequestParam(defaultValue = "1") int currentPage)
-//		{
-//			//페이징처리
-//			//페이징에 처리에 필요한 변수들
-//			int perPage=5; //한페이지당 보여지는 게시글의 갯수
-//			int totalCount=0; //총 개시글의 개수
-//			int totalPage;//총페이지수
-//			int startNum;//각페이지당 보여지는 글의 시작번호
-//			int perBlock=5; //한블럭당 보여지는 페이지의 개수
-//			int startPage; //각블럭당 보여지는 페이지의 시작번호
-//			int endPage;
-//
-//			//총 글갯수
-//			totalCount=marketBoardService.getTotalCount();
-//
-//
-//			//총페이지수,나머지가 있으면 무조건올림
-//			//총게시글이 37-한페이지 3-12.3333....13페이지
-//			totalPage=totalCount/perPage+(totalCount%perPage>0?1:0);
-//
-//			//각블럭의 시작페이지와 끝페이지
-//			startPage=(currentPage-1)/perBlock*perBlock+1;
-//			endPage=startPage+perBlock-1;
-//
-//			//endPage는 totalPage를 넘지않도록 한다
-//			if(endPage>totalPage)
-//				endPage=totalPage;
-//
-//			//각페이지당 불러올 글의 번호
-//			//10개씩일경우 기준
-//			//1페이지:0~9 2페이지:10~19 
-//			startNum=(currentPage-1)*perPage;
-//
-//			//각 페이지의 시작 번호
-//			int no=totalCount-(currentPage-1)*perPage;
-//
-//			//해당페이지에 보여줄 게시판 목록
-//			List<MarketBoardDto> list=marketBoardService.getList(startNum, perPage);
-//			//각 dto 에 첨부된 사진의 갯수 저장
-//			/*
-//			for(MarketBoardDto dto:list)
-//			{
-//				int pcount=boardFileService.getPhotoByNum(dto.getNum()).size();
-//				//System.out.println(dto.getNum()+":"+ pcount);
-//				dto.setPhotocount(pcount);
-//				
-//				//댓글 갯수 저장
-//				int acount=answerService.getAnswerBoard(dto.getNum()).size();
-//				dto.setAcount(acount);
-//			}
-//			*/
-//			
-//			//request 에 담을 값들
-//			model.addAttribute("list",list);
-//			model.addAttribute("totalCount",totalCount);
-//			model.addAttribute("totalPage",totalPage);
-//			model.addAttribute("startPage",startPage);
-//			model.addAttribute("endPage",endPage);
-//			model.addAttribute("currentPage",currentPage);  
-//			model.addAttribute("no",no);  
-//
-//			return "market/marketboardlist";
-//		}
+
 
 		//새글일때/답글일때 모두 호출
 		@GetMapping("/mboard/form")

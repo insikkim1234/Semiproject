@@ -1,5 +1,6 @@
 package semi.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -9,7 +10,7 @@ import semi.dto.MemberDto;
 @Service
 @RequiredArgsConstructor
 public class MemberService {
-
+    @Autowired
     private final MemberDao memberDao;
 
     public int insertMember(MemberDto dto) {
@@ -23,4 +24,6 @@ public class MemberService {
     public int loginExecute(MemberDto memberDto){
         return memberDao.loginExecute(memberDto);
     }
+
+
 }

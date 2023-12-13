@@ -1,36 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="semi.dao.MarketBoardDao">
-	<!-- <select id="totalCountOfBoard" resultType="int">
-		select count(*) from boarddb
-	</select>
-	<select id="selectPagingOfBoard" parameterType="Map" resultType="BoardDto">
-		select * from boarddb order by regroup desc,restep asc limit #{start},#{perpage}
-	</select>
-	<select id="selectMaxNumOfBoard" resultType="int">
-		select ifnull(max(num),0) from boarddb
-	</select>
-	<update id="updateRestepOfBoard" parameterType="Map">
-		update boarddb set restep=restep+1 where regroup=#{regroup} and restep&gt;#{restep}
-	</update>
-	<insert id="insertBoard" parameterType="BoardDto">
-		insert into boarddb (writer,myid,subject,content,regroup,restep,relevel,writeday) 
-		values (#{writer},#{myid},#{subject},#{content},#{regroup},#{restep},#{relevel},now())
-		<selectKey keyProperty="num" resultType="int" order="AFTER">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
+	<insert id="insertMarketBoard" parameterType="MarketBoardDto">
+		insert into tMarketBoard (sBoardTitle, sBoardImage, dtCreateDate, dtUpdateDate)
+		values (#{sBoardTitle}, #{sBoardImage}, now(), now())
 	</insert>
-	<update id="updateReadCountOfBoard" parameterType="int">
-		update boarddb set readcount=readcount+1 where num=#{num}
-	</update>
-	<select id="selectDataByNum" parameterType="int" resultType="BoardDto">
-		select * from boarddb where num=#{num}
-	</select>
-	<update id="updateBoard" parameterType="BoardDto">
-		update boarddb set subject=#{subject},content=#{content} where num=#{num}
-	</update>
-	<delete id="deleteBoard" parameterType="int">
-		delete from boarddb where num=#{num}
-	</delete> -->
+	
 </mapper>
 

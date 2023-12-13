@@ -4,20 +4,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import lombok.AllArgsConstructor;
-import semi.dao.AnswerDao;
-import semi.dao.BoardDao;
-import semi.dto.AnswerDto;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import semi.dto.BoardDto;
+import semi.dto.BoardFileDto;
+import semi.service.BoardFileService;
+import semi.service.BoardService;
+
+
 @Controller
 //@AllArgsConstructor
 public class BoardController {
 	@Autowired
 	private BoardDao boardDao;
 	@Autowired
-	private  AnswerDao answerDao;
-	
-	
+	private BoardFileService boardFileService;
+
+	@GetMapping(value = "/board")
+	public String board(Model model) {
+		return "/board/boardlist";
+	}
 	
 	@GetMapping("/board/list")
 	public String list(Model model)

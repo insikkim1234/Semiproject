@@ -1,31 +1,73 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="naver.storage.NcpObjectStorageService"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
-<h1>
-	<img src="https://kr.object.ncloudstorage.com/semi-project-eatingalone/photo/logo.jpg" style="height:50px; margin-right:1px;">
-	나 혼자 먹는다
-</h1>
+<div class="text-center" style="background-color: #eeefc7b8;">
+	<a href=""> <img
+		src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>eating_alone_mainlogo5.png"
+		class="img-fluid" style="width: 400px; padding: 10px 0;">
+	</a>
+</div>
 
-<div class="btn-bar">
-	<form action="/semi/board/list">
-	  <button type="submit" class="btn btn-primary">게시판 목록</button>
-	</form>
-	<form action="/semi/recipe/sample">
-	  <button type="submit" class="btn btn-success">recipe 샘플</button>
-	</form>
-	<form action="/semi/recipe/board">
-	  <button type="submit" class="btn btn-info">레시피 보드</button>
-	</form>
-	<form action="/semi/mboard">
-	  <button type="submit" class="btn btn-warning">중고마켓</button>
+<div class="btn-bar member_btns">
+	<form action="/semi/member/login">
+		<button type="submit" class="btn mx-2 px-0 login_rborder">
+			<div>로그인</div>
+		</button>
 	</form>
 	<form action="/semi/member/register">
-	  <button type="submit" class="btn btn-danger">회원가입</button>
+		<button type="submit" class="btn mx-2 px-0 login_rborder">
+			<div>회원가입</div>
+		</button>
 	</form>
-	<form action="/semi/member/login">
-	  <button type="submit" class="btn btn-info">로그인</button>
+	<form action="/semi/member/semi/">
+		<button type="submit" class="btn mx-2 px-0">
+			<div>자취생들</div>
+		</button>
 	</form>
-	 <form action="/semi/member/semi/">
-	  <button type="submit" class="btn btn-info">회원목록조회</button>
-	</form>
-
 </div>
+
+
+<nav class="navbar navbar-expand-sm backGreen mb-3 p-0 text-white">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="javascript:void(0)"> <img
+			src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>eatingalone_logo2.png"
+			class="img-fluid" style="width: 50px;">
+		</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+			data-bs-target="#mynavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="mynavbar">
+			<div class="navbar-nav mx-auto">
+				<div class="nav-item align-items-center d-flex mx-5">
+					<form action="/semi/board" style="margin: 0;">
+						<button type="submit" class="btn headmenu_btn">게시판 목록</button>
+					</form>
+				</div>
+				<div class="nav-item align-items-center d-flex mx-5">
+					<form action="/semi/recipe/sample" style="margin: 0;">
+						<button type="submit" class="btn headmenu_btn">recipe 샘플</button>
+					</form>
+				</div>
+				<div class="nav-item align-items-center d-flex mx-5">
+					<form action="/semi/recipe/board" style="margin: 0;">
+						<button type="submit" class="btn headmenu_btn">레시피 보드</button>
+					</form>
+				</div>
+				<div class="nav-item align-items-center d-flex mx-5">
+					<form action="/semi/mboard" style="margin: 0;">
+						<button type="submit" class="btn headmenu_btn">중고마켓</button>
+					</form>
+				</div>
+			</div>
+
+			<form class="d-flex m-0 justify-content-end">
+				<input class="form-control me-2" type="text" style="border: 0;" placeholder="Search">
+				<button class="btn btn_headersearch fw_600" type="button">검색</button>
+			</form>
+		</div>
+	</div>
+</nav>
+
+

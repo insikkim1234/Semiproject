@@ -20,10 +20,19 @@
     	insert into tRecipeBoard (sRecipeTitle, sRecipeName, sRecipePhoto, sRecipeContent, sRecipeTime, sRecipeDifficulty, sRecipeServing, sRecipeIngredient, dtRecipeCreatedAt, dtRecipeUpdatedAt) values (#{recipeTitle}, #{recipeName}, #{recipePhoto}, #{recipeContent}, #{recipeTime}, #{recipeDifficulty}, #{recipeServing}, #{recipeIngredient}, now(), now())
 	</insert>
 	
-	<select id="selectAlltRecipe" resultType="RecipeDto" resultMap="RecipeDtoRm">
-		select * from tRecipeBoard order by sRecipeTitle
+	
+	<select id="selectAlltRecipe" parameterType="String" resultType="RecipeDto" resultMap="RecipeDtoRm">
+    	select * from tRecipeBoard 
+    	<if test="searchword!=null">
+      	where sRecipeTitle like concat('%',#{word},'%')
+      	</if>
+    	order by nRecipeIdx desc
 	</select>
 	
+	<select id="totalCountOfRecipe" resultType="int">
+        select count(*) from tRecipeBoard
+    </select>
+    
 	<update id="updateViewCount" parameterType="int">
 		update tRecipeBoard set nRecipeViewCount = nRecipeViewCount + 1 where nRecipeIdx = #{recipeIdx}
 	</update>
@@ -32,7 +41,4 @@
 		select * from tRecipeBoard where nRecipeIdx = #{recipeIdx}
 	</select>
 
-	<select id="totalCountOfRecipe" resultType="int">
-   		 select count(*) from tRecipeBoard
-    </select>
 </mapper>
