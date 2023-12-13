@@ -4,26 +4,26 @@
 	<select id="totalCountOfBoard" resultType="int">
 		select count(*) from tComBoard
 	</select>
-	<select id="selectPagingOfBoard" parameterType="Map" resultType="BoardDto">
-		select * from tComBoard order by nComBoardRegroup desc,nComBoardRestep asc limit #{start},#{perpage}
+	<select id="insertBoard" parameterType="BoardDto">
+		insert into tComBoard values (null,#{sUserName},#{sComBoardSubject},#{sComBoardContent},#{nComBoardRegroup},0,now())
 	</select>
-	<select id="selectMaxNumOfBoard" resultType="int">
-		select ifnull(max(nComBoardSeq),0) from tComBoard
+	<select id="selectAllBoard" resultType="BoardDto">
+		select * from tComBoard order by nComBoardSeq desc
 	</select>
-	<update id="updateRestepOfBoard" parameterType="Map">
-		update tComBoard set nComBoardRestep=nComBoardRestep+1 where nComBoardRegroup=#{nComBoardRegroup} and nComBoardRestep&gt;#{nComBoardRestep}
+	<update id="updateReadCount" parameterType="int">
+		update tComBoard set nComBoardviewCount=nComBoardviewCount+1 where nComBoardSeq=#{nComBoardSeq}
 	</update>
-	<insert id="insertBoard" parameterType="BoardDto">
-		insert into tComBoard (sUserName,sUserEmail,sComBoardSubject,sComBoardContent,nComBoardRegroup,nComBoardRestep,nComBoardRelevel,dtWriteDay)
-		values (#{sUserName},#{sUserEmail},#{sComBoardSubject},#{sComBoardContent},#{nComBoardRegroup},#{nComBoardRestep},#{nComBoardRelevel},now())
-		<selectKey keyProperty="nComBoardSeq" resultType="int" order="AFTER">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
-	</insert>
-	<update id="updateReadCountOfBoard" parameterType="int">
-		update tComBoard set readcount=readcount+1 where nComBoardSeq=#{nComBoardSeq}
-	</update>
-	<select id="selectDataByNum" parameterType="int" resultType="BoardDto">
+	<select id="selectOneData" parameterType="int" resultType="BoardDto">
 		select * from tComBoard where nComBoardSeq=#{nComBoardSeq}
 	</select>
+	<delete id="deleteBoard" parameterType="int">
+		delete from tComBoard where nComBoardSeq=#{nComBoardSeq}
+	</delete>
+	<update id="updateBoard" parameterType="BoardDto">
+		update tComBoard set sUserName=#{sUserName},sComBoardSubject=#{sComBoardSubject},sComBoardContent=#{sComBoardContent}
+		<if test="nComBoardRegroup!=null">
+			,nComBoardRegroup=#{nComBoardRegroup}
+		</if>
+		where nComBoardSeq=#{nComBoardSeq}
+	</update>
 </mapper>

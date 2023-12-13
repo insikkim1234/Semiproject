@@ -10,12 +10,14 @@
     <tiles:insertAttribute name="navigationbar" />
 </div>
 
-<div class="container" >
-    <tiles:insertAttribute name="content" />
+    <div class="container">
+    <tiles:insertAttribute name="content" ignore="true" />
 </div>
 
-<div class="footer" >
-    <tiles:insertAttribute name="footer" />
+<div class="footer">
+    <tiles:insertAttribute name="footer" ignore="true" />
+</div>
+
 </div>
 </body>
 </html>

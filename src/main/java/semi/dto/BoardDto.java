@@ -8,9 +8,9 @@ import lombok.Data;
 
 @Data
 public class BoardDto {
-@JsonProperty("nComBoardSeq")
+@JsonProperty("nComBoardSeq")//num
 private  int nComBoardSeq;
-@JsonProperty("sUserName")
+@JsonProperty("sUserName")//writer
 private String sUserName;
 @JsonProperty("sUserEmail")
 private String sUserEmail;
@@ -20,12 +20,14 @@ private String sComBoardSubject;
 private String sComBoardContent;
 @JsonProperty("nComBoardviewCount")
 private int nComBoardviewCount;
-@JsonProperty("nComBoardRegroup")
-private int nComBoardRegroup;
+@JsonProperty("nComBoardRegroup")//photo
+private String nComBoardRegroup;
 @JsonProperty("nComBoardRestep")
 private int nComBoardRestep;
 @JsonProperty("nComBoardRelevel")
 private int nComBoardRelevel;
 @JsonProperty("dtWriteDay")
 private Timestamp dtWriteDay;
+
+
 }
