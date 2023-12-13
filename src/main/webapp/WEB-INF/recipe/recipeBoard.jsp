@@ -8,21 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link
-   href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Permanent+Marker&family=Single+Day&display=swap"
-   rel="stylesheet">
-<link
-   href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-   rel="stylesheet">
 <link rel="stylesheet"
    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<script
-   src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <style>
-body * {
-   font-family: 'Jua';
-}
 
 div.simpleicon {
    margin: 30px 100px;
