@@ -27,12 +27,16 @@ import semi.dto.RecipeDto;
 import semi.service.BoardFileService;
 import semi.service.BoardService;
 import semi.service.MarketBoardService;
+import semi.service.MarketProductService;
 
 
 @Controller
 public class MarketBoardController {
 	@Autowired
 	private MarketBoardService marketBoardService;
+	@Autowired
+	private MarketProductService marketProductService;
+	
 	@Autowired NcpObjectStorageService storageService;
 	@Autowired private MarketBoardDao marketBoardDao;
 	
@@ -49,11 +53,18 @@ public class MarketBoardController {
 	
 	 
 	 @PostMapping("/mboard/insertMarketBoard")
-	    public String insertMarketBoard(@ModelAttribute MarketBoardDto dto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload) {
+	    public String insertMarketBoard(@ModelAttribute MarketBoardDto dto, HttpServletRequest request, HttpSession session, 
+	    		@RequestParam MultipartFile upload1,@RequestParam MultipartFile upload2,@RequestParam MultipartFile upload3) {
 	        String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
-	                NcpObjectStorageService.DIR_PHOTO, upload);
+	                NcpObjectStorageService.DIR_PHOTO, upload1);
+	        String photo2=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+	                NcpObjectStorageService.DIR_PHOTO, upload2);
+	        String photo3=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+	                NcpObjectStorageService.DIR_PHOTO, upload3);
 
 	        dto.setSBoardImage(photo);
+	        dto.setSBoardImage(photo2);
+	        dto.setSBoardImage(photo3);
 	        marketBoardService.insertMarketBoard(dto);
 
 	        return "redirect:/mboard";
