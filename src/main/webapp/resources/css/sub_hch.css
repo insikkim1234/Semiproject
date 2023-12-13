@@ -83,3 +83,19 @@
 	background-color: #EBEE48;
 	color:#33672B;
 }
+
+.login_rborder{
+	position: relative;
+    margin-left: 5px;
+    padding-left: 10px;
+}
+
+.login_rborder::after{
+	position:absolute;
+	top: calc(50% - 7px);
+	right: -10px;
+	content:"";
+	display:block;
+	width:1px;
+	height:12px;
+	background-color:black;
