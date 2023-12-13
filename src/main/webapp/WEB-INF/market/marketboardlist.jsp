@@ -151,7 +151,7 @@ div.content {
 	}
 </script> --%>
 </head>
-<body>
+<body style="background-color: #eeefc7b8;">
 	<div>
 		<div class="mlist_head fs_20">
 			총 ${totalCount}개의 소중한 물건들이 있습니다

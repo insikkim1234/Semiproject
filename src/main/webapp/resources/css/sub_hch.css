@@ -14,8 +14,8 @@
 	color: #fff;
 	margin-left: 10px;
 	font-weight: 700;
-	font-size: 20px;
-	border: 3px solid #fff;
+	font-size: 18px;
+	border: 3px solid #11B560;
 	border-radius: 10px;
 }
 
@@ -79,6 +79,9 @@
 	font-weight: 600;
 }
 
+.headmenu_btn:hover{
+	color: #EBEE48;
+}
 
 .member_btns{
 	position: absolute;
