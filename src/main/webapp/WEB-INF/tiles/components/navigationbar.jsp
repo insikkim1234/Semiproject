@@ -65,6 +65,7 @@
 			<form class="d-flex m-0 justify-content-end">
 				<input class="form-control me-2" type="text" placeholder="Search">
 				<button class="btn btn_headersearch fw_600" type="button">검색</button>
+
 			</form>
 		
 		</div>
