@@ -14,15 +14,15 @@
 </head>
 <body>
 <div>
-	<form action="./addboard" method="post" enctype="multipart/form-data">
+	<form action="./insertMarketBoard" method="post" enctype="multipart/form-data">
 		<!-- hidden -->
 		<input type="hidden" name="currentPage" value="${currentPage}">
 		<input type="hidden" name="num" value="${num}">	
 		
 		<h3 class="cGreen fw_600 text-center">나의 물품 판매</h3>
 		<h6 class="cGreen fw_600 mt-4">제목</h6>
-		<input type="text" name="subject" class="form-control borderGreen"
-		required autofocus value="${subject}" placeholder="제목">
+		<input type="text" name="sBoardTitle" class="form-control borderGreen"
+		required autofocus value="${sBoardTitle}" placeholder="제목">
 		<h6 class="cGreen fw_600 mt-2">물품 사진</h6>
 		<input type="file" name="upload" multiple class="form-control borderGreen" id="product-input">
 		<div id="product-preview"></div>
