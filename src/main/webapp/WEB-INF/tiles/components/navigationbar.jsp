@@ -4,7 +4,7 @@
 
 <div class="text-center" style="background-color: #eeefc7b8;">
 	<a href=""> <img
-		src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>eating_alone_mainlogo3.png"
+		src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>eating_alone_mainlogo4.png"
 		class="img-fluid" style="width: 400px; padding: 10px 0;">
 	</a>
 </div>
@@ -12,17 +12,17 @@
 <div class="btn-bar member_btns">
 	<form action="/semi/member/login">
 		<button type="submit" class="btn mx-2 px-0">
-			<img alt="" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>member_login_logo.png" class="img-fluid member_logo_btn">
+			<div>로그인</div>
 		</button>
 	</form>
 	<form action="/semi/member/register">
 		<button type="submit" class="btn mx-2 px-0">
-			<img alt="" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>member_join_logo.png" class="img-fluid member_logo_btn">
+			<div>회원가입</div>
 		</button>
 	</form>
 	<form action="/semi/member/semi/">
 		<button type="submit" class="btn mx-2 px-0">
-			<img alt="" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>member_search_logo.png" class="img-fluid member_logo_btn">
+			<div>자취생들</div>
 		</button>
 	</form>
 </div>
@@ -31,7 +31,7 @@
 <nav class="navbar navbar-expand-sm backGreen mb-3 p-0 text-white">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="javascript:void(0)"> <img
-			src="https://kr.object.ncloudstorage.com/semi-project-eatingalone/photo/eatingalone_logo.png"
+			src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>eatingalone_logo2.png"
 			class="img-fluid" style="width: 50px;">
 		</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -63,8 +63,8 @@
 			</div>
 
 			<form class="d-flex m-0 justify-content-end">
-				<input class="form-control me-2" type="text" placeholder="Search">
-				<button class="btn btn_headersearch fw_600" type="button">검색111</button>
+				<input class="form-control me-2" type="text" style="border: 0;" placeholder="Search">
+				<button class="btn btn_headersearch fw_600" type="button">검색</button>
 			</form>
 		</div>
 	</div>
