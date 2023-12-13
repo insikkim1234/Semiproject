@@ -42,13 +42,13 @@
 		</div>
 		
 		<h6 class="cGreen fw_600 mt-3">희망 가격</h6>
-		<input type="text" name="price" class="form-control borderGreen" required autofocus value="${price}"
+		<input type="text" name="nProductPrice" class="form-control borderGreen" required autofocus value="${nProductPrice}"
 		placeholder="￦ 가격을 입력해주세요.">
 		<h6 class="cGreen fw_600 mt-3">거래 희망 장소</h6>
-		<input type="text" name="place" class="form-control borderGreen" autofocus value="${place}"
+		<input type="text" name="sProductPlace" class="form-control borderGreen" autofocus value="${sProductPlace}"
 		placeholder="희망하는 거래 위치를 입력해주세요.">
 		<h6 class="cGreen fw_600 mt-3">자세한 설명</h6>
-		<textarea name="content" class="form-control borderGreen" required
+		<textarea name="sProductContent" class="form-control borderGreen" required
 			style="width: 100%;height: 200px;"
 			placeholder="게시글의 내용을 작성해주세요. (판매금지 물품은 게시가 제한될 수 있습니다.)
 
