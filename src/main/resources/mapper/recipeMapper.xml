@@ -29,8 +29,11 @@
     	order by nRecipeIdx desc
 	</select>
 	
-	<select id="totalCountOfRecipe" resultType="int">
+	<select id="totalCountOfRecipe" parameterType="String" resultType="int">
         select count(*) from tRecipeBoard
+        <if test="searchword!=null">
+      	where sRecipeTitle like concat('%',#{word},'%')
+      	</if>
     </select>
     
 	<update id="updateViewCount" parameterType="int">

@@ -67,7 +67,7 @@ div.content {
       grid(); //처음 시작시 그리드모양 이미지형태로 출력하기
       
       $("#btnsearch").click(function() {
-    	//  alert(1);
+       //  alert(1);
        searchword=$("#word").val();
        grid();
        });
@@ -98,15 +98,26 @@ div.content {
          url:"./view",
          data:{"word":searchword},
          success:function(res){
+            let datas=res.data;
+            let totalCount=res.totalCount;
+            console.log(totalCount);
+            let t=`<h4>현재 총<b style="color: green; font-size: 40px;">`;
+            
+            t+= totalCount;
+            t+=`</b>개의 레시피가 있습니다.</h4>`;
+           $(".recipetotalcount").html(t);
+           
             let s="";
-            $.each(res,function(idx,item){
-               var recipeName=item.recipeName;
-               console.log(item.recipePhoto);
+            
+            $.each(datas,function(idx,item){
+      
                s+=
                   `
                   <div class="box" style="background-color:#FFFFF0;">
                      <figure>
-                     <img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.recipePhoto}"><br>
+                        <a href="./board/\${item.recipeIdx}">
+                           <img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.recipePhoto}"><br>
+                        </a>
                         <figcaption>
                            <b>\${item.recipeTitle}</b><br>
                            <span style="color:gray;">\${item.recipeName}</span>
@@ -124,7 +135,7 @@ div.content {
       });
    }
    
-    function list()
+   function list()
       {
          $.ajax({
             type:"get",
@@ -132,6 +143,15 @@ div.content {
             url:"./view",
             data:{"word":searchword},
             success:function(res){
+            	 let datas=res.data;
+                 let totalCount=res.totalCount;
+  
+                 let t=`<h4>현재 총<b style="color: green; font-size: 40px;">`;
+                 
+                 t+= totalCount;
+                 t+=`</b>개의 레시피가 있습니다.</h4>`;
+                $(".recipetotalcount").html(t);
+
                let s="";
                s+=
                `
@@ -166,7 +186,7 @@ div.content {
                $("div.content").eq(0).css("display","block");
             }
          });
-         }
+         } 
    </script>
 </head>
 <body>
@@ -185,8 +205,8 @@ div.content {
       <i class="bi bi-grid simplegrid"></i> <i
          class="bi bi-list-ul simplelist"></i>
    </div>
-   <div>
-   <h4>현재 총<b style="color: green; font-size: 40px;"> ${totalCount }</b>개의 레시피가 있습니다.</h4>
+   <div class="recipetotalcount">
+         레시피
    </div>
    <div class="list">123</div>
 </body>

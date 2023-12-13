@@ -1,9 +1,11 @@
 package semi.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import naver.storage.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -20,14 +22,23 @@ import javax.servlet.http.HttpSession;
 public class RecipeRestController {
 	@Autowired private RecipeDao recipeDao;
 	@Autowired private RecipeOrderService recipeOrderService;
-
+	@Autowired private RecipeService recipeService;
 
 
 	//dto 불러오기
 	@GetMapping("/recipe/view")
-	@ResponseBody List<RecipeDto> getSearchList(@RequestParam(required = false) String word)
+	@ResponseBody HashMap<String,Object> getSearchList(
+			@RequestParam(required = false) String word)
     {
-       return recipeDao.getSearchRecipe(word);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
+		//총 레시피 개수 얻기
+        int totalCount = recipeService.getTotalCount(word);
+        
+        resultMap.put("data", recipeDao.getSearchRecipe(word));
+        resultMap.put("totalCount", totalCount);
+        
+       return resultMap;
     }
 	
 	
