@@ -26,13 +26,13 @@ public class NcpObjectStorageService implements ObjectStorageService {
 	public static final String STORAGE_PHOTO_PATH = STORAGE_URL + STORAGE_EATINGALONE + DIR_PHOTO;
 
 	public NcpObjectStorageService(NaverConfig naverConfig) {
-		System.out.println("NcpObjectStorageService 생성");
 		s3 = AmazonS3ClientBuilder.standard()
 				.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(
 						naverConfig.getEndPoint(), naverConfig.getRegionName()))
 				.withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(
 						naverConfig.getAccessKey(), naverConfig.getSecretKey())))
 				.build();
+
 	}
 
 	@Override
@@ -48,18 +48,20 @@ public class NcpObjectStorageService implements ObjectStorageService {
 
 			ObjectMetadata objectMetadata = new ObjectMetadata();
 			objectMetadata.setContentType(file.getContentType());
+			objectMetadata.setContentLength(file.getSize());
+
+			String uploadFullPath = directoryPath +"/"+ filename;
+			uploadFullPath = uploadFullPath.replaceAll("//", "/");
 
 			PutObjectRequest objectRequest = new PutObjectRequest(
 					bucketName,
-					directoryPath +"/"+ filename,
+					uploadFullPath,
 					fileIn,
 					objectMetadata).withCannedAcl(CannedAccessControlList.PublicRead);
 
 			s3.putObject(objectRequest);
 			
-			//return s3.getUrl(bucketName, directoryPath + filename).toString();
 			return filename;
-
 		} catch (Exception e) {
 			throw new RuntimeException("파일 업로드 오류", e);
 		}
