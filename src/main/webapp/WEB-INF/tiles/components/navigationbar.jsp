@@ -11,12 +11,12 @@
 
 <div class="btn-bar member_btns">
 	<form action="/semi/member/login">
-		<button type="submit" class="btn mx-2 px-0">
+		<button type="submit" class="btn mx-2 px-0 login_rborder">
 			<div>로그인</div>
 		</button>
 	</form>
 	<form action="/semi/member/register">
-		<button type="submit" class="btn mx-2 px-0">
+		<button type="submit" class="btn mx-2 px-0 login_rborder">
 			<div>회원가입</div>
 		</button>
 	</form>
