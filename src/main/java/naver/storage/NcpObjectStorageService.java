@@ -20,26 +20,25 @@ public class NcpObjectStorageService implements ObjectStorageService {
 	
 	AmazonS3 s3;
 
-	public static final String STORAGE_EATINGALONE = "semi-project-eatingalone/";
-	public static final String DIR_PHOTO = "photo/";
-	public static final String STORAGE_URL = "https://kr.object.ncloudstorage.com/";
-	public static final String STORAGE_PHOTO_PATH = STORAGE_URL + STORAGE_EATINGALONE + DIR_PHOTO;
+	public static final String STORAGE_EATINGALONE = "semi-project-eatingalone";
+	public static final String DIR_PHOTO = "photo";
+	public static final String STORAGE_URL = "https://kr.object.ncloudstorage.com";
+	public static final String STORAGE_PHOTO_PATH = STORAGE_URL + "/" + STORAGE_EATINGALONE + "/" + DIR_PHOTO  + "/";
 
 	public NcpObjectStorageService(NaverConfig naverConfig) {
-		System.out.println("NcpObjectStorageService 생성");
 		s3 = AmazonS3ClientBuilder.standard()
 				.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(
 						naverConfig.getEndPoint(), naverConfig.getRegionName()))
 				.withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(
 						naverConfig.getAccessKey(), naverConfig.getSecretKey())))
 				.build();
+
 	}
 
 	@Override
 	public String uploadFile(String bucketName, String directoryPath, MultipartFile file) {
-		System.out.println("uploadFile="+file.getOriginalFilename());
-
 		if (file.isEmpty()) {
+			System.out.println("[*] NcpObjectStorageService uploadFile file is Empty");
 			return null;
 		}
 
@@ -48,18 +47,21 @@ public class NcpObjectStorageService implements ObjectStorageService {
 
 			ObjectMetadata objectMetadata = new ObjectMetadata();
 			objectMetadata.setContentType(file.getContentType());
+			objectMetadata.setContentLength(file.getSize());
+
+			String uploadFullPath = directoryPath +"/"+ filename;
+			uploadFullPath = uploadFullPath.replaceAll("//", "/");
 
 			PutObjectRequest objectRequest = new PutObjectRequest(
 					bucketName,
-					directoryPath +"/"+ filename,
+					uploadFullPath,
 					fileIn,
 					objectMetadata).withCannedAcl(CannedAccessControlList.PublicRead);
 
 			s3.putObject(objectRequest);
-			
-			//return s3.getUrl(bucketName, directoryPath + filename).toString();
-			return filename;
+			System.out.println(s3.getUrl(bucketName, uploadFullPath).toString());
 
+			return filename;
 		} catch (Exception e) {
 			throw new RuntimeException("파일 업로드 오류", e);
 		}

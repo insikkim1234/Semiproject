@@ -27,6 +27,11 @@ public class BoardController {
 	private BoardService boardService;
 	@Autowired
 	private BoardFileService boardFileService;
+
+	@GetMapping(value = "/board")
+	public String board(Locale locale, Model model) {
+		return "/board/boardlist";
+	}
 	
 	@GetMapping("/board/list")
 	public String list(Model model,@RequestParam(defaultValue = "1") int currentPage)
