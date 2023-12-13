@@ -23,29 +23,44 @@
 		<h6 class="cGreen fw_600 mt-4">제목</h6>
 		<input type="text" name="sBoardTitle" class="form-control borderGreen"
 		required autofocus value="${sBoardTitle}" placeholder="제목">
-		<h6 class="cGreen fw_600 mt-2">물품 사진</h6>
-		<input type="file" name="upload" multiple class="form-control borderGreen" id="product-input">
-		<div id="product-preview"></div>
-		<h6 class="cGreen fw_600 mt-2">희망 가격</h6>
+		<div class="row mt-3">
+			<div class="col">
+				<h6 class="cGreen fw_600 mt-2">대표 사진</h6>
+				<input type="file" name="upload" class="form-control borderGreen" id="product-input" onchange="previewImage(this, 'product-preview')">
+				<div id="product-preview"></div>
+			</div>
+			<div class="col">
+				<h6 class="cGreen fw_600 mt-2">물품 사진 1</h6>
+				<input type="file" name="upload" class="form-control borderGreen" id="product-input2" onchange="previewImage(this, 'product-preview2')">
+				<div id="product-preview2"></div>
+			</div>
+			<div class="col">
+				<h6 class="cGreen fw_600 mt-2">물품 사진 2</h6>
+				<input type="file" name="upload" class="form-control borderGreen" id="product-input3" onchange="previewImage(this, 'product-preview3')">
+				<div id="product-preview3"></div>
+			</div>
+		</div>
+		
+		<h6 class="cGreen fw_600 mt-3">희망 가격</h6>
 		<input type="text" name="price" class="form-control borderGreen" required autofocus value="${price}"
 		placeholder="￦ 가격을 입력해주세요.">
-		<h6 class="cGreen fw_600 mt-2">거래 희망 장소</h6>
+		<h6 class="cGreen fw_600 mt-3">거래 희망 장소</h6>
 		<input type="text" name="place" class="form-control borderGreen" autofocus value="${place}"
 		placeholder="희망하는 거래 위치를 입력해주세요.">
-		<h6 class="cGreen fw_600 mt-2">자세한 설명</h6>
+		<h6 class="cGreen fw_600 mt-3">자세한 설명</h6>
 		<textarea name="content" class="form-control borderGreen" required
 			style="width: 100%;height: 200px;"
 			placeholder="게시글의 내용을 작성해주세요. (판매금지 물품은 게시가 제한될 수 있습니다.)
 
 신뢰할 수 있는 거래를 위해 자세히 작성해주세요."></textarea>
 		
-		<button type="submit" class="btn btn-outline-success">물품등록</button>
-		<button type="button" class="btn btn-outline-success" onclick="history.back()">목록으로</button>
+		<button type="submit" class="btn btn_product_input mt-3">물품등록</button>
+		<button type="button" class="btn btn_product_input mt-3 ml-2" onclick="history.back()">목록으로</button>
 	</form>
 </div>
-<script>
+	<!-- <script>
         document.getElementById('product-input').addEventListener('change', handleFileSelect);
-
+        
         function handleFileSelect(event) {
             const files = event.target.files;
             const productPreview = document.getElementById('product-preview');
@@ -67,7 +82,29 @@
                 reader.readAsDataURL(file);
             }
         }
-    </script>
+    </script> -->
+     <script>
+    function previewImage(input, previewId) {
+      const preview = document.getElementById(previewId);
+      preview.innerHTML = ''; // 초기화
+
+      const files = input.files;
+      for (const file of files) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.alt = file.name;
+          img.style.width = '300px'; // 이미지 크기 조절
+          img.style.marginRight = '10px';
+          preview.appendChild(img);
+        };
+
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
 </body>
 </html>
 
