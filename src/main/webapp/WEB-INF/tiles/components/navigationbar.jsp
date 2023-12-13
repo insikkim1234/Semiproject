@@ -10,12 +10,12 @@
 </div>
 
 <div class="btn-bar member_btns">
-	<form action="/semi/member/register">
+	<form action="/semi/member/login">
 		<button type="submit" class="btn mx-2 px-0">
 			<img alt="" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>member_login_logo.png" class="img-fluid member_logo_btn">
 		</button>
 	</form>
-	<form action="/semi/member/login">
+	<form action="/semi/member/register">
 		<button type="submit" class="btn mx-2 px-0">
 			<img alt="" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>member_join_logo.png" class="img-fluid member_logo_btn">
 		</button>
