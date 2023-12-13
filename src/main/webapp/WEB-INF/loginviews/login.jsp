@@ -9,11 +9,17 @@
         width: 300px;
         border-radius: 10px;
         padding: 10px;
+        display: table;
+        margin-left: auto;
+        margin-right: auto;
     }
     .btnlogin {
         width: 300px;
         border-radius: 10px;
         padding: 10px;
+        display: table;
+        margin-left: auto;
+        margin-right: auto;
     }
 </style>
 <body>

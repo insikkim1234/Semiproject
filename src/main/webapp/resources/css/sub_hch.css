@@ -3,7 +3,7 @@
 
 /* marketboardlist */
 .mlist_head{
-	color: 74B243;
+	color: #11B560;
 	padding: 10px;
 	font-size: 36px;
 	font-weight: 600;
@@ -11,7 +11,7 @@
 }
 
 .mlist_head>.btn{
-	background-color: #74B243;
+	background-color: #11B560;
 	color: #fff;
 	margin-left: 10px;
 	font-weight: 700;
@@ -23,19 +23,19 @@
 .mlist_head>.btn:hover{
 	background-color: #EBEE48;
 	color:#33672B;
-	border: 3px solid #74B243;
+	border: 3px solid #11B560;
 }
 
 .cGreen{
-	color: #74B243;
+	color: #11B560;
 }
 
 .borderGreen{
-	border: 2px solid #74B243 !important;
+	border: 2px solid #11B560 !important;
 }
 
 .backGreen{
-	background-color: #74B243;
+	background-color:#11B560;
 	color: white;
 	text-align: center;
 }
@@ -76,7 +76,7 @@
 
 .btn_headersearch {
 	background-color: white; 
-	color: #74B243;
+	color: #11B560;
 }
 
 .btn_headersearch:hover {
