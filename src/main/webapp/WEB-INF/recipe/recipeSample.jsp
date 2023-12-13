@@ -7,14 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>recipe sample</title>
-<link
-	href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&family=Permanent+Marker&family=Single+Day&display=swap"
-	rel="stylesheet">
-<style>
-body * {
-	font-family: 'Jua';
-}
-</style>
 </head>
 <body>
 	<h1>recipe sample</h1>
