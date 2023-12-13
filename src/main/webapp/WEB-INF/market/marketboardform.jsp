@@ -53,9 +53,11 @@
 			placeholder="게시글의 내용을 작성해주세요. (판매금지 물품은 게시가 제한될 수 있습니다.)
 
 신뢰할 수 있는 거래를 위해 자세히 작성해주세요."></textarea>
+		<div class="text-center">
+			<button type="submit" class="btn btn_product_input mt-3">물품등록</button>
+			<button type="button" class="btn btn_product_input mt-3 ml-2" onclick="history.back()">목록으로</button>
+		</div>
 		
-		<button type="submit" class="btn btn_product_input mt-3">물품등록</button>
-		<button type="button" class="btn btn_product_input mt-3 ml-2" onclick="history.back()">목록으로</button>
 	</form>
 </div>
 	<!-- <script>
