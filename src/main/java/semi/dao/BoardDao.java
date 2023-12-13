@@ -12,24 +12,10 @@ public class BoardDao {
 	
 	private String nameSpace="semi.dao.BoardDao.";
 	
+	//전체 갯수 반환하는 메서드
 	public int getTotalCount()
 	{
 		return session.selectOne(nameSpace+"totalCountOfBoard");
-	}
-	
-	public List<BoardDto> getList(Map<String, Integer> map)
-	{
-		return session.selectList(nameSpace+"selectPagingOfBoard", map);
-	}
-	
-	public int getMaxNum()
-	{
-		return session.selectOne(nameSpace+"selectMaxNumOfBoard");
-	}
-	
-	public void updateRestep(Map<String, Integer> map)
-	{
-		session.update(nameSpace+"updateRestepOfBoard", map);
 	}
 	
 	public void insertBoard(BoardDto dto)
@@ -37,23 +23,28 @@ public class BoardDao {
 		session.insert(nameSpace+"insertBoard", dto);
 	}
 	
-	public void updateReadCount(int num)
+	public List<BoardDto> getAllDatas()
 	{
-		session.update(nameSpace+"updateReadCountOfBoard", num);
+		return session.selectList(nameSpace+"selectAllBoard");
 	}
 	
-	public BoardDto getData(int num)
+	public void updateReadcount(int nComBoardSeq)
 	{
-		return session.selectOne(nameSpace+"selectDataByNum", num);
+		session.update(nameSpace+"updateReadcount", nComBoardSeq);
+	}
+	
+	public BoardDto getData(int nComBoardSeq)
+	{
+		return session.selectOne(nameSpace+"selectOneData", nComBoardSeq);
+	}
+	
+	public void deleteBoard(int nComBoardSeq)
+	{
+		session.delete(nameSpace+"deleteBoard", nComBoardSeq);
 	}
 	
 	public void updateBoard(BoardDto dto)
 	{
 		session.update(nameSpace+"updateBoard", dto);
-	}
-	
-	public void deleteBoard(int num)
-	{
-		session.delete(nameSpace+"deleteBoard", num);
 	}
 }
