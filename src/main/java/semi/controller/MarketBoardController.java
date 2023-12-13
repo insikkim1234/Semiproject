@@ -20,21 +20,28 @@ import org.springframework.web.multipart.MultipartFile;
 
 import naver.storage.NcpObjectStorageService;
 import semi.dao.MarketBoardDao;
+import semi.dao.MarketProductDao;
 import semi.dto.BoardDto;
 import semi.dto.BoardFileDto;
 import semi.dto.MarketBoardDto;
+import semi.dto.MarketProductDto;
 import semi.dto.RecipeDto;
 import semi.service.BoardFileService;
 import semi.service.BoardService;
 import semi.service.MarketBoardService;
+import semi.service.MarketProductService;
 
 
 @Controller
 public class MarketBoardController {
 	@Autowired
 	private MarketBoardService marketBoardService;
+	@Autowired
+	private MarketProductService marketProductService;
+	
 	@Autowired NcpObjectStorageService storageService;
 	@Autowired private MarketBoardDao marketBoardDao;
+	@Autowired private MarketProductDao marketProductDao;
 	
 	
 	 @GetMapping("/mboard")
@@ -49,14 +56,23 @@ public class MarketBoardController {
 	
 	 
 	 @PostMapping("/mboard/insertMarketBoard")
-	    public String insertMarketBoard(@ModelAttribute MarketBoardDto dto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload) {
+	    public String insertMarketBoard(@ModelAttribute MarketBoardDto dto,@ModelAttribute MarketProductDto pdto,
+	    		HttpServletRequest request, HttpSession session, 
+	    		@RequestParam MultipartFile upload1,@RequestParam MultipartFile upload2,@RequestParam MultipartFile upload3) {
 	        String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
-	                NcpObjectStorageService.DIR_PHOTO, upload);
+	                NcpObjectStorageService.DIR_PHOTO, upload1);
+	        String photo2=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+	                NcpObjectStorageService.DIR_PHOTO, upload2);
+	        String photo3=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+	                NcpObjectStorageService.DIR_PHOTO, upload3);
 
 	        dto.setSBoardImage(photo);
+	        pdto.setSProductImage1(photo2);
+	        pdto.setSProductImage2(photo3);
 	        marketBoardService.insertMarketBoard(dto);
+	        marketProductService.insertMarketProduct(pdto);
 
-	        return "redirect:../";
+	        return "redirect:/mboard";
 	    }
 		
 
