@@ -8,19 +8,18 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import com.mysql.cj.result.Field;
 import semi.dto.BoardDto;
 import semi.dto.BoardFileDto;
 import semi.service.BoardFileService;
 import semi.service.BoardService;
+
+
 @Controller
 public class BoardController {
 	@Autowired
@@ -29,7 +28,7 @@ public class BoardController {
 	private BoardFileService boardFileService;
 
 	@GetMapping(value = "/board")
-	public String board(Locale locale, Model model) {
+	public String board(Model model) {
 		return "/board/boardlist";
 	}
 	
