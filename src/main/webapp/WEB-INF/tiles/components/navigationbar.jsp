@@ -4,7 +4,7 @@
 
 <div class="text-center" style="background-color: #eeefc7b8;">
 	<a href=""> <img
-		src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>eating_alone_mainlogo4.png"
+		src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>eating_alone_mainlogo5.png"
 		class="img-fluid" style="width: 400px; padding: 10px 0;">
 	</a>
 </div>
