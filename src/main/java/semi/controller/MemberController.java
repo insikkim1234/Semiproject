@@ -81,14 +81,16 @@ public class MemberController {
 
     //회원가입 실행 로직 메서드 -> 성공 login.jsp 실패 register.jsp
     @PostMapping("/register")
-    public String register(@ModelAttribute MemberDto memberDto) {
+    public String register(@ModelAttribute MemberDto memberDto, HttpServletRequest request, String alert) {
         int result = memberService.insertMember(memberDto);
 
         //DB 에서 변경된 행이 1이면 회원가입 성공.
         if (result == 1){
-            return "loginviews/login";
+            request.setAttribute("msg","로그인 성공");
+            request.setAttribute("url","loginviews/login");
+            return alert;
         }
-        return "loginviews/register";
+        return "alert";
     }
 
     // 로그인 실행 로직 메서드
