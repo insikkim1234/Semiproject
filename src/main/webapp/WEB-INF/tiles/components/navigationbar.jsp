@@ -61,13 +61,12 @@
 					</form>
 				</div>
 			</div>
-
+			
 			<form class="d-flex m-0 justify-content-end">
 				<input class="form-control me-2" type="text" style="border: 0;" placeholder="Search">
-				<button class="btn btn_headersearch fw_600" type="button">검색</button>
+				<button class="btn btn_green fw_600" type="button">검색</button>
 			</form>
 		</div>
 	</div>
 </nav>
-
 

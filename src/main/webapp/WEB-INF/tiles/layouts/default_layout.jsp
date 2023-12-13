@@ -4,7 +4,7 @@
 <head>
     <tiles:insertAttribute name="head" />
 </head>
-<body>
+<body style="background-color: #eeefc7b8;">
 
 <div class="navigationbar" >
     <tiles:insertAttribute name="navigationbar" />

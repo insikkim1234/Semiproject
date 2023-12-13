@@ -50,25 +50,8 @@ div.box figure img {
 div.content {
 	display: none;
 }
-
-.mytooltip {
-	position: absolute;
-	color: black;
-	width: auto;
-	background-color: #f90;
-	border: 2px solid white;
-	padding: 10px;
-	font-size: 14px;
-	border-radius: 30px;
-	/*opacity:0.8;*/
-	display: none;
-}
-
-.mytooltip img {
-	border-radius: 30px;
-}
 </style>
-<script type="text/javascript">
+<%-- <script type="text/javascript">
 	$(function(){
 		//처음 시작시 그리드모양 이미지형태로 출력하기
 		grid();
@@ -89,51 +72,30 @@ div.content {
 			list();
 		});
 		
-		//list 의 제목 클릭시 해당 내용만 나오게 하기
-		$(document).on("click","b.subject",function(){
-			$("div.content").hide();
-			
-			$(this).parent().next().slideDown('slow');
-		});
-		//사진에 마우스를 올리면 사진이 크게 보이게 하기				
-		$(document).on("mousemove","div.box img",function(e){
-			$("div.mytooltip").css({
-					"left":e.pageX+"px",
-					"top":e.pageY+"px"
-			});
-		});
-		$(document).on("mouseover","div.box img",function(e){
-			let imgSrc=$(this).attr("src");
-			$("div.mytooltip").html(`<img src="${imgSrc}" style="max-width:400px">`);
-			$("div.mytooltip").fadeIn('fast');
-		});
-		$(document).on("mouseout","div.box img",function(e){
-			$("div.mytooltip").fadeOut('fast');
-		});
-	});
 	
 	function grid()
 	{
 		$.ajax({
 			type:"get",
 			dataType:"json",
-			url:"simpletojson.jsp",
+			url:"./",
 			success:function(res){
 				let s="";
 				$.each(res,function(idx,item){
-					if(item.photo!='no'){
+					var userName=item.userName;
+		            console.log(item.recipePhoto);
 						s+=
 							`
 							<div class="box" style="background-color:#fcc;">
 								<figure>
-									<img src="../save/${item.photo}">
+								<img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.boardImage}"><br>
 									<figcaption>
-										<b>${item.subject}</b><br>
-										<span style="color:gray;">${item.writer}</span>
+										<b>${item.boardTitle}</b><br>
+										<span style="color:gray;">${item.boardTitle}</span>
 										<br>
-										<span class="day">${item.writeday}
+										<span class="day">${item.userName}
 											&nbsp;&nbsp;&nbsp;
-										조회 ${item.readcount}</span>
+										조회 ${item.boardViewCount}</span>
 									</figcaption>
 								</figure>
 							</div>
@@ -141,15 +103,7 @@ div.content {
 					}
 				});
 				$(".list").html(s);
-		    },
-			/* statusCode:{
-				404:function(){
-					alert("json 파일을 찾을수 없어요!");
-				},
-				500:function(){
-				   alert("서버 오류..코드를 다시한버너 보세요");
-				}
-			} */
+		    }
 		});
 	}
 	
@@ -158,7 +112,7 @@ div.content {
 		$.ajax({
 			type:"get",
 			dataType:"json",
-			url:"simpletojson.jsp",
+			url:"./",
 			success:function(res){
 				let s="";
 				s+=				
@@ -166,19 +120,22 @@ div.content {
 				<table class="table table-bordered" style="450px">									
 				`;				
 				$.each(res,function(idx,item){
+					var userName=item.userName;
+	                  console.log(userName);
 					s+=
 					`
 					<tr>
 						<td>
-							<h5><b class="subject" style="cursor:pointer">${item.subject}</b></h5>
-							<div style="margin-left:20px;color:gray;" class="content">
-								<pre>${item.content}</pre>
+						<img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.boardImage}"><br>
+							<h5><b class="subject" style="cursor:pointer">${item.boardTitle}</b></h5>
+							<div style="margin-left:20px;color:gray;" class="content1">
+								<pre>${item.productContent}</pre>
 							</div>
 							<div>
-								<span>${item.writer}</span>&nbsp;&nbsp;
-								<span class="day">${item.writeday}
+								<span>${item.userName}</span>&nbsp;&nbsp;
+								<span class="day">${item.createDate}
 									&nbsp;&nbsp;
-									조회 ${item.readcount}
+									조회 ${item.boardViewCount}
 								</span>
 							</div>
 						</td>
@@ -188,21 +145,13 @@ div.content {
 				s+="</table>";
 				$(".list").html(s);
 				//첫번째 content 만 일단 보이도록	
-				$("div.content").eq(0).css("display","block");
-		    },
-			statusCode:{
-				404:function(){
-					alert("json 파일을 찾을수 없어요!");
-				},
-				500:function(){
-				   alert("서버 오류..코드를 다시한버너 보세요");
-				}
-			}
+				$("div.content1").eq(0).css("display","block");
+		    }
 		});
 	}
-</script>
+</script> --%>
 </head>
-<body>
+<body style="background-color: #eeefc7b8;">
 	<div>
 		<div class="mlist_head fs_20">
 			총 ${totalCount}개의 소중한 물건들이 있습니다
@@ -220,56 +169,8 @@ div.content {
 				class="bi bi-card-list simplelist"></i>
 		</div>
 
-		<div class="list">123</div>
-		<div class="mytooltip">
-			Java<br> HTML5<br> SpringBoot<br> React<br>
-			jQuery
-		</div>
-
         <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!  -->
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th class="cGreen" width="50">번호</th>
-					<th width="350">제목</th>
-					<th width="80">작성자</th>
-					<th width="100">작성일</th>
-					<th width="60">조회</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="dto" items="${list}">
-					<tr>
-						<td>${no} <c:set var="no" value="${no-1}" />
-						</td>
-						<td>
-							<!-- 제목 --> <!-- 답글 레벨 1당 두칸 띄우기 --> <c:forEach begin="1"
-								end="${dto.relevel}">
-		   					&nbsp;&nbsp;
-		   			</c:forEach> <!-- relevel 이 0 이상인경우 답글 아이콘 --> <c:if test="${dto.relevel>0}">
-								<img src="../res/photo/re.png">
-							</c:if> <!-- 제목 표시 --> <a
-							href="./content?num=${dto.num}&currentPage=${currentPage}">
-								${dto.subject} <c:if test="${dto.photocount==1}">
-									<i class="bi bi-image" style="color: gray;"></i>
-								</c:if> <c:if test="${dto.photocount>1}">
-									<i class="bi bi-images" style="color: gray;"></i>
-								</c:if>
-						</a> <!-- 댓글 갯수 표시 --> <c:if test="${dto.acount>0}">
-								<a
-									href="./content?num=${dto.num}&currentPage=${currentPage}#answerend">
-									<span style="color: red;">(${dto.acount})</span>
-								</a>
-							</c:if>
-						</td>
-						<td>${dto.writer}</td>
-						<td><fmt:formatDate value="${dto.writeday}"
-								pattern="yyyy.MM.dd." /></td>
-						<td>${dto.readcount}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+		
 		<div style="text-align: center;">
 			<!-- 이전 -->
 			<c:if test="${startPage>1}">

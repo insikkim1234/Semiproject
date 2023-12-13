@@ -12,14 +12,14 @@
   
 </style>
 </head>
-<body>
+<body style="background-color: #eeefc7b8;">
 <div>
 	<form action="./insertMarketBoard" method="post" enctype="multipart/form-data">
 		<!-- hidden -->
 		<input type="hidden" name="currentPage" value="${currentPage}">
 		<input type="hidden" name="num" value="${num}">	
 		
-		<h3 class="cGreen fw_600 text-center">나의 물품 판매</h3>
+		<h3 class="cGreen fw_600 text-center fs_40 my-3">나의 물품 판매</h3>
 		<h6 class="cGreen fw_600 mt-4">제목</h6>
 		<input type="text" name="sBoardTitle" class="form-control borderGreen"
 		required autofocus value="${sBoardTitle}" placeholder="제목">
@@ -53,9 +53,11 @@
 			placeholder="게시글의 내용을 작성해주세요. (판매금지 물품은 게시가 제한될 수 있습니다.)
 
 신뢰할 수 있는 거래를 위해 자세히 작성해주세요."></textarea>
+		<div class="text-center">
+			<button type="submit" class="btn btn_product_input mt-3">물품등록</button>
+			<button type="button" class="btn btn_product_input mt-3 ml-2" onclick="history.back()">목록으로</button>
+		</div>
 		
-		<button type="submit" class="btn btn_product_input mt-3">물품등록</button>
-		<button type="button" class="btn btn_product_input mt-3 ml-2" onclick="history.back()">목록으로</button>
 	</form>
 </div>
 	<!-- <script>
