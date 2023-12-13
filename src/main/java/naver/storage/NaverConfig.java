@@ -16,10 +16,10 @@ public class NaverConfig {
 	
 	@Value("kr-standard")
 	private String regionName;
-	
-	@Value("B0C3dkGuhSqgrZBcbTLA")
+
+	@Value("#{env['storage.ACCESSKEY']}")
 	private String accessKey;
 
-	@Value("ZeKnvpSKnxC6wFDpc10YySrQpOV4YYkkhmjhyYRr")
+	@Value("#{env['storage.SECRETKEY']}")
 	private String secretKey;
 }
