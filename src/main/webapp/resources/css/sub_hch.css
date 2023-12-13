@@ -46,13 +46,30 @@
 
 
 
-#product-preview {
+#product-preview,
+#product-preview2,
+#product-preview3 {
     max-width: 100%;
     margin-top: 10px;
+    text-align: center;
 }
 
-#product-preview>img{
+/* #product-preview>img{
 	width: 200px; 
+} */
+
+.btn_product_input {
+	background-color: #11B560;
+	color: white;
+	border:2px solid #11B560;
+	font-weight: 600;
+}
+
+.btn_product_input:hover {
+	background-color: #EBEE48;
+	color: #11B560;
+	border:2px solid #11B560;
+	font-weight: 600;
 }
 
 .headmenu_btn{
