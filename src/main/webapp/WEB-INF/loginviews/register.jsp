@@ -6,12 +6,13 @@
     <style>
         .file-input-wrapper {
             width: 300px;
-            border: 1px solid gray;
+            border: 2px solid #11B560;
             padding: 10px;
             border-radius: 10px;
             display: table;
             margin-left: auto;
             margin-right: auto;
+            background-color: #fff;
         }
 
         .file-input-wrapper input[type=file] {
@@ -33,6 +34,7 @@
             display: table;
             margin-left: auto;
             margin-right: auto;
+            border: 2px solid #11B560;
         }
         .box {
             display: table;
@@ -41,19 +43,20 @@
         }
     </style>
 </head>
-<body>
+<body style="background-color: #eeefc7b8;">
+<div class="fs_40 text-center cGreen fw_600 my-3">JOIN US</div>
 <form action="/semi/member/register" method="post">
     <input type="text" name="userName" placeholder="성명 입력"><br>
     <div class="box"><input type="email" name="userEmail" placeholder="이메일"><br>
-    <label for="emailCheckbox">아이디 중복 확인<input type="checkbox" id="emailCheckbox" /></label></div><br>
+    <label for="emailCheckbox" class="cGreen fw_600 fs_17">아이디 중복 확인<input type="checkbox" id="emailCheckbox" class="ml-2" /></label></div><br>
     <input type="password" name="userPassword" placeholder="비밀번호"><br>
 
     <div class="file-input-wrapper">
-        <input type="file" name="userImage" placeholder="사진">
+        <input type="file" name="userImage" placeholder="사진" class="m-0">
     </div><br>
 
     <input type="text" name="userPhoneNumber"  placeholder="휴대전화번호(Ex:010-1234-5678)"><br>
-    <input type="submit" value="회원가입">
+    <input type="submit" value="회원가입" class="btn_green2">
 </form>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

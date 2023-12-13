@@ -1,6 +1,5 @@
 @charset "utf-8";
 
-
 /* marketboardlist */
 .mlist_head{
 	color: #11B560;
@@ -91,12 +90,22 @@
 	width: 40px;
 }
 
-.btn_headersearch {
+.btn_green {
 	background-color: white; 
 	color: #11B560;
 }
 
-.btn_headersearch:hover {
+.btn_green2 {
+	background-color: #11B560; 
+	color: #fff;
+}
+
+.btn_green:hover {
+	background-color: #EBEE48;
+	color:#33672B;
+}
+
+.btn_green2:hover {
 	background-color: #EBEE48;
 	color:#33672B;
 }
@@ -116,3 +125,7 @@
 	width:1px;
 	height:12px;
 	background-color:black;
+}
+
+
+	

@@ -51,7 +51,7 @@ div.content {
 	display: none;
 }
 </style>
-<script type="text/javascript">
+<%-- <script type="text/javascript">
 	$(function(){
 		//처음 시작시 그리드모양 이미지형태로 출력하기
 		grid();
@@ -128,7 +128,7 @@ div.content {
 						<td>
 						<img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.boardImage}"><br>
 							<h5><b class="subject" style="cursor:pointer">${item.boardTitle}</b></h5>
-							<div style="margin-left:20px;color:gray;" class="content">
+							<div style="margin-left:20px;color:gray;" class="content1">
 								<pre>${item.productContent}</pre>
 							</div>
 							<div>
@@ -145,11 +145,11 @@ div.content {
 				s+="</table>";
 				$(".list").html(s);
 				//첫번째 content 만 일단 보이도록	
-				$("div.content").eq(0).css("display","block");
+				$("div.content1").eq(0).css("display","block");
 		    }
 		});
 	}
-</script>
+</script> --%>
 </head>
 <body>
 	<div>

@@ -12,14 +12,14 @@
   
 </style>
 </head>
-<body>
+<body style="background-color: #eeefc7b8;">
 <div>
 	<form action="./insertMarketBoard" method="post" enctype="multipart/form-data">
 		<!-- hidden -->
 		<input type="hidden" name="currentPage" value="${currentPage}">
 		<input type="hidden" name="num" value="${num}">	
 		
-		<h3 class="cGreen fw_600 text-center">나의 물품 판매</h3>
+		<h3 class="cGreen fw_600 text-center fs_40 my-3">나의 물품 판매</h3>
 		<h6 class="cGreen fw_600 mt-4">제목</h6>
 		<input type="text" name="sBoardTitle" class="form-control borderGreen"
 		required autofocus value="${sBoardTitle}" placeholder="제목">
