@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import semi.dto.BoardDto;
 import semi.dto.MarketBoardDto;
+import semi.dto.MarketProductDto;
 import semi.dto.RecipeDto;
 
 @Repository

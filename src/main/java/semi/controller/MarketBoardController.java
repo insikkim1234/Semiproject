@@ -56,7 +56,7 @@ public class MarketBoardController {
 	        dto.setSBoardImage(photo);
 	        marketBoardService.insertMarketBoard(dto);
 
-	        return "redirect:../";
+	        return "redirect:/mboard";
 	    }
 		
 
