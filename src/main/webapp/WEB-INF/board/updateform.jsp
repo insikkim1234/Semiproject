@@ -11,12 +11,10 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-
 <style>
     body * {
         font-family: 'Jua';
     }
-    
     .uploadcamera{
     	font-size: 25px;
 		cursor: pointer;
@@ -39,11 +37,10 @@
 			   alert("확장자가 이미지파일이 아닙니다");
 			   return;
 			}
-
 		  if($(this)[0].files[0]){
 		   var reader=new FileReader();
 		   reader.onload=function(e){
-		    $("#showimg").attr("src",e.target.result);
+		    $("#showimg").attr("src",e.target.result).css("display","block");
 		   }
 		   reader.readAsDataURL($(this)[0].files[0]);
 		  }
@@ -54,24 +51,27 @@
 <body>
 <!-- 이미지 출력할곳 -->
  <img id="showimg"
- style="position: absolute;left:600px;top:60px;max-width: 300px;">
- 
+ style="position: absolute;left:600px;top:60px;max-width: 300px;"
+ src="../upload/${dto.photo}" onerror="this.style.display='none'">
 <div style="margin:30px 50px;">
-	<form action="./addprocess" method="post" enctype="multipart/form-data">
+	<form action="./updateprocess" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="num" value="${dto.num}">
+		
 		<table class="table table-bordered" style="width:500px;">
-			<caption align="top">글쓰기</caption>
+			<caption align="top">글수정</caption>
 			<tr>
 				<th width="100">작성자</th>
 				<td>
 					<input type="text" name="writer" class="form-control"
-					style="width: 150px" autofocus="autofocus" required="required">
+					style="width: 150px" autofocus="autofocus" required="required"
+					value="${dto.writer}">
 				</td>
 			</tr>
 			<tr>
 				<th width="100">제목</th>
 				<td class="input-group">
 					<input type="text" name="subject" class="form-control"
-					required="required">
+					required="required" value="${dto.subject}">
 					<input type="file" name="upload" id="upload"
 					style="display: none;">
 					&nbsp;&nbsp;
@@ -83,13 +83,13 @@
 				<th width="100">내용</th>
 				<td>
 					<textarea style="width: 100%;height: 150px;"
-						name="content" required="required" class="form-control"></textarea>
+						name="content" required="required" class="form-control">${dto.content}</textarea>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
 					<button type="submit" class="btn btn-outline-success"
-					style="width: 100px;">등록</button>
+					style="width: 100px;">수정</button>
 					
 					<button type="button" class="btn btn-outline-success"
 					style="width: 100px;" onclick="history.back()">이전</button>

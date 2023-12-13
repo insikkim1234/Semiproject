@@ -33,9 +33,9 @@ public class RecipeController {
     
     // 레시피 게시판
     @GetMapping("/recipe/board")
-    public String getRecipeList(Model model) {
+    public String getRecipeList(Model model,String word) {
         //총 레시피 개수 얻기
-        int totalCount = recipeService.getTotalCount();
+        int totalCount = recipeService.getTotalCount(word);
         model.addAttribute("totalCount", totalCount);
         return "recipe/recipeBoard";
     }

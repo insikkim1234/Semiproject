@@ -24,7 +24,7 @@ public class RecipeService {
 		return recipeDao.getData(recipeIdx);
 	}
 
-	public int getTotalCount() {
-		return recipeDao.getTotalCount();
+	public int getTotalCount(String word) {
+		return recipeDao.getTotalCount(word);
 	}
 }

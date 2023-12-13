@@ -29,18 +29,26 @@
 			onclick="location.href='./form'" style="margin-left:300px;">글쓰기</button>
 		
 	</div>
-	<table class="table table-bordered">
+	
+	<table class="table table-striped" style="margin-top: 30px;width:600px;">
 		<thead>
 			<tr>
 				<th width="50">번호</th>
-				<th width="350">제목</th>
+				<th width="300">제목</th>
 				<th width="80">작성자</th>
 				<th width="100">작성일</th>
-				<th width="60">조회</th>				
+				<th width="50">조회</th>				
 			</tr>
 		</thead>
-		</table>
+		<tbody>
+		<c:forEach var="dto" items="${list}" varStatus="n">
+		<tr>
+		<td>${totalCount-n.index}</td>
+		<td>
 		
-		   			</div>
+		</c:forEach>
+		</tbody>
+		
+	</table>
+</div>
 </body>
-</html>

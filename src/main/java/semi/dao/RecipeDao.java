@@ -30,9 +30,11 @@ public class RecipeDao {
 		session.update(nameSpace + "updateViewCount", recipeIdx);
 	}
 
-	public int getTotalCount()
+	public int getTotalCount(String word)
 	{
-		return session.selectOne(nameSpace+"totalCountOfRecipe");
+		//word에 검색단어가 안들어 있을 경우 null값을 보내야 where문이 실행안된다
+	      word=word==null || word.length()==0?null:word;
+		return session.selectOne(nameSpace+"totalCountOfRecipe",word);
 	}
 	
 	 public List<RecipeDto> getSearchRecipe(String word)
