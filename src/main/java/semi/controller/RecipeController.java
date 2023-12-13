@@ -51,7 +51,7 @@ public class RecipeController {
         dto.setRecipePhoto(photo);
         recipeService.insertRecipe(dto);
 
-        return "redirect:../";
+        return "redirect:./board";
     }
 
     @GetMapping("/recipe/orderSample/{recipeIdx}")

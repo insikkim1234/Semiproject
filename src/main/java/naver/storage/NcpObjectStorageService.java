@@ -20,10 +20,10 @@ public class NcpObjectStorageService implements ObjectStorageService {
 	
 	AmazonS3 s3;
 
-	public static final String STORAGE_EATINGALONE = "semi-project-eatingalone/";
-	public static final String DIR_PHOTO = "photo/";
-	public static final String STORAGE_URL = "https://kr.object.ncloudstorage.com/";
-	public static final String STORAGE_PHOTO_PATH = STORAGE_URL + STORAGE_EATINGALONE + DIR_PHOTO;
+	public static final String STORAGE_EATINGALONE = "semi-project-eatingalone";
+	public static final String DIR_PHOTO = "photo";
+	public static final String STORAGE_URL = "https://kr.object.ncloudstorage.com";
+	public static final String STORAGE_PHOTO_PATH = STORAGE_URL + "/" + STORAGE_EATINGALONE + "/" + DIR_PHOTO  + "/";
 
 	public NcpObjectStorageService(NaverConfig naverConfig) {
 		s3 = AmazonS3ClientBuilder.standard()
@@ -37,9 +37,8 @@ public class NcpObjectStorageService implements ObjectStorageService {
 
 	@Override
 	public String uploadFile(String bucketName, String directoryPath, MultipartFile file) {
-		System.out.println("uploadFile="+file.getOriginalFilename());
-
 		if (file.isEmpty()) {
+			System.out.println("[*] NcpObjectStorageService uploadFile file is Empty");
 			return null;
 		}
 
@@ -60,7 +59,8 @@ public class NcpObjectStorageService implements ObjectStorageService {
 					objectMetadata).withCannedAcl(CannedAccessControlList.PublicRead);
 
 			s3.putObject(objectRequest);
-			
+			System.out.println(s3.getUrl(bucketName, uploadFullPath).toString());
+
 			return filename;
 		} catch (Exception e) {
 			throw new RuntimeException("파일 업로드 오류", e);
