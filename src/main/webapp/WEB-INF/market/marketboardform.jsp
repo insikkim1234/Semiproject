@@ -13,7 +13,7 @@
 </style>
 </head>
 <body style="background-color: #eeefc7b8;">
-<div>
+<div style="max-width:1000px; margin:0 auto;"> <!-- 왜 mw_1000클래스로 주면 안먹히지..? -->
 	<form action="./insertMarketBoard" method="post" enctype="multipart/form-data">
 		<!-- hidden -->
 		<input type="hidden" name="currentPage" value="${currentPage}">
@@ -98,8 +98,9 @@
           const img = document.createElement('img');
           img.src = e.target.result;
           img.alt = file.name;
-          img.style.width = '300px'; // 이미지 크기 조절
-          img.style.marginRight = '10px';
+          img.style.width = '95%'; // 이미지 크기 조절
+          /* img.style.marginRight = '5px';
+          img.style.marginLeft = '5px'; */
           preview.appendChild(img);
         };
 
