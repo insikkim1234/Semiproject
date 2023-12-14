@@ -1,3 +1,4 @@
+/*
 package semi.service;
 
 import java.util.HashMap;
@@ -88,4 +89,4 @@ public class BoardService {
 	{
 		boardDao.deleteBoard(num);
 	}
-}
+}*/
