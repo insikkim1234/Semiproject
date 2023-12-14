@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<div class="text-center" style="background-color: #eeefc7b8;">
+<div class="text-center">
 	<a href=""> <img
 		src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>eating_alone_mainlogo5.png"
 		class="img-fluid" style="width: 400px; padding: 10px 0;">
@@ -61,13 +61,12 @@
 					</form>
 				</div>
 			</div>
-
+			
 			<form class="d-flex m-0 justify-content-end">
 				<input class="form-control me-2" type="text" style="border: 0;" placeholder="Search">
-				<button class="btn btn_headersearch fw_600" type="button">검색</button>
+				<button class="btn btn_green fw_600" type="button">검색</button>
 			</form>
 		</div>
 	</div>
 </nav>
-
 

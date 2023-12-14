@@ -12,14 +12,14 @@
   
 </style>
 </head>
-<body>
-<div>
+<body style="background-color: #eeefc7b8;">
+<div style="max-width:1000px; margin:0 auto;"> <!-- 왜 mw_1000클래스로 주면 안먹히지..? -->
 	<form action="./insertMarketBoard" method="post" enctype="multipart/form-data">
 		<!-- hidden -->
 		<input type="hidden" name="currentPage" value="${currentPage}">
 		<input type="hidden" name="num" value="${num}">	
 		
-		<h3 class="cGreen fw_600 text-center">나의 물품 판매</h3>
+		<h3 class="cGreen fw_600 text-center fs_40 my-3">나의 물품 판매</h3>
 		<h6 class="cGreen fw_600 mt-4">제목</h6>
 		<input type="text" name="sBoardTitle" class="form-control borderGreen"
 		required autofocus value="${sBoardTitle}" placeholder="제목">
@@ -53,9 +53,11 @@
 			placeholder="게시글의 내용을 작성해주세요. (판매금지 물품은 게시가 제한될 수 있습니다.)
 
 신뢰할 수 있는 거래를 위해 자세히 작성해주세요."></textarea>
+		<div class="text-center">
+			<button type="submit" class="btn btn_product_input mt-3">물품등록</button>
+			<button type="button" class="btn btn_product_input mt-3 ml-2" onclick="history.back()">목록으로</button>
+		</div>
 		
-		<button type="submit" class="btn btn_product_input mt-3">물품등록</button>
-		<button type="button" class="btn btn_product_input mt-3 ml-2" onclick="history.back()">목록으로</button>
 	</form>
 </div>
 	<!-- <script>
@@ -96,8 +98,9 @@
           const img = document.createElement('img');
           img.src = e.target.result;
           img.alt = file.name;
-          img.style.width = '300px'; // 이미지 크기 조절
-          img.style.marginRight = '10px';
+          img.style.width = '95%'; // 이미지 크기 조절
+          /* img.style.marginRight = '5px';
+          img.style.marginLeft = '5px'; */
           preview.appendChild(img);
         };
 

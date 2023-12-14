@@ -188,5 +188,14 @@ a:hover {
 }
 
 
+.mw_1000 {
+	max-width:1000px;
+	margin:0 auto; 
+}
 
 
+/* placeholder style - italic */
+::placeholder {
+    font-style: italic;
+    color: gray;
+}
