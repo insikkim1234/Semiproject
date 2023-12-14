@@ -70,19 +70,19 @@ div.content {
        //  alert(1);
        searchword=$("#word").val();
        grid();
+       
        });
       
-      
-      $(".simplegrid").css("color","brown");
+      $(".simplegrid").css("color","green");
       
       $(".simplegrid").click(function(){
-         $(this).css("color","brown");
+         $(this).css("color","green");
          $(".simplelist").css("color","black");
          grid();
       });
       
       $(".simplelist").click(function(){
-         $(this).css("color","brown");
+         $(this).css("color","green");
          $(".simplegrid").css("color","black");
          list();
         
@@ -136,58 +136,60 @@ div.content {
    }
    
    function list()
-      {
-         $.ajax({
-            type:"get",
-            dataType:"json",
-            url:"./view",
-            data:{"word":searchword},
-            success:function(res){
-            	 let datas=res.data;
-                 let totalCount=res.totalCount;
-  
-                 let t=`<h4>현재 총<b style="color: green; font-size: 40px;">`;
-                 
-                 t+= totalCount;
-                 t+=`</b>개의 레시피가 있습니다.</h4>`;
-                $(".recipetotalcount").html(t);
-
-               let s="";
+   {
+      $.ajax({
+         type:"get",
+         dataType:"json",
+         url:"./view",
+         data:{"word":searchword},
+         success:function(res){
+        	 let datas=res.data;
+             let totalCount=res.totalCount;
+             console.log(totalCount);
+             let t=`<h4>현재 총<b style="color: green; font-size: 40px;">`;
+             
+             t+= totalCount;
+             t+=`</b>개의 레시피가 있습니다.</h4>`;
+             $(".recipetotalcount").html(t);
+            
+            let s="";
+            s+=
+            `
+            <table class="table table-bordered" style="450px">
+            `;
+            $.each(datas,function(idx,item){
+               var recipeName=item.recipeName;
+               console.log(recipeName);
                s+=
                `
-               <table class="table table-bordered" style="450px">
+               <tr>
+                  <td>
+                  <a href="./board/\${item.recipeIdx}">
+                  <img class="recipe_img"src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.recipePhoto}">
+                  </a>
+                     <h5><b class="subject" style="cursor:pointer">\${item.recipeTitle}</b></h5>
+                     <div style="margin-left:20px;color:black;" class="content">
+                        <pre>\${item.recipeContent}</pre>
+                        </div> 
+                        <div>
+                           <span>${item.recipeName}</span>&nbsp;&nbsp;
+                           <span class="day">작성일<br>
+                              &nbsp;&nbsp;
+                              조회수
+                           </span>
+                        </div>
+                     </td>
+                  </tr>
                `;
-               $.each(res,function(idx,item){
-                  var recipeName=item.recipeName;
-                  console.log(recipeName);
-                  s+=
-                  `
-                  <tr>
-                     <td>
-                     <img class="recipe_img" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.recipePhoto}" >
-                        <h5><b class="subject" style="cursor:pointer">\${item.recipeTitle}</b></h5>
-                        <div style="margin-left:20px;color:black;" class="content">
-                           <pre>\${item.recipeContent}</pre>
-                           </div>
-                           <div>
-                              <span>${item.recipeName}</span>&nbsp;&nbsp;
-                              <span class="day">작성일<br>
-                                 &nbsp;&nbsp;
-                                 조회수
-                              </span>
-                           </div>
-                        </td>
-                     </tr>
-                  `;
-               });
-               s+="</table>";
-               $(".list").html(s);
-               //첫번째 content만 일단 보이도록
-               $("div.content").eq(0).css("display","block");
-            }
-         });
-         } 
-   </script>
+            });
+            s+="</table>";
+            $(".list").html(s);
+            //첫번째 content만 일단 보이도록
+            $("div.content").eq(0).css("display","block");
+         }
+      });
+      }
+</script>
 </head>
 <body>
    <div style="margin: 30px;">
