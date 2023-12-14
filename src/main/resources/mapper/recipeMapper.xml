@@ -17,7 +17,7 @@
 	</resultMap>
 
 	<insert id="insertRecipe" parameterType="RecipeDto">
-    	insert into tRecipeBoard (sRecipeTitle, sRecipeName, sRecipePhoto, sRecipeContent, sRecipeTime, sRecipeDifficulty, sRecipeServing, sRecipeIngredient, dtRecipeCreatedAt, dtRecipeUpdatedAt) values (#{recipeTitle}, #{recipeName}, #{recipePhoto}, #{recipeContent}, #{recipeTime}, #{recipeDifficulty}, #{recipeServing}, #{recipeIngredient}, now(), now())
+    	insert into tRecipeBoard (sRecipeTitle, sRecipePhoto, sRecipeContent, sRecipeTime, sRecipeDifficulty, sRecipeServing, sRecipeIngredient, dtRecipeCreatedAt, dtRecipeUpdatedAt) values (#{recipeTitle}, #{recipePhoto}, #{recipeContent}, #{recipeTime}, #{recipeDifficulty}, #{recipeServing}, #{recipeIngredient}, now(), now())
 	</insert>
 	
 	

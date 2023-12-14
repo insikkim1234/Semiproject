@@ -2,7 +2,10 @@ package semi.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import semi.dao.RecipeDao;
 import semi.dao.RecipeOrderDao;
+import semi.dto.RecipeDto;
 import semi.dto.RecipeOrderDto;
 
 import java.util.List;
@@ -15,5 +18,9 @@ public class RecipeOrderService {
 	
 	public List<RecipeOrderDto> getRecipeOrdersById(int recipeIdx) {
 		return recipeOrderDao.getRecipeOrdersById(recipeIdx);
+	}
+	
+	public void insertOrderRecipe(RecipeOrderDto orderdto) {
+		recipeOrderDao.insertOrderRecipe(orderdto);
 	}
 }

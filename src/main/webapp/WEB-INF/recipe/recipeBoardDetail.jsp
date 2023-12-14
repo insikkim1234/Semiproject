@@ -9,6 +9,7 @@
         box-sizing: border-box;
         background-color: black;
         padding: 10px;
+        margin-bottom: 10px;
     }
 
     .div_detailItem {
@@ -122,7 +123,7 @@
 		            <img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>ingredient2.png" class="img-fluid" style="width: 40px;"> ${ingredient}
 		            <br/>
 		        </c:forTokens>
-  				</c:if>
+			</c:if>
 		</div>
 	</div>
 </div>

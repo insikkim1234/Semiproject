@@ -16,7 +16,6 @@ public class RecipeDto {
 	private String recipeDifficulty;
 	private String recipeServing;
 	private String recipeIngredient;
-	private String recipeReply;
 	private Timestamp recipeCreatedAt;
 	private Timestamp recipeUpdatedAt;	
 }

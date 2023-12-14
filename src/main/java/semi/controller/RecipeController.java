@@ -31,6 +31,25 @@ public class RecipeController {
         return "recipe/recipeSample";
     }
     
+    @GetMapping("/recipe/recipeBoardInput")
+    public String recipeBoardInput() {
+    	return "recipe/recipeBoardInput";
+    }
+
+    @PostMapping("/recipe/insertRecipe")
+    public String insertRecipe(@ModelAttribute RecipeDto dto, @ModelAttribute RecipeOrderDto orderdto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload) {
+    	String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+    			NcpObjectStorageService.DIR_PHOTO, upload);
+    	
+    	dto.setRecipePhoto(photo);
+    	recipeService.insertRecipe(dto);
+    	
+    	orderdto.setRecipeOrderPhoto(photo);
+    	recipeOrderService.insertOrderRecipe(orderdto);
+    	
+    	return "redirect:./board";
+    }
+    
     // 레시피 게시판
     @GetMapping("/recipe/board")
     public String getRecipeList(Model model,String word) {
@@ -39,20 +58,7 @@ public class RecipeController {
         model.addAttribute("totalCount", totalCount);
         return "recipe/recipeBoard";
     }
-    
-  
 
-
-    @PostMapping("/recipe/insertRecipe")
-    public String insertRecipe(@ModelAttribute RecipeDto dto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload) {
-        String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
-                NcpObjectStorageService.DIR_PHOTO, upload);
-
-        dto.setRecipePhoto(photo);
-        recipeService.insertRecipe(dto);
-
-        return "redirect:./board";
-    }
 
     @GetMapping("/recipe/orderSample/{recipeIdx}")
     public String getRecipeDetail(Model model, @PathVariable int recipeIdx) {
