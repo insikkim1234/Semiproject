@@ -194,4 +194,8 @@ a:hover {
 }
 
 
-
+/* placeholder style - italic */
+::placeholder {
+    font-style: italic;
+    color: gray;
+}
