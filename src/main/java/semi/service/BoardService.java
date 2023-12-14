@@ -1,24 +1,40 @@
-/*
 package semi.service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
+import semi.config.BoardConfig;
 import semi.dao.BoardDao;
 import semi.dto.BoardDto;
+
 @Service
 @AllArgsConstructor
 public class BoardService {
-	private BoardDao boardDao;
-	
+	@Autowired private BoardDao boardDao;
+
 	public int getTotalCount()
 	{
 		return boardDao.getTotalCount();
 	}
+
+    public List<BoardDto> getAllData() {
+        return boardDao.getAllData();
+    }
+
+	public List<BoardDto> getBoardWithPage(int pageNum, int perPage) {
+		int startIdx = (pageNum - 1) * perPage;
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startIdx", startIdx);
+		map.put("perPage", perPage);
+
+		return boardDao.getBoardWithPage(map);
+	}
 	
-	public List<BoardDto> getList(int start,int perpage)
+	/*public List<BoardDto> getList(int start,int perpage)
 	{
 		Map<String, Integer> map=new HashMap<String, Integer>();
 		map.put("start", start);
@@ -88,5 +104,5 @@ public class BoardService {
 	public void deleteBoard(int num)
 	{
 		boardDao.deleteBoard(num);
-	}
-}*/
+	}*/
+}

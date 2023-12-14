@@ -16,13 +16,8 @@
 		</button>
 	</form>
 	<form action="/semi/member/register">
-		<button type="submit" class="btn mx-2 px-0 login_rborder">
-			<div>회원가입</div>
-		</button>
-	</form>
-	<form action="/semi/member/semi/">
 		<button type="submit" class="btn mx-2 px-0">
-			<div>자취생들</div>
+			<div>회원가입</div>
 		</button>
 	</form>
 </div>

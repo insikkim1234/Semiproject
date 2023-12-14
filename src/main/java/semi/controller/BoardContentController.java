@@ -68,11 +68,11 @@ public class BoardContentController {
 		//사진을 선택하지 않은경우 photo 에 null 값을 보낸다
 		String photo="";
 		if(upload.getOriginalFilename().equals(""))
-			dto.setNComBoardRegroup(null);
+			dto.setComBoardRegroup(null);
 		else {
 			//랜덤파일명을 photo 에 저장
 			photo=UUID.randomUUID().toString();
-			dto.setNComBoardRegroup(photo);
+			dto.setComBoardRegroup(photo);
 		}
 		
 		//업로드
@@ -89,7 +89,7 @@ public class BoardContentController {
 		//db수정
 		boardDao.updateBoard(dto);
 		
-		return "redirect:./content?num="+dto.getNComBoardSeq();
+		return "redirect:./content?num="+dto.getComBoardSeq();
 	}
 	
 	//댓글 추가
