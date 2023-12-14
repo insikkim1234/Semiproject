@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "hthtp://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="semi.dao.BoardDao">
+	<resultMap id="BoardDtoRm" type="BoardDto">
+		<result property="comBoardSeq" column="nComBoardSeq" />
+		<result property="userName" column="sUserName" />
+		<result property="userEmail" column="sUserEmail" />
+		<result property="comBoardSubject" column="sComBoardSubject" />
+		<result property="comBoardContent" column="sComBoardContent" />
+		<result property="comBoardviewCount" column="nComBoardviewCount" />
+		<result property="comBoardRegroup" column="nComBoardRegroup" />
+		<result property="comBoardRestep" column="nComBoardRestep" />
+		<result property="comBoardRelevel" column="nComBoardRelevel" />
+		<result property="writeDay" column="dtWriteDay" />
+	</resultMap>
+
 	<select id="totalCountOfBoard" resultType="int">
 		select count(*) from tComBoard
 	</select>
@@ -9,6 +22,9 @@
 	</select>
 	<select id="selectAllBoard" resultType="BoardDto">
 		select * from tComBoard order by nComBoardSeq desc
+	</select>
+	<select id="selectBoardWithPage" parameterType="Map" resultType="BoardDto" resultMap="BoardDtoRm">
+		select * from tComBoard order by nComBoardSeq desc limit #{startIdx}, #{perPage}
 	</select>
 	<update id="updateReadCount" parameterType="int">
 		update tComBoard set nComBoardviewCount=nComBoardviewCount+1 where nComBoardSeq=#{nComBoardSeq}
