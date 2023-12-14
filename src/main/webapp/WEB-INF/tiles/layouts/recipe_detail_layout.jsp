@@ -14,7 +14,7 @@
     <tiles:insertAttribute name="detail_main" />
 </div>
 
-<div class="footer" >
+<div class="container" >
     <tiles:insertAttribute name="detail_order" />
 </div>
 </body>
