@@ -181,13 +181,13 @@ div.content {
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach var="dto" items="${data}" varStatus="n">
+		<c:forEach var="dto" items="${mdata}" varStatus="n">
 			<tr>
-				<td>${dto.comBoardSeq}</td>
-				<td>${dto.comBoardSubject}</td>
+				<td>${dto.nBoardSeq}</td>
+				<td>${dto.sBoardTitle}</td>
 				<td>${dto.userName}</td>
-				<td>${dto.writeDay}</td>
-				<td>${dto.comBoardviewCount}</td>
+				<td>${dto.dtCreateDate}</td>
+				<td>${dto.nBoardViewCount}</td>
 			</tr>
 		</c:forEach>
 		</tbody>

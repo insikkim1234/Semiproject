@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,6 +34,7 @@ import semi.service.MarketProductService;
 
 
 @Controller
+
 public class MarketBoardController {
 	@Autowired
 	private MarketBoardService marketBoardService;
@@ -45,16 +47,9 @@ public class MarketBoardController {
 	@Autowired private MarketBoardConfig marketBoardConfig;
 	
 	
-	 @GetMapping("/mboard")
-	 public String boardList() {
-		 return "market/marketboardlist";
-	 }
-	 
-	 @GetMapping("/mboardform")
-	 public String boardForm() {
-		 return "market/marketboardform";
-	 }
 	
+	 
+	 
 	 
 	 @PostMapping("/mboard/insertMarketBoard")
 	 public String insertMarketBoard(@ModelAttribute MarketBoardDto dto, @ModelAttribute MarketProductDto pdto,
@@ -67,22 +62,22 @@ public class MarketBoardController {
 	     String photo3 = storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
 	             NcpObjectStorageService.DIR_PHOTO, upload3);
 
-	     dto.setSBoardImage(photo);
+	     dto.setBoardImage(photo);
 
 	     // 먼저 게시글 정보를 저장하고 게시글의 nBoardSeq를 가져옴
 	     marketBoardService.insertMarketBoard(dto);
 	     
-	     pdto.setSProductImage1(photo2);
-         pdto.setSProductImage2(photo3);
+	     pdto.setProductImage1(photo2);
+         pdto.setProductImage2(photo3);
          
-         pdto.setNBoardSeq(dto.getNBoardSeq());
+         pdto.setBoardSeq(dto.getBoardSeq());
          marketProductService.insertMarketProduct(pdto);
 	    
 
 	     return "redirect:/mboard";
 	 }
 	 
-	 @GetMapping(value = {"", "/"})
+	 @GetMapping("/mboard")
 		public String board(Model model,
 							@RequestParam(required = false, defaultValue = "1") int pageNum) {
 
@@ -93,7 +88,7 @@ public class MarketBoardController {
 			model.addAttribute("pageNum", pageNum);
 			model.addAttribute("mdata", mdata);
 
-			return "board/boardlist";
+			return "market/marketboardlist";
 		}
 
 

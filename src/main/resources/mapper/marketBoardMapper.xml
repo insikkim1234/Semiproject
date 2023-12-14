@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="semi.dao.MarketBoardDao">
+	<resultMap id="MarketBoardDtoRm" type="MarketBoardDto">
+		<result property="boardSeq" column="nBoardSeq" />
+		<result property="userSeq" column="nUserSeq" />
+		<result property="boardTitle" column="sBoardTitle" />
+		<result property="boardImage" column="sBoardImage" />
+		<result property="boardReplyCount" column="nBoardReplyCount" />
+		<result property="boardViewCount" column="nBoardViewCount" />
+		<result property="createDate" column="dtCreateDate" />
+		<result property="updateDate" column="dtUpdateDate" />
+
+	</resultMap>
+
 	<insert id="insertMarketBoard" parameterType="MarketBoardDto">
 		insert into tMarketBoard (sBoardTitle, sBoardImage, dtCreateDate, dtUpdateDate)
-		values (#{sBoardTitle}, #{sBoardImage}, now(), now())
-		<selectKey keyProperty="nBoardSeq" resultType="int" order="AFTER">
+		values (#{boardTitle}, #{boardImage}, now(), now())
+		<selectKey keyProperty="boardSeq" resultType="int" order="AFTER">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
 	</insert>

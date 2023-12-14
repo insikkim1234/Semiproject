@@ -21,8 +21,8 @@
 		
 		<h3 class="cGreen fw_600 text-center fs_40 my-3">나의 물품 판매</h3>
 		<h6 class="cGreen fw_600 mt-4">제목</h6>
-		<input type="text" name="sBoardTitle" class="form-control borderGreen"
-		required autofocus value="${sBoardTitle}" placeholder="제목">
+		<input type="text" name="boardTitle" class="form-control borderGreen"
+		required autofocus value="${boardTitle}" placeholder="제목">
 		<div class="row mt-3">
 			<div class="col">
 				<h6 class="cGreen fw_600 mt-2">대표 사진</h6>
@@ -42,13 +42,13 @@
 		</div>
 		
 		<h6 class="cGreen fw_600 mt-3">희망 가격</h6>
-		<input type="text" name="nProductPrice" class="form-control borderGreen" required autofocus value="${nProductPrice}"
+		<input type="text" name="productPrice" class="form-control borderGreen" required autofocus value="${productPrice}"
 		placeholder="￦ 가격을 입력해주세요.">
 		<h6 class="cGreen fw_600 mt-3">거래 희망 장소</h6>
-		<input type="text" name="sProductPlace" class="form-control borderGreen" autofocus value="${sProductPlace}"
+		<input type="text" name="productPlace" class="form-control borderGreen" autofocus value="${productPlace}"
 		placeholder="희망하는 거래 위치를 입력해주세요.">
 		<h6 class="cGreen fw_600 mt-3">자세한 설명</h6>
-		<textarea name="sProductContent" class="form-control borderGreen" required
+		<textarea name="productContent" class="form-control borderGreen" required
 			style="width: 100%;height: 200px;"
 			placeholder="게시글의 내용을 작성해주세요. (판매금지 물품은 게시가 제한될 수 있습니다.)
 
