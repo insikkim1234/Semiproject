@@ -29,8 +29,8 @@
 			</tr>
 			<tr>
 				<th width="100">설명</th>
-				<td><input type="text" name="recipeContent"
-					class="form-control" required autofocus value="${recipeContent}">
+				<td><textarea name="recipeContent"
+					class="form-control" required autofocus rows="4" cols="50">${recipeContent}</textarea>
 				</td>
 			</tr>
 			<tr>
@@ -57,9 +57,14 @@
 			</tr>
 			<tr>
 				<th width="100">재료</th>
-				<td><input type="text" name="recipeIngredient"
-					class="form-control" required autofocus
-					value="${recipeIngredient}" placeholder="예 : 계란 1개"></td>
+				<td>
+					<div id="ingredient-container">
+						<div class="ingredient-row">
+							<input type="text" name="recipeIngredient" class="form-control" required autofocus placeholder="예 : 계란 1개">
+							<button type="button" class="btn btn-outline-secondary" onclick="addIngredient()">추가</button>
+						</div>
+					</div>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
@@ -70,5 +75,20 @@
 			</tr>
 		</table>
 	</form>
+	
+	<script>
+		function addIngredient(){
+			var container = document.getElementById("ingredient-container");
+            var newRow = document.createElement("div");
+            newRow.className = "ingredient-row";
+            newRow.innerHTML = '<input type="text" name="recipeIngredient" class="form-control" required autofocus placeholder="예: 계란 1개">' +
+                               '<button type="button" class="btn btn-outline-secondary" onclick="removeIngredient(this)">삭제</button>';
+            container.appendChild(newRow);
+        }
+
+        function removeIngredient(button) {
+            button.parentNode.remove();
+		}
+	</script>
 </body>
 </html>
