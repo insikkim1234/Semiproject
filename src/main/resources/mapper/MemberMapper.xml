@@ -11,7 +11,7 @@
     <select id="selectAllMembers" resultType="semi.dto.MemberDto" parameterType="Map">
 		select * from tUser
 	</select>
-    <select id="loginCheck" parameterType="Map" resultType="int">
-        select count(*) from tUser where sUserEmail=#{sUserEmail} and sUserPassword=#{sUserPassword};
+    <select id="loginCheck" parameterType="semi.dto.MemberDto" resultType="int">
+        select count(*) from tUser where userEmail=#{userEmail} and userPassword=#{userPassword};
     </select>
 </mapper>

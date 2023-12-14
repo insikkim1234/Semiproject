@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import semi.dto.MemberDto;
 import semi.service.MemberService;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -61,7 +60,7 @@ public class MemberController {
 
     //회원가입 중복 아이디 체크 로직 (API)
     @PostMapping("/duplicatedEmailCheck")
-    public ResponseEntity<?> duplicatedEmailCheck(@RequestBody MemberDto memberDto) throws JsonProcessingException {
+    public ResponseEntity<Object> duplicatedEmailCheck(@RequestBody MemberDto memberDto) throws JsonProcessingException {
         int result = memberService.duplicatedEmailCheck(memberDto);
         HashMap<String,String> resultMap = new HashMap<>();
 
@@ -95,21 +94,13 @@ public class MemberController {
 
     // 로그인 실행 로직 메서드
     @PostMapping("/login")
-    public String loginExcute(@ModelAttribute MemberDto memberDto, HttpSession httpSession, RedirectAttributes redirectAttributes,
-    @RequestParam String userEmail, @RequestParam String userPassword) {
-
-        memberDto.setUserEmail(userEmail);
-        memberDto.setUserPassword(userPassword);
-//        System.out.println("여긴왔니?");
-//        System.out.println(memberDto.getSUserEmail());
-//        System.out.println(memberDto.getSUserPassword());
+    public String loginExcute(@ModelAttribute MemberDto memberDto, HttpSession httpSession, RedirectAttributes redirectAttributes) {
         int result = memberService.loginExecute(memberDto);
-//        int result = 1;
+
         if (result == 1){
             httpSession.setAttribute("sUserEmail",memberDto.getUserEmail());
             System.out.println("로그인 성공");
             return "redirect:/";
-            
         }
 
         redirectAttributes.addFlashAttribute("message","아이디 혹은 비밀번호를 확인해주세요");
