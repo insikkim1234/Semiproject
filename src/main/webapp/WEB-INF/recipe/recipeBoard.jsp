@@ -122,7 +122,7 @@ div.content {
                            <b>\${item.recipeTitle}</b><br>
                            <span style="color:gray;">\${item.recipeName}</span>
                            <br>
-                           <span class="day">작성자<br>
+                           <span class="day">
                               &nbsp;&nbsp;&nbsp;
                            조회수\${item.recipeViewCount}</span>
                         </figcaption>
