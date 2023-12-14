@@ -101,6 +101,7 @@
 .btn_green2 {
 	background-color: #11B560; 
 	color: #fff;
+	border: 2px solid #0e942c;
 }
 
 .btn_green:hover {
@@ -111,6 +112,7 @@
 .btn_green2:hover {
 	background-color: #EBEE48;
 	color:#33672B;
+	border: 2px solid #e1a900;
 }
 
 .login_rborder{
@@ -129,6 +131,10 @@
 	height:12px;
 	background-color:black;
 }
+/*register.jsp  */
 
+        
+       
+/*login.jsp  */
 
 	
