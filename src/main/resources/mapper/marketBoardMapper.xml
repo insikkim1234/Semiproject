@@ -4,6 +4,9 @@
 	<insert id="insertMarketBoard" parameterType="MarketBoardDto">
 		insert into tMarketBoard (sBoardTitle, sBoardImage, dtCreateDate, dtUpdateDate)
 		values (#{sBoardTitle}, #{sBoardImage}, now(), now())
+		<selectKey keyProperty="nBoardSeq" resultType="int" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
 	</insert>
 	
 </mapper>

@@ -55,24 +55,34 @@ public class MarketBoardController {
 	
 	 
 	 @PostMapping("/mboard/insertMarketBoard")
-	    public String insertMarketBoard(@ModelAttribute MarketBoardDto dto,@ModelAttribute MarketProductDto pdto,
-	    		HttpServletRequest request, HttpSession session, 
-	    		@RequestParam MultipartFile upload1,@RequestParam MultipartFile upload2,@RequestParam MultipartFile upload3) {
-	        String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
-	                NcpObjectStorageService.DIR_PHOTO, upload1);
-	        String photo2=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
-	                NcpObjectStorageService.DIR_PHOTO, upload2);
-	        String photo3=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
-	                NcpObjectStorageService.DIR_PHOTO, upload3);
+	 public String insertMarketBoard(@ModelAttribute MarketBoardDto dto, @ModelAttribute MarketProductDto pdto,
+	         HttpServletRequest request, HttpSession session, 
+	         @RequestParam MultipartFile upload1, @RequestParam MultipartFile upload2, @RequestParam MultipartFile upload3) {
+	     String photo = storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+	             NcpObjectStorageService.DIR_PHOTO, upload1);
+	     String photo2 = storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+	             NcpObjectStorageService.DIR_PHOTO, upload2);
+	     String photo3 = storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+	             NcpObjectStorageService.DIR_PHOTO, upload3);
 
-	        dto.setSBoardImage(photo);
-	        pdto.setSProductImage1(photo2);
-	        pdto.setSProductImage2(photo3);
-	        marketBoardService.insertMarketBoard(dto);
-	        marketProductService.insertMarketProduct(pdto);
+	     dto.setSBoardImage(photo);
 
-	        return "redirect:/mboard";
-	    }
+	     // 먼저 게시글 정보를 저장하고 게시글의 nBoardSeq를 가져옴
+	     marketBoardService.insertMarketBoard(dto);
+	     
+	     pdto.setSProductImage1(photo2);
+         pdto.setSProductImage2(photo3);
+         
+         pdto.setNBoardSeq(dto.getNBoardSeq());
+         marketProductService.insertMarketProduct(pdto);
+	    
+
+	     return "redirect:/mboard";
+	 }
+
+
+
+
 		
 
 		
