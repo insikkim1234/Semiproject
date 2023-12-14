@@ -48,8 +48,12 @@
 <div class="fs_40 text-center cGreen fw_600 my-3">JOIN US</div>
 <form action="/semi/member/register" method="post">
     <input type="text" name="userName" placeholder="성명 입력"><br>
-    <div class="box"><input type="email" name="userEmail" placeholder="이메일" id="userEmail"><br>
-    <label for="emailCheckbox" class="cGreen fw_600 fs_17">아이디 중복 확인<input type="checkbox" id="emailCheckbox" class="ml-2" /></label></div><br>
+
+    <div class="box">
+        <input type="email" name="userEmail" placeholder="email" id="userEmail"><br>
+    <label class="cGreen fw_600 fs_17">아이디 중복 확인<input type="checkbox" id="emailCheckbox" class="ml-2" /></label>
+    </div><br>
+
     <input type="password" name="userPassword" placeholder="비밀번호"><br><!--아이디 중복확인부분 글자색 굵기 크기 변경  -->
 
     <div class="file-input-wrapper">
@@ -64,17 +68,27 @@
 
     $('#emailCheckbox').on("click",function (){
        const userEmail =$('#userEmail').val();
+
+       var jsonObj = JSON.stringify({"userEmail" : userEmail});
        $.ajax({
-           url : "/semi/member/duplicatedEmailCheck",
-           dataType:"json",
-           method :"POST",
-           data : {"userEmail" : userEmail},
+           url : "./duplicatedEmailCheck",
+           type :"post",
+           dataType : "json",
+           data : jsonObj,
+           contentType:"application/json",
+
            success :function (response){
-               console.log(response);
-               console.log("hihi")
+               alert(response.message);
            },
-           error : function(response){
-               console.log(response);
+           error : function(error){
+               console.error(error);
+           },
+           complete : function (response) {
+               if (response.status === 200) {
+                   $('#emailCheckbox').prop('checked',true);
+               } else {
+                   $('#emailCheckbox').prop('checked', false);
+               }
            }
        })
     })

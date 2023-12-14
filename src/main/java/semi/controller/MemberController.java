@@ -8,6 +8,9 @@ import naver.storage.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -60,7 +63,7 @@ public class MemberController {
 
     //회원가입 중복 아이디 체크 로직 (API)
     @PostMapping("/duplicatedEmailCheck")
-    public ResponseEntity<Object> duplicatedEmailCheck(@RequestBody MemberDto memberDto) throws JsonProcessingException {
+    public ResponseEntity<Object> duplicatedEmailCheck(@RequestBody MemberDto memberDto) {
         int result = memberService.duplicatedEmailCheck(memberDto);
         HashMap<String,String> resultMap = new HashMap<>();
 
@@ -74,7 +77,15 @@ public class MemberController {
             resultMap.put("status","200");
             resultMap.put("message","사용 가능한 아이디 입니다.");
         }
-        String duplicatedResult = objectMapper.writeValueAsString(resultMap);
+
+        String duplicatedResult = "";
+        try {
+            duplicatedResult = objectMapper.writeValueAsString(resultMap);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return ResponseEntity.ok(duplicatedResult);
     }
 
