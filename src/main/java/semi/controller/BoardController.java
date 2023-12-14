@@ -14,7 +14,6 @@ import semi.dao.BoardDao;
 import semi.dto.BoardDto;
 import semi.dto.BoardFileDto;
 import semi.service.BoardFileService;
-//import semi.service.BoardService;
 
 
 @Controller

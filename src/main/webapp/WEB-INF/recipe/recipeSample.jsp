@@ -36,25 +36,30 @@
 			<tr>
 				<th width="100">조리시간</th>
 				<td><input type="text" name="recipeTime" class="form-control"
-					required autofocus value="${recipeTime}"></td>
+					required autofocus value="${recipeTime}" placeholder="예 : 10분"></td>
 			</tr>
 			<tr>
 				<th width="100">난이도</th>
-				<td><input type="text" name="recipeDifficulty"
-					class="form-control" required autofocus
-					value="${recipeDifficulty}"></td>
+				<td>
+					<select class="form-select" name="recipeDifficulty">
+						<option hidden disabled selected>난이도 선택</option>
+						<option value="쉬움">쉬움</option>
+						<option value="보통">보통</option>
+						<option value="어려움">어려움</option>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<th width="100">인분</th>
 				<td><input type="text" name="recipeServing"
-					class="form-control" required autofocus value="${recipeServing}">
+					class="form-control" required autofocus value="${recipeServing}" placeholder="예 : 1인분">
 				</td>
 			</tr>
 			<tr>
 				<th width="100">재료</th>
 				<td><input type="text" name="recipeIngredient"
 					class="form-control" required autofocus
-					value="${recipeIngredient}"></td>
+					value="${recipeIngredient}" placeholder="예 : 계란 1개"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
