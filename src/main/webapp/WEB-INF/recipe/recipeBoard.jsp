@@ -13,13 +13,14 @@
 <style>
 
 div.simpleicon {
-   margin: 30px 100px;
+  
+   float: right;
 }
 
 div.simpleicon * {
    cursor: pointer;
    margin-right: 30px;
-   font-size: 30px;
+   font-size: 25px;
 }
 
 div.list {
@@ -101,7 +102,7 @@ div.content {
             let datas=res.data;
             let totalCount=res.totalCount;
             console.log(totalCount);
-            let t=`<h4>현재 총<b style="color: green; font-size: 40px;">`;
+            let t=`<h4>현재 총 &nbsp;<b style="color: green; font-size: 30px;">`;
             
             t+= totalCount;
             t+=`</b>개의 레시피가 있습니다.</h4>`;
@@ -122,7 +123,7 @@ div.content {
                            <b>\${item.recipeTitle}</b><br>
                            <span style="color:gray;">\${item.recipeName}</span>
                            <br>
-                           <span class="day">작성자<br>
+                           <span class="day">
                               &nbsp;&nbsp;&nbsp;
                            조회수\${item.recipeViewCount}</span>
                         </figcaption>
@@ -198,8 +199,8 @@ div.content {
          <input type="text" class="form-control"
             style="width: 150px; margin-left: 50px;" autofocus
             placeholder="검색레시피입력" id="word">
-         <button type="button" class="btn btn-primary" id="btnsearch"
-            style="margin-left: 10px;">검색</button>
+         <button type="button" class="btn btn-success" id="btnsearch" 
+          style="margin-left: 10px;">검색</button>
       </div>
       <div style="margin: 20px; font-size: 22px;" class="result"></div>
    </div>
