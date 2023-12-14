@@ -53,8 +53,8 @@
     </style>
 </head>
 <body style="background-color: #eeefc7b8;">
-<div class="fs_40 text-center cGreen fw_600 my-3">JOIN US</div>
-<form action="/semi/member/register" method="post" class="regi_input">
+<div class="fs_40 text-center cGreen fw_600 mt-5">JOIN US</div>
+<form action="/semi/member/register" method="post" class="regi_input mt-3">
     <input type="text" name="userName" placeholder="성명 입력"><br>
     <div class="box"><input type="email" name="userEmail" placeholder="이메일"><br>
     <label for="emailCheckbox" class="cGreen fw_600 fs_17">아이디 중복 확인<input type="checkbox" id="emailCheckbox" class="ml-2" /></label></div><br>
