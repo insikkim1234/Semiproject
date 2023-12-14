@@ -23,10 +23,10 @@
             margin-left: auto;
             margin-right: auto;
         }
-        input[type=text],
-        input[type=email],
-        input[type=password],
-        input[type=submit]{
+        .regi_input>input[type=text],
+        .regi_input>input[type=password],
+        .regi_input>input[type=submit],
+        .regi_input>.box>input[type=email]{
             width: 300px;
             padding: 10px;
             border-radius: 10px;
@@ -41,12 +41,21 @@
             margin-left: auto;
             margin-right: auto;
         }
+        
+        /*밑에 두 속성 추가  */
+        .regi_input>input[type=submit]{
+         	border: 2px solid #0e942c;
+        }
+         
+        .regi_input>input[type=submit]:hover{
+			border: 2px solid #e1a900;
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body style="background-color: #eeefc7b8;">
-<div class="fs_40 text-center cGreen fw_600 my-3">JOIN US</div>
-<form action="/semi/member/register" method="post">
+<div class="fs_40 text-center cGreen fw_600 mt-5">JOIN US</div>
+<form action="/semi/member/register" method="post" class="regi_input mt-3">
     <input type="text" name="userName" placeholder="성명 입력"><br>
 
     <div class="box">

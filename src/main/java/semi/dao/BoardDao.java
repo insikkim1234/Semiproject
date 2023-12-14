@@ -23,9 +23,14 @@ public class BoardDao {
 		session.insert(nameSpace+"insertBoard", dto);
 	}
 	
-	public List<BoardDto> getAllDatas()
+	public List<BoardDto> getAllData()
 	{
 		return session.selectList(nameSpace+"selectAllBoard");
+	}
+
+	public List<BoardDto> getBoardWithPage(Map<String, Integer> map)
+	{
+		return session.selectList(nameSpace+"selectBoardWithPage", map);
 	}
 	
 	public void updateReadcount(int nComBoardSeq)

@@ -31,9 +31,9 @@ public class BoardWriteController {
 		// 파일명을 랜덤하게 구해서 dto 에 저장
 		String photo = UUID.randomUUID().toString();
 		if (upload.getOriginalFilename().equals(""))
-			dto.setNComBoardRegroup("no"); // 사진을 업로드하지 않은경우는 no 라고 저장해보자
+			dto.setComBoardRegroup("no"); // 사진을 업로드하지 않은경우는 no 라고 저장해보자
 		else
-			dto.setNComBoardRegroup(photo);
+			dto.setComBoardRegroup(photo);
 		// 업로드
 		try {
 			upload.transferTo(new File(path + "/" + photo));
