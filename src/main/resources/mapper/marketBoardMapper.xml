@@ -22,7 +22,24 @@
 	</insert>
 	
 	<select id="selectMarketBoardWithPage" parameterType="Map" resultType="MarketBoardDto" resultMap="MarketBoardDtoRm">
-		select * from tMarketBoard order by nBoardSeq desc limit #{startIdx}, #{perPage}
+		select * from tMarketBoard order by nBoardSeq desc limit #{start}, #{perpage}
+	</select>
+	
+	<select id="totalCountOfMarketBoard" resultType="int">
+		select count(*)
+		from tMarketBoard
+	</select>
+	
+	<update id="updateReadCountOfMarketBoard" parameterType="int">
+		update tMarketBoard
+		set nBoardViewCount=nBoardViewCount+1
+		where nBoardSeq=#{nBoardSeq}
+	</update>
+	
+	<select id="selectDataByBoardSeq" parameterType="int" resultType="MarketBoardDto">
+		select *
+		from tMarketBoard
+		where nBoardSeq=#{nBoardSeq}
 	</select>
 	
 </mapper>

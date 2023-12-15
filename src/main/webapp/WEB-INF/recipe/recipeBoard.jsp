@@ -4,66 +4,59 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<style>
-	div.simpleicon {
-	   margin: 30px 100px;
-	}
-	
-	div.simpleicon * {
-	   cursor: pointer;
-	   margin-right: 30px;
-	   font-size: 30px;
-	}
-	
-	div.list {
-	   margin: 30px 50px;
-	}
-	
-	div.box {
-	   width: 200px;
-	   height: 270px;
-	   text-align: center;
-	   border: 3px solid black;
-	   border-radius: 20px;
-	   float: left;
-	   margin-right: 30px;
-	   margin-bottom: 20px;
-	}
-	
-	div.box figure img {
-	   width: 160px;
-	   height: 160px;
-	   margin-top: 5px;
-	}
-	
-	.recipe_img {
-	   width: 160px;
-	   height: 160px;
-	   margin-top: 5px;
-	}
-	
-	.recipe_writer, .recipe_createdAt {
-	   color: gray;
-	   font-size: 0.8em;
-	   margin-right: 20px;
-	}
-	
-	div.content {
-	   display: none;
-	}
-	
-	
-	.recipetotalcount {
-		display: flex;
-	}
-	
-	#InputButton {
-		margin-top: 10px;
-		margin-left: 20px;
-		background-color: #11B560;
-		border: 1px solid #11B560;
-		height: 40px;
-	}
+<style>   
+   div.simpleicon {
+      cursor: pointer;
+      margin-right: 30px;
+      font-size: 25px;
+      height: 38px;
+      margin-top: 3px;
+      margin-left: -5px;
+   } 
+   
+   div.list {
+      margin: 30px 50px;
+   }
+   
+   div.box {
+      width: 270px;
+      height: 270px;
+      text-align: center;
+      border: 2px solid #11B560;
+      border-radius: 20px;
+      float: left;
+      margin-right: 30px;
+      margin-bottom: 20px;
+   }
+   
+   div.box figure img {
+      width: 180px;
+      height: 180px;
+      margin-top: 5px;
+   }
+   
+   .recipe_img {
+      width: 160px;
+      height: 160px;
+      margin-top: 5px;
+   }
+   
+   .recipe_writer, .recipe_createdAt {
+      color: gray;
+      font-size: 0.8em;
+      margin-right: 20px;
+   }
+   
+   div.content {
+      display: none;
+   }
+   
+   
+   .recipetotalcount {
+      display: flex;
+   }
+   
+   
 </style>
 
 <script type="text/javascript">
@@ -96,21 +89,18 @@
    });
 
    function showTotalCount(totalCount) {
-	    let t = `<h4>현재 총<b style="color: green; font-size: 40px;">`;
-	    t += totalCount;
-	    t += `</b>개의 레시피가 있습니다.</h4>`;
-	    
-	    let InputButton = `<button type="button" class="btn btn-primary" id="InputButton">글쓰기</button>`;
-	    t += InputButton;
+       let t = `총&nbsp;`;
+       t += totalCount;
+       t += `개의 레시피가 모이는중..`;
 
-	    $(".recipetotalcount").html(t);
-	    
-	 	// 글쓰기 버튼에 클릭 이벤트 추가
-	    $("#InputButton").click(function() {
-	        // 글쓰기 버튼 클릭 시 recipeBoardInput.jsp로 이동
-	        window.location.href = 'recipeBoardInput';
-	    });
-	}
+       $(".recipetotalcount").html(t);
+       
+       // 글쓰기 버튼에 클릭 이벤트 추가
+       $("#InputButton").click(function() {
+           // 글쓰기 버튼 클릭 시 recipeBoardInput.jsp로 이동
+           window.location.href = 'recipeBoardInput';
+       });
+   }
    
    function grid()
    {
@@ -162,7 +152,7 @@
          url:"./view",
          data:{"word":searchword},
          success:function(res){
-        	let datas=res.data;
+           let datas=res.data;
             let totalCount=res.totalCount;
             console.log(totalCount);
             showTotalCount(totalCount);
@@ -206,20 +196,27 @@
       }
 </script>
 
-<div style="margin: 30px;">
-	<div class="input-group" style="width: 400px;">
-		<h5>레시피 검색</h5>
-        <input type="text" class="form-control" style="width: 150px; margin-left: 50px;" autofocus placeholder="검색레시피입력" id="word">
-        <button type="button" class="btn btn-success" id="btnsearch" style="margin-left: 10px;">검색</button>
-	</div>
-	<div style="margin: 20px; font-size: 22px;" class="result"></div>
-</div>
-<div class="simpleicon">
-	<i class="bi bi-grid simplegrid"></i> 
-    <i class="bi bi-list-ul simplelist"></i>
-</div>
-<div class="recipetotalcount">
-	레시피
-	<button type="button" class="btn btn-primary" id="InputButton">글쓰기</button>
-</div>
+<div class="mw_1000">
+   <div class="fs_40 fw_600 cGreen text_left mt-5">뭐 먹을까?</div>
+   <form class="d-flex m-0 justify-content-end mt-3">
+   <div class="simpleicon" style="margin-right: 10px;">
+            <i class="bi bi-grid simplegrid"></i>
+            <span style="margin-right: 5px;"></span> 
+            <i class="bi bi-list-ul simplelist"></i>
+    </div>
+      <input class="form-control me-2" type="text" id="word" placeholder="검색할 레시피 입력" style="width: 200px; border:2px solid #11B560; height: 38px;">
+      <button type="button" class="btn btn_green2 fw_600"  id="btnsearch" style="height: 38px;">검색</button>
+   </form>
+   <div class="fs_17 bg_green row mt-3 mw_1000">
+      <div class="col py-3 fw_600">
+         <div class="recipetotalcount">
+         레시피
+      </div>
+      </div>
+      <div class="col text-end">
+            <button type="button" class="btn btn_green fw_600 mt-2" id="InputButton">글쓰기</button>
+        </div>
+   </div>
+
+
 <div class="list">123</div>
