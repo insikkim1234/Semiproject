@@ -168,8 +168,31 @@ div.content {
 			<i class="bi bi-grid simplegrid"></i> <i
 				class="bi bi-card-list simplelist"></i>
 		</div>
-
-        <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!  -->
+		
+		
+		<table class="table table-striped" style="margin-top: 30px;width:600px;">
+		<thead>
+			<tr>
+				<th width="50">번호</th>
+				<th width="300">제목</th>
+				<th width="80">작성자</th>
+				<th width="100">작성일</th>
+				<th width="50">조회</th>				
+			</tr>
+		</thead>
+		<tbody>
+		<c:forEach var="dto" items="${mdata}" varStatus="n">
+			<tr>
+				<td>${dto.boardSeq}</td>
+				<td>${dto.boardTitle}</td>
+				<td></td>
+				<td>${dto.createDate}</td>
+				<td>${dto.boardViewCount}</td>
+			</tr>
+		</c:forEach>
+		</tbody>
+	</table>
+        
 		
 		<div style="text-align: center;">
 			<!-- 이전 -->
