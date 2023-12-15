@@ -124,6 +124,12 @@
             let totalCount=res.totalCount;
             console.log(totalCount);
             showTotalCount(totalCount);
+
+            let t=`<h4>현재 총 &nbsp;<b style="color: green; font-size: 30px;">`;
+            
+            t+= totalCount;
+            t+=`</b>개의 레시피가 있습니다.</h4>`;
+            $(".recipetotalcount").html(t);
            
             let s="";
             
@@ -141,6 +147,7 @@
                            <span style="color:gray;">\${item.recipeName}</span>
                            <br>
                            <span class="recipe_writer">작성자<br>
+                           <span class="day">
                               &nbsp;&nbsp;&nbsp;
                            조회수\${item.recipeViewCount}</span>
                         </figcaption>
@@ -206,22 +213,19 @@
 </script>
 
 <div style="margin: 30px;">
-   <div class="input-group" style="width: 400px;">
-      <h5>레시피 검색</h5>
-      <input type="text" class="form-control"
-         style="width: 150px; margin-left: 50px;" autofocus
-         placeholder="검색레시피입력" id="word">
-      <button type="button" class="btn btn-primary" id="btnsearch"
-         style="margin-left: 10px;">검색</button>
-   </div>
-   <div style="margin: 20px; font-size: 22px;" class="result"></div>
+	<div class="input-group" style="width: 400px;">
+		<h5>레시피 검색</h5>
+        <input type="text" class="form-control" style="width: 150px; margin-left: 50px;" autofocus placeholder="검색레시피입력" id="word">
+        <button type="button" class="btn btn-success" id="btnsearch" style="margin-left: 10px;">검색</button>
+	</div>
+	<div style="margin: 20px; font-size: 22px;" class="result"></div>
 </div>
 <div class="simpleicon">
-   <i class="bi bi-grid simplegrid"></i> <i
-      class="bi bi-list-ul simplelist"></i>
+	<i class="bi bi-grid simplegrid"></i> 
+    <i class="bi bi-list-ul simplelist"></i>
 </div>
 <div class="recipetotalcount">
- 레시피
- <button type="button" class="btn btn-primary" id="InputButton">글쓰기</button>
+	레시피
+	<button type="button" class="btn btn-primary" id="InputButton">글쓰기</button>
 </div>
 <div class="list">123</div>
