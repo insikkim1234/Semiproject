@@ -23,4 +23,9 @@ public class MarketBoardDao {
 		session.insert(nameSpace + "insertMarketBoard", dto);
 	}
 	
+	public List<MarketBoardDto> getBoardWithPage(Map<String, Integer> map)
+	{
+		return session.selectList(nameSpace+"selectMarketBoardWithPage", map);
+	}
+	
 }
