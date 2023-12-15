@@ -7,5 +7,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @Getter
 public class BoardConfig {
-    private int PAGE_SIZE = 10;
+    private final int PAGE_SIZE = 10;
+    private final int BLOCK_SIZE = 2;
 }

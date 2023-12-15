@@ -78,7 +78,7 @@
 
 .headmenu_btn{
 	background-color: transparent;
-	color: white;
+	color: #11B560;
 	border: 0;
 	font-size: 18px;
 	font-weight: 600;
@@ -96,6 +96,10 @@
 
 .member_logo_btn{
 	width: 40px;
+}
+
+#mynavbar>form>.form-control{
+	 background-color: #e9ecef;
 }
 
 .btn_green {
@@ -167,6 +171,7 @@
     border-style: dashed;
     border-color: rgb(17, 181, 96);
     border-image: initial;
+    background-color: #fff;
 }
 .contents .upload-box .drag-file.highlight {
   border: 3px dashed red;
@@ -226,8 +231,7 @@
     margin-right: 0;
     overflow: initial;
   }
-}
-        
+}     
        
 /*login.jsp  */
 
@@ -235,19 +239,24 @@
 /*boardlist.jsp  */
 .blist>.table {
    --bs-table-bg: var(--bs-body-bg);
-    --bs-table-striped-bg: rgb(115 243 65 / 17%);
 }
 
 .blist>.table>thead>tr{
-	
     --bs-table-color: #11B560;
 }
 
 .blist>table {
-  border: 2px solid #11B560;
+ /*  border: 2px solid #11B560; */
   box-sizing: border-box; /* box-sizing 속성 설정 */
 }
 
 .blist>.table thead th {
     border-bottom: 1px solid #11b560;
 }
+ .cGreen>a{
+ 	color:#11B560;
+ }
+ 
+ .c-yellow{
+ 	color:#e1a900;
+ }

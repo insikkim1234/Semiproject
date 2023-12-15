@@ -10,11 +10,13 @@ import lombok.AllArgsConstructor;
 import semi.config.BoardConfig;
 import semi.dao.BoardDao;
 import semi.dto.BoardDto;
+import semi.dto.PageDto;
 
 @Service
 @AllArgsConstructor
 public class BoardService {
 	@Autowired private BoardDao boardDao;
+	@Autowired private BoardConfig boardConfig;
 
 	public int getTotalCount()
 	{
@@ -27,12 +29,26 @@ public class BoardService {
 
 	public List<BoardDto> getBoardWithPage(int pageNum, int perPage) {
 		int startIdx = (pageNum - 1) * perPage;
-		Map<String, Integer> map = new HashMap<String, Integer>();
+		Map<String, Integer> map = new HashMap<>();
 		map.put("startIdx", startIdx);
 		map.put("perPage", perPage);
 
 		return boardDao.getBoardWithPage(map);
 	}
+
+	public PageDto getPage(int curPage, int totalCnt) {
+		int totalPage = (int)(Math.ceil((double)totalCnt/boardConfig.getPAGE_SIZE()));
+		if (totalPage <= 0) totalPage = 1;
+
+		int startPage = curPage - boardConfig.getBLOCK_SIZE();
+		if (startPage <= 0) startPage = 1;
+
+		int endPage = curPage + boardConfig.getBLOCK_SIZE();
+		if (endPage > totalPage) endPage = totalPage;
+
+        return new PageDto(curPage, startPage, endPage, totalPage);
+	}
+	
 	
 	/*public List<BoardDto> getList(int start,int perpage)
 	{
