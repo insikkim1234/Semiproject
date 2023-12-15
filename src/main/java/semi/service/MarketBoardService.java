@@ -21,6 +21,16 @@ public class MarketBoardService {
 	}
 	
 	
+	public List<MarketBoardDto> getBoardWithPage(int pageNum, int perPage) {
+		int startIdx = (pageNum - 1) * perPage;
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startIdx", startIdx);
+		map.put("perPage", perPage);
+
+		return marketBoardDao.getBoardWithPage(map);
+	}
+	
+	
 
 	
 

@@ -12,7 +12,13 @@ public class RecipeOrderDao {
 	@Autowired
 	private SqlSession session;
 
+	private String nameSpace = "semi.dao.RecipeOrderDao.";
+	
 	public List<RecipeOrderDto> getRecipeOrdersById(int recipeIdx) {
 		return session.selectList("getRecipeOrdersById", recipeIdx);
+	}
+
+	public void insertOrderRecipe(RecipeOrderDto orderdto) {
+		session.insert(nameSpace + "insertOrderRecipe", orderdto);
 	}
 }

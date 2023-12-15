@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="semi.dao.MarketProductDao">
+	<resultMap id="MarketProductDtoRm" type="MarketProductDto">
+		<result property="productSeq" column="nProductSeq" />
+		<result property="boardSeq" column="nBoardSeq" />
+		<result property="productPrice" column="nProductPrice" />
+		<result property="productPlace" column="sProductPlace" />
+		<result property="productImage1" column="sProductImage1" />
+		<result property="productImage2" column="sProductImage2" />
+		<result property="productContent" column="sProductContent" />
+	</resultMap>
     <insert id="insertMarketProduct" parameterType="MarketProductDto">
         insert into tMarketProduct (nBoardSeq, nProductPrice, sProductPlace, sProductImage1, sProductImage2, sProductContent)
-        values(#{nBoardSeq}, #{nProductPrice}, #{sProductPlace}, #{sProductImage1}, #{sProductImage2}, #{sProductContent})
+        values(#{boardSeq}, #{productPrice}, #{productPlace}, #{productImage1}, #{productImage2}, #{productContent})
     </insert>
 </mapper>
+
