@@ -32,5 +32,20 @@ public class MarketBoardDao {
 	{
 		return session.selectOne(nameSpace+"totalCountOfMarketBoard");
 	}
+	public List<MarketBoardDto> getList(Map<String, Integer> map)
+	{
+		
+		return session.selectList(nameSpace+"selectMarketBoardWithPage",map);
+	}
+	
+	public void updateReadCount(int boardSeq)
+	{
+		session.update(nameSpace+"updateReadCountOfMarketBoard", boardSeq);
+	}
+	
+	public MarketBoardDto getData(int boardSeq)
+	{
+		return session.selectOne(nameSpace+"selectDataByBoardSeq", boardSeq);
+	}
 	
 }

@@ -79,43 +79,43 @@ public class MarketBoardController {
 	 
 	 @GetMapping("/mboard")
 		public String board(Model model,
-							@RequestParam(required = false, defaultValue = "1") int pageNum,
+							
 							@RequestParam(defaultValue = "1") int currentPage) {
-		 	
-		 	int totalCount=marketBoardService.getTotalCount();
-		 	int totalPage;
-		 	int startNum;
-		 	int perBlock=5;
-		 	int startPage;
+		 	int perPage=10;
+		 	int totalCount=marketBoardService.getTotalCount();//총 게시글 갯수
+		 	int totalPage;//총페이지수
+		 	int startNum;//각페이지당 보여지는 글의 시작번호
+		 	int perBlock=5;//한블럭당 보여지는 페이지의 개수
+		 	int startPage;//각블럭당 보여지는 페이지의 시작번호
 		 	int endPage;
 		 
-			if (pageNum < 1) pageNum = 1;
-			totalPage=totalCount/10+(totalCount%10>0?1:0);
+		 	
 			
+			//만약에 나머지가 있으면 다음페이지로 넘김
+			totalPage=totalCount/perPage+(totalCount%perPage>0?1:0);
+			
+			//각 블럭의 시작페이지와 끝페이지 설정
 			 startPage=(currentPage-1)/perBlock*perBlock+1;
-			  endPage=startPage+perBlock-1;
+			 endPage=startPage+perBlock-1;
 			  
-			  
+			  //엔드페이지가 총페이지보다 크면 (만약 게시글의 페이지가 13페이지까지 존재하는데 블락에 따라 15페이지까지 존재해야함)
 			  if(endPage>totalPage)
 				   endPage=totalPage;  
 			  
-			  startNum=(currentPage-1)*10;
+			  //각 페이지당 시작하는 글의 번호
+			  startNum=(currentPage-1)*perPage;
 			  
-			  int no=totalCount-(currentPage-1)*10;
+			  //각 페이지의 시작 번호
+			  int no=totalCount-(currentPage-1)*perPage;
 
-			List<MarketBoardDto> mdata = marketBoardService.getBoardWithPage(pageNum, marketBoardConfig.getPAGE_SIZE());
-			
-			
-					
+			List<MarketBoardDto> mdata = marketBoardService.getList(startNum, perPage);
 			
 			
 			
 			
-			model.addAttribute("totalCount", totalCount);
-			model.addAttribute("pageNum", pageNum);
+			
 			model.addAttribute("mdata", mdata);
-			
-			
+			model.addAttribute("totalCount", totalCount);
 			model.addAttribute("totalPage",totalPage);
 			  model.addAttribute("startPage",startPage);
 			  model.addAttribute("endPage",endPage);
@@ -124,6 +124,21 @@ public class MarketBoardController {
 
 			return "market/marketboardlist";
 		}
+	 
+	 @GetMapping("/mboard/content")
+	 public String getContent(Model model,
+			 @RequestParam int boardSeq,
+			 @RequestParam(defaultValue = "1") int currentPage)
+	 {
+		 marketBoardService.updateReadCount(boardSeq);
+		 
+		 MarketBoardDto mdto=marketBoardService.getData(boardSeq);
+		 
+		 model.addAttribute("mdto", mdto);
+		 
+		 
+		 return "mboard/content";
+	 }
 
 
 
