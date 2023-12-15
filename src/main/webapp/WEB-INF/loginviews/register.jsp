@@ -83,8 +83,8 @@
 						<p class="message">Drag files to upload</p>
 						<img src="" alt="미리보기 이미지" class="preview">
 					</div>
-					<label class="file-label ㄹㅈ_600" for="chooseFile">이미지 선택</label> <input
-						class="file" id="chooseFile" type="file" name="userPassword"
+					<label class="file-label fw_600" for="chooseFile">이미지 선택</label> 
+					<input class="file" id="chooseFile" type="file" name="userPassword"
 						onchange="dropFile.handleFiles(this.files)"
 						accept="image/png, image/jpeg, image/gif">
 				</div>

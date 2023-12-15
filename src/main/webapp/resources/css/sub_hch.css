@@ -167,6 +167,7 @@
     border-style: dashed;
     border-color: rgb(17, 181, 96);
     border-image: initial;
+    background-color: #fff;
 }
 .contents .upload-box .drag-file.highlight {
   border: 3px dashed red;
