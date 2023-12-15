@@ -10,8 +10,19 @@
     </select>
     <select id="selectAllMembers" resultType="semi.dto.MemberDto" parameterType="Map">
 		select * from tUser
+		<if test="searchoword!=null">
+            where ${searchfield}
+		    like concat('%',#{searchword},'%')
+        </if>
+		order by num desc
 	</select>
     <select id="loginCheck" parameterType="semi.dto.MemberDto" resultType="int">
         select count(*) from tUser where userEmail=#{userEmail} and userPassword=#{userPassword};
+    </select>
+    <select id="selectDataById" parameterType="String" resultType="semi.dto.MemberDto">
+        select * from tUser where userEmail=#{userEmail}
+    </select>
+    <select id="selectDataByNum" parameterType="int" resultType="semi.dto.MemberDto">
+        select * from tUser where userSeq=#{userSeq}
     </select>
 </mapper>

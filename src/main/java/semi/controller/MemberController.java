@@ -91,16 +91,14 @@ public class MemberController {
 
     //회원가입 실행 로직 메서드 -> 성공 login.jsp 실패 register.jsp
     @PostMapping("/register")
-    public String register(@ModelAttribute MemberDto memberDto, HttpServletRequest request, String alert) {
+    public String register(@ModelAttribute MemberDto memberDto){
         int result = memberService.insertMember(memberDto);
 
-        //DB 에서 변경된 행이 1이면 회원가입 성공.
-        if (result == 1){
-            request.setAttribute("msg","로그인 성공");
-            request.setAttribute("url","loginviews/login");
-            return alert;
+//      DB 에서 변경된 행이 1이면 회원가입 성공.
+        if(result == 1){
+            return "/loginviews/login";
         }
-        return "alert";
+        return "/loginviews/register";
     }
 
     // 로그인 실행 로직 메서드
@@ -109,7 +107,10 @@ public class MemberController {
         int result = memberService.loginExecute(memberDto);
 
         if (result == 1){
-            httpSession.setAttribute("sUserEmail",memberDto.getUserEmail());
+            httpSession.setMaxInactiveInterval(60*60*6);
+            httpSession.setAttribute("loginOk", "yes");
+            httpSession.setAttribute("myEmail", memberDto.getUserEmail());
+
             System.out.println("로그인 성공");
             return "redirect:/";
         }
