@@ -57,26 +57,7 @@
 <div class="fs_40 text-center cGreen fw_600 my-5">JOIN US</div>
 <form action="/semi/member/register" method="post"
       class="regi_input mt-3">
-
-        .regi_input>input[type=text], .regi_input>input[type=password],
-        .regi_input>input[type=submit], .regi_input>.box>input[type=email] {
-            width: 300px;
-            padding: 10px;
-            /* border-radius: 10px; */
-            margin-bottom: 10px;
-            display: table;
-            margin-left: auto;
-            margin-right: auto;
-            border: 0;
-            border-bottom: 2px solid #11B560;
-            background-color: transparent;
-        } /* 보더변경하고 색상변경 */
-        .box {
-            display: table;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
+    <input type="text" name="userName" placeholder="성명 입력"><br>
     <div class="box">
         <input type="email" name="userEmail" placeholder="email" id="userEmail"><br>
         <label class="cGreen fw_600 fs_17">아이디 중복 확인<input type="checkbox" id="emailCheckbox" class="ml-2">
@@ -94,8 +75,16 @@
                     <p class="message">Drag files to upload</p>
                     <img src="" alt="미리보기 이미지" class="preview">
                 </div>
-                <input type="text" name="userPhoneNumber" placeholder="휴대전화번호(Ex:010-1234-5678)" ><br >
-                <input type="submit" value="회원가입" class="btn_green2">
+                <label class="file-label fw_600" for="chooseFile">이미지 선택</label>
+                <input class="file" id="chooseFile" type="file" name="userPassword"
+                       onchange="dropFile.handleFiles(this.files)"
+                       accept="image/png, image/jpeg, image/gif">
+            </div>
+        </div>
+    </div>
+    <input type="text" name="userPhoneNumber"
+           placeholder="휴대전화번호(Ex:010-1234-5678)" class="mt-3"><br>
+    <input type="submit" value="회원가입" class="btn_green2">
     </form>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
