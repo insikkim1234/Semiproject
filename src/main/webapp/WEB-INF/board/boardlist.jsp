@@ -43,11 +43,11 @@
 	</div>
 </div>
 
-<div class="text-center fs_18 fw_600">
+<div class="text-center fs_20 fw_600">
 	<c:choose>
 		<c:when test="${pageDto.curPage > 1}">
-			<a href="${pageContext.request.contextPath}/board/list?pageNum=1">처음</a>
-			<a href="${pageContext.request.contextPath}/board/list?pageNum=${pageDto.curPage - 1}">이전</a>
+			<a href="${pageContext.request.contextPath}/board/list?pageNum=1" class="btn_green2">처음</a>
+			<a href="${pageContext.request.contextPath}/board/list?pageNum=${pageDto.curPage - 1}" class="btn_green2">이전</a>
 		</c:when>
 	</c:choose>
 
@@ -56,10 +56,10 @@
 			<c:when test="${pageNumber >= 1 and pageNumber <= pageDto.totalPage}">
 				<c:choose>
 					<c:when test="${pageNumber == pageDto.curPage}">
-						<span class="cGreen">${pageNumber}</span>
+						<span class="c-yellow">${pageNumber}</span>
 					</c:when>
 					<c:otherwise>
-						<span><a href="${pageContext.request.contextPath}/board/list?pageNum=${pageNumber}" class="cGreen">${pageNumber}</a></span>
+						<span class="cGreen"><a href="${pageContext.request.contextPath}/board/list?pageNum=${pageNumber}">${pageNumber}</a></span>
 					</c:otherwise>
 				</c:choose>
 			</c:when>
@@ -68,8 +68,8 @@
 
 	<c:choose>
 		<c:when test="${pageDto.curPage < pageDto.totalPage}">
-			<span><a href="${pageContext.request.contextPath}/board?pageNum=${pageDto.curPage + 1}" class="cGreen"">다음</a></span>
-			<span><a href="${pageContext.request.contextPath}/board?pageNum=${pageDto.totalPage}" style="color:#11B560;">마지막</a></span>
+			<span><a href="${pageContext.request.contextPath}/board?pageNum=${pageDto.curPage + 1}" class="btn_green2">다음</a></span>
+			<span><a href="${pageContext.request.contextPath}/board?pageNum=${pageDto.totalPage}"class="btn_green2">마지막</a ></span>
 		</c:when>
 	</c:choose>
 </div>
