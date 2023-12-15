@@ -10,7 +10,7 @@
 		<button class="btn btn_green2 fw_600" type="button">검색</button>
 	</form>
 	<div class="fs_17 bg_green row mt-3 mw_1000">
-		<div class="col py-3 fw_600">총 ${totalCount}개의 잡담 형성중..</div>
+		<div class="col py-3 fw_600">총 ${totcalCnt}개의 잡담 형성중..</div>
 		<div class="col text-end">
 			<button type="button" class="btn btn_green fw_600 mt-2"
 				onclick="location.href='./form'">글쓰기</button>
@@ -18,7 +18,7 @@
 	</div>
 
 	<div class="blist">
-		<table class="table table-striped">
+		<table class="table">
 			<thead>
 				<tr>
 					<th width="50">번호</th>
@@ -42,3 +42,35 @@
 		</table>
 	</div>
 </div>
+
+<div class="text-center fs_20 fw_600">
+	<c:choose>
+		<c:when test="${pageDto.curPage > 1}">
+			<a href="${pageContext.request.contextPath}/board/list?pageNum=1" class="btn_green2">처음</a>
+			<a href="${pageContext.request.contextPath}/board/list?pageNum=${pageDto.curPage - 1}" class="btn_green2">이전</a>
+		</c:when>
+	</c:choose>
+
+	<c:forEach begin="${pageDto.startPage}" end="${pageDto.endPage}" var="pageNumber">
+		<c:choose>
+			<c:when test="${pageNumber >= 1 and pageNumber <= pageDto.totalPage}">
+				<c:choose>
+					<c:when test="${pageNumber == pageDto.curPage}">
+						<span class="c-yellow">${pageNumber}</span>
+					</c:when>
+					<c:otherwise>
+						<span class="cGreen"><a href="${pageContext.request.contextPath}/board/list?pageNum=${pageNumber}">${pageNumber}</a></span>
+					</c:otherwise>
+				</c:choose>
+			</c:when>
+		</c:choose>
+	</c:forEach>
+
+	<c:choose>
+		<c:when test="${pageDto.curPage < pageDto.totalPage}">
+			<span><a href="${pageContext.request.contextPath}/board?pageNum=${pageDto.curPage + 1}" class="btn_green2">다음</a></span>
+			<span><a href="${pageContext.request.contextPath}/board?pageNum=${pageDto.totalPage}"class="btn_green2">마지막</a ></span>
+		</c:when>
+	</c:choose>
+</div>
+
