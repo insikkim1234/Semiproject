@@ -3,12 +3,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<div class="text-left">
-	<a href=""> <img
-		src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>eating_alone_mainlogo5.png"
-		class="img-fluid" style="width: 300px; padding: 10px 0;">
-	</a>
+<%-- <div>
+	<div class="text-left">
+		<a href=""> <img
+			src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>eating_alone_mainlogo5.png"
+			class="img-fluid" style="width: 300px; padding: 10px 0;">
+		</a>
+	</div>
 </div>
+<hr> --%>
+<nav class="navbar navbar-expand-sm d-flex flex-column">
+	  <div class="container-fluid">
+	    <a href="${pageContext.request.contextPath}"> <img
+			src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>eating_alone_mainlogo5.png"
+			class="img-fluid" style="width: 300px; padding: 10px 0;">
+		</a>
+	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse mt-auto" id="mynavbar">
+	      <ul class="navbar-nav ml-auto">
+	        <li class="nav-item mx-5">
+	          <a class="nav-link fs_20 fw_600" href="${pageContext.request.contextPath}/board/list">커뮤니티</a>
+	        </li>
+	        <li class="nav-item mx-5">
+	          <a class="nav-link fs_20 fw_600" href="${pageContext.request.contextPath}/recipe/board">레시피북</a>
+	        </li>
+	        <li class="nav-item mx-5">
+	          <a class="nav-link fs_20 fw_600" href="${pageContext.request.contextPath}/mboard">벼룩시장</a>
+	        </li>
+	      </ul>
+	      <form class="d-flex m-0 justify-content-end">
+		      <input class="form-control me-2" type="text" style="border: 0;" placeholder="Search">
+		      <button class="btn btn_green2 fw_600" type="button">검색</button>
+		  </form>
+	    </div>
+	  </div>
+	</nav>
 
 <div class="btn-bar member_btns">
 	<c:if test="${sessionScope.loginOk==null}">
@@ -67,12 +98,12 @@
             </form>
         </div>
         <div class="nav-item align-items-center d-flex mx-5">
-            <form action="/semi/recipe/board" style="margin: 0;">
+            <form action="${pageContext.request.contextPath}/recipe/board" style="margin: 0;">
                 <button type="submit" class="btn headmenu_btn">레시피 보드</button>
             </form>
         </div>
         <div class="nav-item align-items-center d-flex mx-5">
-            <form action="/semi/mboard" style="margin: 0;">
+            <form action="${pageContext.request.contextPath}/mboard" style="margin: 0;">
                 <button type="submit" class="btn headmenu_btn">중고마켓</button>
             </form>
         </div>
