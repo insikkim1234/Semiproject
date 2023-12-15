@@ -17,7 +17,7 @@ public class BoardController {
 	@Autowired private BoardService boardService;
 	@Autowired private BoardConfig boardConfig;
 
-	@GetMapping(value = {"", "/"})
+	@GetMapping(value = "/list")
 	public String board(Model model,
 						@RequestParam(required = false, defaultValue = "1") int pageNum) {
 
