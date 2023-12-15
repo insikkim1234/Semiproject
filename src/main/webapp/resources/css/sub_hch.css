@@ -227,8 +227,7 @@
     margin-right: 0;
     overflow: initial;
   }
-}
-        
+}     
        
 /*login.jsp  */
 
@@ -236,16 +235,14 @@
 /*boardlist.jsp  */
 .blist>.table {
    --bs-table-bg: var(--bs-body-bg);
-    --bs-table-striped-bg: rgb(115 243 65 / 17%);
 }
 
 .blist>.table>thead>tr{
-	
     --bs-table-color: #11B560;
 }
 
 .blist>table {
-  border: 2px solid #11B560;
+ /*  border: 2px solid #11B560; */
   box-sizing: border-box; /* box-sizing 속성 설정 */
 }
 

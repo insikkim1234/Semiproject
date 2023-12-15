@@ -54,7 +54,7 @@
 }
 </style>
 </head>
-<body style="background-color: #eeefc7b8;">
+<body>
 	<div class="fs_40 text-center cGreen fw_600 mt-5">JOIN US</div>
 	<form action="/semi/member/register" method="post"
 		class="regi_input mt-3">
@@ -77,7 +77,7 @@
 			<h2 class="cGreen fs_17 fw_600 ">프로필 등록</h2>
 			<div class="contents">
 				<div class="upload-box">
-					<div id="drop-file" class="drag-file">
+					<div id="drop-file" class="drag-file" style="background-color: #fff;">
 						<img src="https://img.icons8.com/pastel-glyph/2x/image-file.png"
 							alt="파일 아이콘" class="image">
 						<p class="message">Drag files to upload</p>
