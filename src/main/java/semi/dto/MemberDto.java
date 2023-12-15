@@ -1,12 +1,12 @@
 package semi.dto;
 
-import lombok.Data;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class MemberDto {
+    private String userSeq;
     private String userName;
     private String userEmail;
     private String userPassword;
