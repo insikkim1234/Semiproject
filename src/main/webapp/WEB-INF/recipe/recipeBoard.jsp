@@ -125,12 +125,6 @@
             console.log(totalCount);
             showTotalCount(totalCount);
 
-            let t=`<h4>현재 총 &nbsp;<b style="color: green; font-size: 30px;">`;
-            
-            t+= totalCount;
-            t+=`</b>개의 레시피가 있습니다.</h4>`;
-            $(".recipetotalcount").html(t);
-           
             let s="";
             
             $.each(datas,function(idx,item){
