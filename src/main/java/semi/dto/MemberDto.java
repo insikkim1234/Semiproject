@@ -16,4 +16,16 @@ public class MemberDto {
     public MemberDto(String userEmail) {
         this.userEmail = userEmail;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userName='" + userName + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", userImage='" + userImage + '\'' +
+                ", userPhoneNumber='" + userPhoneNumber + '\'' +
+                '}';
+    }
+
 }

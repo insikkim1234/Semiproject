@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import semi.config.MemberConstants;
 import semi.dto.MemberDto;
 import semi.service.MemberService;
 import javax.servlet.http.HttpServletRequest;
@@ -108,8 +109,7 @@ public class MemberController {
 
         if (result == 1){
             httpSession.setMaxInactiveInterval(60*60*6);
-            httpSession.setAttribute("loginOk", "yes");
-            httpSession.setAttribute("myEmail", memberDto.getUserEmail());
+            httpSession.setAttribute(MemberConstants.LOGIN_MEMBER_DTO, memberDto);
 
             System.out.println("로그인 성공");
             return "redirect:/";
