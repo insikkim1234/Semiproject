@@ -25,4 +25,8 @@ public class MemberService {
         return memberDao.loginExecute(memberDto);
     }
 
+    public MemberDto getMember(MemberDto memberDto) {
+        return memberDao.getData(memberDto.getUserEmail());
+    }
+
 }

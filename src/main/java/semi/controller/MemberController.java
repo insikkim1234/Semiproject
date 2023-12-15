@@ -105,11 +105,12 @@ public class MemberController {
     // 로그인 실행 로직 메서드
     @PostMapping("/login")
     public String loginExcute(@ModelAttribute MemberDto memberDto, HttpSession httpSession, RedirectAttributes redirectAttributes) {
-        int result = memberService.loginExecute(memberDto);
+        //int result = memberService.loginExecute(memberDto);
+        MemberDto loginMember = memberService.getMember(memberDto);
 
-        if (result == 1){
+        if (loginMember != null) {
             httpSession.setMaxInactiveInterval(60*60*6);
-            httpSession.setAttribute(MemberConstants.LOGIN_MEMBER_DTO, memberDto);
+            httpSession.setAttribute(MemberConstants.LOGIN_MEMBER_DTO, loginMember);
 
             System.out.println("로그인 성공");
             return "redirect:/";
@@ -118,7 +119,6 @@ public class MemberController {
         redirectAttributes.addFlashAttribute("message","아이디 혹은 비밀번호를 확인해주세요");
         System.out.println("로그인 실패");
         return "redirect:./login";
-        
     }
 
     // 로그인 Page 보여주는 메서드

@@ -19,7 +19,7 @@ public class MemberDto {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "MemberDto{" +
                 "userName='" + userName + '\'' +
                 ", userEmail='" + userEmail + '\'' +
                 ", userPassword='" + userPassword + '\'' +

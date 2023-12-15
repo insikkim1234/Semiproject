@@ -42,8 +42,6 @@ public class BoardController {
 
 	@GetMapping(value = "/form")
 	public String boardForm(@Login MemberDto user) {
-
-		System.out.println(user.toString());
 		if (user == null) {
 			System.out.println("no session ");
 		}
