@@ -3,10 +3,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<div class="text-center" style="background-color: #eeefc7b8;">
+<div class="text-left">
 	<a href=""> <img
 		src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>eating_alone_mainlogo5.png"
-		class="img-fluid" style="width: 400px; padding: 10px 0;">
+		class="img-fluid" style="width: 300px; padding: 10px 0;">
 	</a>
 </div>
 
