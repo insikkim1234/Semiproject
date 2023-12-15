@@ -20,17 +20,41 @@ public class MarketBoardService {
 		marketBoardDao.insertMarketBoard(dto);
 	}
 	
+	public List<MarketBoardDto> getList(int start,int perpage)
+	{
+		//1)map생성
+		Map<String, Integer> map=new HashMap<String, Integer>();
+		//2)map에 start,perpage넣기
+		map.put("start", start);
+		map.put("perpage", perpage);
+		//3)boardDao의 getList(map)실행
+		return marketBoardDao.getList(map);
+	}
+	
 	
 	public List<MarketBoardDto> getBoardWithPage(int pageNum, int perPage) {
-		int startIdx = (pageNum - 1) * perPage;
+		int startNum = (pageNum - 1) * perPage;
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("startIdx", startIdx);
+		map.put("startNum", startNum);
 		map.put("perPage", perPage);
 
 		return marketBoardDao.getBoardWithPage(map);
 	}
 	
+	public int getTotalCount()
+	{
+		return marketBoardDao.getTotalCount();
+	}
 	
+	public void updateReadCount(int boardSeq)
+	{
+		marketBoardDao.updateReadCount(boardSeq);
+	}
+	
+	public MarketBoardDto getData(int boardSeq)
+	{
+		return marketBoardDao.getData(boardSeq);
+	}
 
 	
 
