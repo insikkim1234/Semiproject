@@ -249,3 +249,7 @@
 .blist>.table thead th {
     border-bottom: 1px solid #11b560;
 }
+
+.cGreen a{
+	color:#11b560;
+}
