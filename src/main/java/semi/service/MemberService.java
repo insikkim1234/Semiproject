@@ -25,5 +25,4 @@ public class MemberService {
         return memberDao.loginExecute(memberDto);
     }
 
-
 }
