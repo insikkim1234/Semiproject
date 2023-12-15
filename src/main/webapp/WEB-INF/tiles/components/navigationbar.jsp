@@ -57,7 +57,7 @@
 <div class="collapse navbar-collapse" id="mynavbar">
     <div class="navbar-nav mx-auto">
         <div class="nav-item align-items-center d-flex mx-5">
-            <form action="/semi/board" style="margin: 0;">
+            <form action="${pageContext.request.contextPath}/board" style="margin: 0;">
                 <button type="submit" class="btn headmenu_btn">게시판 목록</button>
             </form>
         </div>
