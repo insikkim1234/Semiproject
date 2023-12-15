@@ -14,11 +14,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import naver.storage.NcpObjectStorageService;
+import semi.config.MarketBoardConfig;
 import semi.dao.MarketBoardDao;
 import semi.dao.MarketProductDao;
 import semi.dto.BoardDto;
@@ -32,6 +34,7 @@ import semi.service.MarketProductService;
 
 
 @Controller
+
 public class MarketBoardController {
 	@Autowired
 	private MarketBoardService marketBoardService;
@@ -41,18 +44,12 @@ public class MarketBoardController {
 	@Autowired NcpObjectStorageService storageService;
 	@Autowired private MarketBoardDao marketBoardDao;
 	@Autowired private MarketProductDao marketProductDao;
+	@Autowired private MarketBoardConfig marketBoardConfig;
 	
 	
-	 @GetMapping("/mboard")
-	 public String boardList() {
-		 return "market/marketboardlist";
-	 }
+	
 	 
-	 @GetMapping("/mboardform")
-	 public String boardForm() {
-		 return "market/marketboardform";
-	 }
-	
+	 
 	 
 	 @PostMapping("/mboard/insertMarketBoard")
 	 public String insertMarketBoard(@ModelAttribute MarketBoardDto dto, @ModelAttribute MarketProductDto pdto,
@@ -65,21 +62,34 @@ public class MarketBoardController {
 	     String photo3 = storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
 	             NcpObjectStorageService.DIR_PHOTO, upload3);
 
-	     dto.setSBoardImage(photo);
+	     dto.setBoardImage(photo);
 
 	     // 먼저 게시글 정보를 저장하고 게시글의 nBoardSeq를 가져옴
 	     marketBoardService.insertMarketBoard(dto);
 	     
-	     pdto.setSProductImage1(photo2);
-         pdto.setSProductImage2(photo3);
+	     pdto.setProductImage1(photo2);
+         pdto.setProductImage2(photo3);
          
-         pdto.setNBoardSeq(dto.getNBoardSeq());
+         pdto.setBoardSeq(dto.getBoardSeq());
          marketProductService.insertMarketProduct(pdto);
 	    
 
 	     return "redirect:/mboard";
 	 }
+	 
+	 @GetMapping("/mboard")
+		public String board(Model model,
+							@RequestParam(required = false, defaultValue = "1") int pageNum) {
 
+			if (pageNum < 1) pageNum = 1;
+
+			List<MarketBoardDto> mdata = marketBoardService.getBoardWithPage(pageNum, marketBoardConfig.getPAGE_SIZE());
+
+			model.addAttribute("pageNum", pageNum);
+			model.addAttribute("mdata", mdata);
+
+			return "market/marketboardlist";
+		}
 
 
 
@@ -110,62 +120,7 @@ public class MarketBoardController {
 		}
 
 		
-		//새글/답글 저장
-		/*
-		 * @PostMapping("/mboard/addboard") public String addBoard(
-		 * 
-		 * @ModelAttribute MarketBoardDto dto,
-		 * 
-		 * @RequestParam int currentPage,
-		 * 
-		 * @RequestParam List<MultipartFile> upload, HttpServletRequest request,
-		 * HttpSession session ) {
-		 */
-			//파일 업로드할 경로
-			//String path=request.getSession().getServletContext().getRealPath("/resources/upload");
-			
-			/*
-			//db 에 저장할 로그인정보
-			String myid=(String)session.getAttribute("myid");
-			String writer=(String)session.getAttribute("myname");
-			//dto에 넣기
-			dto.setMyid(myid);
-			dto.setWriter(writer);
-
-			//일단 BoardDto 먼저 저장
-			marketBoardService.insertBoard(dto);
-			//selectKey : num 값 넘어왔는지 확인
-			System.out.println("num="+dto.getNum());
-			*/
-
-
-			//사진들 업로드
-			//사진 업로드를 안했을경우 리스트의 첫데이타의 파일명이 빈문자열이 된다
-			//즉 업로드했을경우에만 db 에 저장을 한다
-//			if(!upload.get(0).getOriginalFilename().equals("")) {
-//				for(MultipartFile multi:upload)
-//				{
-//					//랜덤 파일명 생성
-//					String fileName=UUID.randomUUID().toString();
-//					//업로드
-//					try {
-//						multi.transferTo(new File(path+"/"+fileName));
-//						//파일은 따로 db 에 insert 한다
-//						MarketProductDto fdto=new MarketProductDto();
-//						fdto.setNBoardSeq(dto.getNBoardSeq());//boarddb 에 방금 insert 된 num값
-//						fdto.setSProductImage1(fileName);
-//
-//						marketProductService.insertProductImage(fdto);
-//
-//					} catch (IllegalStateException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					} catch (IOException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//				}
-//			}
+		
 
 			//새글인경우는 1페이지로, 답글인경우는 보던 페이지로 이동한다
 //			return "redirect:list?currentPage="+currentPage;
