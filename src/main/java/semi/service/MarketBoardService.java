@@ -30,7 +30,10 @@ public class MarketBoardService {
 		return marketBoardDao.getBoardWithPage(map);
 	}
 	
-	
+	public int getTotalCount()
+	{
+		return marketBoardDao.getTotalCount();
+	}
 
 	
 

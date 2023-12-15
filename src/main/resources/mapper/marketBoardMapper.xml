@@ -25,5 +25,10 @@
 		select * from tMarketBoard order by nBoardSeq desc limit #{startIdx}, #{perPage}
 	</select>
 	
+	<select id="totalCountOfMarketBoard" resultType="int">
+		select count(*)
+		from tMarketBoard
+	</select>
+	
 </mapper>
 

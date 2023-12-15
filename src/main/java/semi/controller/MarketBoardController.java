@@ -79,14 +79,48 @@ public class MarketBoardController {
 	 
 	 @GetMapping("/mboard")
 		public String board(Model model,
-							@RequestParam(required = false, defaultValue = "1") int pageNum) {
-
+							@RequestParam(required = false, defaultValue = "1") int pageNum,
+							@RequestParam(defaultValue = "1") int currentPage) {
+		 	
+		 	int totalCount=marketBoardService.getTotalCount();
+		 	int totalPage;
+		 	int startNum;
+		 	int perBlock=5;
+		 	int startPage;
+		 	int endPage;
+		 
 			if (pageNum < 1) pageNum = 1;
+			totalPage=totalCount/10+(totalCount%10>0?1:0);
+			
+			 startPage=(currentPage-1)/perBlock*perBlock+1;
+			  endPage=startPage+perBlock-1;
+			  
+			  
+			  if(endPage>totalPage)
+				   endPage=totalPage;  
+			  
+			  startNum=(currentPage-1)*10;
+			  
+			  int no=totalCount-(currentPage-1)*10;
 
 			List<MarketBoardDto> mdata = marketBoardService.getBoardWithPage(pageNum, marketBoardConfig.getPAGE_SIZE());
-
+			
+			
+					
+			
+			
+			
+			
+			model.addAttribute("totalCount", totalCount);
 			model.addAttribute("pageNum", pageNum);
 			model.addAttribute("mdata", mdata);
+			
+			
+			model.addAttribute("totalPage",totalPage);
+			  model.addAttribute("startPage",startPage);
+			  model.addAttribute("endPage",endPage);
+			  model.addAttribute("currentPage",currentPage);  
+			  model.addAttribute("no",no);  
 
 			return "market/marketboardlist";
 		}

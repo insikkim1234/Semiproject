@@ -183,7 +183,7 @@ div.content {
 		<tbody>
 		<c:forEach var="dto" items="${mdata}" varStatus="n">
 			<tr>
-				<td>${dto.boardSeq}</td>
+				<td>${mdata.size() - n.index + 1}</td>
 				<td>${dto.boardTitle}</td>
 				<td></td>
 				<td>${dto.createDate}</td>

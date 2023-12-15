@@ -28,4 +28,9 @@ public class MarketBoardDao {
 		return session.selectList(nameSpace+"selectMarketBoardWithPage", map);
 	}
 	
+	public int getTotalCount()
+	{
+		return session.selectOne(nameSpace+"totalCountOfMarketBoard");
+	}
+	
 }
