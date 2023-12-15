@@ -12,7 +12,7 @@
   
 </style>
 </head>
-<body style="background-color: #eeefc7b8;">
+<body>
 <div style="max-width:1000px; margin:0 auto;"> <!-- 왜 mw_1000클래스로 주면 안먹히지..? -->
 	<form action="./insertMarketBoard" method="post" enctype="multipart/form-data">
 		<!-- hidden -->

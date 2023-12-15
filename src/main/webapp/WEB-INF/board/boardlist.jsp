@@ -18,7 +18,7 @@
 	</div>
 
 	<div class="blist">
-		<table class="table table-striped">
+		<table class="table">
 			<thead>
 				<tr>
 					<th width="50">번호</th>
