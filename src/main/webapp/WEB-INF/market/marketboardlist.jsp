@@ -181,10 +181,18 @@ div.content {
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach var="dto" items="${mdata}" varStatus="n">
+		<c:forEach var="dto" items="${mdata}" >
 			<tr>
-				<td>${dto.boardSeq}</td>
-				<td>${dto.boardTitle}</td>
+				
+				<td>
+					${no}
+					<c:set var="no" value="${no-1}"/>
+				</td>
+				<td>
+				
+				${dto.boardTitle}
+				
+				</td>
 				<td></td>
 				<td>${dto.createDate}</td>
 				<td>${dto.boardViewCount}</td>
@@ -197,11 +205,11 @@ div.content {
 		<div style="text-align: center;">
 			<!-- 이전 -->
 			<c:if test="${startPage>1}">
-				<a href="./list?currentPage=${startPage-1}">이전</a>
+				<a href="./mboard?currentPage=${startPage-1}">이전</a>
 			</c:if>
 			&nbsp;
 			<c:forEach var="pno" begin="${startPage}" end="${endPage}">
-				<a href="./list?currentPage=${pno}" style="cursor: pointer;"> <c:if
+				<a href="./mboard?currentPage=${pno}" style="cursor: pointer;"> <c:if
 						test="${pno==currentPage}">
 						<span style="color: red;">${pno}</span>
 					</c:if> <c:if test="${pno!=currentPage}">
@@ -212,7 +220,7 @@ div.content {
 		</c:forEach>
 			<!-- 다음 -->
 			<c:if test="${endPage<totalPage}">
-				<a href="./list?currentPage=${endPage+1}">다음</a>
+				<a href="./mboard?currentPage=${endPage+1}">다음</a>
 			</c:if>
 		</div>
 	</div>
