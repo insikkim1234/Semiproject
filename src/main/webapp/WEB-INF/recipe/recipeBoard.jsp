@@ -127,7 +127,7 @@
                            <b>\${item.recipeTitle}</b><br>
                            <span style="color:gray;">\${item.recipeName}</span>
                            <br>
-                           <span class="recipe_writer">작성자<br>
+                           <span class="recipe_writer">
                            <span class="day">
                               &nbsp;&nbsp;&nbsp;
                            조회수\${item.recipeViewCount}</span>
