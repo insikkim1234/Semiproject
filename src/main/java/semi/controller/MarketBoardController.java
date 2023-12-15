@@ -133,11 +133,12 @@ public class MarketBoardController {
 		 marketBoardService.updateReadCount(boardSeq);
 		 
 		 MarketBoardDto mdto=marketBoardService.getData(boardSeq);
+		 MarketProductDto pdto=marketProductService.getData(boardSeq);
 		 
 		 model.addAttribute("mdto", mdto);
 		 
 		 
-		 return "mboard/content";
+		 return "market/marketboardcontent";
 	 }
 
 

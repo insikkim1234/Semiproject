@@ -189,9 +189,9 @@ div.content {
 					<c:set var="no" value="${no-1}"/>
 				</td>
 				<td>
-				
+				<a href="./content?num=${mdto.boardSeq}&currentPage=${currentPage}">
 				${dto.boardTitle}
-				
+				</a>
 				</td>
 				<td></td>
 				<td>${dto.createDate}</td>

@@ -14,7 +14,14 @@ public class MarketProductDao {
 	
 	private String nameSpace="semi.dao.MarketProductDao.";
 	
+	
+	
 	public void insertMarketProduct(MarketProductDto dto) {
 		session.insert(nameSpace + "insertMarketProduct", dto);
+	}
+	
+	public MarketProductDto getData(int boardSeq)
+	{
+		return session.selectOne(nameSpace+"selectDataByProductBoardSeq", boardSeq);
 	}
 }

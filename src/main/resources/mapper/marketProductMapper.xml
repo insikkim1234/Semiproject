@@ -14,5 +14,11 @@
         insert into tMarketProduct (nBoardSeq, nProductPrice, sProductPlace, sProductImage1, sProductImage2, sProductContent)
         values(#{boardSeq}, #{productPrice}, #{productPlace}, #{productImage1}, #{productImage2}, #{productContent})
     </insert>
+    
+    <select id="selectDataByProductBoardSeq" parameterType="int" resultType="MarketProductDto">
+		select *
+		from tMarketProduct
+		where nBoardSeq=#{boardSeq}
+	</select>
 </mapper>
 
