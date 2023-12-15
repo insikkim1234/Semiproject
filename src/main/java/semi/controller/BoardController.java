@@ -1,5 +1,7 @@
 package semi.controller;
 import java.util.List;
+
+import annotation.Login;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,8 +9,10 @@ import org.springframework.web.bind.annotation.*;
 
 import semi.config.BoardConfig;
 import semi.dto.BoardDto;
+import semi.dto.MemberDto;
 import semi.dto.PageDto;
 import semi.service.BoardService;
+
 
 
 @Controller
@@ -18,7 +22,7 @@ public class BoardController {
 	@Autowired private BoardConfig boardConfig;
 
 	@GetMapping(value = "/list")
-	public String board(Model model,
+	public String boardList(Model model,
 						@RequestParam(required = false, defaultValue = "1") int pageNum) {
 
 		if (pageNum < 1) pageNum = 1;
@@ -34,5 +38,16 @@ public class BoardController {
 		model.addAttribute("pageDto", pageDto);
 
 		return "board/boardlist";
+	}
+
+	@GetMapping(value = "/form")
+	public String boardForm(@Login MemberDto user) {
+		if (user == null) {
+			System.out.println("no session ");
+		}
+		else {
+			System.out.println("yes session");
+		}
+		return "redirect:/";
 	}
 }

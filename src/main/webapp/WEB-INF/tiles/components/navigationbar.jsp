@@ -11,7 +11,7 @@
 </div>
 
 <div class="btn-bar member_btns">
-	<c:if test="${sessionScope.loginOk==null}">
+	<c:if test="${sessionScope.login_member_dto==null}">
 		<a href="/semi/member/login">
 		<button type="submit" class="btn mx-2 px-0 login_rborder">
 			<div>로그인</div>
@@ -38,8 +38,8 @@
 		</div>
 	</c:if>--%>
 
-		<c:if test="${sessionScope.loginOk!=null}">
-			<h5>${sessionScope.myEmail}님</h5>&nbsp;&nbsp;
+		<c:if test="${sessionScope.login_member_dto!=null}">
+			<h5>${sessionScope.login_member_dto.userEmail}님</h5>&nbsp;&nbsp;
 		</c:if>
 </div>
 
