@@ -68,7 +68,7 @@
 
 	<c:choose>
 		<c:when test="${pageDto.curPage < pageDto.totalPage}">
-			<span><a href="${pageContext.request.contextPath}/board?pageNum=${pageDto.curPage + 1}" style="color:#11B560;">다음</a></span>
+			<span><a href="${pageContext.request.contextPath}/board?pageNum=${pageDto.curPage + 1}" class="cGreen"">다음</a></span>
 			<span><a href="${pageContext.request.contextPath}/board?pageNum=${pageDto.totalPage}" style="color:#11B560;">마지막</a></span>
 		</c:when>
 	</c:choose>

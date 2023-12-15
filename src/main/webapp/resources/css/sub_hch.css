@@ -78,7 +78,7 @@
 
 .headmenu_btn{
 	background-color: transparent;
-	color: white;
+	color: #11B560;
 	border: 0;
 	font-size: 18px;
 	font-weight: 600;
@@ -96,6 +96,10 @@
 
 .member_logo_btn{
 	width: 40px;
+}
+
+#mynavbar>form>.form-control{
+	 background-color: #e9ecef;
 }
 
 .btn_green {
@@ -248,8 +252,4 @@
 
 .blist>.table thead th {
     border-bottom: 1px solid #11b560;
-}
-
-.cGreen a{
-	color:#11b560;
 }

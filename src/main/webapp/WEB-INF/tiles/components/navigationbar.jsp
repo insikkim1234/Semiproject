@@ -44,7 +44,7 @@
 </div>
 
 
-<nav class="navbar navbar-expand-sm backGreen mb-3 p-0 text-white">
+<nav class="navbar navbar-expand-sm mb-3 p-0">
 <div class="container-fluid">
 <a class="navbar-brand" href="javascript:void(0)"> <img
     src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>eatingalone_logo2.png"
