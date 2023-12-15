@@ -11,4 +11,8 @@
 	<select id="getRecipeOrdersById" parameterType="int" resultType="RecipeOrderDto" resultMap="RecipeOrderDtoRm">
 		select * from tRecipeOrder where nRecipeIdx = #{recipeIdx} order by nRecipeNumber
 	</select>
+	
+	<insert id="insertOrderRecipe" parameterType="RecipeOrderDto">
+    	insert into tRecipeOrder (nRecipeIdx, nRecipeNumber, sRecipeOrderContent, sRecipeOrderPhoto) values (#{recipeIdx}, #{recipeNumber}, #{recipeOrderContent}, #{recipeOrderPhoto})
+	</insert>
 </mapper>
