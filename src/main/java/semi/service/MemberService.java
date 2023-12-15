@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import semi.dao.MemberDao;
 import semi.dto.MemberDto;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class MemberService {
@@ -21,7 +23,7 @@ public class MemberService {
         return memberDao.duplicatesEmailCheck(memberDto);
     }
 
-    public int loginExecute(MemberDto memberDto){
+    public List<MemberDto> loginExecute(MemberDto memberDto){
         return memberDao.loginExecute(memberDto);
     }
 

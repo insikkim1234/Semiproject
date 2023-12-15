@@ -22,6 +22,7 @@ import semi.service.MemberService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 @RequestMapping("/member")
@@ -105,12 +106,11 @@ public class MemberController {
     // 로그인 실행 로직 메서드
     @PostMapping("/login")
     public String loginExcute(@ModelAttribute MemberDto memberDto, HttpSession httpSession, RedirectAttributes redirectAttributes) {
-        //int result = memberService.loginExecute(memberDto);
-        MemberDto loginMember = memberService.getMember(memberDto);
+        List<MemberDto> result = memberService.loginExecute(memberDto);
 
-        if (loginMember != null) {
+        if (result.size() == 1) {
             httpSession.setMaxInactiveInterval(60*60*6);
-            httpSession.setAttribute(MemberConstants.LOGIN_MEMBER_DTO, loginMember);
+            httpSession.setAttribute(MemberConstants.LOGIN_MEMBER_DTO, result.get(0));
 
             System.out.println("로그인 성공");
             return "redirect:/";
