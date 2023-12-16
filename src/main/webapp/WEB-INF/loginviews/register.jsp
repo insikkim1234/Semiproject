@@ -55,7 +55,7 @@
 <body>
 <div class="fs_40 text-center cGreen fw_600 my-5">JOIN US</div>
 <form action="/semi/member/register" method="post"
-      class="regi_input mt-3">
+      class="regi_input mt-3" enctype="multipart/form-data">
     <input type="text" name="userName" placeholder="성명 입력" required><br>
     <div class="box">
         <input type="email" name="userEmail" placeholder="email" id="userEmail" required><br>
@@ -75,7 +75,7 @@
                     <img src="" alt="미리보기 이미지" class="preview">
                 </div>
                 <label class="file-label fw_600" for="chooseFile">이미지 선택</label>
-                <input class="file" id="chooseFile" type="file" name="userImage"
+                <input class="file" id="chooseFile" type="file" name="uploadFile"
                        onchange="dropFile.handleFiles(this.files)"
                        accept="image/png, image/jpeg, image/gif">
             </div>
