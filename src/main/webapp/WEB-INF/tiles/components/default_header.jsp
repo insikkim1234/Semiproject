@@ -11,3 +11,5 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/default_css.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common_hch.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sub_hch.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

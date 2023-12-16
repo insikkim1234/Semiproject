@@ -3,22 +3,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<div class="text-left">
-	<a href=""> <img
-		src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>eating_alone_mainlogo5.png"
-		class="img-fluid" style="width: 300px; padding: 10px 0;">
-	</a>
-</div>
+	<nav class="navbar navbar-expand-sm d-flex flex-column">
+	  <div class="container-fluid">
+	    <a href="${pageContext.request.contextPath}"> <img
+			src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>eating_alone_mainlogo6.png"
+			class="img-fluid ml-3" style="width: 300px;">
+		</a>
+	    <div class="collapse navbar-collapse mt-auto" id="mynavbar">
+	      <ul class="navbar-nav ml-auto align-center expanded text-center menubtn_effect">
+	        <li class="nav-item mx-5">
+	          <a class="nav-link fs_19 fw_600" href="${pageContext.request.contextPath}/board/list">
+	          <span>자취생 다 모여</span>
+	          <span data-hover="커뮤니티">커뮤니티</span>
+	          </a>
+	        </li>
+	        <li class="nav-item mx-5">
+	          <a class="nav-link fs_19 fw_600" href="${pageContext.request.contextPath}/recipe/board">
+	            <span>오늘 뭐 먹지?</span>
+	          	<span data-hover="레시피북">레시피북</span>
+	          </a>
+	        </li>
+	        <li class="nav-item mx-5">
+	          <a class="nav-link fs_19 fw_600" href="${pageContext.request.contextPath}/mboard">
+				<span>돈 아끼는 팁</span>
+	          	<span data-hover="벼룩시장">벼룩시장</span>
+			  </a>
+	        </li>
+	      </ul>
+	      <form class="d-flex m-0 justify-content-end">
+		      <input class="form-control me-2" type="text" style="border: 0;" placeholder="Search">
+		      <button class="btn btn_green2 fw_600" type="button">검색</button>
+		  </form>
+	    </div>
+	  </div>
+	</nav>
 
 <div class="btn-bar member_btns">
 	<c:if test="${sessionScope.login_member_dto==null}">
-		<a href="/semi/member/login">
-		<button type="submit" class="btn mx-2 px-0 login_rborder">
+		<a href="${pageContext.request.contextPath}/member/login">
+		<button type="submit" class="btn mx-2 p-0 login_rborder">
 			<div>로그인</div>
 		</button>
 	</a>
-	<a href="/semi/member/register">
-		<button type="submit" class="btn  mx-2 px-0">
+	<a href="${pageContext.request.contextPath}/member/register">
+		<button type="submit" class="btn  mx-2 p-0">
 			<div>회원가입</div>
 		</button>
 	</a>
@@ -42,47 +70,3 @@
 			<h5>${sessionScope.login_member_dto.userEmail}님</h5>&nbsp;&nbsp;
 		</c:if>
 </div>
-
-
-<nav class="navbar navbar-expand-sm mb-3 p-0">
-<div class="container-fluid">
-<a class="navbar-brand" href="javascript:void(0)"> <img
-    src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>eatingalone_logo2.png"
-    class="img-fluid" style="width: 50px;">
-</a>
-<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-    data-bs-target="#mynavbar">
-    <span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="mynavbar">
-    <div class="navbar-nav mx-auto">
-        <div class="nav-item align-items-center d-flex mx-5">
-            <form action="${pageContext.request.contextPath}/board/list" style="margin: 0;">
-                <button type="submit" class="btn headmenu_btn">게시판 목록</button>
-            </form>
-        </div>
-        <div class="nav-item align-items-center d-flex mx-5">
-            <form action="/semi/recipe/sample" style="margin: 0;">
-                <button type="submit" class="btn headmenu_btn">recipe 샘플</button>
-            </form>
-        </div>
-        <div class="nav-item align-items-center d-flex mx-5">
-            <form action="/semi/recipe/board" style="margin: 0;">
-                <button type="submit" class="btn headmenu_btn">레시피 보드</button>
-            </form>
-        </div>
-        <div class="nav-item align-items-center d-flex mx-5">
-            <form action="/semi/mboard" style="margin: 0;">
-                <button type="submit" class="btn headmenu_btn">중고마켓</button>
-            </form>
-        </div>
-    </div>
-
-    <form class="d-flex m-0 justify-content-end">
-        <input class="form-control me-2" type="text" style="border: 0;" placeholder="Search">
-        <button class="btn btn_green fw_600" type="button">검색</button>
-    </form>
-</div>
-</div>
-</nav>
-
