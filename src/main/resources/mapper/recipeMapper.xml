@@ -3,6 +3,7 @@
 <mapper namespace="semi.dao.RecipeDao">
 	<resultMap id="RecipeDtoRm" type="RecipeDto">
 		<result property="recipeIdx" column="nRecipeIdx" />
+		<result property="recipeUserSeq" column="nRecipeUserSeq" />
 		<result property="recipeTitle" column="sRecipeTitle" />
 		<result property="recipeName" column="sRecipeName" />
 		<result property="recipeViewCount" column="nRecipeViewCount" />
@@ -17,7 +18,7 @@
 	</resultMap>
 
 	<insert id="insertRecipe" parameterType="RecipeDto">
-    	insert into tRecipeBoard (sRecipeTitle, sRecipePhoto, sRecipeContent, sRecipeTime, sRecipeDifficulty, sRecipeServing, sRecipeIngredient, dtRecipeCreatedAt, dtRecipeUpdatedAt) values (#{recipeTitle}, #{recipePhoto}, #{recipeContent}, #{recipeTime}, #{recipeDifficulty}, #{recipeServing}, #{recipeIngredient}, now(), now())
+    	insert into tRecipeBoard (nRecipeUserSeq, sRecipeTitle, sRecipePhoto, sRecipeContent, sRecipeTime, sRecipeDifficulty, sRecipeServing, sRecipeIngredient, dtRecipeCreatedAt, dtRecipeUpdatedAt) values (#{recipeUserSeq}, #{recipeTitle}, #{recipePhoto}, #{recipeContent}, #{recipeTime}, #{recipeDifficulty}, #{recipeServing}, #{recipeIngredient}, now(), now())
 	</insert>
 	
 	

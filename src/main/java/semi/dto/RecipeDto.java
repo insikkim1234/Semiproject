@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 public class RecipeDto {
 	private int recipeIdx;
+	private int recipeUserSeq;
 	private String recipeTitle;
 	private String recipeName;
 	private int recipeViewCount;

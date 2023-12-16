@@ -1,5 +1,6 @@
 package semi.controller;
 
+import annotation.Login;
 import naver.storage.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import semi.dao.RecipeDao;
+import semi.dto.MemberDto;
 import semi.dto.RecipeDto;
 import semi.dto.RecipeOrderDto;
 import semi.service.RecipeOrderService;
@@ -24,8 +26,7 @@ public class RecipeController {
     @Autowired private RecipeOrderService recipeOrderService;
     @Autowired private RecipeService recipeService;
     @Autowired NcpObjectStorageService storageService;
-    @Autowired private RecipeDao recipeDao;
-    
+
     @GetMapping("/recipe/sample")
     public String sample() {
         return "recipe/recipeSample";
@@ -37,11 +38,17 @@ public class RecipeController {
     }
 
     @PostMapping("/recipe/insertRecipe")
-    public String insertRecipe(@ModelAttribute RecipeDto dto, @ModelAttribute RecipeOrderDto orderdto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload) {
-    	String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+    public String insertRecipe(@Login MemberDto memberDto, @ModelAttribute RecipeDto dto, @ModelAttribute RecipeOrderDto orderdto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload) {
+        // 일반화 필요
+        if (memberDto == null) {
+            return "redirect:/member/login";
+        }
+
+        String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
     			NcpObjectStorageService.DIR_PHOTO, upload);
     	
     	dto.setRecipePhoto(photo);
+        dto.setRecipeUserSeq(memberDto.getUserSeq());
     	recipeService.insertRecipe(dto);
     	
     	orderdto.setRecipeOrderPhoto(photo);
