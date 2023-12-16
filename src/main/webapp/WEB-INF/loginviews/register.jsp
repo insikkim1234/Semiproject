@@ -51,20 +51,19 @@
             border: 2px solid #E1A900;
         }
     </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 <div class="fs_40 text-center cGreen fw_600 my-5">JOIN US</div>
 <form action="/semi/member/register" method="post"
       class="regi_input mt-3">
-    <input type="text" name="userName" placeholder="성명 입력"><br>
+    <input type="text" name="userName" placeholder="성명 입력" required><br>
     <div class="box">
-        <input type="email" name="userEmail" placeholder="email" id="userEmail"><br>
-        <label class="cGreen fw_600 fs_17">아이디 중복 확인<input type="checkbox" id="emailCheckbox" class="ml-2">
+        <input type="email" name="userEmail" placeholder="email" id="userEmail" required><br>
+        <label class="cGreen fw_600 fs_17">아이디 중복 확인<input type="checkbox" id="emailCheckbox" class="ml-2" required>
         </label>
     </div>
     <br>
-    <input type="password" name="userPassword" placeholder="비밀번호"><br>
+    <input type="password" name="userPassword" placeholder="비밀번호" required><br>
     <div id="root">
         <h2 class="cGreen fs_17 fw_600 ">프로필 등록</h2>
         <div class="contents">
@@ -84,9 +83,8 @@
     </div>
     <input type="text" name="userPhoneNumber"
            placeholder="휴대전화번호(Ex:010-1234-5678)" class="mt-3"><br>
-    <input type="submit" value="회원가입" class="btn_green2">
+    <input type="submit" value="회원가입" class="btn_green2" required>
     </form>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $('#emailCheckbox').on("click",function (){
             const userEmail =$('#userEmail').val();
