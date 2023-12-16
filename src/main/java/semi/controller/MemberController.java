@@ -101,16 +101,16 @@ public class MemberController {
 
 //      DB 에서 변경된 행이 1이면 회원가입 성공.
         if(result == 1){
-            return "/loginviews/login";
+            return "loginviews/login";
         }
-        return "/loginviews/register";
+        return "loginviews/register";
     }
 
     // 로그인 실행 로직 메서드
     @PostMapping("/login")
     public String loginExcute(@ModelAttribute MemberDto memberDto, HttpSession httpSession, RedirectAttributes redirectAttributes) {
         MemberDto loginMember = memberService.getMember(memberDto);
-        
+
         if (loginMember != null
                 && memberService.validatePassword(memberDto.getUserPassword(), loginMember.getUserPassword())) {
             httpSession.setMaxInactiveInterval(60*60*6);
