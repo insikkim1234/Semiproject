@@ -6,7 +6,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MemberDto {
-    private String userSeq;
+    private int userSeq;
     private String userName;
     private String userEmail;
     private String userPassword;

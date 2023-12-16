@@ -12,6 +12,9 @@
     <insert id="insertMember" parameterType="semi.dto.MemberDto">
         INSERT INTO tUser (userName,userEmail,userPassword,userImage,userPhoneNumber)
         VALUES (#{userName},#{userEmail},#{userPassword},#{userImage},#{userPhoneNumber});
+        <selectKey keyProperty="userSeq" resultType="int" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
     <select id="checkDuplicatedEmail" parameterType="semi.dto.MemberDto" resultType="int">
         SELECT COUNT(*) FROM tUser WHERE userEmail = #{userEmail}

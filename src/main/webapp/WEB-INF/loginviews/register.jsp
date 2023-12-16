@@ -51,20 +51,19 @@
             border: 2px solid #E1A900;
         }
     </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 <div class="fs_40 text-center cGreen fw_600 my-5">JOIN US</div>
 <form action="/semi/member/register" method="post"
-      class="regi_input mt-3">
-    <input type="text" name="userName" placeholder="성명 입력"><br>
+      class="regi_input mt-3" enctype="multipart/form-data">
+    <input type="text" name="userName" placeholder="성명 입력" required><br>
     <div class="box">
-        <input type="email" name="userEmail" placeholder="email" id="userEmail"><br>
-        <label class="cGreen fw_600 fs_17">아이디 중복 확인<input type="checkbox" id="emailCheckbox" class="ml-2">
+        <input type="email" name="userEmail" placeholder="email" id="userEmail" required><br>
+        <label class="cGreen fw_600 fs_17">아이디 중복 확인<input type="checkbox" id="emailCheckbox" class="ml-2" required>
         </label>
     </div>
     <br>
-    <input type="password" name="userPassword" placeholder="비밀번호"><br>
+    <input type="password" name="userPassword" placeholder="비밀번호" required><br>
     <div id="root">
         <h2 class="cGreen fs_17 fw_600 ">프로필 등록</h2>
         <div class="contents">
@@ -76,21 +75,27 @@
                     <img src="" alt="미리보기 이미지" class="preview">
                 </div>
                 <label class="file-label fw_600" for="chooseFile">이미지 선택</label>
-                <input class="file" id="chooseFile" type="file" name="userImage"
+                <input class="file" id="chooseFile" type="file" name="uploadFile"
                        onchange="dropFile.handleFiles(this.files)"
                        accept="image/png, image/jpeg, image/gif">
             </div>
         </div>
     </div>
     <input type="text" name="userPhoneNumber"
-           placeholder="휴대전화번호(Ex:010-1234-5678)" class="mt-3"><br>
-    <input type="submit" value="회원가입" class="btn_green2">
+           placeholder="휴대전화번호(Ex:010-1234-5678)" class="mt-3" required><br>
+    <input type="submit" value="회원가입" class="btn_green2" >
     </form>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $('#emailCheckbox').on("click",function (){
-            const userEmail =$('#userEmail').val();
+        // 중복 체크 후 변경 시 체크 해제
+        $("#userEmail").on("propertychange change keyup paste input", function(){
+            $('#emailCheckbox').prop('checked', false);
+        });
 
+        $('#emailCheckbox').on("click",function (){
+            // 체크 해제할 때 검증 불필요
+            if (!$('#emailCheckbox').is(":checked")) return;
+
+            const userEmail =$('#userEmail').val();
             var jsonObj = JSON.stringify({"userEmail" : userEmail});
             $.ajax({
                 url : "./duplicatedEmailCheck",
@@ -99,19 +104,21 @@
                 data : jsonObj,
                 contentType:"application/json",
 
+                // success 와 complete 에서의 response가 다름. 200, 500 모두 success 상황에서 나누고 있기 때문에 여기서 처리
                 success :function (response){
                     alert(response.message);
-                },
-                error : function(error){
-                    console.error(error);
-                },
-                complete : function (response) {
-                    if (response.status === 200) {
+                    if (response.status === "200") {
                         $('#emailCheckbox').prop('checked',true);
                     } else {
                         $('#emailCheckbox').prop('checked', false);
                     }
-                }
+                },
+                error : function(error){
+                    console.error(error);
+                    // 방어 코드
+                    alert("네트워크 에러");
+                    $('#emailCheckbox').prop('checked', false);
+                },
             })
         })
 
