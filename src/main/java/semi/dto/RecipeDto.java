@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class RecipeDto {
+	//TODO : recipeName 제거 필요
 	private int recipeIdx;
 	private int recipeUserSeq;
 	private String recipeTitle;
@@ -18,5 +19,7 @@ public class RecipeDto {
 	private String recipeServing;
 	private String recipeIngredient;
 	private Timestamp recipeCreatedAt;
-	private Timestamp recipeUpdatedAt;	
+	private Timestamp recipeUpdatedAt;
+
+	private String recipeUserName;
 }

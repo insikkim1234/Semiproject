@@ -4,6 +4,7 @@
 	<resultMap id="RecipeDtoRm" type="RecipeDto">
 		<result property="recipeIdx" column="nRecipeIdx" />
 		<result property="recipeUserSeq" column="nRecipeUserSeq" />
+		<result property="recipeUserName" column="userName" />
 		<result property="recipeTitle" column="sRecipeTitle" />
 		<result property="recipeName" column="sRecipeName" />
 		<result property="recipeViewCount" column="nRecipeViewCount" />
@@ -21,9 +22,9 @@
     	insert into tRecipeBoard (nRecipeUserSeq, sRecipeTitle, sRecipePhoto, sRecipeContent, sRecipeTime, sRecipeDifficulty, sRecipeServing, sRecipeIngredient, dtRecipeCreatedAt, dtRecipeUpdatedAt) values (#{recipeUserSeq}, #{recipeTitle}, #{recipePhoto}, #{recipeContent}, #{recipeTime}, #{recipeDifficulty}, #{recipeServing}, #{recipeIngredient}, now(), now())
 	</insert>
 	
-	
 	<select id="selectAlltRecipe" parameterType="String" resultType="RecipeDto" resultMap="RecipeDtoRm">
-    	select * from tRecipeBoard 
+    	select tRecipeBoard.*, tUser.userName from tRecipeBoard
+    	LEFT JOIN tUser ON tRecipeBoard.nRecipeUserSeq = tUser.userSeq
     	<if test="searchword!=null">
       	where sRecipeTitle like concat('%',#{word},'%')
       	</if>
@@ -42,7 +43,9 @@
 	</update>
 	
 	<select id="selectDataBynRecipeIdx" parameterType="int" resultType="RecipeDto" resultMap="RecipeDtoRm">
-		select * from tRecipeBoard where nRecipeIdx = #{recipeIdx}
+		select * from tRecipeBoard
+		LEFT JOIN tUser ON tRecipeBoard.nRecipeUserSeq = tUser.userSeq
+		where nRecipeIdx = #{recipeIdx}
 	</select>
 
 </mapper>
