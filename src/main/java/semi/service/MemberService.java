@@ -1,6 +1,7 @@
 package semi.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,8 @@ import java.util.List;
 public class MemberService {
     @Autowired
     private final MemberDao memberDao;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public int insertMember(MemberDto dto) {
         return memberDao.insertMember(dto);
@@ -31,4 +34,11 @@ public class MemberService {
         return memberDao.getData(memberDto.getUserEmail());
     }
 
+    public String encodePassword(String passwd) {
+        return passwordEncoder.encode(passwd);
+    }
+
+    public boolean validatePassword(String rawPasswd, String encodedPasswd) {
+        return passwordEncoder.matches(rawPasswd, encodedPasswd);
+    }
 }
