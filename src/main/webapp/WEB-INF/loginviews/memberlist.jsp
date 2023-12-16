@@ -102,10 +102,10 @@
 </head>
 <body>
 
-	<c:if test="${sessionScope.loginok==null}">
+	<c:if test="${sessionScope.login_member_dto==null}">
 		<h3 style="margin: 50px;color: red;">회원 명단을 보려면 먼저 로그인을 해주세요</h3>
 	</c:if>
-	<c:if test="${sessionScope.loginok!=null}">
+	<c:if test="${sessionScope.login_member_dto!=null}">
 <div>
 	<h4>현재 총 ${totalCount}명의 회원이 있습니다</h4>
 	<br>
