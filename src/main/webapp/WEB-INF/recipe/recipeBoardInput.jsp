@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <div style="max-width:1000px; margin:0 auto;"> 
-	<form action="./insertMarketBoard" method="post" enctype="multipart/form-data">
+	<form action="./insertRecipe" method="post" enctype="multipart/form-data">
 		<!-- hidden -->
 		<input type="hidden" name="currentPage" value="${currentPage}">
 		<input type="hidden" name="num" value="${num}">	
