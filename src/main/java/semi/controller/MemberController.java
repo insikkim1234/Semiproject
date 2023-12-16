@@ -94,23 +94,27 @@ public class MemberController {
     //회원가입 실행 로직 메서드 -> 성공 login.jsp 실패 register.jsp
     @PostMapping("/register")
     public String register(@ModelAttribute MemberDto memberDto){
+        String encodedPassword = memberService.encodePassword(memberDto.getUserPassword());
+        memberDto.setUserPassword(encodedPassword);
+
         int result = memberService.insertMember(memberDto);
 
 //      DB 에서 변경된 행이 1이면 회원가입 성공.
         if(result == 1){
-            return "/loginviews/login";
+            return "loginviews/login";
         }
-        return "/loginviews/register";
+        return "loginviews/register";
     }
 
     // 로그인 실행 로직 메서드
     @PostMapping("/login")
     public String loginExcute(@ModelAttribute MemberDto memberDto, HttpSession httpSession, RedirectAttributes redirectAttributes) {
-        List<MemberDto> result = memberService.loginExecute(memberDto);
+        MemberDto loginMember = memberService.getMember(memberDto);
 
-        if (result.size() == 1) {
+        if (loginMember != null
+                && memberService.validatePassword(memberDto.getUserPassword(), loginMember.getUserPassword())) {
             httpSession.setMaxInactiveInterval(60*60*6);
-            httpSession.setAttribute(MemberConstants.LOGIN_MEMBER_DTO, result.get(0));
+            httpSession.setAttribute(MemberConstants.LOGIN_MEMBER_DTO, loginMember);
 
             System.out.println("로그인 성공");
             return "redirect:/";
