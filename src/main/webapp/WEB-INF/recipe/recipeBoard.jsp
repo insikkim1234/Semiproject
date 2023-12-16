@@ -136,8 +136,8 @@
 					        <p class="card-text"><b>\${item.recipeTitle}</b></p>
 					        <div class="d-flex justify-content-between align-items-center">
 					          <div class="recipe-writer" style="display: inline-block; vertical-align: bottom;">
-					          <img class="user_img" src="">
-					            <p>\${item.recipeName}</p>
+					          <img class="user_img" src="<%=NcpObjectStorageService.STORAGE_PROFILE_PHOTO_PATH%>\${item.recipeUserSeq}">
+					            <p>\${item.recipeUserName}</p>
 					          </div>
 					          <small class="text-body-secondary">조회수\${item.recipeViewCount}</small>
 					          </div>
