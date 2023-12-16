@@ -82,8 +82,8 @@
         </div>
     </div>
     <input type="text" name="userPhoneNumber"
-           placeholder="휴대전화번호(Ex:010-1234-5678)" class="mt-3"><br>
-    <input type="submit" value="회원가입" class="btn_green2" required>
+           placeholder="휴대전화번호(Ex:010-1234-5678)" class="mt-3" required><br>
+    <input type="submit" value="회원가입" class="btn_green2" >
     </form>
     <script>
         // 중복 체크 후 변경 시 체크 해제
