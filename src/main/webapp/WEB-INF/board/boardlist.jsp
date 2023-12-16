@@ -20,9 +20,9 @@
 	<div class="blist">
 		<table class="table">
 			<thead>
-				<tr>
+				<tr class="text-center">
 					<th width="50">번호</th>
-					<th width="300">제목</th>
+					<th width="200">제목</th>
 					<th width="80">작성자</th>
 					<th width="100">작성일</th>
 					<th width="50">조회</th>
@@ -30,7 +30,7 @@
 			</thead>
 			<tbody>
 				<c:forEach var="dto" items="${data}" varStatus="n">
-					<tr>
+					<tr class="text-center">
 						<td>${dto.comBoardSeq}</td>
 						<td>${dto.comBoardSubject}</td>
 						<td>${dto.userName}</td>
@@ -43,11 +43,11 @@
 	</div>
 </div>
 
-<div class="text-center fs_20 fw_600">
+<div class="text-center fw_500 mb-5">
 	<c:choose>
 		<c:when test="${pageDto.curPage > 1}">
-			<a href="${pageContext.request.contextPath}/board/list?pageNum=1" class="btn_green2">처음</a>
-			<a href="${pageContext.request.contextPath}/board/list?pageNum=${pageDto.curPage - 1}" class="btn_green2">이전</a>
+			<a href="${pageContext.request.contextPath}/board/list?pageNum=1" class="btn_green3 mx-1 fs_18">처음</a>
+			<a href="${pageContext.request.contextPath}/board/list?pageNum=${pageDto.curPage - 1}" class="btn_green3 fs_18">이전</a>
 		</c:when>
 	</c:choose>
 
@@ -56,10 +56,10 @@
 			<c:when test="${pageNumber >= 1 and pageNumber <= pageDto.totalPage}">
 				<c:choose>
 					<c:when test="${pageNumber == pageDto.curPage}">
-						<span class="c-yellow">${pageNumber}</span>
+						<span class="cBlack mx-1 fs_22">${pageNumber}</span>
 					</c:when>
 					<c:otherwise>
-						<span class="cGreen"><a href="${pageContext.request.contextPath}/board/list?pageNum=${pageNumber}">${pageNumber}</a></span>
+						<span class="cGreen mx-1 fs_22"><a href="${pageContext.request.contextPath}/board/list?pageNum=${pageNumber}">${pageNumber}</a></span>
 					</c:otherwise>
 				</c:choose>
 			</c:when>
@@ -68,8 +68,8 @@
 
 	<c:choose>
 		<c:when test="${pageDto.curPage < pageDto.totalPage}">
-			<span><a href="${pageContext.request.contextPath}/board?pageNum=${pageDto.curPage + 1}" class="btn_green2">다음</a></span>
-			<span><a href="${pageContext.request.contextPath}/board?pageNum=${pageDto.totalPage}"class="btn_green2">마지막</a ></span>
+			<span><a href="${pageContext.request.contextPath}/board?pageNum=${pageDto.curPage + 1}" class="btn_green3 mx-1 fs_18">다음</a></span>
+			<span><a href="${pageContext.request.contextPath}/board?pageNum=${pageDto.totalPage}"class="btn_green3 fs_18">마지막</a ></span>
 		</c:when>
 	</c:choose>
 </div>

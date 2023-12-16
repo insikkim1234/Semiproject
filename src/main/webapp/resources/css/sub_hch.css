@@ -39,6 +39,10 @@ a:hover, a:focus {
 	color: #11B560;
 }
 
+.cBlack{
+	color: #6b6b6b;
+}
+
 .borderGreen{
 	border: 2px solid #11B560 !important;
 }
@@ -139,6 +143,22 @@ a:hover, a:focus {
 .btn_green2:hover {
 	background-color: #EBEE48;
 	color:#33672B;
+}
+
+.btn_green3 {
+	background-color: 11B560; 
+	color: #fff;
+	border: 1px solid #11B560;
+	border-radius: 10px;
+	padding: 2px 5px;
+}
+
+.btn_green3:hover {
+	background-color: #EBEE48;
+	color:#33672B;
+	border: 1px solid #EBEE48;
+	border-radius: 10px;
+	padding: 2px 5px;
 }
 
 .login_rborder{
