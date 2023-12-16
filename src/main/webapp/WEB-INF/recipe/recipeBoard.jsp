@@ -53,6 +53,15 @@
       display: flex;
    }
    
+   .user_img {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    margin: 0 4px -2px 0;
+    vertical-align: text-bottom;
+    border: 2px solid ;
+}
+   
    
 </style>
 
@@ -112,34 +121,37 @@
             console.log(totalCount);
             showTotalCount(totalCount);
 
-            let s="";
+            let s = `<div class="row row-cols-4">`;
             
             $.each(datas,function(idx,item){
       
                s+=
                   `
-                  <div class="box" style="background-color:#FFFFF0;">
-                     <figure>
-                        <a href="./board/\${item.recipeIdx}">
-                           <img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.recipePhoto}"><br>
-                        </a>
-                        <figcaption>
-                           <b>\${item.recipeTitle}</b><br>
-                           <span style="color:gray;">\${item.recipeName}</span>
-                           <br>
-                           <span class="recipe_writer">
-                           <span class="day">
-                              &nbsp;&nbsp;&nbsp;
-                           조회수\${item.recipeViewCount}</span>
-                        </figcaption>
-                     </figure>
-                  </div>
-                  `;
-            });
-            $(".list").html(s);
-          }
-      });
-   }
+					  <div class="col mb-4">
+					    <div class="card shadow-sm" style="border: 2px solid #11B560; padding: 10px;">
+					      <a href="./board/\${item.recipeIdx}">
+					        <img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.recipePhoto}" class="card-img-top" style="width: 100%; height:180px;">
+					      </a>
+					      <div class="card-body">
+					        <p class="card-text"><b>\${item.recipeTitle}</b></p>
+					        <div class="d-flex justify-content-between align-items-center">
+					          <div class="recipe-writer" style="display: inline-block; vertical-align: bottom;">
+					          <img class="user_img" src="">
+					            <p>\${item.recipeName}</p>
+					          </div>
+					          <small class="text-body-secondary">조회수\${item.recipeViewCount}</small>
+					          </div>
+				              </div>
+				            </div>
+				          </div>
+				          `;
+				      });
+
+				      s += `</div>`; // 그리드를 닫아주는 부분
+				      $(".list").html(s);
+				    }
+				  });
+				}
    
    function list()
    {

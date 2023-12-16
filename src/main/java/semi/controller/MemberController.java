@@ -1,16 +1,12 @@
 package semi.controller;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import naver.storage.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +18,6 @@ import semi.service.MemberService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
-import java.util.List;
 
 @Controller
 @RequestMapping("/member")
@@ -93,16 +88,21 @@ public class MemberController {
 
     //회원가입 실행 로직 메서드 -> 성공 login.jsp 실패 register.jsp
     @PostMapping("/register")
-    public String register(@ModelAttribute MemberDto memberDto){
+    public String register(@ModelAttribute MemberDto memberDto, @RequestParam MultipartFile uploadFile) {
         String encodedPassword = memberService.encodePassword(memberDto.getUserPassword());
         memberDto.setUserPassword(encodedPassword);
 
         int result = memberService.insertMember(memberDto);
-
 //      DB 에서 변경된 행이 1이면 회원가입 성공.
         if(result == 1){
+            if (uploadFile != null) {
+                storageService.uploadFileWithFileName(NcpObjectStorageService.STORAGE_EATINGALONE,
+                        NcpObjectStorageService.DIR_USER_PROFILE_PHOTO, uploadFile, String.valueOf(memberDto.getUserSeq()));
+            }
+
             return "loginviews/login";
         }
+
         return "loginviews/register";
     }
 
