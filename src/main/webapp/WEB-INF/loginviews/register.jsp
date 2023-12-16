@@ -86,9 +86,16 @@
     <input type="submit" value="회원가입" class="btn_green2" required>
     </form>
     <script>
-        $('#emailCheckbox').on("click",function (){
-            const userEmail =$('#userEmail').val();
+        // 중복 체크 후 변경 시 체크 해제
+        $("#userEmail").on("propertychange change keyup paste input", function(){
+            $('#emailCheckbox').prop('checked', false);
+        });
 
+        $('#emailCheckbox').on("click",function (){
+            // 체크 해제할 때 검증 불필요
+            if (!$('#emailCheckbox').is(":checked")) return;
+
+            const userEmail =$('#userEmail').val();
             var jsonObj = JSON.stringify({"userEmail" : userEmail});
             $.ajax({
                 url : "./duplicatedEmailCheck",
@@ -97,19 +104,21 @@
                 data : jsonObj,
                 contentType:"application/json",
 
+                // success 와 complete 에서의 response가 다름. 200, 500 모두 success 상황에서 나누고 있기 때문에 여기서 처리
                 success :function (response){
                     alert(response.message);
-                },
-                error : function(error){
-                    console.error(error);
-                },
-                complete : function (response) {
-                    if (response.status === 200) {
+                    if (response.status === "200") {
                         $('#emailCheckbox').prop('checked',true);
                     } else {
                         $('#emailCheckbox').prop('checked', false);
                     }
-                }
+                },
+                error : function(error){
+                    console.error(error);
+                    // 방어 코드
+                    alert("네트워크 에러");
+                    $('#emailCheckbox').prop('checked', false);
+                },
             })
         })
 
