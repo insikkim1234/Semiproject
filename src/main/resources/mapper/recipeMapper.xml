@@ -6,7 +6,6 @@
 		<result property="recipeUserSeq" column="nRecipeUserSeq" />
 		<result property="recipeUserName" column="userName" />
 		<result property="recipeTitle" column="sRecipeTitle" />
-		<result property="recipeName" column="sRecipeName" />
 		<result property="recipeViewCount" column="nRecipeViewCount" />
 		<result property="recipePhoto" column="sRecipePhoto" />
 		<result property="recipeContent" column="sRecipeContent" />
