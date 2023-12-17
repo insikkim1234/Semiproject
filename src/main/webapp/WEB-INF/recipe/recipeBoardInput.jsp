@@ -73,7 +73,19 @@
 	</form>
 </div>
 
+<form action="./OrderTest" method="post" enctype="multipart/form-data">
+	<div id="orderTest-container">
+		<div class="orderTest-row">
+			<input type="text" name="orderlist[0].recipeOrderContent" class="form-control" required autofocus placeholder="예 : 파를 다듬어 줍니다." value="${recipeContent}">
+			<input type="file" name="orderlist[0].upload" class="form-control" value="${recipePhoto}">
+			<button type="button" class="btn btn-outline-secondary" onclick="addOrderTest()">추가</button>
+			<button type="submit">tmp 저장</button>
+		</div>
+	</div>
+</form>
+
 <script>
+	var idx = 1;
 	function addIngredient(){
 		var container = document.getElementById("ingredient-container");
         var newRow = document.createElement("div");
@@ -98,6 +110,21 @@
 	}
 
     function removeOrder(button) {
+    	button.parentNode.remove();
+   	}
+    
+    function addOrderTest(){
+		var container = document.getElementById("orderTest-container");
+        var newRow = document.createElement("div");
+        newRow.className = "orderTest-row";
+        newRow.innerHTML = '<input type="text" name="orderlist[' + idx + '].recipeOrderContent" class="form-control" required autofocus placeholder="예 : 파를 다듬어 줍니다." value="${recipeContent}">' +
+        				   '<input type="file" name="orderlist[' + idx + '].upload" class="form-control" value="${recipePhoto}">' + 
+        				   '<button type="button" class="btn btn-outline-secondary" onclick="removeOrderTest(this)">삭제</button>';
+        container.appendChild(newRow);
+        idx+=1;
+	}
+
+    function removeOrderTest(button) {
     	button.parentNode.remove();
    	}
 </script>

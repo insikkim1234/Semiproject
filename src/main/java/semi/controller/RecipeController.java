@@ -1,24 +1,33 @@
 package semi.controller;
 
-import annotation.Login;
-import naver.storage.NcpObjectStorageService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import org.springframework.web.multipart.MultipartFile;
-
-import semi.dao.RecipeDao;
-import semi.dto.MemberDto;
-import semi.dto.RecipeDto;
-import semi.dto.RecipeOrderDto;
-import semi.service.RecipeOrderService;
-import semi.service.RecipeService;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
+
+import annotation.Login;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import naver.storage.NcpObjectStorageService;
+
+import semi.dto.MemberDto;
+import semi.dto.RecipeDto;
+import semi.dto.RecipeOrderDto;
+import semi.orderBean.OrderBean;
+import semi.orderBean.OrderListBean;
+import semi.service.RecipeOrderService;
+import semi.service.RecipeService;
 
 
 @Controller
@@ -94,4 +103,25 @@ public class RecipeController {
     	return "recipe/recipeBoardDetail/" + recipeIdx;
     }
 	
+    @GetMapping("/recipe/OrderTest")
+    public String showInsertForm() {
+    	System.out.println("RecipeController에서 GET 요청 들어옴");
+    	return "recipe_test";
+    }
+	
+    @PostMapping("/recipe/OrderTest")
+    public String doAction(OrderListBean obList) throws UnsupportedEncodingException {
+    	for(int i = 0; i < obList.getOrderlist().size(); i++) {
+    		
+	    	System.out.println("RecipeController에서 POST 요청 들어옴");
+	    	
+	    	ArrayList<OrderBean> list = (ArrayList<OrderBean>) obList.getOrderlist();
+	    	
+	    	System.out.println(list.get(i).getRecipeOrderContent());
+	    	System.out.println(list.get(i).getUpload());
+	    	
+    	}
+    	return "recipe_test";
+    }
+    
 }
