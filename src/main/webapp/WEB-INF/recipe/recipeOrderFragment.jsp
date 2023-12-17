@@ -4,6 +4,15 @@
 
 <!-- TODO: move to css file-->
 <style>
+	#order_title {
+		background-color: var(--white);
+        padding: 10px;
+        margin: 10px;
+        display: flex;
+        font-size: 16px;
+        color: #aaa;
+	}
+	
     .div_recipeOrder {
         width: 100%;
         box-sizing: border-box;
@@ -16,7 +25,6 @@
         padding: 10px;
         margin: 10px;
         display: flex;
-
     }
 
     .div_recipeOrderImg {
@@ -40,6 +48,9 @@
 </style>
 
 <div class="div_recipeOrder">
+	<div id="order_title">
+		[조리 순서]
+	</div>
     <c:forEach var="orderItem" items="${recipeOrderDtoList}" >
         <div class="div_recipeOrderItem">
             <div class="div_recipeOrderContent">
