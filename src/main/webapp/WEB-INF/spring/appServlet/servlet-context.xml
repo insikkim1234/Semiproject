@@ -38,5 +38,5 @@
 		<beans:property name="maxUploadSize" value="4000000" /> <!-- 3기가 살짝 넘는 정도 -->
 	</beans:bean>
 
-	<context:component-scan base-package="bitcamp.project.semi, semi.*, naver.storage" />
+	<context:component-scan base-package="bitcamp.project.semi, semi.*, naver.storage, semi.*.*" />
 </beans:beans>
