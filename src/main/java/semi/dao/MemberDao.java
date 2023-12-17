@@ -26,8 +26,8 @@ public class MemberDao {
         return session.selectOne(nameSpace + "checkDuplicatedEmail",dto);
     }
     //로그인 체크로직
-    public int loginExecute(MemberDto dto) {
-        return session.selectOne(nameSpace + "loginCheck", dto);
+    public List<MemberDto> loginExecute(MemberDto dto) {
+        return session.selectList(nameSpace + "loginCheck", dto);
     }
 
     public List<MemberDto> getSearchMember(String field, String word)

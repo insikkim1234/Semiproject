@@ -10,14 +10,13 @@
 
 <style>
 div.simpleicon {
-	margin: 30px 100px;
-}
-
-div.simpleicon * {
-	cursor: pointer;
-	margin-right: 30px;
-	font-size: 30px;
-}
+      cursor: pointer;
+      margin-right: 30px;
+      font-size: 25px;
+      height: 38px;
+      margin-top: 3px;
+      margin-left: -5px;
+} 
 
 div.list {
 	margin: 30px 50px;
@@ -51,8 +50,8 @@ div.content {
 	display: none;
 }
 </style>
-<%-- <script type="text/javascript">
-	$(function(){
+<script type="text/javascript">
+	<%--$(function(){
 		//처음 시작시 그리드모양 이미지형태로 출력하기
 		grid();
 		
@@ -148,21 +147,32 @@ div.content {
 				$("div.content1").eq(0).css("display","block");
 		    }
 		});
-	}
-</script> --%>
+	} --%>
+</script>
 </head>
 <body>
-	<div>
-		<div class="mlist_head fs_20">
-			총 ${totalCount}개의 소중한 물건들이 있습니다
-
-
-			<button type="button" class="btn btn-sm btn_product"
-				onclick="location.href='./mboard/form'">나의 물품등록</button>
-
+	<div class="mw_1000">
+		<div class="fs_40 fw_600 cGreen text_left mt-5">이거 어때?</div>
+		<form class="d-flex m-0 justify-content-end mt-3">
+			<div class="simpleicon" style="margin-right: 10px;">
+	            <i class="bi bi-grid simplegrid"></i>
+	            <span style="margin-right: 5px;"></span> 
+	            <i class="bi bi-list-ul simplelist"></i>
+	   		</div>
+			<input class="form-control me-2" type="text" placeholder="검색어 입력" style="width: 200px; border:2px solid #11B560;">
+			<button class="btn btn_green2 fw_600" type="button">검색</button>
+		</form>
+		<div class="fs_17 bg_green row mt-3 mw_1000">
+			<div class="col py-3 fw_600">${totcalCnt}건의 거래 진행중..</div>
+			<div class="col text-end">
+				<button type="button" class="btn btn_green fw_600 mt-2"
+					onclick="location.href='./mboard/form'">나의 물품등록</button>
+			</div>
 		</div>
+		<div>
 		
 		
+<<<<<<< HEAD
 		<!-- !!!!!!!!!!!!!!!!!!!!!!!! -->
 		<div class="simpleicon">
 			<i class="bi bi-grid simplegrid"></i> <i
@@ -201,6 +211,40 @@ div.content {
 		</tbody>
 	</table>
         
+=======
+		<div class="blist">
+			<table class="table">
+				<thead>
+					<tr class="text-center">
+						<th width="50">번호</th>
+						<th width="200">제목</th>
+						<th width="80">작성자</th>
+						<th width="100">작성일</th>
+						<th width="50">조회</th>				
+					</tr>
+				</thead>
+				<tbody>
+				<c:forEach var="dto" items="${mdata}" >
+					<tr class="text-center">
+						
+						<td>
+							${no}
+							<c:set var="no" value="${no-1}"/>
+						</td>
+						<td>
+						
+						${dto.boardTitle}
+						
+						</td>
+						<td></td>
+						<td>${dto.createDate}</td>
+						<td>${dto.boardViewCount}</td>
+					</tr>
+				</c:forEach>
+				</tbody>
+			</table>
+	    </div>    
+>>>>>>> main
 		
 		<div style="text-align: center;">
 			<!-- 이전 -->
@@ -211,9 +255,9 @@ div.content {
 			<c:forEach var="pno" begin="${startPage}" end="${endPage}">
 				<a href="./mboard?currentPage=${pno}" style="cursor: pointer;"> <c:if
 						test="${pno==currentPage}">
-						<span style="color: red;">${pno}</span>
-					</c:if> <c:if test="${pno!=currentPage}">
 						<span style="color: black;">${pno}</span>
+					</c:if> <c:if test="${pno!=currentPage}">
+						<span style="color: #11b560;">${pno}</span>
 					</c:if>
 				</a>
 			&nbsp;
@@ -223,6 +267,7 @@ div.content {
 				<a href="./mboard?currentPage=${endPage+1}">다음</a>
 			</c:if>
 		</div>
+	</div>
 	</div>
 </body>
 </html>

@@ -1,5 +1,15 @@
 @charset "utf-8";
 
+*:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+a:hover, a:focus {
+  outline: none;
+}
+
 /* marketboardlist */
 .mlist_head{
 	color: #11B560;
@@ -27,6 +37,10 @@
 
 .cGreen{
 	color: #11B560;
+}
+
+.cBlack{
+	color: #6b6b6b;
 }
 
 .borderGreen{
@@ -90,8 +104,17 @@
 
 .member_btns{
 	position: absolute;
-	top:10px;
+	top:8px;
 	right: 10px;
+}
+
+.member_btns>a>button{
+	font-weight: 500;
+	font-size: 15px;
+}
+
+.member_btns>a:hover{
+	color:#11B560;
 }
 
 .member_logo_btn{
@@ -110,7 +133,6 @@
 .btn_green2 {
 	background-color: #11B560; 
 	color: #fff;
-	border: 2px solid #0e942c;
 }
 
 .btn_green:hover {
@@ -121,7 +143,22 @@
 .btn_green2:hover {
 	background-color: #EBEE48;
 	color:#33672B;
-	border: 2px solid #e1a900;
+}
+
+.btn_green3 {
+	background-color: 11B560; 
+	color: #fff;
+	border: 1px solid #11B560;
+	border-radius: 10px;
+	padding: 2px 5px;
+}
+
+.btn_green3:hover {
+	background-color: #EBEE48;
+	color:#33672B;
+	border: 1px solid #EBEE48;
+	border-radius: 10px;
+	padding: 2px 5px;
 }
 
 .login_rborder{
@@ -260,3 +297,81 @@
  .c-yellow{
  	color:#e1a900;
  }
+ 
+ /*네비바 메뉴 이펙트  */
+.menubtn_effect a{
+  position:relative;
+  margin:0 20px;
+  padding-bottom: 18px;
+ }
+
+.menubtn_effect a:before, .menubtn_effect a:after {
+	position: absolute;
+	top:75%;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: #000;
+	content: '';
+	opacity: 0.5;
+	-webkit-transition: opacity 0.3s, height 0.3s;
+	transition: opacity 0.3s, height 0.3s;
+}
+
+.menubtn_effect a:after {
+	top: -10%;
+	opacity: 0;
+    background-color: #11B560;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+	transition: transform 0.3s, opacity 0.3s;
+	-webkit-transform: translateY(-10px);
+	transform: translateY(-10px);
+}
+
+.menubtn_effect a span:first-child {
+  opacity:0;
+	z-index: 2;
+	display: block;
+	color: #000;
+	text-shadow: none;
+	text-transform: none;
+	font-style: italic;
+	font-size: 0.75em;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+	transition: transform 0.3s, opacity 0.3s;
+	-webkit-transform: translateY(100%);
+	transform: translateY(100%);
+}
+
+.menubtn_effect a span:last-child {
+  	z-index: 1;
+	display: block;
+	font-weight: 600;
+    color:#6b6b6b;
+}
+
+.menubtn_effect a span:last-child:hover {
+  	z-index: 1;
+	display: block;
+	font-weight: 600;
+    color:#11B560;
+}
+
+
+.menubtn_effect a:hover:before, .menubtn_effect a:focus:before {
+	height: 5px;
+}
+
+.menubtn_effect a:hover:before, .menubtn_effect a:hover:after, .menubtn_effect a:focus:before, .menubtn_effect a:focus:after {
+	opacity: 1;
+	-webkit-transform: translateY(0px);
+	transform: translateY(0px);
+  	background-color:#11B560;
+}
+
+.menubtn_effect a:hover span:first-child, .menubtn_effect a:focus span:first-child {
+	opacity: 1;
+	-webkit-transform: translateY(-40%);
+	transform: translateY(-40%);
+}
+ 

@@ -193,6 +193,12 @@ a:hover {
 	margin:0 auto; 
 }
 
+.mw_1500 {
+	max-width:1500px;
+	margin:0 auto; 
+}
+
+
 
 /* placeholder style - italic */
 ::placeholder {

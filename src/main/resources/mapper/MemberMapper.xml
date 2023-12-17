@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="semi.dao.MemberDao">
+<!--    <resultMap id="MemberDaoRm" type="semi.dto.MemberDto" >
+        <result property="userName" column="sUserName" />
+        <result property="userEmail" column="sUserEmail" />
+        <result property="userPassword" column="sUserPassword" />
+        <result property="userImage" column="sUserImage" />
+        <result property="userPhoneNumber" column="sUserPhoneNumber" />
+    </resultMap>-->
+
     <insert id="insertMember" parameterType="semi.dto.MemberDto">
         INSERT INTO tUser (userName,userEmail,userPassword,userImage,userPhoneNumber)
         VALUES (#{userName},#{userEmail},#{userPassword},#{userImage},#{userPhoneNumber});
+        <selectKey keyProperty="userSeq" resultType="int" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
     <select id="checkDuplicatedEmail" parameterType="semi.dto.MemberDto" resultType="int">
         SELECT COUNT(*) FROM tUser WHERE userEmail = #{userEmail}
@@ -16,8 +27,8 @@
         </if>
 		order by num desc
 	</select>
-    <select id="loginCheck" parameterType="semi.dto.MemberDto" resultType="int">
-        select count(*) from tUser where userEmail=#{userEmail} and userPassword=#{userPassword};
+    <select id="loginCheck" parameterType="semi.dto.MemberDto" resultType="semi.dto.MemberDto">
+        select * from tUser where userEmail=#{userEmail} and userPassword=#{userPassword};
     </select>
     <select id="selectDataById" parameterType="String" resultType="semi.dto.MemberDto">
         select * from tUser where userEmail=#{userEmail}
