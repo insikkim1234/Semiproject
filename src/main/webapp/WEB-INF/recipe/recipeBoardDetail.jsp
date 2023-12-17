@@ -88,7 +88,7 @@
 		<br>
 		<div>
 			<span class="detailWriter">작성자 : </span>
-			<b>${dto.recipeName}</b>&nbsp;
+			<b>${dto.recipeUserName}</b>&nbsp;
 			<span class="detailViewCount">조회수 : </span>
 			<b>${dto.recipeViewCount}</b>
 		</div>
