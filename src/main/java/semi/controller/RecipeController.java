@@ -7,6 +7,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import annotation.Login;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import naver.storage.NcpObjectStorageService;
-import semi.dao.RecipeDao;
+
+import semi.dto.MemberDto;
 import semi.dto.RecipeDto;
 import semi.dto.RecipeOrderDto;
 import semi.orderBean.OrderBean;
@@ -32,8 +35,7 @@ public class RecipeController {
     @Autowired private RecipeOrderService recipeOrderService;
     @Autowired private RecipeService recipeService;
     @Autowired NcpObjectStorageService storageService;
-    @Autowired private RecipeDao recipeDao;
-    
+
     @GetMapping("/recipe/sample")
     public String sample() {
         return "recipe/recipeSample";
@@ -45,11 +47,17 @@ public class RecipeController {
     }
 
     @PostMapping("/recipe/insertRecipe")
-    public String insertRecipe(@ModelAttribute RecipeDto dto, @ModelAttribute RecipeOrderDto orderdto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload) {
-    	String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+    public String insertRecipe(@Login MemberDto memberDto, @ModelAttribute RecipeDto dto, @ModelAttribute RecipeOrderDto orderdto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload) {
+        // 일반화 필요
+        if (memberDto == null) {
+            return "redirect:/member/login";
+        }
+
+        String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
     			NcpObjectStorageService.DIR_PHOTO, upload);
     	
     	dto.setRecipePhoto(photo);
+        dto.setRecipeUserSeq(memberDto.getUserSeq());
     	recipeService.insertRecipe(dto);
     	
     	orderdto.setRecipeOrderPhoto(photo);

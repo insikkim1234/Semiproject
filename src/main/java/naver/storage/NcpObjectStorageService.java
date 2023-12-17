@@ -22,8 +22,11 @@ public class NcpObjectStorageService implements ObjectStorageService {
 
 	public static final String STORAGE_EATINGALONE = "semi-project-eatingalone";
 	public static final String DIR_PHOTO = "photo";
+	public static final String DIR_USER_PROFILE_PHOTO = "userProfilePhoto";
 	public static final String STORAGE_URL = "https://kr.object.ncloudstorage.com";
-	public static final String STORAGE_PHOTO_PATH = STORAGE_URL + "/" + STORAGE_EATINGALONE + "/" + DIR_PHOTO  + "/";
+	public
+	static final String STORAGE_PHOTO_PATH = STORAGE_URL + "/" + STORAGE_EATINGALONE + "/" + DIR_PHOTO  + "/";
+	public static final String STORAGE_PROFILE_PHOTO_PATH = STORAGE_URL + "/" + STORAGE_EATINGALONE + "/" + DIR_USER_PROFILE_PHOTO  + "/";
 
 	public NcpObjectStorageService(NaverConfig naverConfig) {
 		s3 = AmazonS3ClientBuilder.standard()
@@ -66,6 +69,36 @@ public class NcpObjectStorageService implements ObjectStorageService {
 			throw new RuntimeException("파일 업로드 오류", e);
 		}
 	}
+
+	public boolean uploadFileWithFileName(String bucketName, String directoryPath, MultipartFile file, String fileUuidName) {
+		if (file.isEmpty()) {
+			System.out.println("[*] NcpObjectStorageService uploadFile file is Empty");
+			return false;
+		}
+
+		try (InputStream fileIn = file.getInputStream()) {
+			ObjectMetadata objectMetadata = new ObjectMetadata();
+			objectMetadata.setContentType(file.getContentType());
+			objectMetadata.setContentLength(file.getSize());
+
+			String uploadFullPath = directoryPath +"/"+ fileUuidName;
+			uploadFullPath = uploadFullPath.replaceAll("//", "/");
+
+			PutObjectRequest objectRequest = new PutObjectRequest(
+					bucketName,
+					uploadFullPath,
+					fileIn,
+					objectMetadata).withCannedAcl(CannedAccessControlList.PublicRead);
+
+			s3.putObject(objectRequest);
+			System.out.println(s3.getUrl(bucketName, uploadFullPath).toString());
+
+			return true;
+		} catch (Exception e) {
+			throw new RuntimeException("파일 업로드 오류", e);
+		}
+	}
+
 
 	@Override
 	public void deleteFile(String bucketName, String directoryPath, String fileName) {

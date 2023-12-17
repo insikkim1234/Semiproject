@@ -10,7 +10,12 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven />
+	<annotation-driven>
+		<argument-resolvers>
+			<beans:bean class="ArgumentResolver.LoginMemberArgumentResolver" />
+		</argument-resolvers>
+	</annotation-driven>
+
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />

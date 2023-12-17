@@ -14,9 +14,6 @@
       margin-left: -5px;
    } 
    
-   div.list {
-      margin: 30px 50px;
-   }
    
    div.box {
       width: 270px;
@@ -26,7 +23,7 @@
       border-radius: 20px;
       float: left;
       margin-right: 30px;
-      margin-bottom: 20px;
+      margin-top: 30px;
    }
    
    div.box figure img {
@@ -55,6 +52,15 @@
    .recipetotalcount {
       display: flex;
    }
+   
+   .user_img {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    margin: 0 4px -2px 0;
+    vertical-align: text-bottom;
+    border: 2px solid ;
+}
    
    
 </style>
@@ -115,34 +121,37 @@
             console.log(totalCount);
             showTotalCount(totalCount);
 
-            let s="";
+            let s = `<div class="row row-cols-4">`;
             
             $.each(datas,function(idx,item){
       
                s+=
                   `
-                  <div class="box" style="background-color:#FFFFF0;">
-                     <figure>
-                        <a href="./board/\${item.recipeIdx}">
-                           <img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.recipePhoto}"><br>
-                        </a>
-                        <figcaption>
-                           <b>\${item.recipeTitle}</b><br>
-                           <span style="color:gray;">\${item.recipeName}</span>
-                           <br>
-                           <span class="recipe_writer">작성자<br>
-                           <span class="day">
-                              &nbsp;&nbsp;&nbsp;
-                           조회수\${item.recipeViewCount}</span>
-                        </figcaption>
-                     </figure>
-                  </div>
-                  `;
-            });
-            $(".list").html(s);
-          }
-      });
-   }
+					  <div class="col mb-4">
+					    <div class="card shadow-sm" style="border: 2px solid #11B560; padding: 10px;">
+					      <a href="./board/\${item.recipeIdx}">
+					        <img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.recipePhoto}" class="card-img-top" style="width: 100%; height:180px;">
+					      </a>
+					      <div class="card-body">
+					        <p class="card-text"><b>\${item.recipeTitle}</b></p>
+					        <div class="d-flex justify-content-between align-items-center">
+					          <div class="recipe-writer" style="display: inline-block; vertical-align: bottom;">
+					          <img class="user_img" src="<%=NcpObjectStorageService.STORAGE_PROFILE_PHOTO_PATH%>\${item.recipeUserSeq}">
+					            <p>\${item.recipeUserName}</p>
+					          </div>
+					          <small class="text-body-secondary">조회수\${item.recipeViewCount}</small>
+					          </div>
+				              </div>
+				            </div>
+				          </div>
+				          `;
+				      });
+
+				      s += `</div>`; // 그리드를 닫아주는 부분
+				      $(".list").html(s);
+				    }
+				  });
+				}
    
    function list()
    {
@@ -160,34 +169,39 @@
             let s="";
             s+=
             `
-            <table class="table table-bordered" style="450px">
+            <div class="blist">
+            <table class="table">
+            	<thead>
+				<tr>
+					<th width="60">번호</th>
+					<th width="290">사진</th>
+					<th width="90">제목</th>
+					<th width="90">작성자</th>
+					<th width="60">작성일</th>
+					<th width="50">조회</th>
+				</tr>
+				</thead>
+				<tbody>
+            
+            
             `;
             $.each(datas,function(idx,item){
-               var recipeName=item.recipeName;
-               console.log(recipeName);
+
                s+=
                `
-               <tr>
-                  <td>
-                  <a href="./board/\${item.recipeIdx}">
-                  <img class="recipe_img"src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.recipePhoto}">
-                  </a>
-                     <h5><b class="subject" style="cursor:pointer">\${item.recipeTitle}</b></h5>
-                     <div style="margin-left:20px;color:black;" class="content">
-                        <pre>\${item.recipeContent}</pre>
-                        </div> 
-                        <div>
-                           <span>${item.recipeName}</span>&nbsp;&nbsp;
-                           <span class="recipe_createdAt">작성일<br>
-                              &nbsp;&nbsp;
-                              조회수
-                           </span>
-                        </div>
-                     </td>
-                  </tr>
+               		<tr><td>\${item.recipeIdx}</td>
+               		<td>
+               			<a href="./board/\${item.recipeIdx}">
+                    		<img class="recipe_img"src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.recipePhoto}">
+                    	</a>
+                    </td>
+                    <td>\${item.recipeTitle}</td>
+                    <td>\${item.recipeName}</td>
+                    <td>\${item.ecipeCreatedAt}</td> 
+                    <td>\${item.recipeViewCount}</td></tr>
                `;
             });
-            s+="</table>";
+            s+="</tbody></table></div></div>";
             $(".list").html(s);
             //첫번째 content만 일단 보이도록
             $("div.content").eq(0).css("display","block");
