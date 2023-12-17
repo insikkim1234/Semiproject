@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import semi.dao.MarketProductDao;
+import semi.dto.MarketBoardDto;
 import semi.dto.MarketProductDto;
 
 @Service
@@ -13,5 +14,10 @@ public class MarketProductService {
 	
 	public void insertMarketProduct(MarketProductDto dto) {
 		marketProductDao.insertMarketProduct(dto);
+	}
+	
+	public MarketProductDto getData(int boardSeq)
+	{
+		return marketProductDao.getData(boardSeq);
 	}
 }

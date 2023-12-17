@@ -163,7 +163,7 @@ div.content {
 			<button class="btn btn_green2 fw_600" type="button">검색</button>
 		</form>
 		<div class="fs_17 bg_green row mt-3 mw_1000">
-			<div class="col py-3 fw_600">${totcalCnt}건의 거래 진행중..</div>
+			<div class="col py-3 fw_600">${totalCount}건의 거래 진행중..</div>
 			<div class="col text-end">
 				<button type="button" class="btn btn_green fw_600 mt-2"
 					onclick="location.href='./mboard/form'">나의 물품등록</button>
@@ -172,6 +172,8 @@ div.content {
 		<div>
 		
 		
+
+
 		<div class="blist">
 			<table class="table">
 				<thead>
@@ -192,9 +194,9 @@ div.content {
 							<c:set var="no" value="${no-1}"/>
 						</td>
 						<td>
-						
+						<a id="marketcontent" href="./mboard/content?boardSeq=${dto.boardSeq}&currentPage=${currentPage}">
 						${dto.boardTitle}
-						
+						</a>
 						</td>
 						<td></td>
 						<td>${dto.createDate}</td>
@@ -204,6 +206,7 @@ div.content {
 				</tbody>
 			</table>
 	    </div>    
+
 		
 		<div style="text-align: center;">
 			<!-- 이전 -->
