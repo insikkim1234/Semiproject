@@ -119,4 +119,19 @@ public class RecipeController {
     	return "recipe_test";
     }
     
+    // TODO : 수정 필요(조리 순서 db에 넣는 부분)
+    /*
+    @PostMapping("/recipe/OrderTest")
+    public String insertOrderRecipe(@ModelAttribute RecipeOrderDto OrderDto, @RequestParam MultipartFile upload) {
+    	String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+    			NcpObjectStorageService.DIR_PHOTO, upload);
+    	
+    	OrderDto.getRecipeOrderContent();
+    	OrderDto.getRecipeOrderPhoto();
+    	
+    	recipeOrderService.insertOrderRecipe(OrderDto);
+    	
+    	return "redirect:./board";
+    }
+    */
 }

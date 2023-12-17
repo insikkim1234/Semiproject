@@ -74,8 +74,8 @@
 <form action="./OrderTest" method="post" enctype="multipart/form-data">
 	<div id="orderTest-container">
 		<div class="orderTest-row">
-			<textarea name="orderlist[0].recipeOrderContent" class="form-control" required autofocus placeholder="예 : 파를 다듬어 줍니다.">${recipeContent}"</textarea>
-			<input type="file" name="orderlist[0].upload" class="form-control" value="${recipePhoto}">
+			<textarea name="orderlist[0].recipeOrderContent" class="form-control" required autofocus placeholder="예 : 파를 다듬어 줍니다.">${recipeOrderContent}"</textarea>
+			<input type="file" name="orderlist[0].upload" class="form-control" value="${recipeOrderPhoto}">
 			<button type="button" class="btn btn-outline-secondary" onclick="addOrderTest()">추가</button>
 			<button type="submit">tmp 저장</button>
 		</div>
