@@ -136,6 +136,8 @@ public class MarketBoardController {
 		 MarketProductDto pdto=marketProductService.getData(boardSeq);
 		 
 		 model.addAttribute("mdto", mdto);
+		 model.addAttribute("pdto", pdto);
+		 model.addAttribute("currentPage", currentPage);
 		 
 		 
 		 return "market/marketboardcontent";

@@ -33,7 +33,7 @@
 	<update id="updateReadCountOfMarketBoard" parameterType="int">
 		update tMarketBoard
 		set nBoardViewCount=nBoardViewCount+1
-		where nBoardSeq=#{nBoardSeq}
+		where nBoardSeq=#{boardSeq}
 	</update>
 	
 	<select id="selectDataByBoardSeq" parameterType="int" resultType="MarketBoardDto">

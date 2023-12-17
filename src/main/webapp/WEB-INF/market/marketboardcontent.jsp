@@ -162,9 +162,7 @@ function list()
 	<h3><b>${mdto.boardTitle}</b></h3>
 	<br>
 <!-- 2)프로필 이미지 원형으로 출력 -->	
-	<img src=""
-		class="rounded-circle" border="1" hspace="10" align="left"
-		width="50" height="50" >
+	<h3></h3><br>
 <!-- 3)작성자 -->		
 	<b></b> <br>
 <!-- 4)조회수 출력 -->	
@@ -177,14 +175,8 @@ function list()
 <!-- 5)내용 작성(글,사진) -->	
 	<pre style="font-size:17px;">${mdto.content}</pre>
 	<br><br>
-	<c:if test="${dto.photocount>0}">
-		<c:forEach var="photo" items="${dto.photoNames}">
-			<img src="../res/upload/${photo}" style="max-width: 400px;">
-			<br><br>
-		</c:forEach>
-		<br><br>
-	</c:if>
-<!-- 6)글쓰기 버튼,답글 버튼,목록 버튼,수정 버튼,삭제 버튼 -->	
+	
+<%-- <!-- 6)글쓰기 버튼,답글 버튼,목록 버튼,수정 버튼,삭제 버튼 -->	
 	<div>
 <!-- (132)content.jsp의 html 파트에 댓글목록 나올곳,댓글폼 만들기 -->	
 		<div id="answercount">댓글 0</div>
@@ -226,7 +218,7 @@ function list()
 			style="width:80px;"
 			onclick="location.href='./delete?num=${dto.num}&currentPage=${currentPage}'">삭제</button>
 		</c:if>
-	</div>
+	</div> --%>
 	<div id="answerend"></div>
 	
 </div>

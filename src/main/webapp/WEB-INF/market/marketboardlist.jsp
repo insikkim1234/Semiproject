@@ -172,46 +172,8 @@ div.content {
 		<div>
 		
 		
-<<<<<<< HEAD
-		<!-- !!!!!!!!!!!!!!!!!!!!!!!! -->
-		<div class="simpleicon">
-			<i class="bi bi-grid simplegrid"></i> <i
-				class="bi bi-card-list simplelist"></i>
-		</div>
-		
-		
-		<table class="table table-striped" style="margin-top: 30px;width:600px;">
-		<thead>
-			<tr>
-				<th width="50">번호</th>
-				<th width="300">제목</th>
-				<th width="80">작성자</th>
-				<th width="100">작성일</th>
-				<th width="50">조회</th>				
-			</tr>
-		</thead>
-		<tbody>
-		<c:forEach var="dto" items="${mdata}" >
-			<tr>
-				
-				<td>
-					${no}
-					<c:set var="no" value="${no-1}"/>
-				</td>
-				<td>
-				<a href="./content?num=${mdto.boardSeq}&currentPage=${currentPage}">
-				${dto.boardTitle}
-				</a>
-				</td>
-				<td></td>
-				<td>${dto.createDate}</td>
-				<td>${dto.boardViewCount}</td>
-			</tr>
-		</c:forEach>
-		</tbody>
-	</table>
-        
-=======
+
+
 		<div class="blist">
 			<table class="table">
 				<thead>
@@ -232,9 +194,9 @@ div.content {
 							<c:set var="no" value="${no-1}"/>
 						</td>
 						<td>
-						
+						<a id="marketcontent" href="./mboard/content?boardSeq=${dto.boardSeq}&currentPage=${currentPage}">
 						${dto.boardTitle}
-						
+						</a>
 						</td>
 						<td></td>
 						<td>${dto.createDate}</td>
@@ -244,7 +206,7 @@ div.content {
 				</tbody>
 			</table>
 	    </div>    
->>>>>>> main
+
 		
 		<div style="text-align: center;">
 			<!-- 이전 -->
