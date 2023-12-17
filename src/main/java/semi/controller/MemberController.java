@@ -2,6 +2,7 @@ package semi.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mysql.cj.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 import naver.storage.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -117,7 +119,16 @@ public class MemberController {
             httpSession.setAttribute(MemberConstants.LOGIN_MEMBER_DTO, loginMember);
 
             System.out.println("로그인 성공");
-            return "redirect:/";
+
+            String redirectUrl = (String) httpSession.getAttribute("redirectUrl");
+            httpSession.removeAttribute("redirectUrl");
+
+            if (StringUtils.isNullOrEmpty(redirectUrl)) {
+                return "redirect:/";
+            }
+            else {
+                return "redirect:" + redirectUrl;
+            }
         }
 
         redirectAttributes.addFlashAttribute("message","아이디 혹은 비밀번호를 확인해주세요");

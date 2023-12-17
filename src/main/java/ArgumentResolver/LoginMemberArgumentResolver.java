@@ -7,6 +7,7 @@ import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
+import semi.customException.NotLoggedInException;
 import semi.dto.MemberDto;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,8 +28,12 @@ public class LoginMemberArgumentResolver implements HandlerMethodArgumentResolve
     public Object resolveArgument(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer, NativeWebRequest nativeWebRequest, WebDataBinderFactory webDataBinderFactory) throws Exception {
         HttpServletRequest request = (HttpServletRequest) nativeWebRequest.getNativeRequest();
         HttpSession session = request.getSession(false);
-        if (session == null) return null;
+        if (session == null) throw new NotLoggedInException();
+
+        Object loginSession = session.getAttribute(LOGIN_MEMBER_DTO);
+        if (loginSession == null) throw new NotLoggedInException();
 
         return session.getAttribute(LOGIN_MEMBER_DTO);
     }
 }
+

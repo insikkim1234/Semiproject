@@ -42,12 +42,7 @@ public class BoardController {
 
 	@GetMapping(value = "/form")
 	public String boardForm(@Login MemberDto user) {
-		if (user == null) {
-			System.out.println("no session ");
-		}
-		else {
-			System.out.println("yes session");
-		}
+		//TODO://
 		return "redirect:/";
 	}
 }

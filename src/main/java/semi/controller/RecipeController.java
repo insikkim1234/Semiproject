@@ -42,17 +42,12 @@ public class RecipeController {
     }
     
     @GetMapping("/recipe/recipeBoardInput")
-    public String recipeBoardInput() {
+    public String recipeBoardInput(@Login MemberDto memberDto) {
     	return "recipe/recipeBoardInput";
     }
 
     @PostMapping("/recipe/insertRecipe")
     public String insertRecipe(@Login MemberDto memberDto, @ModelAttribute RecipeDto dto, @ModelAttribute RecipeOrderDto orderdto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload) {
-        // 일반화 필요
-        if (memberDto == null) {
-            return "redirect:/member/login";
-        }
-
         String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
     			NcpObjectStorageService.DIR_PHOTO, upload);
     	
