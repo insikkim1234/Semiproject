@@ -62,10 +62,10 @@
 			<c:when test="${pageNumber >= 1 and pageNumber <= pageDto.totalPage}">
 				<c:choose>
 					<c:when test="${pageNumber == pageDto.curPage}">
-						<span class="cBlack mx-1 fs_22">${pageNumber}</span>
+						<span class="cGreen mx-1 fs_22">${pageNumber}</span>
 					</c:when>
 					<c:otherwise>
-						<span class="cGreen mx-1 fs_22"><a href="${pageContext.request.contextPath}/board/list?pageNum=${pageNumber}">${pageNumber}</a></span>
+						<span class="cBlack mx-1 fs_22"><a href="${pageContext.request.contextPath}/board/list?pageNum=${pageNumber}">${pageNumber}</a></span>
 					</c:otherwise>
 				</c:choose>
 			</c:when>

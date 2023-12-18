@@ -33,7 +33,7 @@
 						<th width="50">조회</th>				
 					</tr>
 				</thead>
-				<tbody>
+				<tbody class="mboardlist_body">
 				<c:forEach var="dto" items="${mdata}" >
 					<tr class="text-center">
 						
@@ -42,7 +42,7 @@
 							<c:set var="no" value="${no-1}"/>
 						</td>
 						<td>
-						<a id="marketcontent" href="./mboard/content?boardSeq=${dto.boardSeq}&currentPage=${currentPage}">
+						<a id="marketcontent" href="./mboard/content?boardSeq=${dto.boardSeq}&currentPage=${currentPage}" class="cBlack">
 						${dto.boardTitle}
 						</a>
 						</td>
@@ -56,7 +56,7 @@
 	    </div>    
 
 		
-		<div style="text-align: center;">
+		<div style="text-align: center;" class="fw_500 fs_18">
 			<!-- 이전 -->
 			<c:if test="${startPage>1}">
 				<a href="./mboard?currentPage=${startPage-1}">이전</a>
@@ -65,9 +65,9 @@
 			<c:forEach var="pno" begin="${startPage}" end="${endPage}">
 				<a href="./mboard?currentPage=${pno}" style="cursor: pointer;"> <c:if
 						test="${pno==currentPage}">
-						<span style="color: black;">${pno}</span>
-					</c:if> <c:if test="${pno!=currentPage}">
 						<span style="color: #11b560;">${pno}</span>
+					</c:if> <c:if test="${pno!=currentPage}">
+						<span style="color: #6b6b6b;">${pno}</span>
 					</c:if>
 				</a>
 			&nbsp;
