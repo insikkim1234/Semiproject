@@ -164,6 +164,14 @@ public class MemberController {
         return "redirect:./login";
     }
 
+    // 로그아웃 요청 시 세션에 저장된 정보 삭제
+    @GetMapping("/logout")
+    public String logout(HttpSession httpSession) {
+        httpSession.removeAttribute(MemberConstants.LOGIN_MEMBER_DTO);
+        httpSession.invalidate();
+        return "redirect:./login";
+    }
+
     // 로그인 Page 보여주는 메서드
     @GetMapping("/login")
     public String loginPage(){

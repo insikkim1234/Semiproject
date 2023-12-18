@@ -14,7 +14,7 @@ public class MarketBoardDto {
 	private String boardImage;
 	private int boardReplyCount;
 	private int boardViewCount;
-	private Timestamp createDate;	
-	private Timestamp updateDate;	
+	private String createDate;
+	private String updateDate;
 }
 
