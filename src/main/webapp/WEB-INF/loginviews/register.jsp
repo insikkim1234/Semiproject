@@ -23,7 +23,8 @@
         }
 
         .regi_input>input[type=text], .regi_input>input[type=password],
-        .regi_input>input[type=submit], .regi_input>.box>input[type=email] {
+        .regi_input>input[type=submit], .regi_input>.box>input[type=email],
+        .regi_input>.box2>input[type=text] {
             width: 300px;
             padding: 10px;
             /* border-radius: 10px; */
@@ -36,6 +37,11 @@
             background-color: transparent;
         } /* 보더변경하고 색상변경 */
         .box {
+            display: table;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .box2 {
             display: table;
             margin-left: auto;
             margin-right: auto;
@@ -58,13 +64,17 @@
 
     <div class="box">
         <input type="email" name="userEmail" placeholder="이메일주소(필수)" id="userEmail" required><br>
-        <label class="cGreen fw_600 fs_17">아이디 중복 확인<input type="checkbox" id="emailCheckbox" class="ml-2" required>
+            <label class="cGreen fw_600 fs_17">아이디 중복 확인<input type="checkbox" id="emailCheckbox" class="ml-2" required>
         </label>
     </div>
 
     <input type="password" name="userPassword" id="password1" placeholder="비밀번호(필수)" required><br>
 
-    <input type="text" name="userNickName" placeholder="닉네임(필수)"><br>
+    <div class="box2">
+        <input type="text" name="userNickName" placeholder="닉네임(필수)" id="userNickName" required><br>
+            <label class="cGreen fw_600 fs_17">닉네임 중복 확인<input type="checkbox" id="nicknameCheckbox" class="ml-2" required>
+        </label>
+    </div>
 
     <input type="text" name="userName" placeholder="이름(필수)" required><br>
 
@@ -123,6 +133,42 @@
                     // 방어 코드
                     alert("네트워크 에러");
                     $('#emailCheckbox').prop('checked', false);
+                },
+            })
+        })
+
+        // 닉네임 중복 체크 후 변경 시 체크 해제
+        $("#userNickName").on("propertychange change keyup paste input", function(){
+            $('#nicknameCheckbox').prop('checked', false);
+        });
+
+        $('#nicknameCheckbox').on("click",function (){
+            // 체크 해제할 때 검증 불필요
+            if (!$('#nicknameCheckbox').is(":checked")) return;
+
+            const userNickName =$('#userNickName').val();
+            var jsonObj = JSON.stringify({"userNickName" : userNickName});
+            $.ajax({
+                url : "./duplicatedNickNameCheck",
+                type :"post",
+                dataType : "json",
+                data : jsonObj,
+                contentType:"application/json",
+
+                // success 와 complete 에서의 response가 다름. 200, 500 모두 success 상황에서 나누고 있기 때문에 여기서 처리
+                success :function (response){
+                    alert(response.message);
+                    if (response.status === "200") {
+                        $('#nicknameCheckbox').prop('checked',true);
+                    } else {
+                        $('#nicknameCheckbox').prop('checked', false);
+                    }
+                },
+                error : function(error){
+                    console.error(error);
+                    // 방어 코드
+                    alert("네트워크 에러");
+                    $('#nicknameCheckbox').prop('checked', false);
                 },
             })
         })
