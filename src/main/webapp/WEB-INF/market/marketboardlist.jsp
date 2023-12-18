@@ -2,163 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 
-<style>
-div.simpleicon {
-      cursor: pointer;
-      margin-right: 30px;
-      font-size: 25px;
-      height: 38px;
-      margin-top: 3px;
-      margin-left: -5px;
-} 
 
-div.list {
-	margin: 30px 50px;
-}
-
-div.box {
-	width: 200px;
-	height: 270px;
-	text-align: center;
-	border: 5px solid gray;
-	border-radius: 20px;
-	float: left;
-	margin-right: 30px;
-	margin-bottom: 20px;
-}
-
-div.box figure img {
-	width: 160px;
-	height: 160px;
-	border-radius: 30px;
-	margin-top: 5px;
-}
-
-.day {
-	color: gray;
-	font-size: 0.8em;
-	margin-right: 20px;
-}
-
-div.content {
-	display: none;
-}
-</style>
-<script type="text/javascript">
-	<%--$(function(){
-		//처음 시작시 그리드모양 이미지형태로 출력하기
-		grid();
-		
-		//list();
-		
-		$(".simplelist").css("color","red");
-		
-		$(".simplegrid").click(function(){
-			$(this).css("color","red");
-			$(".simplelist").css("color","black");
-			grid();
-		});
-		
-		$(".simplelist").click(function(){
-			$(this).css("color","red");
-			$(".simplegrid").css("color","black");
-			list();
-		});
-		
-	
-	function grid()
-	{
-		$.ajax({
-			type:"get",
-			dataType:"json",
-			url:"./",
-			success:function(res){
-				let s="";
-				$.each(res,function(idx,item){
-					var userName=item.userName;
-		            console.log(item.recipePhoto);
-						s+=
-							`
-							<div class="box" style="background-color:#fcc;">
-								<figure>
-								<img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.boardImage}"><br>
-									<figcaption>
-										<b>${item.boardTitle}</b><br>
-										<span style="color:gray;">${item.boardTitle}</span>
-										<br>
-										<span class="day">${item.userName}
-											&nbsp;&nbsp;&nbsp;
-										조회 ${item.boardViewCount}</span>
-									</figcaption>
-								</figure>
-							</div>
-							`;
-					}
-				});
-				$(".list").html(s);
-		    }
-		});
-	}
-	
-	function list()
-	{
-		$.ajax({
-			type:"get",
-			dataType:"json",
-			url:"./",
-			success:function(res){
-				let s="";
-				s+=				
-				`
-				<table class="table table-bordered" style="450px">									
-				`;				
-				$.each(res,function(idx,item){
-					var userName=item.userName;
-	                  console.log(userName);
-					s+=
-					`
-					<tr>
-						<td>
-						<img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.boardImage}"><br>
-							<h5><b class="subject" style="cursor:pointer">${item.boardTitle}</b></h5>
-							<div style="margin-left:20px;color:gray;" class="content1">
-								<pre>${item.productContent}</pre>
-							</div>
-							<div>
-								<span>${item.userName}</span>&nbsp;&nbsp;
-								<span class="day">${item.createDate}
-									&nbsp;&nbsp;
-									조회 ${item.boardViewCount}
-								</span>
-							</div>
-						</td>
-					</tr>
-					`;
-				});
-				s+="</table>";
-				$(".list").html(s);
-				//첫번째 content 만 일단 보이도록	
-				$("div.content1").eq(0).css("display","block");
-		    }
-		});
-	} --%>
-</script>
-</head>
-<body>
 	<div class="mw_1000">
 		<div class="fs_40 fw_600 cGreen text_left mt-5">이거 어때?</div>
 		<form class="d-flex m-0 justify-content-end mt-3">
-			<div class="simpleicon" style="margin-right: 10px;">
-	            <i class="bi bi-grid simplegrid"></i>
-	            <span style="margin-right: 5px;"></span> 
-	            <i class="bi bi-list-ul simplelist"></i>
-	   		</div>
 			<input class="form-control me-2" type="text" placeholder="검색어 입력" style="width: 200px; border:2px solid #11B560;">
 			<button class="btn btn_green2 fw_600" type="button">검색</button>
 		</form>
@@ -231,6 +79,5 @@ div.content {
 		</div>
 	</div>
 	</div>
-</body>
-</html>
+
 

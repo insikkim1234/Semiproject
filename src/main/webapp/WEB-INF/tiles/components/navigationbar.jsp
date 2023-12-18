@@ -2,7 +2,7 @@
 <%@ page import="naver.storage.NcpObjectStorageService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<div style="box-shadow: 0 5px 30px -10px #4950578f">
 <div class="mw_1500">
 	<nav class="navbar navbar-expand-sm d-flex flex-column">
 	  <div class="container-fluid">
@@ -75,6 +75,6 @@
 		</div>
 	</nav>
 </div>
-
+</div>
 
 	
