@@ -12,6 +12,8 @@
 		<result property="comBoardRestep" column="nComBoardRestep" />
 		<result property="comBoardRelevel" column="nComBoardRelevel" />
 		<result property="writeDay" column="dtWriteDay" />
+		<result property="updateDay" column="dtUpdateDay" />
+
 	</resultMap>
 
 	<select id="totalCountOfBoard" resultType="int" parameterType="String">
