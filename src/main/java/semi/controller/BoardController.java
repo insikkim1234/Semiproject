@@ -35,6 +35,7 @@ public class BoardController {
 		model.addAttribute("data", data);
 		model.addAttribute("totcalCnt", totalCnt);
 		model.addAttribute("pageDto", pageDto);
+		model.addAttribute("isSearch", searchWord != null);
 
 		return "board/boardlist";
 	}
