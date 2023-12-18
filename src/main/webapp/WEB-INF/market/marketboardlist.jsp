@@ -34,14 +34,14 @@
 					<th width="50">조회</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody class="mboardlist_body">
 			<c:forEach var="dto" items="${mdata}" >
 				<tr class="text-center">
 					<td>
 						${dto.boardSeq}
 					</td>
 					<td>
-					<a id="marketcontent" href="./mboard/content?boardSeq=${dto.boardSeq}&currentPage=${pageDto.curPage}">
+					<a id="marketcontent" href="./mboard/content?boardSeq=${dto.boardSeq}&currentPage=${pageDto.curPage}" class="cBlack">
 					${dto.boardTitle}
 					</a>
 					</td>
@@ -54,7 +54,7 @@
 		</table>
 	</div>
 	
-	<div class="text-center fw_500 mb-5">
+	<div class="text-center fw_500 fs_18">
 		<c:choose>
 			<c:when test="${pageDto.curPage > 1}">
 				<a href="${pageContext.request.contextPath}/mboard?currentPage=1" class="btn_green3 mx-1 fs_18">처음</a>
