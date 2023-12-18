@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import naver.storage.NcpObjectStorageService;
@@ -47,7 +48,7 @@ public class RecipeController {
     }
 
     @PostMapping("/recipe/insertRecipe")
-    public String insertRecipe(@Login MemberDto memberDto, @ModelAttribute RecipeDto dto, @ModelAttribute RecipeOrderDto orderdto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload) {
+    public String insertRecipe(@Login MemberDto memberDto, @ModelAttribute RecipeDto dto, @ModelAttribute RecipeOrderDto orderdto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload, @ModelAttribute OrderListBean obList) {
         String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
     			NcpObjectStorageService.DIR_PHOTO, upload);
     	
@@ -55,8 +56,21 @@ public class RecipeController {
         dto.setRecipeUserSeq(memberDto.getUserSeq());
     	recipeService.insertRecipe(dto);
     	
-    	orderdto.setRecipeOrderPhoto(photo);
-    	recipeOrderService.insertOrderRecipe(orderdto);
+    	ArrayList<OrderBean> list = (ArrayList<OrderBean>) obList.getOrderlist();
+    	System.out.println("RecipeController에서 POST 요청 들어옴");
+    	for(int i = 0; i < obList.getOrderlist().size(); i++) {
+    		RecipeOrderDto orderDto = new RecipeOrderDto();
+    		
+        	photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+        			NcpObjectStorageService.DIR_PHOTO, list.get(i).getUpload());
+
+        	orderDto.setRecipeIdx(dto.getRecipeUserSeq());
+        	orderDto.setRecipeNumber(i + 1);
+        	orderDto.setRecipeOrderContent(list.get(i).getRecipeOrderContent());
+        	orderDto.setRecipeOrderPhoto(photo);
+	    	
+    		recipeOrderService.insertOrderRecipe(orderDto);
+    	}
     	
     	return "redirect:./board";
     }
@@ -97,41 +111,4 @@ public class RecipeController {
     	
     	return "recipe/recipeBoardDetail/" + recipeIdx;
     }
-	
-    @GetMapping("/recipe/OrderTest")
-    public String showInsertForm() {
-    	System.out.println("RecipeController에서 GET 요청 들어옴");
-    	return "recipe_test";
-    }
-	
-    @PostMapping("/recipe/OrderTest")
-    public String doAction(OrderListBean obList) throws UnsupportedEncodingException {
-    	for(int i = 0; i < obList.getOrderlist().size(); i++) {
-    		
-	    	System.out.println("RecipeController에서 POST 요청 들어옴");
-	    	
-	    	ArrayList<OrderBean> list = (ArrayList<OrderBean>) obList.getOrderlist();
-	    	
-	    	System.out.println(list.get(i).getRecipeOrderContent());
-	    	System.out.println(list.get(i).getUpload());
-	    	
-    	}
-    	return "recipe_test";
-    }
-    
-    // TODO : 수정 필요(조리 순서 db에 넣는 부분)
-    /*
-    @PostMapping("/recipe/OrderTest")
-    public String insertOrderRecipe(@ModelAttribute RecipeOrderDto OrderDto, @RequestParam MultipartFile upload) {
-    	String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
-    			NcpObjectStorageService.DIR_PHOTO, upload);
-    	
-    	OrderDto.getRecipeOrderContent();
-    	OrderDto.getRecipeOrderPhoto();
-    	
-    	recipeOrderService.insertOrderRecipe(OrderDto);
-    	
-    	return "redirect:./board";
-    }
-    */
 }

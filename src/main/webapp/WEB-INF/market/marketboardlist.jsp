@@ -54,35 +54,43 @@
 		</table>
 	</div>
 	
-	<div class="text-center fw_500 fs_18">
+	<div class="container-fluid  mx-auto">
+	<div class="text-center fw_500 fs_18 row">
+		<div class="col-2">
 		<c:choose>
 			<c:when test="${pageDto.curPage > 1}">
 				<a href="${pageContext.request.contextPath}/mboard?currentPage=1" class="btn_green3 mx-1 fs_18">처음</a>
 				<a href="${pageContext.request.contextPath}/mboard?currentPage=${pageDto.curPage - 1}" class="btn_green3 fs_18">이전</a>
 			</c:when>
 		</c:choose>
-
+		</div>
+		
+		<div class="col-3">
 		<c:forEach begin="${pageDto.startPage}" end="${pageDto.endPage}" var="pageNumber">
 			<c:choose>
 				<c:when test="${pageNumber >= 1 and pageNumber <= pageDto.totalPage}">
 					<c:choose>
 						<c:when test="${pageNumber == pageDto.curPage}">
-							<span class="cBlack mx-1 fs_22">${pageNumber}</span>
+							<span class="cGreen mx-1 fs_22">${pageNumber}</span>
 						</c:when>
 						<c:otherwise>
-							<span class="cGreen mx-1 fs_22"><a href="${pageContext.request.contextPath}/mboard?currentPage=${pageNumber}">${pageNumber}</a></span>
+							<span class="cBlack mx-1 fs_22"><a href="${pageContext.request.contextPath}/mboard?currentPage=${pageNumber}">${pageNumber}</a></span>
 						</c:otherwise>
 					</c:choose>
 				</c:when>
 			</c:choose>
 		</c:forEach>
+		</div>
 
+		<div class="col-2">
 		<c:choose>
 			<c:when test="${pageDto.curPage < pageDto.totalPage}">
 				<span><a href="${pageContext.request.contextPath}/mboard?currentPage=${pageDto.curPage + 1}" class="btn_green3 mx-1 fs_18">다음</a></span>
 				<span><a href="${pageContext.request.contextPath}/mboard?currentPage=${pageDto.totalPage}"class="btn_green3 fs_18">마지막</a ></span>
 			</c:when>
 		</c:choose>
+		</div>
+	</div>
 	</div>
 </div>
 

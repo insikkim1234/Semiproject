@@ -20,6 +20,7 @@ import semi.dto.*;
 import semi.service.MarketBoardService;
 import semi.service.MarketProductService;
 import utils.BoardUtils;
+import semi.service.MarketBoardCommentService;
 
 
 @Controller
@@ -28,6 +29,9 @@ public class MarketBoardController {
 	@Autowired private MarketBoardService marketBoardService;
 	@Autowired private MarketProductService marketProductService;
 	@Autowired NcpObjectStorageService storageService;
+	@Autowired
+	private MarketBoardCommentService marketBoardCommentService;
+
 	@PostMapping("/mboard/insertMarketBoard")
 	public String insertMarketBoard(@ModelAttribute MarketBoardDto dto, @ModelAttribute MarketProductDto pdto,
 		HttpServletRequest request, HttpSession session,
@@ -73,6 +77,18 @@ public class MarketBoardController {
 
 		return "market/marketboardlist";
 	}
+
+	@PostMapping("/answer/insert")
+	 public void insertAnswer(@RequestParam int boardSeq,
+			 @RequestParam String msg,
+			 HttpSession session)
+	 {
+		 MarketBoardCommentDto mcdto=new MarketBoardCommentDto();
+		 mcdto.setBoardSeq(boardSeq);
+		 mcdto.setCommentContent(msg);
+		 
+		 marketBoardCommentService.insertComment(mcdto);
+	 }
 	 
 	@GetMapping("/mboard/content")
 	public String getContent(Model model,

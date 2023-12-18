@@ -25,6 +25,11 @@ public class MemberDao {
     public int duplicatesEmailCheck(MemberDto dto) {
         return session.selectOne(nameSpace + "checkDuplicatedEmail",dto);
     }
+
+    //중복 닉네임 체크로직
+    public int duplicatedNickNameCheck(MemberDto dto) {
+        return session.selectOne(nameSpace + "checkDuplicatedNickName", dto);
+    }
     //로그인 체크로직
     public List<MemberDto> loginExecute(MemberDto dto) {
         return session.selectList(nameSpace + "loginCheck", dto);

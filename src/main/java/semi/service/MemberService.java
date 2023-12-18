@@ -26,6 +26,9 @@ public class MemberService {
         return memberDao.duplicatesEmailCheck(memberDto);
     }
 
+    public int duplicatedNickNameCheck(MemberDto memberDto) {
+        return memberDao.duplicatedNickNameCheck(memberDto);
+    }
     public List<MemberDto> loginExecute(MemberDto memberDto){
         return memberDao.loginExecute(memberDto);
     }
@@ -41,4 +44,6 @@ public class MemberService {
     public boolean validatePassword(String rawPasswd, String encodedPasswd) {
         return passwordEncoder.matches(rawPasswd, encodedPasswd);
     }
+
+
 }
