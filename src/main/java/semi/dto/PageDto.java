@@ -10,6 +10,7 @@ public class PageDto {
     int startPage;
     int endPage;
     int totalPage;
+    int totalCnt;
 
     @Override
     public String toString() {
@@ -18,6 +19,7 @@ public class PageDto {
                 ", startPage=" + startPage +
                 ", endPage=" + endPage +
                 ", totalPage=" + totalPage +
+                ", totalCnt=" + totalCnt +
                 '}';
     }
 }

@@ -12,10 +12,10 @@
 	</form>
 	<div class="fs_17 bg_green row mt-3 mw_1000">
 		<c:if test="${isSearch}">
-			<div class="col py-3 fw_600">총 ${totcalCnt}개의 잡담 검색됨</div>
+			<div class="col py-3 fw_600">총 ${pageDto.totalCnt}개의 잡담 검색됨</div>
 		</c:if>
 		<c:if test="${!isSearch}">
-			<div class="col py-3 fw_600">총 ${totcalCnt}개의 잡담 형성중..</div>
+			<div class="col py-3 fw_600">총 ${pageDto.totalCnt}개의 잡담 형성중..</div>
 		</c:if>
 		<div class="col text-end">
 			<button type="button" class="btn btn_green fw_600 mt-2"
@@ -39,15 +39,13 @@
 					<tr class="text-center">
 						<td>${dto.comBoardSeq}</td>
 						<td>
-					<a href="./content?comBoardSeq=${dto.comBoardSeq}" style="color: black;text-decoration: none;">
-					${dto.comBoardSubject}
-					</a>
-				</td>
+							<a href="./content?comBoardSeq=${dto.comBoardSeq}" style="color: black;text-decoration: none;">
+							${dto.comBoardSubject}
+							</a>
+						</td>
 						<td>${dto.userName}</td>
 						<td>${dto.writeDay}</td>
 						<td>${dto.comBoardviewCount}</td>
-					
-					
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -80,8 +78,8 @@
 
 	<c:choose>
 		<c:when test="${pageDto.curPage < pageDto.totalPage}">
-			<span><a href="${pageContext.request.contextPath}/board?pageNum=${pageDto.curPage + 1}" class="btn_green3 mx-1 fs_18">다음</a></span>
-			<span><a href="${pageContext.request.contextPath}/board?pageNum=${pageDto.totalPage}"class="btn_green3 fs_18">마지막</a ></span>
+			<span><a href="${pageContext.request.contextPath}/board/list?pageNum=${pageDto.curPage + 1}" class="btn_green3 mx-1 fs_18">다음</a></span>
+			<span><a href="${pageContext.request.contextPath}/board/list?pageNum=${pageDto.totalPage}" class="btn_green3 fs_18">마지막</a ></span>
 		</c:when>
 	</c:choose>
 </div>
