@@ -42,7 +42,6 @@ public class BoardController {
 
 	@GetMapping(value = "/form")
 	public String boardForm(@Login MemberDto user) {
-		//TODO://
-		return "redirect:/";
+		return "board/boardform";
 	}
 }
