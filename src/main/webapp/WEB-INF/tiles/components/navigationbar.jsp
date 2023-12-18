@@ -27,17 +27,17 @@
 	          	<span data-hover="레시피북">레시피북</span>
 	          </a>
 	        </li>
-	        <li class="nav-item mx-5">
+	        <li class="nav-item ml-5">
 	          <a class="nav-link fs_19 fw_600" href="${pageContext.request.contextPath}/mboard">
 				<span>돈 아끼는 팁</span>
 	          	<span data-hover="벼룩시장">벼룩시장</span>
 			  </a>
 	        </li>
 	      </ul>
-	      <form class="d-flex m-0 justify-content-end">
+	      <!-- <form class="d-flex m-0 justify-content-end">
 		      <input class="form-control me-2" type="text" style="border: 0;" placeholder="Search">
 		      <button class="btn btn_green2 fw_600" type="button">검색</button>
-		  </form>
+		  </form> -->
 	    </div>
 	  </div>
 	  
