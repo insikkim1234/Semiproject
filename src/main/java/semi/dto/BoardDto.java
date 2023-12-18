@@ -7,8 +7,6 @@ import lombok.Data;
 @Data
 public class BoardDto {
     private  int comBoardSeq;
-    private String userName;
-    private String userEmail;
     private String comBoardSubject;
     private String comBoardContent;
     private int comBoardviewCount;
@@ -17,4 +15,7 @@ public class BoardDto {
     private int comBoardRelevel;
     private Timestamp writeDay;
     private int acount;//댓글 개수 추가
+
+    private String comBoardUserSeq;
+    private String userName;
 }

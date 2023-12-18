@@ -3,8 +3,8 @@
 <mapper namespace="semi.dao.BoardDao">
 	<resultMap id="BoardDtoRm" type="BoardDto">
 		<result property="comBoardSeq" column="nComBoardSeq" />
-		<result property="userName" column="sUserName" />
-		<result property="userEmail" column="sUserEmail" />
+		<result property="comBoardUserSeq" column="nComBoardUserSeq" />
+		<result property="userName" column="userName" />
 		<result property="comBoardSubject" column="sComBoardSubject" />
 		<result property="comBoardContent" column="sComBoardContent" />
 		<result property="comBoardviewCount" column="nComBoardviewCount" />
@@ -20,14 +20,15 @@
 			where sComBoardSubject like concat('%',#{searchWord},'%')
 		</if>
 	</select>
-	<select id="insertBoard" parameterType="BoardDto">
+	<insert id="insertBoard" parameterType="BoardDto">
 		insert into tComBoard values (null,#{sUserName},#{sComBoardSubject},#{sComBoardContent},#{nComBoardRegroup},0,now())
-	</select>
+	</insert>
 	<select id="selectAllBoard" resultType="BoardDto">
 		select * from tComBoard order by nComBoardSeq desc
 	</select>
 	<select id="selectBoardWithPage" parameterType="Map" resultType="BoardDto" resultMap="BoardDtoRm">
-		select * from tComBoard
+		select tComBoard.*, tUser.userName from tComBoard
+		LEFT JOIN tUser ON tComBoard.nComBoardUserSeq = tUser.userSeq
 		<if test="searchWord != null">
 			where sComBoardSubject like concat('%',#{searchWord},'%')
 		</if>

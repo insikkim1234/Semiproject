@@ -42,7 +42,15 @@ public class BoardController {
 
 	@GetMapping(value = "/form")
 	public String boardForm(@Login MemberDto user) {
-		//TODO://
-		return "redirect:/";
+		return "board/boardform";
 	}
+
+	@PostMapping("/insertBoard")
+	public String insertBoard(@Login MemberDto user, BoardDto boardDto) {
+
+		//boardService
+
+		return "redirect:./list";
+	}
+
 }

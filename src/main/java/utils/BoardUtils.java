@@ -14,7 +14,7 @@ public class BoardUtils {
         int endPage = curPage + BoardConfig.BLOCK_SIZE;
         if (endPage > totalPage) endPage = totalPage;
 
-        return new PageDto(curPage, startPage, endPage, totalPage);
+        return new PageDto(curPage, startPage, endPage, totalPage, totalCnt);
     }
 
 
