@@ -16,6 +16,7 @@
      	border-bottom: 2px solid #11B560;
       	outline: none;
       	background-color: transparent;
+        font-family: cursive;
     }
     .btnlogin {
         width: 150px;
@@ -25,6 +26,10 @@
         margin-left: auto;
         margin-right: auto;
         border: 2px solid #0e942c; /*보더 색변경  */
+    }
+    .message {
+        text-align: center;
+        font-family: cursive;
     }
     
     .btnlogin:hover { /*이 속성 추가  */
@@ -37,6 +42,7 @@
 <form action="/semi/member/login" class="signin" method="post">
     <input type="text" name="userEmail" placeholder="Email Address"><br><br>
     <input type="password" name="userPassword" placeholder="Password"><br><br>
+    <div class="message">아직 회원이 아니신가요? <a href="/semi/member/register" style="color: #0e942c">참 쉬운 회원가입</a></div><br>
     <button type="submit" class="btnlogin btn_green2 fw_500 ">로그인</button>
 </form>
 </div>
