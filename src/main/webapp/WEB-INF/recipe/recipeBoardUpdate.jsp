@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <div style="max-width:1000px; margin:0 auto;"> 
-    <form action="/recipe/updateRecipe" method="post" enctype="multipart/form-data">
+    <form action="./updateRecipe" method="post" enctype="multipart/form-data">
         <!-- hidden -->
         <input type="hidden" name="recipeIdx" value="${recipeDto.recipeIdx}">
         

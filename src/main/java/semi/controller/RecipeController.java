@@ -121,7 +121,7 @@ public class RecipeController {
     @PostMapping("/recipe/updateRecipe")
     public String updateRecipe(@ModelAttribute RecipeUpdateDto updateDto) {
         recipeService.updateRecipe(updateDto);
-        return "redirect:/recipe/board/" + updateDto.getRecipeIdx();
+        return "redirect:/recipe/recipeBoard/" + updateDto.getRecipeIdx();
     }
     
 }

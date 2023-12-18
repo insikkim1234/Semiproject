@@ -8,6 +8,7 @@
 		<typeAlias type="semi.dto.RecipeDto" alias="RecipeDto"/>
 		<typeAlias type="semi.dto.RecipeOrderDto" alias="RecipeOrderDto"/>
 		<typeAlias type="semi.dto.MarketBoardDto" alias="MarketBoardDto"/>
+		<typeAlias type="semi.dto.RecipeUpdateDto" alias="RecipeUpdateDto"/>
 		<typeAlias type="semi.dto.MarketProductDto" alias="MarketProductDto"/>
 		<typeAlias type="semi.dto.MarketBoardCommentDto" alias="MarketBoardCommentDto"/>
 		<typeAlias type="semi.dto.BoardDto" alias="BoardDto"/>
