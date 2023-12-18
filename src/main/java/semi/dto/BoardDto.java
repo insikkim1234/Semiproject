@@ -10,12 +10,12 @@ public class BoardDto {
     private String comBoardSubject;
     private String comBoardContent;
     private int comBoardviewCount;
-    private String comBoardRegroup;
+    private int comBoardRegroup;
     private int comBoardRestep;
     private int comBoardRelevel;
     private Timestamp writeDay;
     private int acount;//댓글 개수 추가
 
-    private String comBoardUserSeq;
+    private int comBoardUserSeq;
     private String userName;
 }
