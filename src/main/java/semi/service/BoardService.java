@@ -16,7 +16,6 @@ import semi.dto.PageDto;
 @AllArgsConstructor
 public class BoardService {
 	@Autowired private BoardDao boardDao;
-	@Autowired private BoardConfig boardConfig;
 
 	public int getTotalCount()
 	{
@@ -37,13 +36,13 @@ public class BoardService {
 	}
 
 	public PageDto getPage(int curPage, int totalCnt) {
-		int totalPage = (int)(Math.ceil((double)totalCnt/boardConfig.getPAGE_SIZE()));
+		int totalPage = (int)(Math.ceil((double)totalCnt/BoardConfig.PAGE_SIZE));
 		if (totalPage <= 0) totalPage = 1;
 
-		int startPage = curPage - boardConfig.getBLOCK_SIZE();
+		int startPage = curPage - BoardConfig.BLOCK_SIZE;
 		if (startPage <= 0) startPage = 1;
 
-		int endPage = curPage + boardConfig.getBLOCK_SIZE();
+		int endPage = curPage + BoardConfig.BLOCK_SIZE;
 		if (endPage > totalPage) endPage = totalPage;
 
         return new PageDto(curPage, startPage, endPage, totalPage);

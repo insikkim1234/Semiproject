@@ -14,12 +14,10 @@ import semi.dto.PageDto;
 import semi.service.BoardService;
 
 
-
 @Controller
 @RequestMapping("/board")
 public class BoardController {
 	@Autowired private BoardService boardService;
-	@Autowired private BoardConfig boardConfig;
 
 	@GetMapping(value = "/list")
 	public String boardList(Model model,
@@ -27,7 +25,7 @@ public class BoardController {
 
 		if (pageNum < 1) pageNum = 1;
 
-		List<BoardDto> data = boardService.getBoardWithPage(pageNum, boardConfig.getPAGE_SIZE());
+		List<BoardDto> data = boardService.getBoardWithPage(pageNum, BoardConfig.PAGE_SIZE);
 		int totalCnt = boardService.getTotalCount();
 
 		PageDto pageDto = boardService.getPage(pageNum, totalCnt);
