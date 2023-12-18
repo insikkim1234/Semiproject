@@ -13,9 +13,9 @@ public class BoardDao {
 	private String nameSpace="semi.dao.BoardDao.";
 	
 	//전체 갯수 반환하는 메서드
-	public int getTotalCount()
+	public int getTotalCount(String searchWord)
 	{
-		return session.selectOne(nameSpace+"totalCountOfBoard");
+		return session.selectOne(nameSpace+"totalCountOfBoard", searchWord);
 	}
 	
 	public void insertBoard(BoardDto dto)
@@ -28,7 +28,7 @@ public class BoardDao {
 		return session.selectList(nameSpace+"selectAllBoard");
 	}
 
-	public List<BoardDto> getBoardWithPage(Map<String, Integer> map)
+	public List<BoardDto> getBoardWithPage(Map<String, Object> map)
 	{
 		return session.selectList(nameSpace+"selectBoardWithPage", map);
 	}
