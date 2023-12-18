@@ -33,19 +33,19 @@ public class BoardDao {
 		return session.selectList(nameSpace+"selectBoardWithPage", map);
 	}
 	
-	public void updateReadcount(int nComBoardSeq)
+	public void updateReadcount(int comBoardSeq)
 	{
-		session.update(nameSpace+"updateReadcount", nComBoardSeq);
+		session.update(nameSpace+"updateReadcount", comBoardSeq);
 	}
 	
-	public BoardDto getData(int nComBoardSeq)
+	public BoardDto getData(int comBoardSeq)
 	{
-		return session.selectOne(nameSpace+"selectOneData", nComBoardSeq);
+		return session.selectOne(nameSpace+"selectOneData", comBoardSeq);
 	}
 	
-	public void deleteBoard(int nComBoardSeq)
+	public void deleteBoard(int comBoardSeq)
 	{
-		session.delete(nameSpace+"deleteBoard", nComBoardSeq);
+		session.delete(nameSpace+"deleteBoard", comBoardSeq);
 	}
 	
 	public void updateBoard(BoardDto dto)
