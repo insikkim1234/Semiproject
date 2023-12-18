@@ -33,6 +33,13 @@ public class BoardService {
 
 		return boardDao.getBoardWithPage(map);
 	}
+
+
+	public void insertBoard(BoardDto dto)
+	{
+		boardDao.insertBoard(dto);
+	}
+
 	
 	
 	/*public List<BoardDto> getList(int start,int perpage)
