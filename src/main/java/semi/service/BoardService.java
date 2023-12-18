@@ -7,10 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
-import semi.config.BoardConfig;
 import semi.dao.BoardDao;
 import semi.dto.BoardDto;
-import semi.dto.PageDto;
 
 @Service
 @AllArgsConstructor
