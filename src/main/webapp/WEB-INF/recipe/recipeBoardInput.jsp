@@ -16,8 +16,8 @@
 		<div class="row mt-3">
 			<div class="col">
 				<h6 class="cGreen fw_600 mt-2">사진</h6>
-				<input type="file" name="upload" class="form-control borderGreen" id="product-input">
-				<div id="product-preview"></div>
+				<input type="file" name="upload" class="form-control borderGreen" id="product-input4" onchange="previewImage(this, 'product-preview4')">
+				<div id="product-preview4" class="mt-2"></div>
 			</div>
 		</div>
 		<h6 class="cGreen fw_600 mt-3">설명</h6>
@@ -52,12 +52,12 @@
 			</div>
 		</td>
 		
-		<h6 class="cGreen fw_600 mt-3"><th>조리순서</th></h6>
+		<h6 class="cGreen fw_600 mt-3"><th>조리 순서</th></h6>
 		<td>
 			<div id="order-container">
 				<div class="order-row">
-					<textarea name="recipeOrderContent" class="form-control borderGreen" required autofocus rows="2" cols="50" placeholder="예 : 파를 다듬어 줍니다.">${recipeOrderContent}</textarea>
-					<input type="file" name="upload" class="form-control" style="border-color: #11B560;">
+					<textarea name="orderlist[0].recipeOrderContent" class="form-control" required autofocus placeholder="예 : 파를 다듬어 줍니다.">${recipeOrderContent}</textarea>
+					<input type="file" name="orderlist[0].upload" class="form-control" required value="${recipeOrderPhoto}">
 					<button type="button" class="btn btn-outline-success" onclick="addOrder()">추가</button>
 					<br>
 				</div>
@@ -70,17 +70,6 @@
 		
 	</form>
 </div>
-
-<form action="./OrderTest" method="post" enctype="multipart/form-data">
-	<div id="orderTest-container">
-		<div class="orderTest-row">
-			<textarea name="orderlist[0].recipeOrderContent" class="form-control" required autofocus placeholder="예 : 파를 다듬어 줍니다.">${recipeOrderContent}"</textarea>
-			<input type="file" name="orderlist[0].upload" class="form-control" value="${recipeOrderPhoto}">
-			<button type="button" class="btn btn-outline-secondary" onclick="addOrderTest()">추가</button>
-			<button type="submit">tmp 저장</button>
-		</div>
-	</div>
-</form>
 
 <script>
 	var idx = 1;
@@ -103,28 +92,35 @@
         var newRow = document.createElement("div");
         newRow.className = "order-row";
         newRow.innerHTML = '<br>' + 
-        				   '<input type="text" name="recipeOrderContent" class="form-control" required autofocus placeholder="예 : 파를 다듬어 줍니다.">' +
-        				   '<input type="file" name="upload" class="form-control">' + 
-        				   '<button type="button" class="btn btn-outline-secondary" onclick="removeOrder(this)">삭제</button>';
-        container.appendChild(newRow);
+					       '<textarea name="orderlist[' + idx + '].recipeOrderContent" class="form-control" required autofocus placeholder="예 : 파를 다듬어 줍니다.">${recipeContent}</textarea>' +
+						   '<input type="file" name="orderlist[' + idx + '].upload" class="form-control" required>' + 
+						   '<button type="button" class="btn btn-outline-secondary" onclick="removeOrder(this)">삭제</button>';
+		container.appendChild(newRow);
+		idx += 1;
 	}
 
     function removeOrder(button) {
     	button.parentNode.remove();
    	}
     
-    function addOrderTest(){
-		var container = document.getElementById("orderTest-container");
-        var newRow = document.createElement("div");
-        newRow.className = "orderTest-row";
-        newRow.innerHTML = '<input type="text" name="orderlist[' + idx + '].recipeOrderContent" class="form-control" required autofocus placeholder="예 : 파를 다듬어 줍니다." value="${recipeContent}">' +
-        				   '<input type="file" name="orderlist[' + idx + '].upload" class="form-control" value="${recipePhoto}">' + 
-        				   '<button type="button" class="btn btn-outline-secondary" onclick="removeOrderTest(this)">삭제</button>';
-        container.appendChild(newRow);
-        idx+=1;
-	}
+    // 사진 미리보기
+    function previewImage(input, previewId) {
+      const preview = document.getElementById(previewId);
+      preview.innerHTML = ''; // 초기화
 
-    function removeOrderTest(button) {
-    	button.parentNode.remove();
-   	}
+      const files = input.files;
+      for (const file of files) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.alt = file.name;
+          img.style.width = '50%'; // 이미지 크기 조절
+          preview.appendChild(img);
+        };
+
+        reader.readAsDataURL(file);
+      }
+    }
 </script>
