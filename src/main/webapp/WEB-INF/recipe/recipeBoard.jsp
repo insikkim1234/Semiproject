@@ -54,14 +54,31 @@
    }
    
    .user_img {
-    width: 22px;
-    height: 22px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     margin: 0 4px -2px 0;
     vertical-align: text-bottom;
-    border: 2px solid ;
-}
+    border: 1px solid gray;
+	}
+	
+   .bg-body-tertiary {
+    --bs-bg-opacity: 1;
+    
+	}
+	
+	@media (min-width: 576px)
+	.container, .container-sm {
+	    max-width: 540px;
+	}
+	
+	.text-body-secondary {
+    --bs-text-opacity: 1;
    
+	}
+	.custom-img {
+        height: 250px; /* 원하는 높이(px 등)로 조정 */
+    }
    
 </style>
 
@@ -121,33 +138,34 @@
             console.log(totalCount);
             showTotalCount(totalCount);
 
-            let s = `<div class="row row-cols-4">`;
+            let s = `<div class="album py-5">
+            <div class="container"><div class="row row-cols-3">`;
             
             $.each(datas,function(idx,item){
       
                s+=
                   `
-					  <div class="col mb-4">
-					    <div class="card shadow-sm" style="border: 2px solid #11B560; padding: 10px;">
+					  <div class="col-lg-4 col-md-6">
+					    <div class="card border-0">
 					      <a href="./board/\${item.recipeIdx}">
-					        <img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.recipePhoto}" class="card-img-top" style="width: 100%; height:180px;">
+					        <img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.recipePhoto}" class="card-img-top custom-img">
 					      </a>
 					      <div class="card-body">
 					        <p class="card-text"><b>\${item.recipeTitle}</b></p>
 					        <div class="d-flex justify-content-between align-items-center">
 					          <div class="recipe-writer" style="display: inline-block; vertical-align: bottom;">
 					          <img class="user_img" src="<%=NcpObjectStorageService.STORAGE_PROFILE_PHOTO_PATH%>\${item.recipeUserSeq}">
-					            <p>\${item.recipeUserName}</p>
+					            <p style="padding-top: 10px; margin-bottom: 5px;">\${item.recipeUserName}</p>
 					          </div>
-					          <small class="text-body-secondary">조회수\${item.recipeViewCount}</small>
-					          </div>
+					          <small class="text-body-secondary" style="padding-top: 29px;">조회수\${item.recipeViewCount}</small>
+					          </div>         
 				              </div>
 				            </div>
 				          </div>
 				          `;
 				      });
 
-				      s += `</div>`; // 그리드를 닫아주는 부분
+				      s += `</div></div></div>`; // 그리드를 닫아주는 부분
 				      $(".list").html(s);
 				    }
 				  });
@@ -196,8 +214,8 @@
                     	</a>
                     </td>
                     <td>\${item.recipeTitle}</td>
-                    <td>\${item.recipeName}</td>
-                    <td>\${item.ecipeCreatedAt}</td> 
+                    <td>\${item.recipeUserName}</td>
+                    <td>\${item.recipeCreatedAt}</td> 
                     <td>\${item.recipeViewCount}</td></tr>
                `;
             });
@@ -233,4 +251,4 @@
    </div>
 
 
-<div class="list">123</div>
+<div class="list"></div>

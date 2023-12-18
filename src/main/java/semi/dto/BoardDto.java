@@ -1,20 +1,20 @@
 package semi.dto;
 
-import java.sql.Timestamp;
-
 import lombok.Data;
 
 @Data
 public class BoardDto {
     private  int comBoardSeq;
-    private String userName;
-    private String userEmail;
     private String comBoardSubject;
     private String comBoardContent;
     private int comBoardviewCount;
-    private String comBoardRegroup;
+    private int comBoardRegroup;
     private int comBoardRestep;
     private int comBoardRelevel;
-    private Timestamp writeDay;
+    private String writeDay;
+    private String updateDay;
     private int acount;//댓글 개수 추가
+
+    private int comBoardUserSeq;
+    private String userName;
 }

@@ -60,24 +60,15 @@
 				</button>
 			</a>
 		</c:if>
-		
-		<%--<c:if test="${sessionScope.loginOk!=null}">
-			<img src="${}/resources/upload/${sessionScope.myphoto}" class="profile_photo"
-				 width="70" height="70" hspace="10" border="1"
-				 onerror=""><br>
-			<i class="bi bi-gear photochange"
-			   style="font-size: 2em;cursor: pointer;"></i>
-			<input type="file" id="profile_upload" style="display: none;">
-			<div class="input-group">
-				<h5>${sessionScope.myname}님</h5>&nbsp;&nbsp;
-				<button type="button" class="btn btn-success btn-sm"
-						style="width: 100px;" id="btnlogout">로그아웃</button>
-			</div>
-		</c:if>--%>
-	
-			<c:if test="${sessionScope.login_member_dto!=null}">
-				<h5>${sessionScope.login_member_dto.userEmail}님</h5>&nbsp;&nbsp;
-			</c:if>
+		<%--	로그인중 세션	  --%>
+		  <c:if test="${sessionScope.login_member_dto != null}">
+			  <h5>${sessionScope.login_member_dto.userNickName}님</h5>&nbsp;&nbsp;
+			  <a href="${pageContext.request.contextPath}/member/logout">
+				  <button type="submit" class="btn mx-2 p-0">
+					  <div>로그아웃</div>
+				  </button>
+			  </a>
+		  </c:if>
 		</div>
 	</nav>
 </div>

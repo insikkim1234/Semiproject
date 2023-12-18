@@ -23,6 +23,8 @@ public class BoardWriteController {
 	public String form() {
 		return "boardform";
 	}
+
+	/*
 	@PostMapping("/addprocess")
 	public String add(HttpServletRequest request, @ModelAttribute BoardDto dto, @RequestParam MultipartFile upload) {
 		// 사진을 업로드할 폴더
@@ -47,5 +49,5 @@ public class BoardWriteController {
 		// db insert
 		boardDao.insertBoard(dto);
 		return "redirect:./boardlist";
-	}
+	}*/
 }

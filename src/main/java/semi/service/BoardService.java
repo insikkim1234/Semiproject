@@ -7,10 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
-import semi.config.BoardConfig;
 import semi.dao.BoardDao;
 import semi.dto.BoardDto;
-import semi.dto.PageDto;
 
 @Service
 @AllArgsConstructor
@@ -35,6 +33,15 @@ public class BoardService {
 
 		return boardDao.getBoardWithPage(map);
 	}
+
+
+	public void insertBoard(BoardDto dto)
+	{
+		//TODO: set
+		dto.setComBoardRegroup(0);
+		boardDao.insertBoard(dto);
+	}
+
 	
 	
 	/*public List<BoardDto> getList(int start,int perpage)
