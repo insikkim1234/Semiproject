@@ -87,7 +87,7 @@ public class MarketBoardController {
 		 mcdto.setBoardSeq(boardSeq);
 		 mcdto.setCommentContent(msg);
 		 
-		 marketBoardCommentService.insertComment(mcdto);
+		 //marketBoardCommentService.insertComment(mcdto);
 		 
 		 
 	 }

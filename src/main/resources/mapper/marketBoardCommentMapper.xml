@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="semi.dao.MarketProductDao">
-	<resultMap id="MarketProductDtoRm" type="MarketProductDto">
+<!-- 	<resultMap id="MarketProductDtoRm" type="MarketProductDto">
 		<result property="commentSeq" column="nCommentSeq" />
 		<result property="boardSeq" column="nBoardSeq" />
 		<result property="userSeq" column="nUserSeq" />
@@ -10,13 +10,13 @@
 		<result property="updateDate" column="dtUpdateDate" />
 		<result property="commentParentSeq" column="nCommentParentSeq" />
 		<result property="commentDepth" column="nCommentDepth" />
-	</resultMap>
+	</resultMap> -->
 	
-	
+<!-- 	
 	<insert id="insertMarketBoardComment" parameterType="MarketBoardCommentDto">
 		insert into tMarketBoardComment (nBoardSeq,sCommentContent,dtCreateDate,dtUpdateDate)
 		values (#{boardSeq},#{commentContent},now(),now())
 	</insert>
-    
+     -->
 </mapper>
 

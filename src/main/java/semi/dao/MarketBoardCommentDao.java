@@ -17,6 +17,6 @@ public class MarketBoardCommentDao {
 	private String nameSpace="semi.dao.MarketBoardCommentDao.";
 	public void insertComment(MarketBoardCommentDto mcdto)
 	{
-		session.insert(nameSpace+"insertMarketBoardComment", mcdto);
+		//session.insert(nameSpace+"insertMarketBoardComment", mcdto);
 	}
 }
