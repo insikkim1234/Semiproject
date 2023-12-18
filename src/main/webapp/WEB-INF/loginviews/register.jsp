@@ -54,16 +54,23 @@
 </head>
 <body>
 <div class="fs_40 text-center cGreen fw_600 my-5">JOIN US</div>
-<form action="/semi/member/register" method="post"
-      class="regi_input mt-3" enctype="multipart/form-data">
-    <input type="text" name="userName" placeholder="성명 입력" required><br>
+<form action="/semi/member/register" method="post" class="regi_input mt-3" enctype="multipart/form-data">
+
     <div class="box">
-        <input type="email" name="userEmail" placeholder="email" id="userEmail" required><br>
+        <input type="email" name="userEmail" placeholder="이메일주소(필수)" id="userEmail" required><br>
         <label class="cGreen fw_600 fs_17">아이디 중복 확인<input type="checkbox" id="emailCheckbox" class="ml-2" required>
         </label>
     </div>
-    <br>
-    <input type="password" name="userPassword" placeholder="비밀번호" required><br>
+
+    <input type="password" name="userPassword" id="password1" placeholder="비밀번호(필수)" required><br>
+
+    <input type="text" name="userNickName" placeholder="닉네임(필수)"><br>
+
+    <input type="text" name="userName" placeholder="이름(필수)" required><br>
+
+    <input type="text" name="userPhoneNumber"
+           placeholder="휴대폰번호(ex:010-1234-5678)" class="mt-3" required><br>
+
     <div id="root">
         <h2 class="cGreen fs_17 fw_600 ">프로필 등록</h2>
         <div class="contents">
@@ -80,10 +87,8 @@
                        accept="image/png, image/jpeg, image/gif">
             </div>
         </div>
-    </div>
-    <input type="text" name="userPhoneNumber"
-           placeholder="휴대전화번호(Ex:010-1234-5678)" class="mt-3" required><br>
-    <input type="submit" value="회원가입" class="btn_green2" >
+    </div><br>
+    <input type="submit" value="회원가입" class="btn_green2" ><br><br>
     </form>
     <script>
         // 중복 체크 후 변경 시 체크 해제
