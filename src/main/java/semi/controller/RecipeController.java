@@ -1,13 +1,10 @@
 package semi.controller;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-import annotation.Login;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,14 +14,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import annotation.Login;
 import naver.storage.NcpObjectStorageService;
-
 import semi.dto.MemberDto;
 import semi.dto.RecipeDto;
 import semi.dto.RecipeOrderDto;
+import semi.dto.RecipeUpdateDto;
 import semi.orderBean.OrderBean;
 import semi.orderBean.OrderListBean;
 import semi.service.RecipeOrderService;
@@ -111,4 +108,20 @@ public class RecipeController {
     	
     	return "recipe/recipeBoardDetail/" + recipeIdx;
     }
+    
+    // 레시피 게시물 수정 페이지로 이동
+    @GetMapping("/recipe/update/{recipeIdx}")
+    public String getUpdateRecipeForm(Model model, @PathVariable int recipeIdx) {
+        RecipeDto dto = recipeService.getData(recipeIdx);
+        model.addAttribute("recipeDto", dto);
+        return "recipe/recipeBoardUpdate";
+    }
+
+    // 수정 처리
+    @PostMapping("/recipe/updateRecipe")
+    public String updateRecipe(@ModelAttribute RecipeUpdateDto updateDto) {
+        recipeService.updateRecipe(updateDto);
+        return "redirect:/recipe/board/" + updateDto.getRecipeIdx();
+    }
+    
 }
