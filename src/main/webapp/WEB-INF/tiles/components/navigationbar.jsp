@@ -48,6 +48,11 @@
 				<div>로그인</div>
 			</button>
 			</a>
+			<a href="${pageContext.request.contextPath}/member/register">
+				<button type="submit" class="btn  mx-2 p-0">
+					<div>회원가입</div>
+				</button>
+			</a>
 		</c:if>
 		
 		<%--<c:if test="${sessionScope.loginOk!=null}">
