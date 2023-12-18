@@ -33,6 +33,12 @@
 	          	<span><i class="bi bi-person-hearts mr-2"></i>벼룩시장</span>
 			  </a>
 	        </li>
+	        <li class="nav-item ml-5">
+	          <a class="nav-link fs_19 fw_600" href="${pageContext.request.contextPath}/recipeBoardUpdate?">
+				<span>임시버튼</span>
+	          	<span><i class="bi bi-person-hearts mr-2"></i>레시피수정</span>
+			  </a>
+	        </li>
 	      </ul>
 	      <!-- <form class="d-flex m-0 justify-content-end">
 		      <input class="form-control me-2" type="text" style="border: 0;" placeholder="Search">
