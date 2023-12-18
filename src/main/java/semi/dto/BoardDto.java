@@ -14,6 +14,7 @@ public class BoardDto {
     private String writeDay;
     private String updateDay;
     private int acount;//댓글 개수 추가
+    private String comBoardPhoto;
 
     private int comBoardUserSeq;
     private String userName;

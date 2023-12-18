@@ -13,6 +13,7 @@
 		<result property="comBoardRelevel" column="nComBoardRelevel" />
 		<result property="writeDay" column="dtWriteDay" />
 		<result property="updateDay" column="dtUpdateDay" />
+		<result property="comBoardPhoto" column="sComBoardPhoto" />
 
 	</resultMap>
 
@@ -24,7 +25,7 @@
 	</select>
 	<insert id="insertBoard" parameterType="BoardDto">
 		INSERT INTO tComBoard
-		values (null,#{comBoardUserSeq},#{comBoardSubject},#{comBoardContent}, 0, #{comBoardRegroup},0, 0,now(), now())
+		values (null,#{comBoardUserSeq},#{comBoardSubject},#{comBoardContent}, 0, #{comBoardRegroup},0, 0,now(), now(), #{comBoardPhoto})
 	</insert>
 	<select id="selectAllBoard" resultType="BoardDto">
 		select * from tComBoard order by nComBoardSeq desc
