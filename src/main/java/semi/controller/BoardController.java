@@ -34,7 +34,6 @@ public class BoardController {
 
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("data", data);
-		model.addAttribute("totcalCnt", totalCnt);
 		model.addAttribute("pageDto", pageDto);
 		model.addAttribute("isSearch", searchWord != null);
 

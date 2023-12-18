@@ -1,9 +1,6 @@
 package semi.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,17 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import naver.storage.NcpObjectStorageService;
-import semi.config.MarketBoardConfig;
-import semi.dao.MarketBoardDao;
-import semi.dao.MarketProductDao;
+import semi.config.BoardConfig;
 import semi.dto.*;
-import semi.service.BoardFileService;
 import semi.service.MarketBoardService;
 import semi.service.MarketProductService;
 import utils.BoardUtils;
@@ -67,16 +59,17 @@ public class MarketBoardController {
 				@RequestParam(defaultValue = "1") int currentPage,
 				@RequestParam(required=false) String searchWord)
 	{
-		int perPage=10;
 		int totalCount=marketBoardService.getTotalCount(searchWord);//총 게시글 갯수
 
 		PageDto pageDto = BoardUtils.getPage(currentPage, totalCount);
-		List<MarketBoardDto> mdata = marketBoardService.getBoardWithPage(currentPage, perPage, searchWord);
+		List<MarketBoardDto> mdata = marketBoardService.getBoardWithPage(currentPage, BoardConfig.PAGE_SIZE, searchWord);
 
 		model.addAttribute("mdata", mdata);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("currentPage",currentPage);
 		model.addAttribute("pageDto", pageDto);
+		model.addAttribute("isSearch", searchWord != null);
+
 
 		return "market/marketboardlist";
 	}

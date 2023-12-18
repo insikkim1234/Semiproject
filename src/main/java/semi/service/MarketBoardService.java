@@ -44,16 +44,5 @@ public class MarketBoardService {
 	{
 		return marketBoardDao.getData(boardSeq);
 	}
-
-	
-
-	
-
-	
-
-	
-
-	
-
 }
 

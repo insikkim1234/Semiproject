@@ -27,7 +27,7 @@
 			where tMarketBoard.sBoardTitle like concat('%',#{searchWord},'%')
 		</if>
 		order by nBoardSeq desc
-		limit #{start}, #{perpage}
+		limit #{startNum}, #{perPage}
 
 
 	</select>
