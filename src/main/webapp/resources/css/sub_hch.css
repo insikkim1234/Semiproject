@@ -381,4 +381,61 @@ a:hover, a:focus {
 	color: #11B560;
 } 
 
- 
+
+/* recipeBoardDetail */
+div.rgyPostIt {
+	font-family: 'Nanum Pen Script';
+    position: relative;
+    display: inline-block;
+    padding: 5px 45px 5px 15px;
+    margin: 5px 0;
+    border: 1px solid #f8f861;
+    border-left: 30px solid #f8f861;
+    /* border-bottom-right-radius: 60px 10px; */
+    box-shadow: 4px 0px 4px 0px #49505770;
+    font-size: 27px;
+    color: #555;
+    word-break: break-all;
+    background: #ffff88; /* Old browsers */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(81%, #ffff88), color-stop(82%, #ffff88), color-stop(82%, #ffff88), color-stop(100%, #ffffc6)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(-45deg, #ffff88 81%, #ffff88 82%, #ffff88 82%, #ffffc6 100%); /* Chrome10+,Safari5.1+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffff88', endColorstr='#ffffc6', GradientType=1); /* IE6-9 fallback on horizontal gradient */
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+}
+
+div.rgyPostIt::after {
+    content: " ";
+    position: absolute;
+    z-index: -1;
+    right: 0;
+    bottom: 35px;
+    width: 150px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: 2px 35px 5px rgba(0, 0, 0, 1);
+    -webkit-box-shadow: 2px 35px 5px rgba(0, 0, 0, 0.4);
+    transform: matrix(-1, -0.1, 0, 1, 0, 0);
+    -webkit-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+}
+
+div.rgyPostIt:hover {
+	 box-shadow: 2px 3px 7px #6b6b6b;
+    border-bottom-right-radius: 45px 20px;
+}
+
+div.rgyPostIt:hover::after {
+    box-shadow: 20px 37px 7px #000;
+    -webkit-box-shadow: 2px 37px 7px rgba(0, 0, 0, 0.37);
+}
+
+.r-detail{
+	border-bottom: 2px solid #11B560;
+	max-width: 350px;
+}
+
+.rtitle_border{
+	border-bottom: 1px solid #11B560;
+}

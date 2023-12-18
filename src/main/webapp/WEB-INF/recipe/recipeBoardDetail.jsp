@@ -5,17 +5,16 @@
 
 <style>
     .div_detail {
-        width: 100%;
-        box-sizing: border-box;
-        background-color: black;
-        padding: 10px;
-        margin-bottom: 10px;
+    	width: 1200px;
+	    box-sizing: border-box;
+	    box-shadow: 10px 15px 30px #49505770;
+	    padding: 50px;
+	    border: 1px solid #19875440;
     }
 
     .div_detailItem {
-        background-color: white;
-        padding: 10px;
-        margin: 10px;
+        margin: 0 auto;
+        max-width: 750px;
     }
 
 	span.detailWriter, span.detailViewCount, span.detailCreatedAt, span.detailUpdatedAt {
@@ -80,50 +79,57 @@
 	    width: 100%;
     }
 </style>
-
-<div class="div_detail">
-	<div class="div_detailItem">
-		<b style="font-size: 40px;">${dto.recipeTitle}</b>
-		<br>
-		<br>
-		<div>
-			<span class="detailWriter">작성자 : </span>
-			<b>${dto.recipeUserName}</b>&nbsp;
-			<span class="detailViewCount">조회수 : </span>
-			<b>${dto.recipeViewCount}</b>
-		</div>
-		<div>
-			<span class="detailCreatedAt">작성일 : </span>
-			<b><fmt:formatDate value="${dto.recipeCreatedAt}" pattern="yyyy-MM-dd"/></b>&nbsp;
+<div class="mw_1200">
+	<div class="fs_32 fw_600 cGreen r-detail mt-5">레시피 A to Z</div>
+	<div class="div_detail mt-3">
+		<div class="div_detailItem">
+			<div class="rtitle_border">
+				<div class="fs_28 fw_600 cBlack">
+					${dto.recipeTitle}
+				</div>
+				<br>
+				<br>
+				<div class="text-end">
+					<span class="detailWriter"><i class="bi bi-person-fill fs_19"></i></span>
+					<b>${dto.recipeUserName}</b>&nbsp;
+					<span class="detailViewCount"><i class="bi bi-eye-fill fs_19"></i></span>
+					<b>${dto.recipeViewCount}</b>
+				</div>
+				<div class="text-end">
+					<span class="detailCreatedAt">작성일 : </span>
+					<b><fmt:formatDate value="${dto.recipeCreatedAt}" pattern="yyyy-MM-dd"/></b>&nbsp;
+					<br>
+					<span class="detailUpdatedAt">수정일 : </span>
+					<b><fmt:formatDate value="${dto.recipeUpdatedAt}" pattern="yyyy-MM-dd"/></b> 
+				</div>
+			</div>
+			
+			<br><br>
+			<div class="text-center">
+				<img class="detail_img" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${dto.recipePhoto}" >
+			</div>
 			<br>
-			<span class="detailUpdatedAt">수정일 : </span>
-			<b><fmt:formatDate value="${dto.recipeUpdatedAt}" pattern="yyyy-MM-dd"/></b> 
-		</div>
-		<br><br>
-		<div>
-			<img class="detail_img" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${dto.recipePhoto}" >
-		</div>
-		<br>
-		<div class="detailContent">
-			[내용]
-			<pre>${dto.recipeContent}</pre>
-		</div>
-		<div class="detailInfo">
-			<span class="detailInfo1">${dto.recipeServing}</span>
-			<span class="detailInfo2">${dto.recipeTime}</span>
-			<span class="detailInfo3">${dto.recipeDifficulty}</span>
-		</div>
-		<div class="detailIngredient">
-			<span style="color: #aaa;">[재료]</span>
-			<br>
-		    <c:if test="${not empty dto.recipeIngredient}">
-		        <c:set var="ingredients" value="${dto.recipeIngredient}" />
-		        <c:forTokens var="ingredient" items="${ingredients}" delims=",">
-		        	<!-- TODO : 이미지 이름 ingredient, ingredient2 중 하나 선택 -->
-		            <img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>ingredient2.png" class="img-fluid" style="width: 40px;"> ${ingredient}
-		            <br/>
-		        </c:forTokens>
-			</c:if>
+			<div class="detailContent">
+				[내용]
+				<pre>${dto.recipeContent}</pre>
+			</div>
+			<div class="detailInfo">
+				<span class="detailInfo1">${dto.recipeServing}</span>
+				<span class="detailInfo2">${dto.recipeTime}</span>
+				<span class="detailInfo3">${dto.recipeDifficulty}</span>
+			</div>
+			<div class="detailIngredient">
+				<span style="color: #aaa;">[재료]</span>
+				<br>
+			    <c:if test="${not empty dto.recipeIngredient}">
+			        <c:set var="ingredients" value="${dto.recipeIngredient}" />
+			        <c:forTokens var="ingredient" items="${ingredients}" delims=",">
+			        	<!-- TODO : 이미지 이름 ingredient, ingredient2 중 하나 선택 -->
+			            <img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>ingredient2.png" class="img-fluid" style="width: 40px;"> <div class="rgyPostIt">${ingredient}</div>
+			            <br/>
+			        </c:forTokens>
+				</c:if>
+			</div>
 		</div>
 	</div>
 </div>
