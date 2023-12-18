@@ -2,7 +2,7 @@
 <%@ page import="naver.storage.NcpObjectStorageService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<div style="box-shadow: 0 5px 30px -10px #4950578f">
 <div class="mw_1500">
 	<nav class="navbar navbar-expand-sm d-flex flex-column">
 	  <div class="container-fluid">
@@ -18,26 +18,26 @@
 	        <li class="nav-item mx-5">
 	          <a class="nav-link fs_19 fw_600" href="${pageContext.request.contextPath}/board/list">
 	          <span>자취생 다 모여</span>
-	          <span data-hover="커뮤니티">커뮤니티</span>
+	          <span><i class="bi bi-chat-text-fill mr-2"></i>커뮤니티</span>
 	          </a>
 	        </li>
 	        <li class="nav-item mx-5">
 	          <a class="nav-link fs_19 fw_600" href="${pageContext.request.contextPath}/recipe/board">
 	            <span>오늘 뭐 먹지?</span>
-	          	<span data-hover="레시피북">레시피북</span>
+	          	<span><i class="bi bi-book-fill mr-2"></i>레시피북</span>
 	          </a>
 	        </li>
-	        <li class="nav-item mx-5">
+	        <li class="nav-item ml-5">
 	          <a class="nav-link fs_19 fw_600" href="${pageContext.request.contextPath}/mboard">
 				<span>돈 아끼는 팁</span>
-	          	<span data-hover="벼룩시장">벼룩시장</span>
+	          	<span><i class="bi bi-person-hearts mr-2"></i>벼룩시장</span>
 			  </a>
 	        </li>
 	      </ul>
-	      <form class="d-flex m-0 justify-content-end">
+	      <!-- <form class="d-flex m-0 justify-content-end">
 		      <input class="form-control me-2" type="text" style="border: 0;" placeholder="Search">
 		      <button class="btn btn_green2 fw_600" type="button">검색</button>
-		  </form>
+		  </form> -->
 	    </div>
 	  </div>
 	  
@@ -47,12 +47,12 @@
 			<button type="submit" class="btn mx-2 p-0 login_rborder">
 				<div>로그인</div>
 			</button>
-		</a>
-		<a href="${pageContext.request.contextPath}/member/register">
-			<button type="submit" class="btn  mx-2 p-0">
-				<div>회원가입</div>
-			</button>
-		</a>
+			</a>
+			<a href="${pageContext.request.contextPath}/member/register">
+				<button type="submit" class="btn  mx-2 p-0">
+					<div>회원가입</div>
+				</button>
+			</a>
 		</c:if>
 		
 		<%--<c:if test="${sessionScope.loginOk!=null}">
@@ -75,6 +75,6 @@
 		</div>
 	</nav>
 </div>
-
+</div>
 
 	

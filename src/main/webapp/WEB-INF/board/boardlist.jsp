@@ -5,12 +5,18 @@
 
 <div class="mw_1000">
 	<div class="fs_40 fw_600 cGreen text_left mt-5">자취러 커뮤니티</div>
-	<form class="d-flex m-0 justify-content-end mt-3">
-		<input class="form-control me-2" type="text" placeholder="검색어 입력" style="width: 200px; border:2px solid #11B560;">
-		<button class="btn btn_green2 fw_600" type="button">검색</button>
+	<form action="./list" class="d-flex m-0 justify-content-end mt-3">
+		<input type="hidden" name = "pageNum" value="${pageDto.curPage}"/>
+		<input class="form-control me-2" type="text" placeholder="검색어 입력" name="searchWord" style="width: 200px; border:2px solid #11B560;">
+		<button class="btn btn_green2 fw_600" type="submit">검색</button>
 	</form>
 	<div class="fs_17 bg_green row mt-3 mw_1000">
-		<div class="col py-3 fw_600">총 ${totcalCnt}개의 잡담 형성중..</div>
+		<c:if test="${isSearch}">
+			<div class="col py-3 fw_600">총 ${totcalCnt}개의 잡담 검색됨</div>
+		</c:if>
+		<c:if test="${!isSearch}">
+			<div class="col py-3 fw_600">총 ${totcalCnt}개의 잡담 형성중..</div>
+		</c:if>
 		<div class="col text-end">
 			<button type="button" class="btn btn_green fw_600 mt-2"
 				onclick="location.href='./form'">글쓰기</button>
@@ -56,10 +62,10 @@
 			<c:when test="${pageNumber >= 1 and pageNumber <= pageDto.totalPage}">
 				<c:choose>
 					<c:when test="${pageNumber == pageDto.curPage}">
-						<span class="cBlack mx-1 fs_22">${pageNumber}</span>
+						<span class="cGreen mx-1 fs_22">${pageNumber}</span>
 					</c:when>
 					<c:otherwise>
-						<span class="cGreen mx-1 fs_22"><a href="${pageContext.request.contextPath}/board/list?pageNum=${pageNumber}">${pageNumber}</a></span>
+						<span class="cBlack mx-1 fs_22"><a href="${pageContext.request.contextPath}/board/list?pageNum=${pageNumber}">${pageNumber}</a></span>
 					</c:otherwise>
 				</c:choose>
 			</c:when>

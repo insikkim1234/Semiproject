@@ -22,12 +22,23 @@
 	</insert>
 	
 	<select id="selectMarketBoardWithPage" parameterType="Map" resultType="MarketBoardDto" resultMap="MarketBoardDtoRm">
-		select * from tMarketBoard order by nBoardSeq desc limit #{start}, #{perpage}
+		select * from tMarketBoard
+		<if test="searchWord != null">
+			where tMarketBoard.sBoardTitle like concat('%',#{searchWord},'%')
+		</if>
+		order by nBoardSeq desc
+		limit #{startNum}, #{perPage}
+
+
 	</select>
 	
-	<select id="totalCountOfMarketBoard" resultType="int">
+	<select id="totalCountOfMarketBoard" resultType="int" parameterType="String">
 		select count(*)
 		from tMarketBoard
+		<if test="searchWord != null">
+			where tMarketBoard.sBoardTitle like concat('%',#{searchWord},'%')
+		</if>
+
 	</select>
 	
 	<update id="updateReadCountOfMarketBoard" parameterType="int">
@@ -36,10 +47,10 @@
 		where nBoardSeq=#{boardSeq}
 	</update>
 	
-	<select id="selectDataByBoardSeq" parameterType="int" resultType="MarketBoardDto">
+	<select id="selectDataByMarketBoardSeq" parameterType="int" resultType="MarketBoardDto">
 		select *
 		from tMarketBoard
-		where nBoardSeq=#{nBoardSeq}
+		where nBoardSeq=#{boardSeq}
 	</select>
 	
 </mapper>
