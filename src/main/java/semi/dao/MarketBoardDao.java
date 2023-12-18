@@ -45,7 +45,7 @@ public class MarketBoardDao {
 	
 	public MarketBoardDto getData(int boardSeq)
 	{
-		return session.selectOne(nameSpace+"selectDataByBoardSeq", boardSeq);
+		return session.selectOne(nameSpace+"selectDataByMarketBoardSeq", boardSeq);
 	}
 	
 }
