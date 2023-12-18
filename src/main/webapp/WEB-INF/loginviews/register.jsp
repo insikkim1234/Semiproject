@@ -23,9 +23,9 @@
         }
 
         .regi_input>input[type=text], .regi_input>input[type=password],
-        .regi_input>input[type=submit], .regi_input>.box>input[type=email],
-        .regi_input>.box2>input[type=text] {
-            width: 300px;
+        .regi_input>input[type=submit], .regi_input>.box,
+        .regi_input>.box2 {
+            width: 350px;
             padding: 10px;
             /* border-radius: 10px; */
             margin-bottom: 10px;
@@ -56,27 +56,44 @@
             background-color: #EBEE48;
             border: 2px solid #E1A900;
         }
+        
+        .box3{
+        	width: 350px;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: table;
+            margin-left: auto;
+            margin-right: auto;
+            border: 0;
+            border-bottom: 2px solid #11B560;
+            background-color: transparent;
+        }
+        
+        .box>input[type=email],
+        .box2>input[type=text]{
+        	border:0;
+        }
     </style>
 </head>
 <body>
 <div class="fs_40 text-center cGreen fw_600 my-5">JOIN US</div>
 <form action="/semi/member/register" method="post" class="regi_input mt-3" enctype="multipart/form-data">
 
-    <div class="box">
+    <div class="box d-flex justify-content-between">
         <input type="email" name="userEmail" placeholder="이메일주소(필수)" id="userEmail" required><br>
-            <label class="cGreen fw_600 fs_17">아이디 중복 확인<input type="checkbox" id="emailCheckbox" class="ml-2" required>
+            <label class="cGreen fw_600 fs_17 mb-0">중복 확인<input type="checkbox" id="emailCheckbox" class="ml-2" required>
         </label>
     </div>
+	
+    <input type="password" name="userPassword" id="password1" placeholder="비밀번호(필수)" required class="mt-4"><br>
 
-    <input type="password" name="userPassword" id="password1" placeholder="비밀번호(필수)" required><br>
-
-    <div class="box2">
+    <div class="box2 d-flex justify-content-between">
         <input type="text" name="userNickName" placeholder="닉네임(필수)" id="userNickName" required><br>
-            <label class="cGreen fw_600 fs_17">닉네임 중복 확인<input type="checkbox" id="nicknameCheckbox" class="ml-2" required>
+            <label class="cGreen fw_600 fs_17 mb-0">중복 확인<input type="checkbox" id="nicknameCheckbox" class="ml-2" required>
         </label>
     </div>
 
-    <input type="text" name="userName" placeholder="이름(필수)" required><br>
+    <input type="text" name="userName" placeholder="이름(필수)" required class="mt-4"><br>
 
     <input type="text" name="userPhoneNumber"
            placeholder="휴대폰번호(ex:010-1234-5678)" class="mt-3" required><br>
