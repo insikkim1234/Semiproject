@@ -57,18 +57,6 @@
             border: 2px solid #E1A900;
         }
         
-        .box3{
-        	width: 350px;
-            padding: 10px;
-            margin-bottom: 10px;
-            display: table;
-            margin-left: auto;
-            margin-right: auto;
-            border: 0;
-            border-bottom: 2px solid #11B560;
-            background-color: transparent;
-        }
-        
         .box>input[type=email],
         .box2>input[type=text]{
         	border:0;
