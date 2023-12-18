@@ -25,10 +25,12 @@ import semi.dao.MarketBoardDao;
 import semi.dao.MarketProductDao;
 import semi.dto.BoardDto;
 import semi.dto.BoardFileDto;
+import semi.dto.MarketBoardCommentDto;
 import semi.dto.MarketBoardDto;
 import semi.dto.MarketProductDto;
 import semi.dto.RecipeDto;
 import semi.service.BoardFileService;
+import semi.service.MarketBoardCommentService;
 import semi.service.MarketBoardService;
 import semi.service.MarketProductService;
 
@@ -45,6 +47,9 @@ public class MarketBoardController {
 	@Autowired private MarketBoardDao marketBoardDao;
 	@Autowired private MarketProductDao marketProductDao;
 	@Autowired private MarketBoardConfig marketBoardConfig;
+	
+	@Autowired
+	private MarketBoardCommentService marketBoardCommentService;
 	
 	
 	
@@ -142,7 +147,20 @@ public class MarketBoardController {
 		 
 		 return "market/marketboardcontent";
 	 }
-
+	 
+	 @PostMapping("/answer/insert")
+	 public void insertAnswer(@RequestParam int boardSeq,
+			 @RequestParam String msg,
+			 HttpSession session)
+	 {
+		 MarketBoardCommentDto mcdto=new MarketBoardCommentDto();
+		 mcdto.setBoardSeq(boardSeq);
+		 mcdto.setCommentContent(msg);
+		 
+		 marketBoardCommentService.insertComment(mcdto);
+		 
+		 
+	 }
 
 
 		
