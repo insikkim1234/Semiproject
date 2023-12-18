@@ -10,7 +10,7 @@
     <tiles:insertAttribute name="navigationbar" />
 </div>
 
-<div class="container" >
+<div class="container">
     <tiles:insertAttribute name="detail_main" />
 </div>
 
