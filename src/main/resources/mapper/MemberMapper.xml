@@ -19,6 +19,9 @@
     <select id="checkDuplicatedEmail" parameterType="semi.dto.MemberDto" resultType="int">
         SELECT COUNT(*) FROM tUser WHERE userEmail = #{userEmail}
     </select>
+    <select id="checkDuplicatedNickName" parameterType="semi.dto.MemberDto" resultType="int">
+        SELECT COUNT(*) FROM tUser WHERE userNickName = #{userNickName}
+    </select>
     <select id="selectAllMembers" resultType="semi.dto.MemberDto" parameterType="Map">
 		select * from tUser
 		<if test="searchoword!=null">

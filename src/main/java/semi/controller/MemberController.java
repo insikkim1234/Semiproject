@@ -60,7 +60,7 @@ public class MemberController {
         return "redirect:../";
     }
 
-    //회원가입 중복 아이디 체크 로직 (API)
+    //회원가입 중복 이메일 체크 로직 (API)
     @PostMapping("/duplicatedEmailCheck")
     public ResponseEntity<Object> duplicatedEmailCheck(@RequestBody MemberDto memberDto) {
         int result = memberService.duplicatedEmailCheck(memberDto);
@@ -69,12 +69,40 @@ public class MemberController {
         //중복 회원이 있을 경우
         if(result == 1){
             resultMap.put("status","500");
-            resultMap.put("message","이미 가입된 아이디가 존재합니다!");
+            resultMap.put("message","이미 가입된 이메일이 존재합니다!");
         }
         //중복 회원이 없을 경우
         else {
             resultMap.put("status","200");
-            resultMap.put("message","사용 가능한 아이디 입니다.");
+            resultMap.put("message","사용 가능한 이메일 입니다.");
+        }
+
+        String duplicatedResult = "";
+        try {
+            duplicatedResult = objectMapper.writeValueAsString(resultMap);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.ok(duplicatedResult);
+    }
+
+    //회원가입 중복 닉네임 체크 로직 (API)
+    @PostMapping("/duplicatedNickNameCheck")
+    public ResponseEntity<Object> duplicatedNickNameCheck(@RequestBody MemberDto memberDto) {
+        int result = memberService.duplicatedNickNameCheck(memberDto);
+        HashMap<String,String> resultMap = new HashMap<>();
+
+        //중복 회원이 있을 경우
+        if(result == 1){
+            resultMap.put("status","500");
+            resultMap.put("message","이미 가입된 닉네임이 존재합니다!");
+        }
+        //중복 회원이 없을 경우
+        else {
+            resultMap.put("status","200");
+            resultMap.put("message","사용 가능한 닉네임 입니다.");
         }
 
         String duplicatedResult = "";
