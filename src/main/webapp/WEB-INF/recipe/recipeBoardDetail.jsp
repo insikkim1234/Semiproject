@@ -92,6 +92,7 @@
 				<div class="text-end">
 					<span class="detailWriter"><i class="bi bi-person-fill fs_19"></i></span>
 					<b>${dto.recipeUserName}</b>&nbsp;
+					<span><i class="bi bi-three-dots-vertical"></i></span>&nbsp;
 					<span class="detailViewCount"><i class="bi bi-eye-fill fs_19"></i></span>
 					<b>${dto.recipeViewCount}</b>
 				</div>
