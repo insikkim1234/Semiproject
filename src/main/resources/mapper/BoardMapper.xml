@@ -14,8 +14,11 @@
 		<result property="writeDay" column="dtWriteDay" />
 	</resultMap>
 
-	<select id="totalCountOfBoard" resultType="int">
+	<select id="totalCountOfBoard" resultType="int" parameterType="String">
 		select count(*) from tComBoard
+		<if test="searchWord != null">
+			where sComBoardSubject like concat('%',#{searchWord},'%')
+		</if>
 	</select>
 	<select id="insertBoard" parameterType="BoardDto">
 		insert into tComBoard values (null,#{sUserName},#{sComBoardSubject},#{sComBoardContent},#{nComBoardRegroup},0,now())
@@ -24,7 +27,12 @@
 		select * from tComBoard order by nComBoardSeq desc
 	</select>
 	<select id="selectBoardWithPage" parameterType="Map" resultType="BoardDto" resultMap="BoardDtoRm">
-		select * from tComBoard order by nComBoardSeq desc limit #{startIdx}, #{perPage}
+		select * from tComBoard
+		<if test="searchWord != null">
+			where sComBoardSubject like concat('%',#{searchWord},'%')
+		</if>
+		order by nComBoardSeq desc
+		limit #{startIdx}, #{perPage}
 	</select>
 	<update id="updateReadCount" parameterType="int">
 		update tComBoard set nComBoardviewCount=nComBoardviewCount+1 where nComBoardSeq=#{nComBoardSeq}

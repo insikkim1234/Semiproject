@@ -17,20 +17,21 @@ import semi.dto.PageDto;
 public class BoardService {
 	@Autowired private BoardDao boardDao;
 
-	public int getTotalCount()
+	public int getTotalCount(String searchWord)
 	{
-		return boardDao.getTotalCount();
+		return boardDao.getTotalCount(searchWord);
 	}
 
     public List<BoardDto> getAllData() {
         return boardDao.getAllData();
     }
 
-	public List<BoardDto> getBoardWithPage(int pageNum, int perPage) {
+	public List<BoardDto> getBoardWithPage(int pageNum, int perPage, String searchWord) {
 		int startIdx = (pageNum - 1) * perPage;
-		Map<String, Integer> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<>();
 		map.put("startIdx", startIdx);
 		map.put("perPage", perPage);
+		map.put("searchWord", searchWord);
 
 		return boardDao.getBoardWithPage(map);
 	}

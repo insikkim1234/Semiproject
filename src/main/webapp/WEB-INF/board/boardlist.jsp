@@ -5,8 +5,9 @@
 
 <div class="mw_1000">
 	<div class="fs_40 fw_600 cGreen text_left mt-5">자취러 커뮤니티</div>
-	<form class="d-flex m-0 justify-content-end mt-3">
-		<input class="form-control me-2" type="text" placeholder="검색어 입력" style="width: 200px; border:2px solid #11B560;">
+	<form action="./list" class="d-flex m-0 justify-content-end mt-3">
+		<input type="hidden" name = "pageNum" value="${pageDto.curPage}"/>
+		<input class="form-control me-2" type="text" placeholder="검색어 입력" name="searchWord" style="width: 200px; border:2px solid #11B560;">
 		<button class="btn btn_green2 fw_600" type="button">검색</button>
 	</form>
 	<div class="fs_17 bg_green row mt-3 mw_1000">

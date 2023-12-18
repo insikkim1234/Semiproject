@@ -21,12 +21,13 @@ public class BoardController {
 
 	@GetMapping(value = "/list")
 	public String boardList(Model model,
-						@RequestParam(required = false, defaultValue = "1") int pageNum) {
+						@RequestParam(required = false, defaultValue = "1") int pageNum,
+						@RequestParam(required = false) String searchWord) {
 
 		if (pageNum < 1) pageNum = 1;
 
-		List<BoardDto> data = boardService.getBoardWithPage(pageNum, BoardConfig.PAGE_SIZE);
-		int totalCnt = boardService.getTotalCount();
+		List<BoardDto> data = boardService.getBoardWithPage(pageNum, BoardConfig.PAGE_SIZE, searchWord);
+		int totalCnt = boardService.getTotalCount(searchWord);
 
 		PageDto pageDto = boardService.getPage(pageNum, totalCnt);
 
