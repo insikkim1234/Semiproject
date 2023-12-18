@@ -104,8 +104,8 @@ a:hover, a:focus {
 
 .member_btns{
 	position: absolute;
-	top:8px;
-	right: 10px;
+	top:10px;
+	right: 25px;
 }
 
 .member_btns>a>button{
@@ -175,7 +175,7 @@ a:hover, a:focus {
 	display:block;
 	width:1px;
 	height:12px;
-	background-color:black;
+	/*background-color:black;*/
 }
 /*register.jsp  */
 #root {
