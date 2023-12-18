@@ -62,9 +62,6 @@ function list()
 <body>
 
 <div>
-
-	
-
 	<div>
 
 		<div id="answercount">댓글 0</div>
