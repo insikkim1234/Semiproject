@@ -23,19 +23,14 @@ public class MarketBoardDao {
 		session.insert(nameSpace + "insertMarketBoard", dto);
 	}
 	
-	public List<MarketBoardDto> getBoardWithPage(Map<String, Integer> map)
+	public List<MarketBoardDto> getBoardWithPage(Map<String, Object> map)
 	{
 		return session.selectList(nameSpace+"selectMarketBoardWithPage", map);
 	}
 	
-	public int getTotalCount()
+	public int getTotalCount(String searchWord)
 	{
-		return session.selectOne(nameSpace+"totalCountOfMarketBoard");
-	}
-	public List<MarketBoardDto> getList(Map<String, Integer> map)
-	{
-		
-		return session.selectList(nameSpace+"selectMarketBoardWithPage",map);
+		return session.selectOne(nameSpace+"totalCountOfMarketBoard", searchWord);
 	}
 	
 	public void updateReadCount(int boardSeq)

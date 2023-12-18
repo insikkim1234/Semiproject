@@ -12,6 +12,7 @@ import semi.dto.BoardDto;
 import semi.dto.MemberDto;
 import semi.dto.PageDto;
 import semi.service.BoardService;
+import utils.BoardUtils;
 
 
 @Controller
@@ -29,7 +30,7 @@ public class BoardController {
 		List<BoardDto> data = boardService.getBoardWithPage(pageNum, BoardConfig.PAGE_SIZE, searchWord);
 		int totalCnt = boardService.getTotalCount(searchWord);
 
-		PageDto pageDto = boardService.getPage(pageNum, totalCnt);
+		PageDto pageDto = BoardUtils.getPage(pageNum, totalCnt);
 
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("data", data);
