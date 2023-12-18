@@ -48,7 +48,8 @@ public class BoardController {
 	@PostMapping("/insertBoard")
 	public String insertBoard(@Login MemberDto user, BoardDto boardDto) {
 
-		//boardService
+		boardDto.setComBoardUserSeq(user.getUserSeq());
+		boardService.insertBoard(boardDto);
 
 		return "redirect:./list";
 	}
