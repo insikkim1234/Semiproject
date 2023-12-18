@@ -29,7 +29,6 @@
     }
     .message {
         text-align: center;
-        font-family: cursive;
     }
     
     .btnlogin:hover { /*이 속성 추가  */

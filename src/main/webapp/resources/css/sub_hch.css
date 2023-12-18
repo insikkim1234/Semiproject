@@ -175,7 +175,7 @@ a:hover, a:focus {
 	display:block;
 	width:1px;
 	height:12px;
-	/*background-color:black;*/
+	background-color:black;
 }
 /*register.jsp  */
 #root {
@@ -290,8 +290,8 @@ a:hover, a:focus {
 .blist>.table thead th {
     border-bottom: 1px solid #11b560;
 }
- .cGreen>a{
- 	color:#11B560;
+ .cBlack>a{
+ 	color:#6b6b6b;
  }
  
  .c-yellow{
@@ -302,12 +302,12 @@ a:hover, a:focus {
 .menubtn_effect a{
   position:relative;
   margin:0 20px;
-  padding-bottom: 18px;
+  padding-bottom: 13px;
  }
 
 .menubtn_effect a:before, .menubtn_effect a:after {
 	position: absolute;
-	top:75%;
+	top:87%;
 	left: 0;
 	width: 100%;
 	height: 2px;
@@ -374,4 +374,10 @@ a:hover, a:focus {
 	-webkit-transform: translateY(-40%);
 	transform: translateY(-40%);
 }
+ 
+/*mboardlist.jsp  */
+.mboardlist_body>tr>td>#marketcontent:hover{
+	color: #11B560;
+} 
+
  

@@ -10,8 +10,8 @@
     </resultMap>-->
 
     <insert id="insertMember" parameterType="semi.dto.MemberDto">
-        INSERT INTO tUser (userName,userEmail,userPassword,userImage,userPhoneNumber)
-        VALUES (#{userName},#{userEmail},#{userPassword},#{userImage},#{userPhoneNumber});
+        INSERT INTO tUser (userEmail,userName,userNickName,userPassword,userPhoneNumber,userImage)
+        VALUES (#{userEmail},#{userName},#{userNickName},#{userPassword},#{userPhoneNumber},#{userImage});
         <selectKey keyProperty="userSeq" resultType="int" >
             SELECT LAST_INSERT_ID()
         </selectKey>
