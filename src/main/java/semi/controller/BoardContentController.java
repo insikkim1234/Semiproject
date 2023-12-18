@@ -27,7 +27,12 @@ public class BoardContentController {
 	@GetMapping("/board/content")
 	public String content(Model model,@RequestParam int comBoardSeq)
 	{
-	
+		
+		
+		
+		
+		
+		
 	
 		return "board/content";
 	}
