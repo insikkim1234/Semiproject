@@ -38,10 +38,16 @@
 				<c:forEach var="dto" items="${data}" varStatus="n">
 					<tr class="text-center">
 						<td>${dto.comBoardSeq}</td>
-						<td>${dto.comBoardSubject}</td>
+						<td>
+					<a href="./content?comBoardSeq=${dto.comBoardSeq}" style="color: black;text-decoration: none;">
+					${dto.comBoardSubject}
+					</a>
+				</td>
 						<td>${dto.userName}</td>
 						<td>${dto.writeDay}</td>
 						<td>${dto.comBoardviewCount}</td>
+					
+					
 					</tr>
 				</c:forEach>
 			</tbody>

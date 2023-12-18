@@ -16,4 +16,5 @@ public class BoardDto {
     private int comBoardRestep;
     private int comBoardRelevel;
     private Timestamp writeDay;
+    private int acount;//댓글 개수 추가
 }
