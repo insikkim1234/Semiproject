@@ -7,11 +7,13 @@ import lombok.*;
 @NoArgsConstructor
 public class MemberDto {
     private int userSeq;
-    private String userName;
     private String userEmail;
     private String userPassword;
-    private String userImage;
+    private String userNickName;
+    private String userName;
     private String userPhoneNumber;
+    private String userImage;
+
 
     public MemberDto(String userEmail) {
         this.userEmail = userEmail;
@@ -20,11 +22,12 @@ public class MemberDto {
     @Override
     public String toString() {
         return "MemberDto{" +
-                "userName='" + userName + '\'' +
-                ", userEmail='" + userEmail + '\'' +
-                ", userPassword='" + userPassword + '\'' +
-                ", userImage='" + userImage + '\'' +
-                ", userPhoneNumber='" + userPhoneNumber + '\'' +
+                "userName='" + userEmail + '\'' +
+                ", userEmail='" + userPassword + '\'' +
+                ", userEmail='" + userNickName + '\'' +
+                ", userPassword='" + userName + '\'' +
+                ", userImage='" + userPhoneNumber + '\'' +
+                ", userPhoneNumber='" + userImage + '\'' +
                 '}';
     }
 
