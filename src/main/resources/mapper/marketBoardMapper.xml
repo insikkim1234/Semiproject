@@ -36,10 +36,10 @@
 		where nBoardSeq=#{boardSeq}
 	</update>
 	
-	<select id="selectDataByBoardSeq" parameterType="int" resultType="MarketBoardDto">
+	<select id="selectDataByMarketBoardSeq" parameterType="int" resultType="MarketBoardDto">
 		select *
 		from tMarketBoard
-		where nBoardSeq=#{nBoardSeq}
+		where nBoardSeq=#{boardSeq}
 	</select>
 	
 </mapper>

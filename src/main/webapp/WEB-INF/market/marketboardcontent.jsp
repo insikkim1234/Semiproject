@@ -158,7 +158,7 @@ function list()
 <body>
 
 <div>
-<!-- 1)제목 출력 -->
+<%-- <!-- 1)제목 출력 -->
 	<h3><b>${mdto.boardTitle}</b></h3>
 	<br>
 <!-- 2)프로필 이미지 원형으로 출력 -->	
@@ -174,39 +174,30 @@ function list()
 	<br><br>
 <!-- 5)내용 작성(글,사진) -->	
 	<pre style="font-size:17px;">${mdto.content}</pre>
-	<br><br>
+	<br><br> --%>
 	
-<%-- <!-- 6)글쓰기 버튼,답글 버튼,목록 버튼,수정 버튼,삭제 버튼 -->	
+
 	<div>
-<!-- (132)content.jsp의 html 파트에 댓글목록 나올곳,댓글폼 만들기 -->	
+
 		<div id="answercount">댓글 0</div>
 		<div class="answerlist" style="margin-left:10px;">
 			댓글목록 나올곳
 		</div>
-		<c:if test="${sessionScope.loginok!=null}">
+	
 			<div class="answerform input-group">
-				<input type="file" id="upload" style="display:none;">	
-				<i class="bi bi-camera uploadcamera" style="cursor:pointer; font-size:23px;"></i>
-				<img src="" class="answerphoto" width="50" height="50" border="1"
-				onerror="this.src='../res/photo/noimage.png'" hspace="10">
+				
 				
 				<input type="text" class="form-control" style="width:300px;" placeholder="댓글내용"
 				id="answermsg">
 				<button type="button" class="btn-sm btn btn-outline-success" id="btnansweradd">저장</button>
 						
 			</div>
-		</c:if>
-		<button type="button" class="btn btn-outline-secondary btn-sm"
-		style="width:80px;"
-		onclick="location.href='./form'">글쓰기</button>
+		
+		
 		
 		<button type="button" class="btn btn-outline-secondary btn-sm"
 		style="width:80px;"
-		onclick="location.href='./form?num=${dto.num}&regroup=${dto.regroup}&restep=${dto.restep}&relevel=${dto.relevel}&currentPage=${currentPage}'">답글</button>
-		
-		<button type="button" class="btn btn-outline-secondary btn-sm"
-		style="width:80px;"
-		onclick="location.href='./list?currentPage=${currentPage}'">목록</button>
+		onclick="history.back()">목록</button>
 	
 		<!-- 로그인한 사람이 쓴 글에만 수정 삭제 버튼이 보이도록 한다 -->
 		<c:if test="${sessionScope.loginok!=null and dto.myid==sessionScope.myid}">
@@ -218,7 +209,7 @@ function list()
 			style="width:80px;"
 			onclick="location.href='./delete?num=${dto.num}&currentPage=${currentPage}'">삭제</button>
 		</c:if>
-	</div> --%>
+	</div> 
 	<div id="answerend"></div>
 	
 </div>
