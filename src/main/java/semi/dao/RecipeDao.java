@@ -15,8 +15,8 @@ public class RecipeDao {
 	
 	private String nameSpace = "semi.dao.RecipeDao.";
 	
-	public void insertRecipe(RecipeDto dto) {
-		session.insert(nameSpace + "insertRecipe", dto);
+	public int insertRecipe(RecipeDto dto) {
+		return session.insert(nameSpace + "insertRecipe", dto);
 	}
 	
 	public List<RecipeDto> getAlltRecipe(){

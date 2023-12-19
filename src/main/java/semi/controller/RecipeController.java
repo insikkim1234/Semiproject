@@ -55,13 +55,15 @@ public class RecipeController {
     	ArrayList<OrderBean> list = (ArrayList<OrderBean>) obList.getOrderlist();
     	for(int i = 0; i < obList.getOrderlist().size(); i++) {
     		RecipeOrderDto orderDto = new RecipeOrderDto();
+    		OrderBean orderBean = list.get(i);
+    		if (orderBean.getRecipeOrderContent() == null) continue;
     		
         	photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
-        			NcpObjectStorageService.DIR_PHOTO, list.get(i).getUpload());
+        			NcpObjectStorageService.DIR_PHOTO, orderBean.getUpload());
 
-        	orderDto.setRecipeIdx(dto.getRecipeUserSeq());
+        	orderDto.setRecipeIdx(dto.getRecipeIdx());
         	orderDto.setRecipeNumber(i + 1);
-        	orderDto.setRecipeOrderContent(list.get(i).getRecipeOrderContent());
+        	orderDto.setRecipeOrderContent(orderBean.getRecipeOrderContent());
         	orderDto.setRecipeOrderPhoto(photo);
 	    	
     		recipeOrderService.insertOrderRecipe(orderDto);
@@ -112,6 +114,10 @@ public class RecipeController {
     public String getUpdateRecipeForm(Model model, @PathVariable int recipeIdx) {
         RecipeDto dto = recipeService.getData(recipeIdx);
         model.addAttribute("recipeDto", dto);
+        
+        List<RecipeOrderDto> recipeOrderDtoList = recipeOrderService.getRecipeOrdersById(recipeIdx);
+        model.addAttribute("recipeOrderDtoList", recipeOrderDtoList);
+        
         return "recipe/recipeBoardUpdate";
     }
 
@@ -124,19 +130,33 @@ public class RecipeController {
     	updateDto.setRecipePhoto(photo);
         recipeService.updateRecipe(updateDto);
         
-    	ArrayList<OrderBean> list = (ArrayList<OrderBean>) obList.getOrderlist();
-    	for(int i = 0; i < obList.getOrderlist().size(); i++) {
-    		RecipeOrderDto orderDto = new RecipeOrderDto();
-    		
-        	photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
-        			NcpObjectStorageService.DIR_PHOTO, list.get(i).getUpload());
+        List<RecipeOrderDto> orderDtoList = recipeOrderService.getRecipeOrdersById(updateDto.getRecipeIdx());
+        
+        for (RecipeOrderDto t : orderDtoList) {
+        	recipeOrderService.deleteOrderRecipe(t);
+        }
+        
+        ArrayList<OrderBean> orderList = (ArrayList<OrderBean>) obList.getOrderlist();
+        for (int i = 0; i < orderList.size(); i++) {
+            OrderBean orderBean = orderList.get(i);
+            if (orderBean.getRecipeOrderContent() == null) continue;
 
-        	orderDto.setRecipeNumber(i + 1);
-        	orderDto.setRecipeOrderContent(list.get(i).getRecipeOrderContent());
-        	orderDto.setRecipeOrderPhoto(photo);
-	    	
-    		recipeOrderService.insertOrderRecipe(orderDto);
-    	}
+            // 업로드된 사진을 저장하고 해당 경로를 가져옴
+            photo = storageService.uploadFile(
+                    NcpObjectStorageService.STORAGE_EATINGALONE,
+                    NcpObjectStorageService.DIR_PHOTO, orderBean.getUpload());
+
+            // 레시피 순서 엔티티를 생성하고 필드를 설정
+            RecipeOrderDto orderDto = new RecipeOrderDto();
+        	orderDto.setRecipeIdx(updateDto.getRecipeIdx());
+            orderDto.setRecipeNumber(i + 1);
+            orderDto.setRecipeOrderContent(orderBean.getRecipeOrderContent());
+            orderDto.setRecipeOrderPhoto(photo);
+            
+            
+            // 생성된 엔티티를 서비스를 통해 저장
+            recipeOrderService.insertOrderRecipe(orderDto);
+        }
         
         return "redirect:/recipe/board/" + updateDto.getRecipeIdx();
     }

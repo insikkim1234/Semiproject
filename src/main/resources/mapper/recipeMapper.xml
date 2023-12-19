@@ -54,7 +54,7 @@
 	<update id="updateRecipe" parameterType="RecipeDto">
 	    update tRecipeBoard
 	    set sRecipeTitle = #{recipeTitle},
-	        sRecipePhoto = #{recipePhoto},
+	        sRecipePhoto = COALESCE(#{recipePhoto}, sRecipePhoto),
 	        sRecipeContent = #{recipeContent},
 	        sRecipeTime = #{recipeTime},
 	        sRecipeDifficulty = #{recipeDifficulty},

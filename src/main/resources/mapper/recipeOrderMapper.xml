@@ -15,4 +15,8 @@
 	<insert id="insertOrderRecipe" parameterType="RecipeOrderDto">
     	insert into tRecipeOrder (nRecipeIdx, nRecipeNumber, sRecipeOrderContent, sRecipeOrderPhoto) values (#{recipeIdx}, #{recipeNumber}, #{recipeOrderContent}, #{recipeOrderPhoto})
 	</insert>
+	
+	<delete id="deleteOrderRecipe" parameterType="RecipeOrderDto">
+		delete from tRecipeOrder where nRecipeIdx = #{recipeIdx}
+	</delete>
 </mapper>

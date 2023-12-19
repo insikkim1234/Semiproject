@@ -20,7 +20,7 @@
             <div class="col">
                 <h6 class="cGreen fw_600 mt-2">사진</h6>
                 <input type="file" name="upload" class="form-control borderGreen" id="product-input4" onchange="previewImage(this, 'product-preview4')">
-                <div id="product-preview4" class="mt-2"><img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${recipeDto.recipePhoto}" class="card-img-top custom-img"></div>
+                <div id="product-preview4" class="mt-2"><img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${recipeDto.recipePhoto}" class="card-img-top custom-img" id="current-image"></div>
             </div>
         </div>
         
@@ -66,17 +66,28 @@
         </td>
         
         <!-- 조리 순서 수정 -->
-        <c:forEach var="orderItem" items="${recipeOrderDtoList}" varStatus="loop">
-            <div class="div_recipeOrderItem">
-                <div class="div_recipeOrderContent">
-                    <textarea name="orderlist[${loop.index}].recipeOrderContent" class="form-control" required autofocus>${orderItem.recipeOrderContent}</textarea>
-                </div>
-                <div class="div_recipeOrderImg">
-                    <img class="img_recipeOrder" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${orderItem.recipeOrderPhoto}" />
-                    <input type="file" name="orderlist[${loop.index}].upload" class="form-control">
-                </div>
-            </div>
-        </c:forEach>
+        <h6 class="cGreen fw_600 mt-3"><th>조리 순서</th></h6>
+		<div id="order-container">
+		    <c:forEach var="orderItem" items="${recipeOrderDtoList}" varStatus="status">
+		        <div class="order-row">
+		            <textarea name="orderlist[${status.index}].recipeOrderContent" class="form-control" required autofocus>${orderItem.recipeOrderContent}</textarea>
+		            
+		            <!-- 기존의 사진 미리보기 -->
+		            <div class="mt-2">
+		                <img class="img_recipeOrder" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${orderItem.recipeOrderPhoto}" />
+		            </div>
+		            
+		            <!-- 수정된 사진 미리보기 -->
+		            <div class="mt-2" id="order-preview${status.index}"></div>
+		            
+		            <input type="file" name="orderlist[${status.index}].upload" class="form-control" onchange="previewOrderImage(this, 'order-preview${status.index}')"/>
+		            <button type="button" class="btn btn-outline-secondary" onclick="removeOrder(this)">삭제</button>
+		            <br>
+		        </div>
+		    </c:forEach>
+		</div>
+		<button type="button" class="btn btn-outline-success" onclick="addOrder()">추가</button>
+
         
         <!-- 저장 버튼 -->
         <div class="text-center">
@@ -124,20 +135,24 @@
         button.parentNode.remove();
     }
     
-    var idx = 1;
     
-    // 조리 순서 추가 함수
-    function addOrder(){
-		var container = document.getElementById("order-container");
+ 	// 조리 순서 추가 함수
+    function addOrder() {
+ 		var elements = document.getElementsByClassName("order-row");
+ 		var idx = 0;
+ 		if (elements !== null) {
+ 			idx = document.getElementsByClassName("order-row").length; 			
+ 		}
+
+        var container = document.getElementById("order-container");
         var newRow = document.createElement("div");
         newRow.className = "order-row";
-        newRow.innerHTML = '<br>' + 
-					       '<textarea name="orderlist[' + idx + '].recipeOrderContent" class="form-control" required autofocus placeholder="예 : 파를 다듬어 줍니다.">${orderItem.recipeOrderContent}</textarea>' +
-						   '<input type="file" name="orderlist[' + idx + '].upload" class="form-control" required>' + 
-						   '<button type="button" class="btn btn-outline-secondary" onclick="removeOrder(this)">삭제</button>';
-		container.appendChild(newRow);
-		idx += 1;
-	}
+        newRow.innerHTML = '<br>' +
+                           '<textarea name="orderlist[' + idx + '].recipeOrderContent" class="form-control" required autofocus placeholder="예 : 파를 다듬어 줍니다."></textarea>' +
+                           '<input type="file" name="orderlist[' + idx + '].upload" class="form-control" />' +
+                           '<button type="button" class="btn btn-outline-secondary" onclick="removeOrder(this)">삭제</button>';
+        container.appendChild(newRow);
+    }
 	
     // 조리 순서 삭제 함수
     function removeOrder(button) {

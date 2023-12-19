@@ -72,7 +72,6 @@
 </div>
 
 <script>
-	var idx = 1;
 	function addIngredient(){
 		var container = document.getElementById("ingredient-container");
         var newRow = document.createElement("div");
@@ -88,6 +87,12 @@
 	}
        
     function addOrder(){
+    	var elements = document.getElementsByClassName("order-row");
+ 		var idx = 0;
+ 		if (elements !== null) {
+ 			idx = document.getElementsByClassName("order-row").length; 			
+ 		}
+ 		
 		var container = document.getElementById("order-container");
         var newRow = document.createElement("div");
         newRow.className = "order-row";
@@ -96,7 +101,6 @@
 						   '<input type="file" name="orderlist[' + idx + '].upload" class="form-control" required>' + 
 						   '<button type="button" class="btn btn-outline-secondary" onclick="removeOrder(this)">삭제</button>';
 		container.appendChild(newRow);
-		idx += 1;
 	}
 
     function removeOrder(button) {
