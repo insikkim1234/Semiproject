@@ -42,9 +42,26 @@ public class BoardService {
 		boardDao.insertBoard(dto);
 	}
 
+	public BoardDto getData(int comBoardSeq)
+	{
+		return boardDao.getData(comBoardSeq);
+	}
 	
 	
-	/*public List<BoardDto> getList(int start,int perpage)
+	//db insert
+			
+
+	
+	
+			
+			
+			
+			
+			
+			
+			
+			
+			/*public List<BoardDto> getList(int start,int perpage)
 	{
 		Map<String, Integer> map=new HashMap<String, Integer>();
 		map.put("start", start);
@@ -102,10 +119,7 @@ public class BoardService {
 		boardDao.updateReadCount(num);
 	}
 	
-	public BoardDto getData(int num)
-	{
-		return boardDao.getData(num);
-	}
+	
 	public void updateBoard(BoardDto dto)
 	{
 		boardDao.updateBoard(dto);
