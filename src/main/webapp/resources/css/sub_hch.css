@@ -402,6 +402,7 @@ div.rgyPostIt {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffff88', endColorstr='#ffffc6', GradientType=1); /* IE6-9 fallback on horizontal gradient */
     transition: all 0.2s;
     -webkit-transition: all 0.2s;
+    width: 180px;
 }
 
 div.rgyPostIt::after {
