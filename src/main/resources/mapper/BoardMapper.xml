@@ -23,6 +23,9 @@
 			where sComBoardSubject like concat('%',#{searchWord},'%')
 		</if>
 	</select>
+	<select id="selectDataByNum" parameterType="int" resultType="BoardDto" resultMap="BoardDtoRm">
+	select * from tComBoard where nComBoardSeq=#{comBoardSeq}
+	</select>
 	<insert id="insertBoard" parameterType="BoardDto">
 		INSERT INTO tComBoard
 		values (null,#{comBoardUserSeq},#{comBoardSubject},#{comBoardContent}, 0, #{comBoardRegroup},0, 0,now(), now(), #{comBoardPhoto})

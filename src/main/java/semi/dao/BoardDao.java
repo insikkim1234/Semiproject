@@ -27,6 +27,8 @@ public class BoardDao {
 	{
 		return session.selectList(nameSpace+"selectAllBoard");
 	}
+	
+	
 
 	public List<BoardDto> getBoardWithPage(Map<String, Object> map)
 	{
@@ -38,10 +40,7 @@ public class BoardDao {
 		session.update(nameSpace+"updateReadcount", comBoardSeq);
 	}
 	
-	public BoardDto getData(int comBoardSeq)
-	{
-		return session.selectOne(nameSpace+"selectOneData", comBoardSeq);
-	}
+	
 	
 	public void deleteBoard(int comBoardSeq)
 	{
@@ -51,5 +50,11 @@ public class BoardDao {
 	public void updateBoard(BoardDto dto)
 	{
 		session.update(nameSpace+"updateBoard", dto);
+	}
+	
+	//게시글 확인
+	public BoardDto getData(int comBoardSeq)
+	{
+		return session.selectOne(nameSpace+"selectDataByNum", comBoardSeq);
 	}
 }
