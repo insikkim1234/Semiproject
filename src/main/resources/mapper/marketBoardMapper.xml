@@ -47,7 +47,7 @@
 		where nBoardSeq=#{boardSeq}
 	</update>
 	
-	<select id="selectDataByMarketBoardSeq" parameterType="int" resultType="MarketBoardDto">
+	<select id="selectDataByMarketBoardSeq" parameterType="int" resultType="MarketBoardDto" resultMap="MarketBoardDtoRm">
 		select *
 		from tMarketBoard
 		where nBoardSeq=#{boardSeq}
