@@ -3,9 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <input type="hidden" id="boardSeq" value="${mDto.boardSeq}">
+<input type="hidden" id="userSeq" value="${mDto.userSeq}">
 
+<input type="hidden" id="createDate" value="${mDto.createDate}">
 <script type="text/javascript">
 $(document).ready(function() {
+	list();
     $('#btnansweradd').click(function() {
     	var userSeq=1;
         var boardSeq = $('#boardSeq').val();
@@ -29,6 +32,7 @@ $(document).ready(function() {
                 console.log(response.status);
                 // 성공적으로 저장된 경우 추가 작업 수행
                 // 예를 들어, 화면에 새로운 댓글을 추가하는 등의 작업 수행 가능
+                
             },
             error: function(xhr, status, error) {
                 console.error('댓글 저장에 실패했습니다.');
@@ -38,6 +42,45 @@ $(document).ready(function() {
         });
     });
 });
+
+function list()
+{
+	let boardSeq=${mDto.boardSeq};
+	
+	$.ajax({
+		type:"get",
+		dataType:"json",
+		url:"/mboard/list",
+		data:{"boardSeq":boardSeq},
+				
+		success:function(res){
+				//ㄴ.성공시 댓글 갯수 출력 
+			$("#answercount").text("댓글 "+res.length);
+				//ㄷ.빈 변수 s 생성
+			let s="";
+				
+			$.each(res,function(idx,item){
+				s+=
+					
+					`
+					\${item.userSeq}(\${item.userSeq})<br>
+					`;
+				
+				
+				s+=					
+					`<span style="margin-left:20px;">\${item.commentContent}</span>
+					&nbsp;
+					<span style="color:gray;font-size:0.9em;">\${item.createDate}</span>					
+					`;
+				
+				
+				s+="<br>";
+			});
+		
+			$("div.answerlist").html(s);
+	    }
+	});
+}
 
 </script>
 </head>

@@ -17,6 +17,13 @@
 		insert into tMarketBoardComment (nUserSeq,nBoardSeq,sCommentContent,dtCreateDate,dtUpdateDate)
 		values (#{userSeq},#{boardSeq},#{commentContent},now(),now())
 	</insert>
+	
+	<select id="selectAnswerOfboardSeq" parameterType="int" resultType="MarketBoardCommentDto">
+		select *
+		from tMarketBoardComment
+		where nBoardSeq=#{boardSeq} 
+		
+	</select>
   
 </mapper>
 
