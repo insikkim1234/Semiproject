@@ -105,13 +105,14 @@ a:hover, a:focus {
 
 .member_btns{
 	position: absolute;
-	top:10px;
-	right: 25px;
+	top:20px;
+	right: 30px;
 }
 
 .member_btns>a>button{
-	font-weight: 500;
-	font-size: 15px;
+	font-weight: 600;
+	font-size: 18px;
+	color: #6b6b6b;
 }
 
 .member_btns>a:hover{
@@ -166,6 +167,18 @@ a:hover, a:focus {
 	border: 1px solid #EBEE48;
 	border-radius: 10px;
 	padding: 2px 5px;
+}
+
+.btn_green4 {
+	background-color: 11B560; 
+	color: #fff;
+	border-radius: 5px;
+}
+
+.btn_green4:hover {
+	background-color: #EBEE48;
+	color:#33672B;
+	border-radius: 5px;
 }
 
 .login_rborder{
@@ -315,10 +328,10 @@ a:hover, a:focus {
 
 .menubtn_effect a:before, .menubtn_effect a:after {
 	position: absolute;
-	top:87%;
+	top:89%;
 	left: 0;
 	width: 100%;
-	height: 2px;
+	height: 3px;
 	background: #000;
 	content: '';
 	opacity: 0.5;
@@ -327,7 +340,7 @@ a:hover, a:focus {
 }
 
 .menubtn_effect a:after {
-	top: -10%;
+	top: 10%;
 	opacity: 0;
     background-color: #11B560;
 	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
@@ -344,7 +357,7 @@ a:hover, a:focus {
 	text-shadow: none;
 	text-transform: none;
 	font-style: italic;
-	font-size: 0.75em;
+	font-size: 0.7em;
 	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
 	transition: transform 0.3s, opacity 0.3s;
 	-webkit-transform: translateY(100%);
@@ -367,7 +380,7 @@ a:hover, a:focus {
 
 
 .menubtn_effect a:hover:before, .menubtn_effect a:focus:before {
-	height: 5px;
+	height: 8px;
 }
 
 .menubtn_effect a:hover:before, .menubtn_effect a:hover:after, .menubtn_effect a:focus:before, .menubtn_effect a:focus:after {
@@ -379,8 +392,8 @@ a:hover, a:focus {
 
 .menubtn_effect a:hover span:first-child, .menubtn_effect a:focus span:first-child {
 	opacity: 1;
-	-webkit-transform: translateY(-40%);
-	transform: translateY(-40%);
+	-webkit-transform: translateY(10%);
+	transform: translateY(10%);
 }
  
 /*mboardlist.jsp  */
