@@ -193,6 +193,11 @@ a:hover {
 	margin:0 auto; 
 }
 
+.mw_1200 {
+	max-width:1200px;
+	margin:0 auto; 
+}
+
 .mw_1500 {
 	max-width:1500px;
 	margin:0 auto; 
