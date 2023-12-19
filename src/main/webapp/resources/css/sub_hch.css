@@ -474,9 +474,44 @@ div.rgyPostIt2:hover {
     border-bottom-right-radius: 45px 20px;
 }
 
-div.rgyPostI2t:hover::after {
-    box-shadow: 20px 37px 7px #000;
-    -webkit-box-shadow: 2px 37px 7px rgba(0, 0, 0, 0.37);
+div.rgyPostIt3 {
+	font-family: 'Nanum Pen Script';
+    position: relative;
+    padding: 1px 35px 1px 15px;
+    margin: 5px 0;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-left: 20px solid #a1f764;
+    box-shadow: 4px 0px 4px 0px #49505770;
+    font-size: 30px;
+    color: #555;
+    word-break: break-all;
+    background: -webkit-linear-gradient(-45deg, #d8ff88 81%, #e5ff88 82%, #cfff88 82%, #e3f5becc 100%);
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+    width: 130px;
+    height: 40px;
+}
+
+div.rgyPostIt3::after {
+    content: " ";
+    position: absolute;
+    z-index: -1;
+    right: 0;
+    bottom: 32px;
+    width: 80px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: 2px 35px 5px rgba(0, 0, 0, 1);
+    -webkit-box-shadow: 2px 35px 5px rgba(0, 0, 0, 0.4);
+    transform: matrix(-1, -0.1, 0, 1, 0, 0);
+    -webkit-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+}
+
+div.rgyPostIt3:hover {
+	 box-shadow: 2px 3px 7px #6b6b6b;
+    border-bottom-right-radius: 45px 20px;
 }
 
 .r-detail{
@@ -492,7 +527,8 @@ div.rgyPostI2t:hover::after {
 	font-family: 'Nanum Pen Script';
 }
 
-/* .span_rotate{
-	transform: rotate(320deg);
-    display: inline-block;
-} */
+/*recipeOrder.jsp*/
+.rOrderbox{
+	box-shadow: 10px 15px 30px #49505770;
+	box-sizing: border-box;
+}
