@@ -24,7 +24,7 @@ public class MemberDto {
         return "MemberDto{" +
                 "userName='" + userEmail + '\'' +
                 ", userEmail='" + userPassword + '\'' +
-                ", userEmail='" + userNickName + '\'' +
+                ", userNickName='" + userNickName + '\'' +
                 ", userPassword='" + userName + '\'' +
                 ", userImage='" + userPhoneNumber + '\'' +
                 ", userPhoneNumber='" + userImage + '\'' +

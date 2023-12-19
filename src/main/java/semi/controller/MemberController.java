@@ -50,9 +50,10 @@ public class MemberController {
 
     //사진 업로드 로직
     @PostMapping("/register/insertMember")
-    public String insertMember(@ModelAttribute MemberDto dto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload) {
+    public String insertMember(@ModelAttribute MemberDto dto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile uploadFile) {
         String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
-                NcpObjectStorageService.DIR_PHOTO, upload);
+                NcpObjectStorageService.DIR_PHOTO, uploadFile);
+
 
         dto.setUserImage(photo);
         memberService.insertMember(dto);
@@ -168,7 +169,6 @@ public class MemberController {
     @GetMapping("/logout")
     public String logout(HttpSession httpSession) {
         httpSession.removeAttribute(MemberConstants.LOGIN_MEMBER_DTO);
-        httpSession.invalidate();
         return "redirect:./login";
     }
 
