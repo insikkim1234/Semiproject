@@ -36,7 +36,11 @@
     }
 </style>
 <body>
-<div class="cGreen fs_40 mt-5 text-center fw_600">SIGN IN</div><!--이거 새로만듬 -->
+<div class="fw_500 cBlack mt-5 mx-auto" style="width: 300px">
+	<a href="${pageContext.request.contextPath}">HOME</a><span class="fs_18 mx-1">></span>
+	<a href="${pageContext.request.contextPath}/member/login">로그인</a>
+</div>
+<div class="cGreen fs_40 mt-3 text-center fw_600">SIGN IN</div><!--이거 새로만듬 -->
 <div class="tablef mt-3"> <!--mt-3클래스추가  -->
 <form action="/semi/member/login" class="signin" method="post">
     <input type="text" name="userEmail" placeholder="Email Address"><br><br>

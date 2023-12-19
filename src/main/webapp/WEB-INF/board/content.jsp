@@ -16,6 +16,11 @@
 </style>
 <body>
 <div style="margin: 30px;width:500px;">
+	<div class="fw_500 cBlack mt-5">
+		<a href="${pageContext.request.contextPath}">HOME</a><span class="fs_18 mx-1">></span>
+		<a href="${pageContext.request.contextPath}/board/list">자취생 커뮤니티</a><span class="fs_18 mx-1">></span>
+		<a href="${pageContext.request.contextPath}/board/content">상세 페이지</a>
+	</div>
 <h3><b>${dto.comBoardSubject}</b></h3>
 <div style="width:500px;">
 <span>${dto.userName}</span>

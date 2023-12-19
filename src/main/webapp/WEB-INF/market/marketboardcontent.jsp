@@ -2,99 +2,72 @@
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<script type="text/javascript">
-$(function(){
-	list();
-	
-	$("#btnansweradd").click(function(){
-		let msg=$("#answermsg").val();
-		let boardSeq=${mdto.boardSeq};
-		if(msg.length==0){
-			alert("댓글 내용을 입력하세요");
-			return;
-		}
-		
-		$.ajax({
-			type : "post",
-			dataType:"text",
-			url:"../answer/insert",
-			data:{"boardSeq":boardSeq,"msg":msg},
-			success:function(res){
-				list();
-				$("#answermsg").val("");
-			}
-		});
-	});
-	
-	
-});
+<input type="hidden" id="boardSeq" value="${mDto.boardSeq}">
 
-function list()
-{
-	let boardSeq=${mdto.boardSeq};
-	
-	$.ajax({
-		type:"get",
-		dataType:"json",
-		url:"../answer/list",
-		data:{"boardSeq":boardSeq},
-		success:function(res){
-			$("#answercount").text("댓글 "+res.length);
-			
-			let s="";
-			$.each(res,function(idx,item){
-				s+=
-					`
-					<span style="margin-left:20px;">\${item.commentContent}</span>
-					&nbsp;
-					<span style="color:gray;font-size:0.9em;">\${item.createDate}</span>
-					`;
-				s+="<br>";	
-					
-			});
-			$("div.answerlist").html(s);
-		}
-	});
-}
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#btnansweradd').click(function() {
+    	var userSeq=1;
+        var boardSeq = $('#boardSeq').val();
+        var commentContent = $('#answermsg').val();
+        
+        if (commentContent.trim() === "") {
+        	return;
+        }
+		
+        $.ajax({
+            url: './insertAnswer',
+            method: 'POST',
+            contentType: 'application/x-www-form-urlencoded',
+            data: {
+                userSeq: userSeq,
+            	boardSeq: boardSeq,
+                msg: commentContent
+            },
+            success: function(response) {
+                console.log('댓글이 성공적으로 저장되었습니다.');
+                console.log(response.status);
+                // 성공적으로 저장된 경우 추가 작업 수행
+                // 예를 들어, 화면에 새로운 댓글을 추가하는 등의 작업 수행 가능
+            },
+            error: function(xhr, status, error) {
+                console.error('댓글 저장에 실패했습니다.');
+                console.error('에러 상태 코드:', status);
+                console.error('에러 메시지:', error);
+            }
+        });
+    });
+});
 
 </script>
 </head>
 <body>
-
+	<div class="fw_500 cBlack mt-5">
+		<a href="${pageContext.request.contextPath}">HOME</a><span class="fs_18 mx-1">></span>
+		<a href="${pageContext.request.contextPath}/mboard">벼룩시장</a><span class="fs_18 mx-1">></span>
+		<a href="${pageContext.request.contextPath}/mboard/content">상세 페이지</a>
+	</div>
 <div>
 	<div>
-
-		<div id="answercount">댓글 0</div>
-		<div class="answerlist" style="margin-left:10px;">
-			댓글목록 나올곳
-		</div>
+			<div id="answercount">댓글 0</div>
+			<div class="answerlist" style="margin-left:10px;">
+				댓글목록 나올곳
+			</div>
 	
 			<div class="answerform input-group">
-				
-				
 				<input type="text" class="form-control" style="width:300px;" placeholder="댓글내용"
 				id="answermsg">
-				<button type="button" class="btn-sm btn btn-outline-success" id="btnansweradd">저장</button>
-						
+				<button type="button" class="btn-sm btn btn-outline-success" id="btnansweradd">저장</button>	
 			</div>
 		
-		
-		
-		<button type="button" class="btn btn-outline-secondary btn-sm"
-		style="width:80px;"
-		onclick="history.back()">목록</button>
+			<button type="button" class="btn btn-outline-secondary btn-sm"
+			style="width:80px;"
+			onclick="history.back()">목록</button>
 	
-		<!-- 로그인한 사람이 쓴 글에만 수정 삭제 버튼이 보이도록 한다 -->
-		<c:if test="${sessionScope.loginok!=null and dto.myid==sessionScope.myid}">
-			<button type="button" class="btn btn-outline-secondary btn-sm"
-			style="width:80px;"
-			onclick="location.href='./updateform?num=${dto.num}&currentPage=${currentPage}'">수정</button>
-			
-			<button type="button" class="btn btn-outline-secondary btn-sm"
-			style="width:80px;"
-			onclick="location.href='./delete?num=${dto.num}&currentPage=${currentPage}'">삭제</button>
-		</c:if>
+		
 	</div> 
 	<div id="answerend"></div>
 	
 </div>
+
+</body>

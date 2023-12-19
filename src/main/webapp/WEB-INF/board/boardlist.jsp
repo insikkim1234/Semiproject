@@ -4,7 +4,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <div class="mw_1000">
-	<div class="fs_40 fw_600 cGreen text_left mt-5">자취러 커뮤니티</div>
+	<div class="fw_500 cBlack mt-5">
+		<a href="${pageContext.request.contextPath}">HOME</a><span class="fs_18 mx-1">></span>
+		<a href="${pageContext.request.contextPath}/board/list">자취생 커뮤니티</a>
+	</div>
+	<div class="fs_40 fw_600 cGreen text_left mt-3">자취러 커뮤니티</div>
 	<form action="./list" class="d-flex m-0 justify-content-end mt-3">
 		<input type="hidden" name = "pageNum" value="${pageDto.curPage}"/>
 		<input class="form-control me-2" type="text" placeholder="검색어 입력" name="searchWord" style="width: 200px; border:2px solid #11B560;">
@@ -44,7 +48,7 @@
 							</a>
 						</td>
 						<td>${dto.userName}</td>
-						<td>${dto.writeDay}</td>
+						<td><fmt:formatDate value="${dto.writeDay}" pattern="yyyy-MM-dd HH:mm"/></td>
 						<td>${dto.comBoardviewCount}</td>
 					</tr>
 				</c:forEach>

@@ -24,7 +24,7 @@
     }
     
     .detail_img {
-    	width: 60%;
+    	width: 50%;
     }
     
     .detailContent {
@@ -32,7 +32,6 @@
 	    color: #6b6b6b;
 	    line-height:180%;
 	    width: 100%;
-	    border-top: 1px solid #6b6b6b;
 	    border-bottom: 1px solid #6b6b6b;
 	    
     }
@@ -60,7 +59,7 @@
 	<div class="fw_500 cBlack mt-5">
 		<a href="${pageContext.request.contextPath}">HOME</a><span class="fs_18 mx-1">></span>
 		<a href="${pageContext.request.contextPath}/recipe/board">레시피북</a><span class="fs_18 mx-1">></span>
-		<a href="${pageContext.request.contextPath}/recipe/board/detail">현재페이지</a>
+		<a href="${pageContext.request.contextPath}/recipe/board/recipeBoardDetail">현재페이지</a>
 	</div>
 	<div class="fs_32 fw_600 cGreen r-detail mt-2">레시피 A to Z</div>
 	<div class="div_detail mt-3">
