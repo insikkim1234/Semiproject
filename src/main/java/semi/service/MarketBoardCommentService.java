@@ -1,6 +1,7 @@
 package semi.service;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import semi.dao.MarketBoardCommentDao;
@@ -8,10 +9,11 @@ import semi.dto.MarketBoardCommentDto;
 
 @Repository
 public class MarketBoardCommentService {
+	@Autowired
 	private MarketBoardCommentDao marketBoardCommentDao;
 	
-	public void insertComment(MarketBoardCommentDto mcdto)
+	public int insertComment(MarketBoardCommentDto mcdto)
 	{
-		//marketBoardCommentDao.insertComment(mcdto);
+		return marketBoardCommentDao.insertComment(mcdto);
 	}
 }

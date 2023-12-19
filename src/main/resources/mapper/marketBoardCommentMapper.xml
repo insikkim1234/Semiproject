@@ -14,8 +14,8 @@
 	
  	
 	<insert id="insertMarketBoardComment" parameterType="MarketBoardCommentDto">
-		insert into tMarketBoardComment (nBoardSeq,sCommentContent,dtCreateDate,dtUpdateDate)
-		values (#{boardSeq},#{commentContent},now(),now())
+		insert into tMarketBoardComment (nUserSeq,nBoardSeq,sCommentContent,dtCreateDate,dtUpdateDate)
+		values (#{userSeq},#{boardSeq},#{commentContent},now(),now())
 	</insert>
   
 </mapper>
