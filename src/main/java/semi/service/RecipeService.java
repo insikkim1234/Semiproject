@@ -12,8 +12,8 @@ public class RecipeService {
 	
 	private RecipeDao recipeDao;
 	
-	public void insertRecipe(RecipeDto dto) {
-		recipeDao.insertRecipe(dto);
+	public int insertRecipe(RecipeDto dto) {
+		return recipeDao.insertRecipe(dto);
 	}
 	
 	public void updateViewCount(int recipeIdx) {
@@ -26,5 +26,10 @@ public class RecipeService {
 
 	public int getTotalCount(String word) {
 		return recipeDao.getTotalCount(word);
+	}
+	
+	// 레시피 수정
+	public void updateRecipe(RecipeDto updateDto) {
+	    recipeDao.updateRecipe(updateDto);
 	}
 }
