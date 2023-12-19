@@ -2,6 +2,7 @@
 <%@ page import="naver.storage.NcpObjectStorageService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<c:set var="root" value="<%=request.getContextPath()%>"/>
 <div style="box-shadow: 0 5px 30px -10px #4950578f">
 <div class="mw_1500">
 	<nav class="navbar navbar-expand-sm d-flex flex-column">
@@ -62,10 +63,20 @@
 		</c:if>
 		<%--	로그인중 세션	  --%>
 		  <c:if test="${sessionScope.login_member_dto != null}">
-			  <h5>${sessionScope.login_member_dto.userNickName}님</h5>&nbsp;&nbsp;
-			  <a href="${pageContext.request.contextPath}/member/logout">
+			  <c:choose>
+				  <c:when test="${empty sessionScope.login_member_dto.userImage}">
+					  <!-- 기본 이미지 -->
+					  <img src="${root}/resources/photo/apple.png" alt="기본 프로필 사진" class="pro_img img-fluid">
+				  </c:when>
+				  <c:otherwise>
+					  <!-- 세션에 저장된 사용자 프로필 이미지 -->
+					  <img src="<%=NcpObjectStorageService.STORAGE_PROFILE_PHOTO_PATH%>${sessionScope.login_member_dto.userSeq}" class="pro_img img-fluid">
+				  </c:otherwise>
+			  </c:choose>
+			  <div class="fs_18 fw_500 cBlack my-auto">${sessionScope.login_member_dto.userNickName}님</div>&nbsp;&nbsp;
+			  <a href="${pageContext.request.contextPath}/member/logout" class="my-auto">
 				  <button type="submit" class="btn mx-2 p-0">
-					  <div>로그아웃</div>
+					  <div class="fs_16 fw_500 cBlack btn_green4 px-2">로그아웃</div>
 				  </button>
 			  </a>
 		  </c:if>

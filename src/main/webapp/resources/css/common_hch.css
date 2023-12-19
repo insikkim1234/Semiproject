@@ -188,6 +188,11 @@ a:hover {
 }
 
 
+.mw_750{
+	max-width:750px;
+	margin:0 auto; 
+}
+
 .mw_1000 {
 	max-width:1000px;
 	margin:0 auto; 
@@ -202,8 +207,6 @@ a:hover {
 	max-width:1500px;
 	margin:0 auto; 
 }
-
-
 
 /* placeholder style - italic */
 ::placeholder {

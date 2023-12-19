@@ -16,5 +16,19 @@ public class MarketBoardDto {
 	private int boardViewCount;
 	private String createDate;
 	private String updateDate;
+	
+	  @Override
+	    public String toString() {
+	        return "MarketBoardDto{" +
+	                "boardSeq=" + boardSeq +
+	                ", userSeq=" + userSeq +
+	                ", boardTitle='" + boardTitle + '\'' +
+	                ", boardImage='" + boardImage + '\'' +
+	                ", boardReplyCount=" + boardReplyCount +
+	                ", boardViewCount=" + boardViewCount +
+	                ", createDate='" + createDate + '\'' +
+	                ", updateDate='" + updateDate + '\'' +
+	                '}';
+	  }
 }
 

@@ -229,7 +229,11 @@
 </script>
 
 <div class="mw_1000">
-   <div class="fs_40 fw_600 cGreen text_left mt-5">뭐 먹을까?</div>
+	<div class="fw_500 cBlack mt-5">
+		<a href="${pageContext.request.contextPath}">HOME</a><span class="fs_18 mx-1">></span>
+		<a href="${pageContext.request.contextPath}/recipe/board">레시피북</a><span class="fs_18 mx-1"></span>
+	</div>
+   <div class="fs_40 fw_600 cGreen text_left mt-2">뭐 먹을까?</div>
    <form class="d-flex m-0 justify-content-end mt-3">
    <div class="simpleicon" style="margin-right: 10px;">
             <i class="bi bi-grid simplegrid"></i>

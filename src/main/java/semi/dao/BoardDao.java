@@ -27,29 +27,34 @@ public class BoardDao {
 	{
 		return session.selectList(nameSpace+"selectAllBoard");
 	}
+	
+	
 
 	public List<BoardDto> getBoardWithPage(Map<String, Object> map)
 	{
 		return session.selectList(nameSpace+"selectBoardWithPage", map);
 	}
 	
-	public void updateReadcount(int nComBoardSeq)
+	public void updateReadcount(int comBoardSeq)
 	{
-		session.update(nameSpace+"updateReadcount", nComBoardSeq);
+		session.update(nameSpace+"updateReadcount", comBoardSeq);
 	}
 	
-	public BoardDto getData(int nComBoardSeq)
-	{
-		return session.selectOne(nameSpace+"selectOneData", nComBoardSeq);
-	}
 	
-	public void deleteBoard(int nComBoardSeq)
+	
+	public void deleteBoard(int comBoardSeq)
 	{
-		session.delete(nameSpace+"deleteBoard", nComBoardSeq);
+		session.delete(nameSpace+"deleteBoard", comBoardSeq);
 	}
 	
 	public void updateBoard(BoardDto dto)
 	{
 		session.update(nameSpace+"updateBoard", dto);
+	}
+	
+	//게시글 확인
+	public BoardDto getData(int comBoardSeq)
+	{
+		return session.selectOne(nameSpace+"selectDataByNum", comBoardSeq);
 	}
 }
