@@ -37,6 +37,8 @@ public class BoardService {
 
 	public void insertBoard(BoardDto dto)
 	{
+		//TODO: set
+		dto.setComBoardRegroup(0);
 		boardDao.insertBoard(dto);
 	}
 

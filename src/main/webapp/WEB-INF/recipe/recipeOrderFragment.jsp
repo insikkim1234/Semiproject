@@ -47,7 +47,7 @@
 
 </style>
 
-<div class="div_recipeOrder">
+<div class="div_recipeOrder mt-5">
 	<div id="order_title">
 		[조리 순서]
 	</div>

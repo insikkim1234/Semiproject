@@ -2,11 +2,13 @@ package semi.controller;
 import java.util.List;
 
 import annotation.Login;
+import naver.storage.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.multipart.MultipartFile;
 import semi.config.BoardConfig;
 import semi.dto.BoardDto;
 import semi.dto.MemberDto;
@@ -19,6 +21,7 @@ import utils.BoardUtils;
 @RequestMapping("/board")
 public class BoardController {
 	@Autowired private BoardService boardService;
+	@Autowired private NcpObjectStorageService storageService;
 
 	@GetMapping(value = "/list")
 	public String boardList(Model model,
@@ -46,9 +49,14 @@ public class BoardController {
 	}
 
 	@PostMapping("/insertBoard")
-	public String insertBoard(@Login MemberDto user, BoardDto boardDto) {
+	public String insertBoard(@Login MemberDto user, BoardDto boardDto, MultipartFile upload) {
+		String photo = storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+				NcpObjectStorageService.DIR_USER_PROFILE_PHOTO, upload);
 
-		//boardService
+		boardDto.setComBoardPhoto(photo);
+
+		boardDto.setComBoardUserSeq(user.getUserSeq());
+		boardService.insertBoard(boardDto);
 
 		return "redirect:./list";
 	}
