@@ -66,11 +66,11 @@
 			  <c:choose>
 				  <c:when test="${empty sessionScope.login_member_dto}">
 					  <!-- 기본 이미지 -->
-					  <img src="${pageContext.request.contextPath}/resources/photo/defaultImage.png" alt="기본 프로필 사진" width="100" height="100">
+					  <img src="${pageContext.request.contextPath}/resources/photo/defaultImage.png" alt="기본 프로필 사진" class="pro_img img_fluid">
 				  </c:when>
 				  <c:otherwise>
 					  <!-- 세션에 저장된 사용자 프로필 이미지 -->
-					  <img src="<%=NcpObjectStorageService.STORAGE_PROFILE_PHOTO_PATH%>${sessionScope.login_member_dto.userSeq}" width="50" height="50">
+					  <img src="<%=NcpObjectStorageService.STORAGE_PROFILE_PHOTO_PATH%>${sessionScope.login_member_dto.userSeq}" class="pro_img img_fluid" >
 				  </c:otherwise>
 			  </c:choose>
 			  <h5>${sessionScope.login_member_dto.userEmail}님</h5>&nbsp;&nbsp;

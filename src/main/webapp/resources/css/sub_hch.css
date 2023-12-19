@@ -122,6 +122,12 @@ a:hover, a:focus {
 	width: 40px;
 }
 
+.pro_img{
+	width: 45px;
+	border-radius: 100px;
+	margin-right: 15px;
+}
+
 #mynavbar>form>.form-control{
 	 background-color: #e9ecef;
 }
@@ -238,6 +244,7 @@ a:hover, a:focus {
   /* border-radius: 6px; */
   cursor: pointer;
   border: 2px solid #0e942c;
+  border-radius: 10px;
 }
 
 .contents .upload-box .file-label:hover {
