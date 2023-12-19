@@ -42,7 +42,11 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-
+	<div class="fw_500 cBlack mt-5">
+		<a href="${pageContext.request.contextPath}">HOME</a><span class="fs_18 mx-1">></span>
+		<a href="${pageContext.request.contextPath}/mboard">벼룩시장</a><span class="fs_18 mx-1">></span>
+		<a href="${pageContext.request.contextPath}/mboard/content">상세 페이지</a>
+	</div>
 <div>
 	<div>
 			<div id="answercount">댓글 0</div>

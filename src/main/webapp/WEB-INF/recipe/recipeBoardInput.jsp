@@ -8,7 +8,11 @@
 		<!-- hidden -->
 		<input type="hidden" name="currentPage" value="${currentPage}">
 		<input type="hidden" name="num" value="${num}">	
-		
+		<div class="fw_500 cBlack mt-5">
+		<a href="${pageContext.request.contextPath}">HOME</a><span class="fs_18 mx-1">></span>
+		<a href="${pageContext.request.contextPath}/recipe/board">레시피북</a><span class="fs_18 mx-1">></span>
+		<a href="${pageContext.request.contextPath}/recipe/recipeBoardInput">레시피 등록</a>
+	</div>
 		<h3 class="cGreen fw_600 text-center fs_40 my-3">레시피 등록하기</h3>
 		<h6 class="cGreen fw_600 mt-4">제목</h6>
 		<input type="text" name="recipeTitle" class="form-control borderGreen"

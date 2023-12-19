@@ -15,28 +15,14 @@
 	
     .div_recipeOrder {
         width: 100%;
-        box-sizing: border-box;
-        background-color: var(--black);
+        /* background-color: var(--black); */
         padding: 10px;
-    }
-
-    .div_recipeOrderItem {
-        background-color: var(--white);
-        padding: 10px;
-        margin: 10px;
-        display: flex;
-    }
-
-    .div_recipeOrderImg {
-        max-width:30%;
-        min-width:30%;
-        margin-left: auto;
     }
 
     .img_recipeOrder {
         width: 100%;
         height: auto;
-        border-radius: 16px;
+        border-radius: 10px;
     }
 
     .div_recipeOrderContent {
@@ -47,18 +33,21 @@
 
 </style>
 
-<div class="div_recipeOrder mt-5">
-	<div id="order_title">
-		[조리 순서]
+<div class="mw_1200 rOrderbox">
+	<div class="div_recipeOrder mt-5">
+		<div class="cGreen fw_600 mt-4 fs_30 nanumfont mw_750">
+			[조리 Step By Step]
+		</div>
+	    <c:forEach var="orderItem" items="${recipeOrderDtoList}" >
+	        <div class="row mw_750 mt-4">
+	            <div class="col-4">
+	                <img class="img_recipeOrder" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${orderItem.recipeOrderPhoto}" />
+	            </div>
+	            <div class="col ml-4 fs_19">
+	            	<div class="rgyPostIt3">Step1</div>
+	                <c:out value="${orderItem.recipeOrderContent}" />
+	            </div>
+	        </div>
+	    </c:forEach>
 	</div>
-    <c:forEach var="orderItem" items="${recipeOrderDtoList}" >
-        <div class="div_recipeOrderItem">
-            <div class="div_recipeOrderContent">
-                <c:out value="${orderItem.recipeOrderContent}" />
-            </div>
-            <div class="div_recipeOrderImg">
-                <img class="img_recipeOrder" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${orderItem.recipeOrderPhoto}" />
-            </div>
-        </div>
-    </c:forEach>
 </div>

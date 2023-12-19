@@ -31,8 +31,12 @@
 		 });
 	});
 </script>
-
 <div style="margin:30px 50px;">
+	<div class="fw_500 cBlack mt-5">
+		<a href="${pageContext.request.contextPath}">HOME</a><span class="fs_18 mx-1">></span>
+		<a href="${pageContext.request.contextPath}/board/list">자취생 커뮤니티</a><span class="fs_18 mx-1">></span>
+		<a href="${pageContext.request.contextPath}/board/form">글쓰기</a>
+	</div>
 	<form action="./insertBoard" method="post" enctype="multipart/form-data">
 		<h6 class="cGreen fw_600 mt-4">제목</h6>
 		<input type="text" name="comBoardSubject" class="form-control borderGreen"
