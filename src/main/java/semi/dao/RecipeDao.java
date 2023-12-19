@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import semi.dto.RecipeDto;
-import semi.dto.RecipeUpdateDto;
 
 @Repository
 public class RecipeDao {
@@ -48,7 +47,7 @@ public class RecipeDao {
 	}
 	
 	// 레시피 수정
-	public void updateRecipe(RecipeUpdateDto updateDto) {
+	public void updateRecipe(RecipeDto updateDto) {
 	    session.update(nameSpace + "updateRecipe", updateDto);
 	}
 }

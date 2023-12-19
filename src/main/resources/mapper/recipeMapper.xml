@@ -51,7 +51,7 @@
 	</select>
 	
 	<!-- 레시피 수정 -->
-	<update id="updateRecipe" parameterType="RecipeUpdateDto">
+	<update id="updateRecipe" parameterType="RecipeDto">
 	    update tRecipeBoard
 	    set sRecipeTitle = #{recipeTitle},
 	        sRecipePhoto = #{recipePhoto},

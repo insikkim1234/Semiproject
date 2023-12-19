@@ -21,7 +21,6 @@ import naver.storage.NcpObjectStorageService;
 import semi.dto.MemberDto;
 import semi.dto.RecipeDto;
 import semi.dto.RecipeOrderDto;
-import semi.dto.RecipeUpdateDto;
 import semi.orderBean.OrderBean;
 import semi.orderBean.OrderListBean;
 import semi.service.RecipeOrderService;
@@ -45,7 +44,7 @@ public class RecipeController {
     }
 
     @PostMapping("/recipe/insertRecipe")
-    public String insertRecipe(@Login MemberDto memberDto, @ModelAttribute RecipeDto dto, @ModelAttribute RecipeOrderDto orderdto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload, @ModelAttribute OrderListBean obList) {
+    public String insertRecipe(@Login MemberDto memberDto, @ModelAttribute RecipeDto dto, @ModelAttribute RecipeOrderDto orderdto, @RequestParam MultipartFile upload, @ModelAttribute OrderListBean obList) {
         String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
     			NcpObjectStorageService.DIR_PHOTO, upload);
     	
@@ -54,7 +53,6 @@ public class RecipeController {
     	recipeService.insertRecipe(dto);
     	
     	ArrayList<OrderBean> list = (ArrayList<OrderBean>) obList.getOrderlist();
-    	System.out.println("RecipeController에서 POST 요청 들어옴");
     	for(int i = 0; i < obList.getOrderlist().size(); i++) {
     		RecipeOrderDto orderDto = new RecipeOrderDto();
     		
@@ -119,9 +117,28 @@ public class RecipeController {
 
     // 수정 처리
     @PostMapping("/recipe/updateRecipe")
-    public String updateRecipe(@ModelAttribute RecipeUpdateDto updateDto) {
+    public String updateRecipe(@ModelAttribute RecipeDto updateDto, @RequestParam MultipartFile upload, @ModelAttribute OrderListBean obList) {
+    	String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+    			NcpObjectStorageService.DIR_PHOTO, upload);
+    	
+    	updateDto.setRecipePhoto(photo);
         recipeService.updateRecipe(updateDto);
-        return "redirect:/recipe/recipeBoard/" + updateDto.getRecipeIdx();
+        
+    	ArrayList<OrderBean> list = (ArrayList<OrderBean>) obList.getOrderlist();
+    	for(int i = 0; i < obList.getOrderlist().size(); i++) {
+    		RecipeOrderDto orderDto = new RecipeOrderDto();
+    		
+        	photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+        			NcpObjectStorageService.DIR_PHOTO, list.get(i).getUpload());
+
+        	orderDto.setRecipeNumber(i + 1);
+        	orderDto.setRecipeOrderContent(list.get(i).getRecipeOrderContent());
+        	orderDto.setRecipeOrderPhoto(photo);
+	    	
+    		recipeOrderService.insertOrderRecipe(orderDto);
+    	}
+        
+        return "redirect:/recipe/board/" + updateDto.getRecipeIdx();
     }
     
 }

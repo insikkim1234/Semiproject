@@ -1,9 +1,10 @@
+<%@page import="naver.storage.NcpObjectStorageService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <div style="max-width:1000px; margin:0 auto;"> 
-    <form action="./updateRecipe" method="post" enctype="multipart/form-data">
+    <form action="../updateRecipe" method="post" enctype="multipart/form-data">
         <!-- hidden -->
         <input type="hidden" name="recipeIdx" value="${recipeDto.recipeIdx}">
         
@@ -19,7 +20,7 @@
             <div class="col">
                 <h6 class="cGreen fw_600 mt-2">사진</h6>
                 <input type="file" name="upload" class="form-control borderGreen" id="product-input4" onchange="previewImage(this, 'product-preview4')">
-                <div id="product-preview4" class="mt-2"></div>
+                <div id="product-preview4" class="mt-2"><img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${recipeDto.recipePhoto}" class="card-img-top custom-img"></div>
             </div>
         </div>
         
@@ -63,6 +64,19 @@
                 <button type="button" class="btn btn-outline-success" onclick="addIngredient()">추가</button>
             </div>
         </td>
+        
+        <!-- 조리 순서 수정 -->
+        <c:forEach var="orderItem" items="${recipeOrderDtoList}" varStatus="loop">
+            <div class="div_recipeOrderItem">
+                <div class="div_recipeOrderContent">
+                    <textarea name="orderlist[${loop.index}].recipeOrderContent" class="form-control" required autofocus>${orderItem.recipeOrderContent}</textarea>
+                </div>
+                <div class="div_recipeOrderImg">
+                    <img class="img_recipeOrder" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${orderItem.recipeOrderPhoto}" />
+                    <input type="file" name="orderlist[${loop.index}].upload" class="form-control">
+                </div>
+            </div>
+        </c:forEach>
         
         <!-- 저장 버튼 -->
         <div class="text-center">
@@ -109,4 +123,24 @@
     function removeIngredient(button) {
         button.parentNode.remove();
     }
+    
+    var idx = 1;
+    
+    // 조리 순서 추가 함수
+    function addOrder(){
+		var container = document.getElementById("order-container");
+        var newRow = document.createElement("div");
+        newRow.className = "order-row";
+        newRow.innerHTML = '<br>' + 
+					       '<textarea name="orderlist[' + idx + '].recipeOrderContent" class="form-control" required autofocus placeholder="예 : 파를 다듬어 줍니다.">${orderItem.recipeOrderContent}</textarea>' +
+						   '<input type="file" name="orderlist[' + idx + '].upload" class="form-control" required>' + 
+						   '<button type="button" class="btn btn-outline-secondary" onclick="removeOrder(this)">삭제</button>';
+		container.appendChild(newRow);
+		idx += 1;
+	}
+	
+    // 조리 순서 삭제 함수
+    function removeOrder(button) {
+    	button.parentNode.remove();
+   	}
 </script>

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 import semi.dao.RecipeDao;
 import semi.dto.RecipeDto;
-import semi.dto.RecipeUpdateDto;
 
 @Service
 @AllArgsConstructor
@@ -30,7 +29,7 @@ public class RecipeService {
 	}
 	
 	// 레시피 수정
-	public void updateRecipe(RecipeUpdateDto updateDto) {
+	public void updateRecipe(RecipeDto updateDto) {
 	    recipeDao.updateRecipe(updateDto);
 	}
 }
