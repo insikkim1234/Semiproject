@@ -40,7 +40,7 @@ public class NcpObjectStorageService implements ObjectStorageService {
 
 	@Override
 	public String uploadFile(String bucketName, String directoryPath, MultipartFile file) {
-		if (file.isEmpty()) {
+		if (file == null || file.isEmpty()) {
 			System.out.println("[*] NcpObjectStorageService uploadFile file is Empty");
 			return null;
 		}
