@@ -18,11 +18,19 @@
 		values (#{userSeq},#{boardSeq},#{commentContent},now(),now())
 	</insert>
 	
-	<select id="selectAnswerOfboardSeq" parameterType="int" resultType="MarketBoardCommentDto">
-		select *
+	<select id="selectAnswerOfboardSeq" parameterType="int" resultType="MarketBoardCommentDto" resultMap="MarketBoardCommentDtoRm">
+		select tMarketBoardComment.*
 		from tMarketBoardComment
+		left join tUser
+		on tMarketBoardComment.nUserSeq = tUser.userSeq
 		where nBoardSeq=#{boardSeq} 
 		
+	</select>
+	
+	<select id="totalCountOfComment" parameterType="int" resultType="int">
+		select count(*)
+		from tMarketBoardComment
+		where nBoardSeq=#{boardSeq}
 	</select>
   
 </mapper>

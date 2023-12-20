@@ -27,6 +27,11 @@ public class MarketBoardCommentService {
 		return marketBoardCommentDao.getAnswerBoard(boardSeq);
 	}
 	
+	public int getTotalCount(int boardSeq)
+	{
+		return marketBoardCommentDao.getTotalCount(boardSeq);
+	}
+	
 	
 	
 }

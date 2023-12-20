@@ -104,12 +104,7 @@ public class MarketBoardController {
 		return "market/marketboardform";
 	}
 	
-	@GetMapping("/mboard/list")
-	public List<MarketBoardCommentDto> answerList(@RequestParam int boardSeq)
-	{
-		return marketBoardCommentService.getAnswerBoard(boardSeq);
-	}
-
+	
 
 
 }

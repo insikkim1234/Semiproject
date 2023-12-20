@@ -27,6 +27,11 @@ public class MarketBoardCommentDao {
 		return session.selectList(nameSpace+"selectAnswerOfboardSeq", boardSeq);
 	}
 	
+	public int getTotalCount(int boardSeq)
+	{
+		return session.selectOne(nameSpace+ "totalCountOfComment",boardSeq);
+	}
+	
 	
 	
 }

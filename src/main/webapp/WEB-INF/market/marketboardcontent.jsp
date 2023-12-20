@@ -7,7 +7,7 @@
 
 <input type="hidden" id="createDate" value="${mDto.createDate}">
 <script type="text/javascript">
-$(document).ready(function() {
+$(function() {
 	list();
     $('#btnansweradd').click(function() {
     	var userSeq=1;
@@ -50,23 +50,18 @@ function list()
 	$.ajax({
 		type:"get",
 		dataType:"json",
-		url:"/mboard/list",
+		url:"./list",
 		data:{"boardSeq":boardSeq},
 				
 		success:function(res){
-				//ㄴ.성공시 댓글 갯수 출력 
-			$("#answercount").text("댓글 "+res.length);
-				//ㄷ.빈 변수 s 생성
+			let length=res.length;
+			let datas=res.data;
+			console.log(length);
+			$("#answercount").text("댓글 "+length);
+				
 			let s="";
 				
-			$.each(res,function(idx,item){
-				s+=
-					
-					`
-					\${item.userSeq}(\${item.userSeq})<br>
-					`;
-				
-				
+			$.each(datas,function(idx,item){
 				s+=					
 					`<span style="margin-left:20px;">\${item.commentContent}</span>
 					&nbsp;
