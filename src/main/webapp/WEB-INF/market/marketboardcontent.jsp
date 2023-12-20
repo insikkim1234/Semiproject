@@ -57,13 +57,16 @@ function list()
 			let length=res.length;
 			let datas=res.data;
 			console.log(length);
+			
 			$("#answercount").text("댓글 "+length);
 				
 			let s="";
 				
 			$.each(datas,function(idx,item){
 				s+=					
-					`<span style="margin-left:20px;">\${item.commentContent}</span>
+					`
+					\${item.commentUserName}(\${item.commentUserEmail})<br>
+					<span style="margin-left:20px;">\${item.commentContent}</span>
 					&nbsp;
 					<span style="color:gray;font-size:0.9em;">\${item.createDate}</span>					
 					`;

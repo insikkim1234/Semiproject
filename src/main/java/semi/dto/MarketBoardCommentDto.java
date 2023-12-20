@@ -13,4 +13,7 @@ public class MarketBoardCommentDto {
 	private Timestamp updateDate;	
 	private int commentParentSeq;
 	private int commentDepth;
+	
+	private String commentUserName;
+	private String commentUserEmail;
 }
