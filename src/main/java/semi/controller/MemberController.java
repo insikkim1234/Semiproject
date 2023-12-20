@@ -61,7 +61,7 @@ public class MemberController {
 
     //회원가입 중복 이메일 체크 로직 (API)
     @PostMapping("/duplicatedEmailCheck")
-    public ResponseEntity<Object> duplicatedEmailCheck(@RequestBody MemberDto memberDto) {
+    public ResponseEntity<?> duplicatedEmailCheck(@RequestBody MemberDto memberDto) {
         int result = memberService.duplicatedEmailCheck(memberDto);
         HashMap<String,String> resultMap = new HashMap<>();
 
@@ -89,7 +89,7 @@ public class MemberController {
 
     //회원가입 중복 닉네임 체크 로직 (API)
     @PostMapping("/duplicatedNickNameCheck")
-    public ResponseEntity<Object> duplicatedNickNameCheck(@RequestBody MemberDto memberDto) {
+    public ResponseEntity<?> duplicatedNickNameCheck(@RequestBody MemberDto memberDto) {
         int result = memberService.duplicatedNickNameCheck(memberDto);
         HashMap<String,String> resultMap = new HashMap<>();
 

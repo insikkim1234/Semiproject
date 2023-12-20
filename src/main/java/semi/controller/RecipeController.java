@@ -3,9 +3,6 @@ package semi.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -74,10 +71,11 @@ public class RecipeController {
     
     // 레시피 게시판
     @GetMapping("/recipe/board")
-    public String getRecipeList(Model model,String word) {
+    public String getRecipeList(Model model,String word,@RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
         //총 레시피 개수 얻기
         int totalCount = recipeService.getTotalCount(word);
         model.addAttribute("totalCount", totalCount);
+        model.addAttribute("page", page);
         return "recipe/recipeBoard";
     }
 

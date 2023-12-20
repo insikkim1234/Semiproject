@@ -75,11 +75,17 @@
 					<span class="detailViewCount"><i class="bi bi-eye-fill fs_19"></i></span>
 					<b>${dto.recipeViewCount}</b>
 				</div>
-				<div class="text-end my-1">
-					<span class="detailCreatedAt">작성일 : </span>
-					<b><fmt:formatDate value="${dto.recipeCreatedAt}" pattern="yyyy-MM-dd"/></b>&nbsp;
-					<span class="detailUpdatedAt">수정일 : </span>
-					<b><fmt:formatDate value="${dto.recipeUpdatedAt}" pattern="yyyy-MM-dd"/></b> 
+				<div class="row">
+					<div class="col">
+						<a class="fs_16 fw_600 btn-outline-green py-1 px-2 mr-2 br_5" style="border-radius: 5px;" href="${pageContext.request.contextPath}/recipe/update/">수정</a>
+						<a class="fs_16 fw_600 btn-outline-green py-1 px-2 br_5" style="border-radius: 5px;" href="${pageContext.request.contextPath}/recipe/update/">삭제</a>
+					</div>
+					<div class="col text-end my-1">
+						<span class="detailCreatedAt">작성일 : </span>
+						<b><fmt:formatDate value="${dto.recipeCreatedAt}" pattern="yyyy-MM-dd"/></b>&nbsp;
+						<span class="detailUpdatedAt">수정일 : </span>
+						<b><fmt:formatDate value="${dto.recipeUpdatedAt}" pattern="yyyy-MM-dd"/></b> 
+					</div>
 				</div>
 			</div>
 			
