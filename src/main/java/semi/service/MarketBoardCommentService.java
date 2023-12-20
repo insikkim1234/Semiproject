@@ -1,8 +1,13 @@
 package semi.service;
 
 
+
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 
 import semi.dao.MarketBoardCommentDao;
 import semi.dto.MarketBoardCommentDto;
@@ -16,4 +21,17 @@ public class MarketBoardCommentService {
 	{
 		return marketBoardCommentDao.insertComment(mcdto);
 	}
+	
+	public List<MarketBoardCommentDto> getAnswerBoard(int boardSeq)
+	{
+		return marketBoardCommentDao.getAnswerBoard(boardSeq);
+	}
+	
+	public int getTotalCount(int boardSeq)
+	{
+		return marketBoardCommentDao.getTotalCount(boardSeq);
+	}
+	
+	
+	
 }

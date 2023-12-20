@@ -85,6 +85,7 @@ public class MarketBoardController {
 		MarketBoardDto mDto = marketBoardService.getData(boardSeq);
 		MarketProductDto pDto = marketProductService.getData(boardSeq);
 		
+		
 		model.addAttribute("mDto", mDto);
 		model.addAttribute("pDto", pDto);
 		model.addAttribute("currentPage", currentPage);
@@ -102,7 +103,8 @@ public class MarketBoardController {
 
 		return "market/marketboardform";
 	}
-
+	
+	
 
 
 }
