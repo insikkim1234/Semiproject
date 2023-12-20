@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="semi.dao.RecipeOrderDao">
 	<resultMap id="RecipeOrderDtoRm" type="RecipeOrderDto">
+		<result property="recipeOrderSeq" column="nRecipeOrderSeq" />
 		<result property="recipeIdx" column="nRecipeIdx" />
 		<result property="recipeNumber" column="nRecipeNumber" />
 		<result property="recipeOrderContent" column="sRecipeOrderContent" />
@@ -19,4 +20,24 @@
 	<delete id="deleteOrderRecipe" parameterType="RecipeOrderDto">
 		delete from tRecipeOrder where nRecipeIdx = #{recipeIdx}
 	</delete>
+
+	<insert id="upsertRecipeOrder" parameterType="RecipeOrderDto">
+	<![CDATA[
+		INSERT INTO tRecipeOrder (nRecipeOrderSeq,  nRecipeIdx, nRecipeNumber, sRecipeOrderContent, sRecipeOrderPhoto)
+		VALUES (
+			#{recipeOrderSeq},
+			#{recipeIdx},
+			#{recipeNumber},
+			#{recipeOrderContent},
+			COALESCE(#{recipeOrderPhoto}, sRecipeOrderPhoto)
+	   )
+		ON DUPLICATE KEY UPDATE
+		 nRecipeIdx =  #{recipeIdx},
+		 nRecipeNumber = #{recipeNumber},
+		 sRecipeOrderContent = #{recipeOrderContent},
+		 sRecipeOrderPhoto = COALESCE(#{recipeOrderPhoto}, sRecipeOrderPhoto);
+    ]]>
+	</insert>
+
+
 </mapper>

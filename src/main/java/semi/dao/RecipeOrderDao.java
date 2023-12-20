@@ -22,11 +22,11 @@ public class RecipeOrderDao {
 		session.insert(nameSpace + "insertOrderRecipe", orderdto);
 	}
 	
-    public void upsertOrderRecipe(RecipeOrderDto orderDto) {
-        session.insert(nameSpace + "upsertOrderRecipe", orderDto);
+    public void upsertRecipeOrder(RecipeOrderDto orderDto) {
+        session.insert(nameSpace + "upsertRecipeOrder", orderDto);
     }
     
     public void deleteOrderRecipe(RecipeOrderDto orderDto) {
-    	session.delete(nameSpace + "deleteOrderRecipe", orderDto);
-    }
+		session.delete(nameSpace + "deleteOrderRecipe", orderDto);
+	}
 }

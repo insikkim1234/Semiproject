@@ -149,7 +149,7 @@
         newRow.className = "order-row";
         newRow.innerHTML = '<br>' +
                            '<textarea name="orderlist[' + idx + '].recipeOrderContent" class="form-control" required autofocus placeholder="예 : 파를 다듬어 줍니다."></textarea>' +
-                           '<input type="file" name="orderlist[' + idx + '].upload" class="form-control" />' +
+                           '<input type="file" name="orderlist[' + idx + '].upload" class="form-control" required />' +
                            '<button type="button" class="btn btn-outline-secondary" onclick="removeOrder(this)">삭제</button>';
         container.appendChild(newRow);
     }
