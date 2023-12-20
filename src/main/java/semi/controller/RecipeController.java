@@ -156,5 +156,18 @@ public class RecipeController {
         
         return "redirect:/recipe/board/" + updateDto.getRecipeIdx();
     }
-    
+    	//레시피 삭제 
+    	@PostMapping("/recipe/deleteRecipe")
+    	public String deleteRecipe(@Login MemberDto memberDto, @RequestParam int recipeIdx)
+    	{
+    		RecipeDto dto = recipeService.getData(recipeIdx);
+             
+    		if (memberDto.getUserSeq() == dto.getRecipeUserSeq())
+    		{
+    			recipeService.deleteRecipe(recipeIdx);
+    		}
+       
+    		return "redirect:/recipe/board"; 
+    	}
+
 }

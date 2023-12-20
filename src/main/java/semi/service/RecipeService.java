@@ -32,4 +32,10 @@ public class RecipeService {
 	public void updateRecipe(RecipeDto updateDto) {
 	    recipeDao.updateRecipe(updateDto);
 	}
+	
+	//레시피 삭제
+	public void deleteRecipe(int recipeIdx) {
+		recipeDao.deleteRecipe(recipeIdx);
+	}
+
 }
