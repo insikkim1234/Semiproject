@@ -19,4 +19,23 @@
 	<delete id="deleteOrderRecipe" parameterType="RecipeOrderDto">
 		delete from tRecipeOrder where nRecipeIdx = #{recipeIdx}
 	</delete>
+
+	<insert id="upsertRecipeOrder" parameterType="RecipeOrderDto">
+	<![CDATA[
+		INSERT INTO tRecipeOrder (nRecipeIdx, nRecipeNumber, sRecipeOrderContent, sRecipeOrderPhoto)
+		VALUES (
+		   #{recipeIdx},
+		   #{recipeNumber},
+		   #{recipeOrderContent},
+		   #{recipeOrderPhoto}
+	   )
+		ON DUPLICATE KEY UPDATE
+		 nRecipeIdx =  #{recipeIdx},
+		 nRecipeNumber = #{recipeNumber},
+		 sRecipeOrderContent = #{recipeOrderContent},
+		 sRecipeOrderPhoto = COALESCE(#{recipeOrderPhoto}, sRecipeOrderPhoto);
+    ]]>
+	</insert>
+
+
 </mapper>

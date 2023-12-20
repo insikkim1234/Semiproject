@@ -24,8 +24,8 @@ public class RecipeOrderService {
 		recipeOrderDao.insertOrderRecipe(orderdto);
 	}
 	
-	public void upsertOrderRecipe(RecipeOrderDto orderDto) {
-        recipeOrderDao.upsertOrderRecipe(orderDto);
+	public void upsertRecipeOrder(RecipeOrderDto orderDto) {
+        recipeOrderDao.upsertRecipeOrder(orderDto);
     }
 	
 	public void deleteOrderRecipe(RecipeOrderDto orderDto) {
