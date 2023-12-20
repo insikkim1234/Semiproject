@@ -51,11 +51,10 @@
 	<delete id="deleteBoard" parameterType="int">
 		delete from tComBoard where nComBoardSeq=#{nComBoardSeq}
 	</delete>
-	<update id="updateBoard" parameterType="BoardDto">
-		update tComBoard set sUserName=#{sUserName},sComBoardSubject=#{sComBoardSubject},sComBoardContent=#{sComBoardContent}
-		<if test="nComBoardRegroup!=null">
-			,nComBoardRegroup=#{nComBoardRegroup}
-		</if>
-		where nComBoardSeq=#{nComBoardSeq}
+	
+	<update id="updateBoard" parameterType="BoardDto" >
+		update tComBoard set sComBoardSubject=#{comBoardSubject},sComBoardContent=#{comBoardContent}
+		
+		where nComBoardSeq=#{comBoardSeq}
 	</update>
 </mapper>

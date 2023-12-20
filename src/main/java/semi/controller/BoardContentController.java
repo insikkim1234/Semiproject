@@ -43,6 +43,41 @@ public class BoardContentController {
 		return "board/content";
 	}
 	
+	//게시판 수정 페이지 이동
+	@GetMapping("/board/updateform")
+	public String updateForm(Model model,@RequestParam int comBoardSeq)
+	{
+		BoardDto dto=boardDao.getData(comBoardSeq);
+		
+		model.addAttribute("dto",dto);
+		return "board/updateform";
+	}
 	
+	//게시판 수정
+	@PostMapping("/board/updateprocess")
+	public String update(@ModelAttribute BoardDto dto,
+			HttpServletRequest request, @RequestParam String content,
+			@RequestParam String subject,
+			@RequestParam int num )
+	{
+		String path=request.getSession().getServletContext().getRealPath("/WEB-INF/upload");
+		
+		
+		
+		
+		//db수정
+		dto.setComBoardSeq(num);
+		dto.setComBoardContent(content);
+		dto.setComBoardSubject(subject);
+		boardDao.updateBoard(dto);
+		return "redirect:./content?comBoardSeq="+num;
+	}
+	
+	@GetMapping("/board/delete")
+	public String delete(@RequestParam int comBoardSeq)
+	{
+		boardDao.deleteBoard(comBoardSeq);
+		return "redirect:./list";
+	}
 	
 }

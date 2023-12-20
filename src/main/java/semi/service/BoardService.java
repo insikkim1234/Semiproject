@@ -47,6 +47,16 @@ public class BoardService {
 		return boardDao.getData(comBoardSeq);
 	}
 	
+	public void updateBoard(BoardDto dto)
+	{
+		boardDao.updateBoard(dto);
+	}
+	
+	public void deleteBoard(int comBoardSeq)
+	{
+		boardDao.deleteBoard(comBoardSeq);
+	}
+	
 	
 	//db insert
 			
@@ -125,8 +135,5 @@ public class BoardService {
 		boardDao.updateBoard(dto);
 	}
 	
-	public void deleteBoard(int num)
-	{
-		boardDao.deleteBoard(num);
-	}*/
+	*/
 }
