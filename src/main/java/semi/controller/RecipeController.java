@@ -129,11 +129,7 @@ public class RecipeController {
         recipeService.updateRecipe(updateDto);
         
         List<RecipeOrderDto> orderDtoList = recipeOrderService.getRecipeOrdersById(updateDto.getRecipeIdx());
-        
-        for (RecipeOrderDto t : orderDtoList) {
-        	recipeOrderService.deleteOrderRecipe(t);
-        }
-        
+
         ArrayList<OrderBean> orderList = (ArrayList<OrderBean>) obList.getOrderlist();
         for (int i = 0; i < orderList.size(); i++) {
             OrderBean orderBean = orderList.get(i);
@@ -145,15 +141,17 @@ public class RecipeController {
                     NcpObjectStorageService.DIR_PHOTO, orderBean.getUpload());
 
             // 레시피 순서 엔티티를 생성하고 필드를 설정
-            RecipeOrderDto orderDto = new RecipeOrderDto();
-        	orderDto.setRecipeIdx(updateDto.getRecipeIdx());
-            orderDto.setRecipeNumber(i + 1);
-            orderDto.setRecipeOrderContent(orderBean.getRecipeOrderContent());
-            orderDto.setRecipeOrderPhoto(photo);
-            
+            RecipeOrderDto newOrderDto = new RecipeOrderDto();
+            if (i < orderDtoList.size()) {
+                newOrderDto.setRecipeOrderSeq(orderDtoList.get(i).getRecipeOrderSeq());
+            }
+        	newOrderDto.setRecipeIdx(updateDto.getRecipeIdx());
+            newOrderDto.setRecipeNumber(i + 1);
+            newOrderDto.setRecipeOrderContent(orderBean.getRecipeOrderContent());
+            newOrderDto.setRecipeOrderPhoto(photo);
             
             // 생성된 엔티티를 서비스를 통해 저장
-            recipeOrderService.insertOrderRecipe(orderDto);
+            recipeOrderService.insertOrderRecipe(newOrderDto);
         }
         
         return "redirect:/recipe/board/" + updateDto.getRecipeIdx();
