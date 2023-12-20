@@ -34,6 +34,12 @@
 		from tMarketBoardComment
 		where nBoardSeq=#{boardSeq}
 	</select>
+	
+	<delete id="deleteComment" parameterType="int">
+		delete
+		from tMarketBoardComment
+		where nCommentSeq=#{commentSeq}
+	</delete>
   
 </mapper>
 

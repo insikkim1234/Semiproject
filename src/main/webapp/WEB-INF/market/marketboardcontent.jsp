@@ -32,6 +32,7 @@ $(function() {
                 console.log(response.status);
                 // 성공적으로 저장된 경우 추가 작업 수행
                 // 예를 들어, 화면에 새로운 댓글을 추가하는 등의 작업 수행 가능
+                list();
                 
             },
             error: function(xhr, status, error) {
@@ -40,6 +41,20 @@ $(function() {
                 console.error('에러 메시지:', error);
             }
         });
+    });
+    $(document).on("click",".ansdel",function(){
+    	let commentSeq=$(this).attr("commentSeq");
+    	
+    	$.ajax({
+    		type:"get",
+    		dataType:"text",
+    		url:"./delete",
+    		data:{"commentSeq":commentSeq},
+    		success:function(res){
+    			list();
+    		}
+    		
+    	});
     });
 });
 
@@ -65,7 +80,7 @@ function list()
 			let s="";
 				
 			$.each(datas,function(idx,item){
-				 
+				
 				s+=					
 					`
 					
@@ -76,11 +91,13 @@ function list()
 					
 					<span style="color:gray;font-size:0.9em;">\${item.createDate}</span>
 					
+					<i class="bi bi-trash ansdel" commentSeq="\${item.commentSeq}"></i>
 					
 					`;
 				
 				
 				s+="<br>";
+				s+="<hr>";
 			});
 		
 			$("div.answerlist").html(s);
