@@ -552,3 +552,45 @@ div.rgyPostIt3:hover {
 	box-shadow: 10px 15px 30px #49505770;
 	box-sizing: border-box;
 }
+
+
+/*boardcontent.jsp  */
+.content-border{
+	border-top: 1px solid #c5c5c5;
+}
+
+.btn-outline-green{
+	border:1px solid #11b560;
+	box-sizing: border-box;
+	color: #11B560;
+}
+
+.btn-outline-green:hover{
+	border:1px solid #e1a900;
+}
+
+.content_comment>button{
+	border-radius: 5px !important;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.content_comment>input{
+	margin-right: 5px;
+}
+
+.content_comment>input.input1,
+.content_comment>input.input2{
+	border-radius: 5px !important;
+	background: #11b5601f;
+	border: 1px solid #c5c5c5;
+}
+
+.content-border>div>.btn_green3{
+	border-radius: 5px;
+	font-size: 16px;
+}
+
+.content-border>div.row>div.col>.btn-outline-green{
+	padding: 2px 5px;
+}
