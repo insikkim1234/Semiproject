@@ -56,4 +56,10 @@ public class RecipeDao {
 	public void updateRecipe(RecipeDto updateDto) {
 	    session.update(nameSpace + "updateRecipe", updateDto);
 	}
+	
+	//레시피 삭제
+	public void deleteRecipe(int recipeIdx) {
+		session.delete(nameSpace + "deleteRecipe", recipeIdx);
+	   }
+	
 }
