@@ -106,7 +106,7 @@ public class MarketBoardController {
 	}
 	
 	//삭제
-	@GetMapping("/mboard/delete")
+	@GetMapping("/mboard/deletecontent")
 	public String deleteMarketBoardContent(@RequestParam int boardSeq,@RequestParam int currentPage)
 	{
 		//����
