@@ -151,7 +151,7 @@ public class RecipeController {
             newOrderDto.setRecipeOrderPhoto(photo);
             
             // 생성된 엔티티를 서비스를 통해 저장
-            recipeOrderService.insertOrderRecipe(newOrderDto);
+            recipeOrderService.upsertRecipeOrder(newOrderDto);
         }
         
         return "redirect:/recipe/board/" + updateDto.getRecipeIdx();
