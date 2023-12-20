@@ -51,6 +51,7 @@
         .regi_input>input[type=submit] {
             background-color: #11B560;
             border: 2px solid #0E942C;
+            border-radius: 10px;
         }
         .regi_input>input[type=submit]:hover {
             background-color: #EBEE48;
@@ -64,7 +65,11 @@
     </style>
 </head>
 <body>
-<div class="fs_40 text-center cGreen fw_600 my-5">JOIN US</div>
+<div class="fw_500 cBlack mt-5 mx-auto" style="width: 350px">
+	<a href="${pageContext.request.contextPath}">HOME</a><span class="fs_18 mx-1">></span>
+	<a href="${pageContext.request.contextPath}/member/register">회원가입</a>
+</div>
+<div class="fs_40 text-center cGreen fw_600 mt-3 mb-5">JOIN US</div>
 <form action="/semi/member/register" method="post" class="regi_input mt-3" enctype="multipart/form-data">
 
     <div class="box d-flex justify-content-between">

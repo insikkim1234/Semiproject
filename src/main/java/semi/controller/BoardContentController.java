@@ -18,26 +18,30 @@ import semi.dao.AnswerDao;
 import semi.dao.BoardDao;
 import semi.dto.AnswerDto;
 import semi.dto.BoardDto;
+import semi.service.BoardService;
 @Controller
 @AllArgsConstructor
 public class BoardContentController {
 	private BoardDao boardDao;
-	private AnswerDao answerDao;
+	private BoardService boardService;
 	
+	//게시판 조회
 	@GetMapping("/board/content")
-	public String content(Model model,@RequestParam int comBoardSeq)
+	public String content(Model model,@RequestParam int comBoardSeq )
 	{
+		//조회수 증가
+		//num 에 해당하는 dto 얻기
+		BoardDto dto=boardService.getData(comBoardSeq);
+		System.out.println(dto+"sadsa확인");
+
+		//model 에 저장
+
+
+		model.addAttribute("dto", dto);
 		
-		
-		
-		
-		
-		
-	
+
 		return "board/content";
 	}
-	
-	
 	
 	
 	

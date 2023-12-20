@@ -49,17 +49,15 @@ public class MemberController {
     }
 
     //사진 업로드 로직
-    @PostMapping("/register/insertMember")
-    public String insertMember(@ModelAttribute MemberDto dto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile uploadFile) {
-        String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
-                NcpObjectStorageService.DIR_PHOTO, uploadFile);
-
-
-        dto.setUserImage(photo);
-        memberService.insertMember(dto);
-
-        return "redirect:../";
-    }
+//    @PostMapping("/register/insertMember")
+//    public String insertMember(@ModelAttribute MemberDto dto, HttpServletRequest request, HttpSession session, @RequestParam MultipartFile uploadFile) {
+////        String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+////                NcpObjectStorageService.DIR_PHOTO, uploadFile);
+////
+////        dto.setUserImage(photo);
+////        memberService.insertMember(dto);
+//        return "redirect:../";
+//    }
 
     //회원가입 중복 이메일 체크 로직 (API)
     @PostMapping("/duplicatedEmailCheck")
@@ -119,9 +117,15 @@ public class MemberController {
 
     //회원가입 실행 로직 메서드 -> 성공 login.jsp 실패 register.jsp
     @PostMapping("/register")
-    public String register(@ModelAttribute MemberDto memberDto, @RequestParam MultipartFile uploadFile) {
+    public String register(@ModelAttribute MemberDto memberDto,HttpServletRequest request, HttpSession session, @RequestParam MultipartFile uploadFile) {
         String encodedPassword = memberService.encodePassword(memberDto.getUserPassword());
         memberDto.setUserPassword(encodedPassword);
+
+        String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+                NcpObjectStorageService.DIR_PHOTO, uploadFile);
+
+        memberDto.setUserImage(photo);
+//        memberService.insertMember(memberDto);
 
         int result = memberService.insertMember(memberDto);
 //      DB 에서 변경된 행이 1이면 회원가입 성공.

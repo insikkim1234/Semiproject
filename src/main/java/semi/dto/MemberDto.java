@@ -22,12 +22,12 @@ public class MemberDto {
     @Override
     public String toString() {
         return "MemberDto{" +
-                "userName='" + userEmail + '\'' +
-                ", userEmail='" + userPassword + '\'' +
+                "userEmail='" + userEmail + '\'' +
+                ", userPassword='" + userPassword + '\'' +
                 ", userNickName='" + userNickName + '\'' +
-                ", userPassword='" + userName + '\'' +
-                ", userImage='" + userPhoneNumber + '\'' +
-                ", userPhoneNumber='" + userImage + '\'' +
+                ", userName='" + userName + '\'' +
+                ", userPhoneNumber='" + userPhoneNumber + '\'' +
+                ", userImage='" + userImage + '\'' +
                 '}';
     }
 

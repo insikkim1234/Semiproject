@@ -5,7 +5,11 @@
 
 
 <div class="mw_1000">
-	<div class="fs_40 fw_600 cGreen text_left mt-5">이거 어때?</div>
+	<div class="fw_500 cBlack mt-5">
+		<a href="${pageContext.request.contextPath}">HOME</a><span class="fs_18 mx-1">></span>
+		<a href="${pageContext.request.contextPath}/mboard">벼룩시장</a>
+	</div>
+	<div class="fs_40 fw_600 cGreen text_left mt-3">이거 어때?</div>
 	<form action="./mboard" class="d-flex m-0 justify-content-end mt-3">
 		<input class="form-control me-2" type="text" name="searchWord" placeholder="검색어 입력" style="width: 200px; border:2px solid #11B560;">
 		<button class="btn btn_green2 fw_600" type="submit">검색</button>

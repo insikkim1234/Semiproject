@@ -105,13 +105,14 @@ a:hover, a:focus {
 
 .member_btns{
 	position: absolute;
-	top:10px;
-	right: 25px;
+	top:20px;
+	right: 30px;
 }
 
 .member_btns>a>button{
-	font-weight: 500;
-	font-size: 15px;
+	font-weight: 600;
+	font-size: 18px;
+	color: #6b6b6b;
 }
 
 .member_btns>a:hover{
@@ -120,6 +121,12 @@ a:hover, a:focus {
 
 .member_logo_btn{
 	width: 40px;
+}
+
+.pro_img{
+	width: 45px;
+	border-radius: 100px;
+	margin-right: 15px;
 }
 
 #mynavbar>form>.form-control{
@@ -160,6 +167,18 @@ a:hover, a:focus {
 	border: 1px solid #EBEE48;
 	border-radius: 10px;
 	padding: 2px 5px;
+}
+
+.btn_green4 {
+	background-color: 11B560; 
+	color: #fff;
+	border-radius: 5px;
+}
+
+.btn_green4:hover {
+	background-color: #EBEE48;
+	color:#33672B;
+	border-radius: 5px;
 }
 
 .login_rborder{
@@ -238,6 +257,7 @@ a:hover, a:focus {
   /* border-radius: 6px; */
   cursor: pointer;
   border: 2px solid #0e942c;
+  border-radius: 10px;
 }
 
 .contents .upload-box .file-label:hover {
@@ -308,10 +328,10 @@ a:hover, a:focus {
 
 .menubtn_effect a:before, .menubtn_effect a:after {
 	position: absolute;
-	top:87%;
+	top:89%;
 	left: 0;
 	width: 100%;
-	height: 2px;
+	height: 3px;
 	background: #000;
 	content: '';
 	opacity: 0.5;
@@ -320,7 +340,7 @@ a:hover, a:focus {
 }
 
 .menubtn_effect a:after {
-	top: -10%;
+	top: 10%;
 	opacity: 0;
     background-color: #11B560;
 	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
@@ -337,7 +357,7 @@ a:hover, a:focus {
 	text-shadow: none;
 	text-transform: none;
 	font-style: italic;
-	font-size: 0.75em;
+	font-size: 0.7em;
 	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
 	transition: transform 0.3s, opacity 0.3s;
 	-webkit-transform: translateY(100%);
@@ -360,7 +380,7 @@ a:hover, a:focus {
 
 
 .menubtn_effect a:hover:before, .menubtn_effect a:focus:before {
-	height: 5px;
+	height: 8px;
 }
 
 .menubtn_effect a:hover:before, .menubtn_effect a:hover:after, .menubtn_effect a:focus:before, .menubtn_effect a:focus:after {
@@ -372,8 +392,8 @@ a:hover, a:focus {
 
 .menubtn_effect a:hover span:first-child, .menubtn_effect a:focus span:first-child {
 	opacity: 1;
-	-webkit-transform: translateY(-40%);
-	transform: translateY(-40%);
+	-webkit-transform: translateY(10%);
+	transform: translateY(10%);
 }
  
 /*mboardlist.jsp  */
@@ -474,9 +494,44 @@ div.rgyPostIt2:hover {
     border-bottom-right-radius: 45px 20px;
 }
 
-div.rgyPostI2t:hover::after {
-    box-shadow: 20px 37px 7px #000;
-    -webkit-box-shadow: 2px 37px 7px rgba(0, 0, 0, 0.37);
+div.rgyPostIt3 {
+	font-family: 'Nanum Pen Script';
+    position: relative;
+    padding: 1px 35px 1px 15px;
+    margin: 5px 0;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-left: 20px solid #a1f764;
+    box-shadow: 4px 0px 4px 0px #49505770;
+    font-size: 30px;
+    color: #555;
+    word-break: break-all;
+    background: -webkit-linear-gradient(-45deg, #d8ff88 81%, #e5ff88 82%, #cfff88 82%, #e3f5becc 100%);
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+    width: 130px;
+    height: 40px;
+}
+
+div.rgyPostIt3::after {
+    content: " ";
+    position: absolute;
+    z-index: -1;
+    right: 0;
+    bottom: 32px;
+    width: 80px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: 2px 35px 5px rgba(0, 0, 0, 1);
+    -webkit-box-shadow: 2px 35px 5px rgba(0, 0, 0, 0.4);
+    transform: matrix(-1, -0.1, 0, 1, 0, 0);
+    -webkit-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+}
+
+div.rgyPostIt3:hover {
+	 box-shadow: 2px 3px 7px #6b6b6b;
+    border-bottom-right-radius: 45px 20px;
 }
 
 .r-detail{
@@ -492,7 +547,8 @@ div.rgyPostI2t:hover::after {
 	font-family: 'Nanum Pen Script';
 }
 
-/* .span_rotate{
-	transform: rotate(320deg);
-    display: inline-block;
-} */
+/*recipeOrder.jsp*/
+.rOrderbox{
+	box-shadow: 10px 15px 30px #49505770;
+	box-sizing: border-box;
+}

@@ -49,5 +49,19 @@
 		LEFT JOIN tUser ON tRecipeBoard.nRecipeUserSeq = tUser.userSeq
 		where nRecipeIdx = #{recipeIdx}
 	</select>
+	
+	<!-- 레시피 수정 -->
+	<update id="updateRecipe" parameterType="RecipeDto">
+	    update tRecipeBoard
+	    set sRecipeTitle = #{recipeTitle},
+	        sRecipePhoto = COALESCE(#{recipePhoto}, sRecipePhoto),
+	        sRecipeContent = #{recipeContent},
+	        sRecipeTime = #{recipeTime},
+	        sRecipeDifficulty = #{recipeDifficulty},
+	        sRecipeServing = #{recipeServing},
+	        sRecipeIngredient = #{recipeIngredient},
+	        dtRecipeUpdatedAt = now()
+	    where nRecipeIdx = #{recipeIdx}
+	</update>
 
 </mapper>
