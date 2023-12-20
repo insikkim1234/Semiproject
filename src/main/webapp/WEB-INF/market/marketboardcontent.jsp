@@ -108,4 +108,7 @@ function list()
 	
 </div>
 
+<button type="button" class="btn btn-outline-secondary btn-sm"
+			style="width: 80px;"
+				onclick="location.href='./delete?boardSeq=${mDto.boardSeq}&currentPage=${currentPage}'">삭제</button>
 </body>

@@ -10,7 +10,7 @@
 		<result property="boardViewCount" column="nBoardViewCount" />
 		<result property="createDate" column="dtCreateDate" />
 		<result property="updateDate" column="dtUpdateDate" />
-
+		
 	</resultMap>
 
 	<insert id="insertMarketBoard" parameterType="MarketBoardDto">
@@ -52,6 +52,10 @@
 		from tMarketBoard
 		where nBoardSeq=#{boardSeq}
 	</select>
+	
+	<delete id="deleteMarketBoardContent" parameterType="int">
+		delete from tMarketBoard where nBoardSeq=#{boardSeq}
+	</delete>
 	
 </mapper>
 

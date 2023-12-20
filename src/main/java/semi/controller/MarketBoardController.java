@@ -104,7 +104,16 @@ public class MarketBoardController {
 		return "market/marketboardform";
 	}
 	
-	
+	//삭제
+	@GetMapping("/mboard/delete")
+	public String deleteMarketBoardContent(@RequestParam int boardSeq,@RequestParam int currentPage)
+	{
+		//����
+		System.out.println(boardSeq);
+		marketBoardService.deleteMarketBoardContent(boardSeq);
+
+		return "redirect:/mboard";
+	}
 
 
 }

@@ -33,7 +33,7 @@
 
 </style>
 
-<div class="mw_1200 rOrderbox">
+<div class="mw_1200 rOrderbox mb-5">
 	<div class="div_recipeOrder mt-5">
 		<div class="cGreen fw_600 mt-4 fs_30 nanumfont mw_750">
 			[조리 Step By Step]
