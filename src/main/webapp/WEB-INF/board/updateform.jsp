@@ -20,70 +20,35 @@
 		cursor: pointer;
     }
 </style>
-<script type="text/javascript">
-	$(function(){
-		//카메라 이벤트
-		$(".uploadcamera").click(function(){
-			$("#upload").trigger("click");//이벤트 강제 발생
-		});
-		
-		$("#upload").change(function(){
-			  console.log("1:"+$(this)[0].files.length);
-			  console.log("2:"+$(this)[0].files[0]);
-			  //정규표현식
-			var reg = /(.*?)\/(jpg|jpeg|png|bmp)$/;
-			var f=$(this)[0].files[0];//현재 선택한 파일
-			if(!f.type.match(reg)){
-			   alert("확장자가 이미지파일이 아닙니다");
-			   return;
-			}
-		  if($(this)[0].files[0]){
-		   var reader=new FileReader();
-		   reader.onload=function(e){
-		    $("#showimg").attr("src",e.target.result).css("display","block");
-		   }
-		   reader.readAsDataURL($(this)[0].files[0]);
-		  }
-		 });
-	});
-</script>
+
 </head>
 <body>
-<!-- 이미지 출력할곳 -->
- <img id="showimg"
- style="position: absolute;left:600px;top:60px;max-width: 300px;"
- src="../upload/${dto.photo}" onerror="this.style.display='none'">
-<div style="margin:30px 50px;">
-	<form action="./updateprocess" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="num" value="${dto.num}">
+
+ <form action="./updateprocess" method="post" enctype="multipart/form-data">
+ 	<input type="hidden" name="num" value="${dto.comBoardSeq}">
+ 
+
+	
 		
-		<table class="table table-bordered" style="width:500px;">
-			<caption align="top">글수정</caption>
-			<tr>
-				<th width="100">작성자</th>
-				<td>
-					<input type="text" name="writer" class="form-control"
-					style="width: 150px" autofocus="autofocus" required="required"
-					value="${dto.writer}">
-				</td>
-			</tr>
+		
+			
+			
 			<tr>
 				<th width="100">제목</th>
 				<td class="input-group">
 					<input type="text" name="subject" class="form-control"
-					required="required" value="${dto.subject}">
+					required="required" value="${dto.comBoardSubject}">
 					<input type="file" name="upload" id="upload"
 					style="display: none;">
-					&nbsp;&nbsp;
-					<!-- 카메라 아이콘 -->
-					<i class="bi bi-camera-fill uploadcamera"></i>
+					
+					
 				</td>
 			</tr>
 			<tr>
 				<th width="100">내용</th>
 				<td>
 					<textarea style="width: 100%;height: 150px;"
-						name="content" required="required" class="form-control">${dto.content}</textarea>
+						name="content" required="required" class="form-control">${dto.comBoardContent}</textarea>
 				</td>
 			</tr>
 			<tr>
@@ -97,6 +62,6 @@
 			</tr>
 		</table>
 	</form>
-</div>
+
 </body>
 </html>
