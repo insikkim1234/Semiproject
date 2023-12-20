@@ -32,6 +32,11 @@ public class MarketBoardCommentDao {
 		return session.selectOne(nameSpace+ "totalCountOfComment",boardSeq);
 	}
 	
+	public void deleteAnswer(int commentSeq)
+	{
+		session.delete(nameSpace+"deleteComment", commentSeq);
+	}
+	
 	
 	
 }

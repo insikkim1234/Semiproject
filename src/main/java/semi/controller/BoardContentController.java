@@ -62,7 +62,7 @@ public class BoardContentController {
 	{
 		String path=request.getSession().getServletContext().getRealPath("/WEB-INF/upload");
 		
-		//사진을 선택하지 않은경우 photo 에 null 값을 보낸다
+		
 		
 		
 		//db수정
@@ -73,5 +73,11 @@ public class BoardContentController {
 		return "redirect:./content?comBoardSeq="+num;
 	}
 	
+	@GetMapping("/board/delete")
+	public String delete(@RequestParam int comBoardSeq)
+	{
+		boardDao.deleteBoard(comBoardSeq);
+		return "redirect:./list";
+	}
 	
 }

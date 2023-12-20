@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import annotation.Login;
 import naver.storage.NcpObjectStorageService;
 import semi.config.BoardConfig;
 import semi.dto.*;
@@ -35,7 +36,7 @@ public class MarketBoardController {
 	private MarketBoardCommentService marketBoardCommentService;
 
 	@PostMapping("/mboard/insertMarketBoard")
-	public String insertMarketBoard(@ModelAttribute MarketBoardDto dto, @ModelAttribute MarketProductDto pdto,
+	public String insertMarketBoard(@Login MemberDto user,@ModelAttribute MarketBoardDto dto, @ModelAttribute MarketProductDto pdto,
 			HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload1,
 			@RequestParam MultipartFile upload2, @RequestParam MultipartFile upload3) {
 		String photo = storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
@@ -46,7 +47,7 @@ public class MarketBoardController {
 				NcpObjectStorageService.DIR_PHOTO, upload3);
 
 		dto.setBoardImage(photo);
-
+		dto.setUserSeq(user.getUserSeq());
 		// 먼저 게시글 정보를 저장하고 게시글의 nBoardSeq를 가져옴
 		marketBoardService.insertMarketBoard(dto);
 

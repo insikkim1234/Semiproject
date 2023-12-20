@@ -32,6 +32,11 @@ public class MarketBoardCommentService {
 		return marketBoardCommentDao.getTotalCount(boardSeq);
 	}
 	
+	public void deleteAnswer(int commentSeq)
+	{
+		marketBoardCommentDao.deleteAnswer(commentSeq);
+	}
+	
 	
 	
 }
