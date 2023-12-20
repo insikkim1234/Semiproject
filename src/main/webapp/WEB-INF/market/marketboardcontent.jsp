@@ -43,6 +43,8 @@ $(function() {
     });
 });
 
+
+	
 function list()
 {
 	let boardSeq=${mDto.boardSeq};
@@ -63,12 +65,18 @@ function list()
 			let s="";
 				
 			$.each(datas,function(idx,item){
+				 
 				s+=					
 					`
+					
+					
 					\${item.commentUserName}(\${item.commentUserEmail})<br>
 					<span style="margin-left:20px;">\${item.commentContent}</span>
 					&nbsp;
-					<span style="color:gray;font-size:0.9em;">\${item.createDate}</span>					
+					
+					<span style="color:gray;font-size:0.9em;">\${item.createDate}</span>
+					
+					
 					`;
 				
 				
