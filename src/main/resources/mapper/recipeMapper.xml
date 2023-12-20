@@ -63,5 +63,10 @@
 	        dtRecipeUpdatedAt = now()
 	    where nRecipeIdx = #{recipeIdx}
 	</update>
-
+	
+	<!-- 레시피 삭제 -->
+	<delete id="deleteRecipe" parameterType="int">
+		delete from tRecipeBoard where nRecipeIdx=#{nRecipeIdx}
+	</delete>
+	
 </mapper>
