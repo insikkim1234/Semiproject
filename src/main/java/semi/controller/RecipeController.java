@@ -79,7 +79,6 @@ public class RecipeController {
         return "recipe/recipeBoard";
     }
 
-
     @GetMapping("/recipe/orderSample/{recipeIdx}")
     public String getRecipeDetail(Model model, @PathVariable int recipeIdx) {
         List<RecipeOrderDto> dto = recipeOrderService.getRecipeOrdersById(recipeIdx);
@@ -109,7 +108,7 @@ public class RecipeController {
     
     // 레시피 게시물 수정 페이지로 이동
     @GetMapping("/recipe/update/{recipeIdx}")
-    public String getUpdateRecipeForm(Model model, @PathVariable int recipeIdx) {
+    public String getUpdateRecipeForm(@Login MemberDto memberDto, Model model, @PathVariable int recipeIdx) {
         RecipeDto dto = recipeService.getData(recipeIdx);
         model.addAttribute("recipeDto", dto);
         
