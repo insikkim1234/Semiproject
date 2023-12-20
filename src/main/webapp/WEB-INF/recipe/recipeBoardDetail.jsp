@@ -79,10 +79,11 @@
 					<div class="col">
                   		<a class="fs_16 fw_600 btn-outline-green py-1 px-2 mr-2 br_5" style="border-radius: 5px;" href="${pageContext.request.contextPath}/recipe/update/">수정</a>
                   		<form action="../deleteRecipe" method="post" >
+                  		<c:if test="${sessionScope.login_member_dto != null && sessionScope.login_member_dto.userSeq.equals(dto.recipeUserSeq)}">
                   			<input type="hidden" name="recipeIdx" value="${dto.recipeIdx}" />
-                     		<button type="submit" >삭제</button>
+                     		<button class="fs_16 fw_600 btn-outline-green py-1 px-2 br_5" type="submit" style="border-radius: 5px;">삭제</button>
+                     	</c:if>
                   		</form>
-                  		<a class="fs_16 fw_600 btn-outline-green py-1 px-2 br_5" style="border-radius: 5px;" href="${pageContext.request.contextPath}/recipe/board">삭제</a>
                		</div>
 					<div class="col text-end my-1">
 						<span class="detailCreatedAt">작성일 : </span>
