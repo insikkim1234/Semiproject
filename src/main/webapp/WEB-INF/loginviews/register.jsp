@@ -70,7 +70,7 @@
 	<a href="${pageContext.request.contextPath}/member/register">회원가입</a>
 </div>
 <div class="fs_40 text-center cGreen fw_600 mt-3 mb-5">JOIN US</div>
-<form action="/semi/member/register" method="post" class="regi_input mt-3" enctype="multipart/form-data">
+<form action="/semi/member/register" method="post" class="regi_input mt-3" enctype="multipart/form-data" onsubmit="return validatePasswords()">
 
     <div class="box d-flex justify-content-between">
         <input type="email" name="userEmail" placeholder="이메일주소(필수)" id="userEmail" required><br>
@@ -78,7 +78,8 @@
         </label>
     </div>
 	
-    <input type="password" name="userPassword" id="password1" placeholder="비밀번호(필수)" required class="mt-4"><br>
+    <input type="password" name="userPassword" id="password1" placeholder="비밀번호(필수)" required class="mt-4">
+    <input type="password" name="confirmPassword" placeholder="비밀번호 확인(필수)" required><br>
 
     <div class="box2 d-flex justify-content-between">
         <input type="text" name="userNickName" placeholder="닉네임(필수)" id="userNickName" required><br>
@@ -174,6 +175,24 @@
                 },
             })
         })
+
+        // 메시지 출력 함수
+        function showAlert(message) {
+            alert(message);
+        }
+
+        // 비밀번호가 일치하지 않을 때만 에러 메시지
+        function validatePasswords() {
+            let password = document.getElementsByName("userPassword")[0].value; // 비밀번호 필드의 값
+            let confirmPassword = document.getElementsByName("confirmPassword")[0].value; // 비밀번호 확인 필드의 값
+
+            if (password !== confirmPassword) {
+                showAlert("비밀번호가 일치하지 않습니다.");
+                return false;
+            }
+            return true;
+        }
+
     </script>
     </body>
 </html>

@@ -43,7 +43,7 @@
 <div class="cGreen fs_40 mt-3 text-center fw_600">SIGN IN</div><!--이거 새로만듬 -->
 <div class="tablef mt-3"> <!--mt-3클래스추가  -->
 <form action="/semi/member/login" class="signin" method="post">
-    <input type="text" name="userEmail" placeholder="Email Address"><br><br>
+    <input type="email" name="userEmail" placeholder="Email Address"><br><br>
     <input type="password" name="userPassword" placeholder="Password"><br><br>
     <div class="message">아직 회원이 아니신가요? <a href="/semi/member/register" style="color: #0e942c">참 쉬운 회원가입</a></div><br>
     <button type="submit" class="btnlogin btn_green2 fw_500 ">로그인</button>

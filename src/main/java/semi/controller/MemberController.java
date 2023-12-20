@@ -117,15 +117,20 @@ public class MemberController {
 
     //회원가입 실행 로직 메서드 -> 성공 login.jsp 실패 register.jsp
     @PostMapping("/register")
-    public String register(@ModelAttribute MemberDto memberDto,HttpServletRequest request, HttpSession session, @RequestParam MultipartFile uploadFile) {
-        String encodedPassword = memberService.encodePassword(memberDto.getUserPassword());
-        memberDto.setUserPassword(encodedPassword);
+    public String register(@ModelAttribute MemberDto memberDto,@RequestParam("confirmPassword") String confirmPassword,HttpServletRequest request, HttpSession session, @RequestParam MultipartFile uploadFile, Model model) {
 
         String photo=storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
                 NcpObjectStorageService.DIR_PHOTO, uploadFile);
 
+        if (!memberDto.getUserPassword().equals(confirmPassword)) {
+            // 비밀번호가 일치하지 않는 경우 처리
+            model.addAttribute("error", "비밀번호가 일치하지 않습니다.");
+            return "loginviews/register"; // 에러 발생 시 회원가입 폼 페이지로 리다이렉트
+        }
+
+        String encodedPassword = memberService.encodePassword(memberDto.getUserPassword());
+        memberDto.setUserPassword(encodedPassword);
         memberDto.setUserImage(photo);
-//        memberService.insertMember(memberDto);
 
         int result = memberService.insertMember(memberDto);
 //      DB 에서 변경된 행이 1이면 회원가입 성공.
