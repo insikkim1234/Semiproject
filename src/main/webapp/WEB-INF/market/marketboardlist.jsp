@@ -49,7 +49,7 @@
 					${dto.boardTitle}
 					</a>
 					</td>
-					<td></td>
+					<td>${dto.userName}</td>
 					<td>${dto.createDate}</td>
 					<td>${dto.boardViewCount}</td>
 				</tr>

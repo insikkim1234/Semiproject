@@ -10,19 +10,23 @@
 		<result property="boardViewCount" column="nBoardViewCount" />
 		<result property="createDate" column="dtCreateDate" />
 		<result property="updateDate" column="dtUpdateDate" />
+		<result property="userName" column="userName" />
 
 	</resultMap>
 
 	<insert id="insertMarketBoard" parameterType="MarketBoardDto">
-		insert into tMarketBoard (sBoardTitle, sBoardImage, dtCreateDate, dtUpdateDate)
-		values (#{boardTitle}, #{boardImage}, now(), now())
+		insert into tMarketBoard (nUserSeq,sBoardTitle, sBoardImage, dtCreateDate, dtUpdateDate)
+		values (#{userSeq}, #{boardTitle}, #{boardImage}, now(), now())
 		<selectKey keyProperty="boardSeq" resultType="int" order="AFTER">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
 	</insert>
 	
 	<select id="selectMarketBoardWithPage" parameterType="Map" resultType="MarketBoardDto" resultMap="MarketBoardDtoRm">
-		select * from tMarketBoard
+		select tMarketBoard.*, tUser.userName 
+		from tMarketBoard
+		left join tUser
+		on tMarketBoard.nUserSeq=tUser.userSeq
 		<if test="searchWord != null">
 			where tMarketBoard.sBoardTitle like concat('%',#{searchWord},'%')
 		</if>

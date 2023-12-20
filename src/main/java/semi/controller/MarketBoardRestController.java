@@ -58,6 +58,12 @@ public class MarketBoardRestController {
 		resultMap.put("data", marketBoardCommentDao.getAnswerBoard(boardSeq));
 		return resultMap;
 	}
+	
+	@GetMapping("/mboard/delete")
+	public void deleteAnswer(@RequestParam int commentSeq)
+	{
+		marketBoardCommentService.deleteAnswer(commentSeq);
+	}
 
 	
 	

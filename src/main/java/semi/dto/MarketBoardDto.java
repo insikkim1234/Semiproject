@@ -16,6 +16,7 @@ public class MarketBoardDto {
 	private int boardViewCount;
 	private String createDate;
 	private String updateDate;
+	private String userName;
 	
 	  @Override
 	    public String toString() {
