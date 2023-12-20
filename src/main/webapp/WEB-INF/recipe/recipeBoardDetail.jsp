@@ -77,7 +77,7 @@
 				</div>
 				<div class="row">
 					<div class="col">
-						<a class="fs_16 fw_600 btn-outline-green py-1 px-2 mr-2 br_5" style="border-radius: 5px;" href="${pageContext.request.contextPath}/recipe/update/">수정</a>
+						<a class="fs_16 fw_600 btn-outline-green py-1 px-2 mr-2 br_5" style="border-radius: 5px;" href="${pageContext.request.contextPath}/recipe/update/${dto.recipeIdx}">수정</a>
 						<a class="fs_16 fw_600 btn-outline-green py-1 px-2 br_5" style="border-radius: 5px;" href="${pageContext.request.contextPath}/recipe/update/">삭제</a>
 					</div>
 					<div class="col text-end my-1">
