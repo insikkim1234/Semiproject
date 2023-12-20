@@ -79,7 +79,7 @@
 					<div class="col">
                   		<c:if test="${sessionScope.login_member_dto != null && sessionScope.login_member_dto.userSeq.equals(dto.recipeUserSeq)}">
 	                  		<a class="fs_16 fw_600 btn-outline-green py-1 px-2 mr-2 br_5" style="border-radius: 5px;" href="${pageContext.request.contextPath}/recipe/update/${dto.recipeIdx}">수정</a>
-	                  		<form action="../deleteRecipe" method="post" >
+	                  		<form action="../deleteRecipe" method="post" class="d-inline-block p-0">
 	                  			<input type="hidden" name="recipeIdx" value="${dto.recipeIdx}" />
 	                     		<button class="fs_16 fw_600 btn-outline-green py-1 px-2 br_5" type="submit" style="border-radius: 5px;">삭제</button>
 	                  		</form>

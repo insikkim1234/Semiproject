@@ -57,5 +57,8 @@
 		where nBoardSeq=#{boardSeq}
 	</select>
 	
+	<delete id="deleteMarketBoardContent" parameterType="int">
+		delete from tMarketBoard where nBoardSeq=#{boardSeq}
+	</delete>
 </mapper>
 

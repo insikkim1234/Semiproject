@@ -43,4 +43,9 @@ public class MarketBoardDao {
 		return session.selectOne(nameSpace+"selectDataByMarketBoardSeq", boardSeq);
 	}
 	
+	public void deleteMarketBoardContent(int boardSeq)
+	{
+		session.delete(nameSpace+"deleteMarketBoardContent", boardSeq);
+	}
+	
 }
