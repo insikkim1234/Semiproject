@@ -4,7 +4,7 @@
 	pageEncoding="UTF-8"%>
 <c:set var="root" value="<%=request.getContextPath()%>"/>
 <div style="box-shadow: 0 5px 30px -10px #4950578f">
-<div class="mw_1500">
+<div class="mw_1200">
 	<nav class="navbar navbar-expand-sm d-flex flex-column">
 	  <div class="container-fluid">
 	    <a href="${pageContext.request.contextPath}"> <img
@@ -16,28 +16,22 @@
 	    </button>
 	    <div class="collapse navbar-collapse mt-auto" id="mynavbar">
 	      <ul class="navbar-nav ml-auto align-center expanded text-center menubtn_effect">
-	        <li class="nav-item mx-5">
+	        <li class="nav-item mx-4">
 	          <a class="nav-link fs_19 fw_600" href="${pageContext.request.contextPath}/board/list">
 	          <span>자취생 다 모여</span>
 	          <span><i class="bi bi-chat-text-fill mr-2"></i>커뮤니티</span>
 	          </a>
 	        </li>
-	        <li class="nav-item mx-5">
+	        <li class="nav-item mx-4">
 	          <a class="nav-link fs_19 fw_600" href="${pageContext.request.contextPath}/recipe/board">
 	            <span>오늘 뭐 먹지?</span>
 	          	<span><i class="bi bi-book-fill mr-2"></i>레시피북</span>
 	          </a>
 	        </li>
-	        <li class="nav-item ml-5">
+	        <li class="nav-item ml-4">
 	          <a class="nav-link fs_19 fw_600" href="${pageContext.request.contextPath}/mboard">
 				<span>돈 아끼는 팁</span>
 	          	<span><i class="bi bi-person-hearts mr-2"></i>벼룩시장</span>
-			  </a>
-	        </li>
-	        <li class="nav-item ml-5">
-	          <a class="nav-link fs_19 fw_600" href="${pageContext.request.contextPath}/recipe/update/">
-				<span>임시버튼</span>
-	          	<span><i class="bi bi-person-hearts mr-2"></i>레시피수정</span>
 			  </a>
 	        </li>
 	      </ul>
