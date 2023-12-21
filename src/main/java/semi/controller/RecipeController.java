@@ -127,38 +127,45 @@ public class RecipeController {
     	updateDto.setRecipePhoto(photo);
         recipeService.updateRecipe(updateDto);
         
-        List<RecipeOrderDto> orderDtoList = recipeOrderService.getRecipeOrdersById(updateDto.getRecipeIdx());
-        ArrayList<OrderBean> orderList = (ArrayList<OrderBean>) obList.getOrderlist();
-        
-        int newNum = 0;
-        
-        for (int i = 0; i < orderList.size(); i++) {
-            OrderBean orderBean = orderList.get(i);
+        List<RecipeOrderDto> oldOrderDtoList = recipeOrderService.getRecipeOrdersById(updateDto.getRecipeIdx());
+        ArrayList<OrderBean> newOrderBeanList = (ArrayList<OrderBean>) obList.getOrderlist();
+
+        int cnt = 0;
+        for (int i = 0; i < newOrderBeanList.size(); i++) {
+            OrderBean orderBean = newOrderBeanList.get(i);
+
             if (orderBean.getRecipeOrderContent() == null) {
-        		recipeOrderService.deleteRecipeOrderBySeq(orderDtoList.get(i).getRecipeOrderSeq());
-            	continue;
+                continue;
             }
-            
-            // 업로드된 사진을 저장하고 해당 경로를 가져옴
+
+            RecipeOrderDto newOrderDto = new RecipeOrderDto();
+
             photo = storageService.uploadFile(
                     NcpObjectStorageService.STORAGE_EATINGALONE,
                     NcpObjectStorageService.DIR_PHOTO, orderBean.getUpload());
 
-            // 레시피 순서 엔티티를 생성하고 필드를 설정
-            RecipeOrderDto newOrderDto = new RecipeOrderDto();
-            if (i < orderDtoList.size()) {
-                newOrderDto.setRecipeOrderSeq(orderDtoList.get(i).getRecipeOrderSeq());
-            } 
+            if (photo == null
+                && i < oldOrderDtoList.size()) {
+                newOrderDto.setRecipeOrderPhoto(oldOrderDtoList.get(i).getRecipeOrderPhoto());
+            } else {
+                newOrderDto.setRecipeOrderPhoto(photo);
+            }
 
-        	newOrderDto.setRecipeIdx(updateDto.getRecipeIdx());
-            newOrderDto.setRecipeNumber(newNum + 1);
+            if (cnt < oldOrderDtoList.size()) {
+                newOrderDto.setRecipeOrderSeq(oldOrderDtoList.get(cnt).getRecipeOrderSeq());
+            }
+            newOrderDto.setRecipeIdx(updateDto.getRecipeIdx());
+            newOrderDto.setRecipeNumber(cnt + 1);
             newOrderDto.setRecipeOrderContent(orderBean.getRecipeOrderContent());
-            newOrderDto.setRecipeOrderPhoto(photo);
-            
-            // 생성된 엔티티를 서비스를 통해 저장
+
             recipeOrderService.upsertRecipeOrder(newOrderDto);
-            //recipeService.deleteOrderFragmentRecipe(recipeOrderPhoto);
-            newNum += 1;          
+
+            cnt += 1;
+        }
+
+        int extraSize = oldOrderDtoList.size() - cnt;
+        for (int i = 0; i < extraSize; i++) {
+            recipeOrderService.deleteRecipeOrderBySeq(oldOrderDtoList.get(cnt + i).getRecipeOrderSeq());
         }
        
         
