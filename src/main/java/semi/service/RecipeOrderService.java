@@ -31,4 +31,9 @@ public class RecipeOrderService {
 	public void deleteOrderRecipe(RecipeOrderDto orderDto) {
 		recipeOrderDao.deleteOrderRecipe(orderDto);
 	}
+	
+    public void deleteRecipeOrderBySeq(int seq) {
+    	recipeOrderDao.deleteRecipeOrderBySeq(seq);
+	}
+    
 }
