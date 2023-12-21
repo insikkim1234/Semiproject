@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+
 <style>   
    div.simpleicon {
       cursor: pointer;
@@ -48,7 +49,6 @@
       display: none;
    }
    
-   
    .recipetotalcount {
       display: flex;
    }
@@ -60,38 +60,124 @@
     margin: 0 4px -2px 0;
     vertical-align: text-bottom;
     border: 1px solid gray;
-	}
-	
+   }
+   
    .bg-body-tertiary {
     --bs-bg-opacity: 1;
     
-	}
-	
-	@media (min-width: 576px)
-	.container, .container-sm {
-	    max-width: 540px;
-	}
-	
-	.text-body-secondary {
+   }
+   
+   @media (min-width: 576px)
+   .container, .container-sm {
+       max-width: 540px;
+   }
+   
+   .text-body-secondary {
     --bs-text-opacity: 1;
    
-	}
-	.custom-img {
+   }
+   .custom-img {
         height: 250px; /* 원하는 높이(px 등)로 조정 */
     }
+    
+    .pageNumber {
+    color: black; /* 또는 다른 원하는 색상 */
+   }
+   
+    .first-last-page, .prev-next-page {
+    color: black; /* 또는 원하는 다른 색상 */
+   }
+   
+    .pageWrap {
+    display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px; /* 필요한 경우 여유 공간 조정 */
+    /* 추가적인 스타일을 필요에 따라 적용하세요 */
+   }
+
+   .pageNation {
+    display: inline-block;
+    margin: 5px;
+    /* 추가적인 스타일을 필요에 따라 적용하세요 */
+   }
    
 </style>
 
 <script type="text/javascript">
+
+function successCallback(res) {
+    // Ajax 성공 시 반환된 pageInfo 객체를 받아온다고 가정
+    let pageInfo = res.pageInfo;
+    updatePageNavigation(pageInfo);
+   }
+      
+function updatePageNavigation(pageInfo) {
+    let pageWrap = document.querySelector('.pageWrap');
+    let paginationHTML = `<div class="pageNation">`;
+
+    if (pageInfo.currentPage > 1) {
+        paginationHTML += `<a href="/semi/recipe/board?page=1" class="first-last-page"><<</a>`;
+    }
+
+    if (pageInfo.currentPage > 1) {
+        paginationHTML += `<a href="/semi/recipe/board?page=${pageInfo.currentPage - 1}" class="prev-next-page"><</a>`;
+    }
+
+    for (let page = pageInfo.startNav; page <= pageInfo.endNav; page++) {
+        paginationHTML += `<a href="/semi/recipe/board?page=\${page}" class="pageNumber">\${page}</a>`;
+    }
+
+    if (pageInfo.currentPage < pageInfo.maxPage) {
+        paginationHTML += `<a href="/semi/recipe/board?page=${pageInfo.currentPage + 1}" class="prev-next-page">></a>`;
+    }
+
+    if (pageInfo.currentPage < pageInfo.maxPage) {
+        paginationHTML += `<a href="/semi/recipe/board?page=${pageInfo.maxPage}" class="first-last-page">>></a>`;
+    }
+
+    paginationHTML += `</div>`;
+    pageWrap.innerHTML = paginationHTML;
+
+    let pageNumberLinks = document.querySelectorAll('.pageNumber');
+    pageNumberLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
+            let page = this.getAttribute('href').split('=')[1];
+            window.location.href = `/semi/recipe/board?page=\${page}`;
+            // 이 부분에서 해당 페이지의 데이터를 가져오는 Ajax 요청을 보내세요
+            // 가져온 데이터를 처리하여 화면에 보여줄 수 있도록 구현합니다
+        });
+    });
+}
+
+
    let searchword="";
    
+   let isGrid = true;
+   
    $(function(){
-      grid(); //처음 시작시 그리드모양 이미지형태로 출력하기
+      grid(); //처음 시작시 그리드모양
       
+      var word = document.getElementById("word");
+     
+      word.addEventListener("keyup", function (event) {
+          if (event.keyCode === 13) {
+              document.getElementById("btnsearch").click();
+            }
+       });
+       
       $("#btnsearch").click(function() {
        //  alert(1);
        searchword=$("#word").val();
-       grid();
+       if (isGrid) {
+         grid();
+       }
+       else {
+          list();
+       }
        
        });
       
@@ -127,11 +213,12 @@
    
    function grid()
    {
+      isGrid = true;
       $.ajax({
          type:"get",
          dataType:"json",
          url:"./view",
-         data:{"word":searchword},
+         data:{"word":searchword,"page":${page}},
          success:function(res){
             let datas=res.data;
             let totalCount=res.totalCount;
@@ -145,41 +232,46 @@
       
                s+=
                   `
-					  <div class="col-lg-4 col-md-6">
-					    <div class="card border-0">
-					      <a href="./board/\${item.recipeIdx}">
-					        <img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.recipePhoto}" class="card-img-top custom-img">
-					      </a>
-					      <div class="card-body">
-					        <p class="card-text"><b>\${item.recipeTitle}</b></p>
-					        <div class="d-flex justify-content-between align-items-center">
-					          <div class="recipe-writer" style="display: inline-block; vertical-align: bottom;">
-					          <img class="user_img" src="<%=NcpObjectStorageService.STORAGE_PROFILE_PHOTO_PATH%>\${item.recipeUserSeq}">
-					            <p style="padding-top: 10px; margin-bottom: 5px;">\${item.recipeUserName}</p>
-					          </div>
-					          <small class="text-body-secondary" style="padding-top: 29px;">조회수\${item.recipeViewCount}</small>
-					          </div>         
-				              </div>
-				            </div>
-				          </div>
-				          `;
-				      });
+                 <div class="col-lg-4 col-md-6">
+                   <div class="card border-0">
+                     <a href="./board/\${item.recipeIdx}">
+                       <img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.recipePhoto}" class="card-img-top custom-img">
+                     </a>
+                     <div class="card-body">
+                       <p class="card-text"><b>\${item.recipeTitle}</b></p>
+                       <div class="d-flex justify-content-between align-items-center">
+                         <div class="recipe-writer" style="display: inline-block; vertical-align: bottom;">
+                         <img class="user_img" src="<%=NcpObjectStorageService.STORAGE_PROFILE_PHOTO_PATH%>\${item.recipeUserSeq}">
+                           <p style="padding-top: 10px; margin-bottom: 5px;">\${item.recipeUserName}</p>
+                         </div>
+                         <small class="text-body-secondary" style="padding-top: 29px;">조회수\${item.recipeViewCount}</small>
+                         </div>         
+                          </div>
+                        </div>
+                      </div>
+                      `;
+                  });
 
-				      s += `</div></div></div>`; // 그리드를 닫아주는 부분
-				      $(".list").html(s);
-				    }
-				  });
-				}
+                  s += `</div></div></div>`; // 그리드를 닫아주는 부분
+                  $(".list").html(s);
+                  
+                  successCallback(res);
+                  updatePageNavigation(pageInfo);
+               
+                }
+              });
+            }
    
    function list()
    {
+      isGrid = false;
       $.ajax({
          type:"get",
          dataType:"json",
          url:"./view",
          data:{"word":searchword},
          success:function(res){
-           let datas=res.data;
+            let datas=res.data;
             let totalCount=res.totalCount;
             console.log(totalCount);
             showTotalCount(totalCount);
@@ -189,29 +281,28 @@
             `
             <div class="blist">
             <table class="table">
-            	<thead>
-				<tr>
-					<th width="60">번호</th>
-					<th width="290">사진</th>
-					<th width="90">제목</th>
-					<th width="90">작성자</th>
-					<th width="60">작성일</th>
-					<th width="50">조회</th>
-				</tr>
-				</thead>
-				<tbody>
-            
+               <thead>
+            <tr>
+               <th width="60">번호</th>
+               <th width="290">사진</th>
+               <th width="90">제목</th>
+               <th width="90">작성자</th>
+               <th width="60">작성일</th>
+               <th width="50">조회</th>
+            </tr>
+            </thead>
+            <tbody>
             
             `;
             $.each(datas,function(idx,item){
 
                s+=
                `
-               		<tr><td>\${item.recipeIdx}</td>
-               		<td>
-               			<a href="./board/\${item.recipeIdx}">
-                    		<img class="recipe_img"src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.recipePhoto}">
-                    	</a>
+                     <tr><td>\${item.recipeIdx}</td>
+                     <td>
+                        <a href="./board/\${item.recipeIdx}">
+                          <img class="recipe_img"src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.recipePhoto}">
+                       </a>
                     </td>
                     <td>\${item.recipeTitle}</td>
                     <td>\${item.recipeUserName}</td>
@@ -223,18 +314,19 @@
             $(".list").html(s);
             //첫번째 content만 일단 보이도록
             $("div.content").eq(0).css("display","block");
+            
          }
       });
       }
 </script>
 
 <div class="mw_1000">
-	<div class="fw_500 cBlack mt-5">
+   <div class="fw_500 cBlack mt-5">
 		<a href="${pageContext.request.contextPath}">HOME</a><span class="fs_18 mx-1">></span>
-		<a href="${pageContext.request.contextPath}/recipe/board">레시피북</a><span class="fs_18 mx-1"></span>
-	</div>
-   <div class="fs_40 fw_600 cGreen text_left mt-2">뭐 먹을까?</div>
-   <form class="d-flex m-0 justify-content-end mt-3">
+		<a href="${pageContext.request.contextPath}/recipe/board">레시피북</a>
+   </div>
+   <div class="fs_40 fw_600 cGreen text_left mt-3">뭐 먹을까?</div>
+   <form action="#" class="d-flex m-0 justify-content-end mt-3">
    <div class="simpleicon" style="margin-right: 10px;">
             <i class="bi bi-grid simplegrid"></i>
             <span style="margin-right: 5px;"></span> 
@@ -256,3 +348,4 @@
 
 
 <div class="list"></div>
+<div class="pageWrap"></div>

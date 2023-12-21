@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class RecipeOrderDto {
+    private int recipeOrderSeq;
     private int recipeIdx;
     private int recipeNumber;
     private String recipeOrderContent;

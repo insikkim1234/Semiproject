@@ -44,5 +44,10 @@ public class MarketBoardService {
 	{
 		return marketBoardDao.getData(boardSeq);
 	}
+	
+	public void deleteMarketBoardContent(int boardSeq)
+	{
+		marketBoardDao.deleteMarketBoardContent(boardSeq);
+	}
 }
 

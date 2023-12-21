@@ -19,7 +19,7 @@
 
 	<insert id="insertRecipe" parameterType="RecipeDto">
     	insert into tRecipeBoard (nRecipeUserSeq, sRecipeTitle, sRecipePhoto, sRecipeContent, sRecipeTime, sRecipeDifficulty, sRecipeServing, sRecipeIngredient, dtRecipeCreatedAt, dtRecipeUpdatedAt) values (#{recipeUserSeq}, #{recipeTitle}, #{recipePhoto}, #{recipeContent}, #{recipeTime}, #{recipeDifficulty}, #{recipeServing}, #{recipeIngredient}, now(), now())
-		<selectKey keyProperty="recipeUserSeq" resultType="int" >
+		<selectKey keyProperty="recipeIdx" resultType="int" >
             SELECT LAST_INSERT_ID()
         </selectKey>
 	</insert>
@@ -63,5 +63,10 @@
 	        dtRecipeUpdatedAt = now()
 	    where nRecipeIdx = #{recipeIdx}
 	</update>
-
+	
+	<!-- 레시피 삭제 -->
+	<delete id="deleteRecipe" parameterType="int">
+		delete from tRecipeBoard where nRecipeIdx=#{nRecipeIdx}
+	</delete>
+	
 </mapper>

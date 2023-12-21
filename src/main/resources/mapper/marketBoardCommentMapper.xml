@@ -5,6 +5,8 @@
 		<result property="commentSeq" column="nCommentSeq" />
 		<result property="boardSeq" column="nBoardSeq" />
 		<result property="userSeq" column="nUserSeq" />
+		<result property="commentUserName" column="userName" />
+		<result property="commentUserEmail" column="userEmail" />
 		<result property="commentContent" column="sCommentContent" />
 		<result property="createDate" column="dtCreateDate" />
 		<result property="updateDate" column="dtUpdateDate" />
@@ -17,6 +19,27 @@
 		insert into tMarketBoardComment (nUserSeq,nBoardSeq,sCommentContent,dtCreateDate,dtUpdateDate)
 		values (#{userSeq},#{boardSeq},#{commentContent},now(),now())
 	</insert>
+	
+	<select id="selectAnswerOfboardSeq" parameterType="int" resultType="MarketBoardCommentDto" resultMap="MarketBoardCommentDtoRm">
+		select tMarketBoardComment.*, tUser.userName, tUser.userEmail
+		from tMarketBoardComment
+		left join tUser
+		on tMarketBoardComment.nUserSeq = tUser.userSeq
+		where nBoardSeq=#{boardSeq} 
+		
+	</select>
+	
+	<select id="totalCountOfComment" parameterType="int" resultType="int">
+		select count(*)
+		from tMarketBoardComment
+		where nBoardSeq=#{boardSeq}
+	</select>
+	
+	<delete id="deleteComment" parameterType="int">
+		delete
+		from tMarketBoardComment
+		where nCommentSeq=#{commentSeq}
+	</delete>
   
 </mapper>
 

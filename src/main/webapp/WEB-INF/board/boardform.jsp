@@ -31,7 +31,7 @@
 		 });
 	});
 </script>
-<div style="margin:30px 50px;">
+<div class="mw_1000">
 	<div class="fw_500 cBlack mt-5">
 		<a href="${pageContext.request.contextPath}">HOME</a><span class="fs_18 mx-1">></span>
 		<a href="${pageContext.request.contextPath}/board/list">자취생 커뮤니티</a><span class="fs_18 mx-1">></span>
@@ -44,12 +44,12 @@
 		<h6 class="cGreen fw_600 mt-2 p-0">사진</h6>
 		<input type="file" name="upload" class="form-control borderGreen" id="product-input" onchange="previewImage(this, 'product-preview')">
 		<div id="product-preview"></div>
-		<h6 class="cGreen fw_600 mt-3">자세한 설명</h6>
+		<h6 class="cGreen fw_600 mt-3">잡담은 여기에</h6>
 		<textarea name="comBoardContent" class="form-control borderGreen" required
 				  style="width: 100%;height: 200px;"
 				  placeholder="게시글의 내용을 작성해주세요."></textarea>
 		<div class="text-center">
-			<button type="submit" class="btn btn_product_input mt-3">물품등록</button>
+			<button type="submit" class="btn btn_product_input mt-3">잡담등록</button>
 			<button type="button" class="btn btn_product_input mt-3 ml-2" onclick="history.back()">목록으로</button>
 		</div>
 	</form>

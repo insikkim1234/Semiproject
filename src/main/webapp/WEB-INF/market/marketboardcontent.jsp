@@ -3,9 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <input type="hidden" id="boardSeq" value="${mDto.boardSeq}">
+<input type="hidden" id="userSeq" value="${mDto.userSeq}">
 
+<input type="hidden" id="createDate" value="${mDto.createDate}">
 <script type="text/javascript">
-$(document).ready(function() {
+$(function() {
+	list();
     $('#btnansweradd').click(function() {
     	var userSeq=1;
         var boardSeq = $('#boardSeq').val();
@@ -29,6 +32,8 @@ $(document).ready(function() {
                 console.log(response.status);
                 // 성공적으로 저장된 경우 추가 작업 수행
                 // 예를 들어, 화면에 새로운 댓글을 추가하는 등의 작업 수행 가능
+                list();
+                
             },
             error: function(xhr, status, error) {
                 console.error('댓글 저장에 실패했습니다.');
@@ -37,7 +42,68 @@ $(document).ready(function() {
             }
         });
     });
+    $(document).on("click",".ansdel",function(){
+    	let commentSeq=$(this).attr("commentSeq");
+    	
+    	$.ajax({
+    		type:"get",
+    		dataType:"text",
+    		url:"./delete",
+    		data:{"commentSeq":commentSeq},
+    		success:function(res){
+    			list();
+    		}
+    		
+    	});
+    });
 });
+
+
+	
+function list()
+{
+	let boardSeq=${mDto.boardSeq};
+	
+	$.ajax({
+		type:"get",
+		dataType:"json",
+		url:"./list",
+		data:{"boardSeq":boardSeq},
+				
+		success:function(res){
+			let length=res.length;
+			let datas=res.data;
+			console.log(length);
+			
+			$("#answercount").text("댓글 "+length);
+				
+			let s="";
+				
+			$.each(datas,function(idx,item){
+				
+				s+=					
+					`
+					
+					
+					\${item.commentUserName}(\${item.commentUserEmail})<br>
+					<span style="margin-left:20px;">\${item.commentContent}</span>
+					&nbsp;
+					
+					<span style="color:gray;font-size:0.9em;">\${item.createDate}</span>
+					
+					<i class="bi bi-trash ansdel" commentSeq="\${item.commentSeq}"></i>
+					
+					`;
+				
+				
+				s+="<br>";
+				s+="<hr>";
+			});
+		
+			$("div.answerlist").html(s);
+	    }
+	});
+}
 
 </script>
 </head>
@@ -70,4 +136,7 @@ $(document).ready(function() {
 	
 </div>
 
+<button type="button" class="btn btn-outline-secondary btn-sm"
+			style="width: 80px;"
+				onclick="location.href='./deletecontent?boardSeq=${mDto.boardSeq}&currentPage=${currentPage}'">삭제</button>
 </body>

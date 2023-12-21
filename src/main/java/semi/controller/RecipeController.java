@@ -3,9 +3,6 @@ package semi.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -74,13 +71,13 @@ public class RecipeController {
     
     // 레시피 게시판
     @GetMapping("/recipe/board")
-    public String getRecipeList(Model model,String word) {
+    public String getRecipeList(Model model,String word,@RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
         //총 레시피 개수 얻기
         int totalCount = recipeService.getTotalCount(word);
         model.addAttribute("totalCount", totalCount);
+        model.addAttribute("page", page);
         return "recipe/recipeBoard";
     }
-
 
     @GetMapping("/recipe/orderSample/{recipeIdx}")
     public String getRecipeDetail(Model model, @PathVariable int recipeIdx) {
@@ -111,7 +108,7 @@ public class RecipeController {
     
     // 레시피 게시물 수정 페이지로 이동
     @GetMapping("/recipe/update/{recipeIdx}")
-    public String getUpdateRecipeForm(Model model, @PathVariable int recipeIdx) {
+    public String getUpdateRecipeForm(@Login MemberDto memberDto, Model model, @PathVariable int recipeIdx) {
         RecipeDto dto = recipeService.getData(recipeIdx);
         model.addAttribute("recipeDto", dto);
         
@@ -131,11 +128,7 @@ public class RecipeController {
         recipeService.updateRecipe(updateDto);
         
         List<RecipeOrderDto> orderDtoList = recipeOrderService.getRecipeOrdersById(updateDto.getRecipeIdx());
-        
-        for (RecipeOrderDto t : orderDtoList) {
-        	recipeOrderService.deleteOrderRecipe(t);
-        }
-        
+
         ArrayList<OrderBean> orderList = (ArrayList<OrderBean>) obList.getOrderlist();
         for (int i = 0; i < orderList.size(); i++) {
             OrderBean orderBean = orderList.get(i);
@@ -147,18 +140,33 @@ public class RecipeController {
                     NcpObjectStorageService.DIR_PHOTO, orderBean.getUpload());
 
             // 레시피 순서 엔티티를 생성하고 필드를 설정
-            RecipeOrderDto orderDto = new RecipeOrderDto();
-        	orderDto.setRecipeIdx(updateDto.getRecipeIdx());
-            orderDto.setRecipeNumber(i + 1);
-            orderDto.setRecipeOrderContent(orderBean.getRecipeOrderContent());
-            orderDto.setRecipeOrderPhoto(photo);
-            
+            RecipeOrderDto newOrderDto = new RecipeOrderDto();
+            if (i < orderDtoList.size()) {
+                newOrderDto.setRecipeOrderSeq(orderDtoList.get(i).getRecipeOrderSeq());
+            }
+        	newOrderDto.setRecipeIdx(updateDto.getRecipeIdx());
+            newOrderDto.setRecipeNumber(i + 1);
+            newOrderDto.setRecipeOrderContent(orderBean.getRecipeOrderContent());
+            newOrderDto.setRecipeOrderPhoto(photo);
             
             // 생성된 엔티티를 서비스를 통해 저장
-            recipeOrderService.insertOrderRecipe(orderDto);
+            recipeOrderService.upsertRecipeOrder(newOrderDto);
         }
         
         return "redirect:/recipe/board/" + updateDto.getRecipeIdx();
     }
-    
+    	//레시피 삭제 
+    	@PostMapping("/recipe/deleteRecipe")
+    	public String deleteRecipe(@Login MemberDto memberDto, @RequestParam int recipeIdx)
+    	{
+    		RecipeDto dto = recipeService.getData(recipeIdx);
+             
+    		if (memberDto.getUserSeq() == dto.getRecipeUserSeq())
+    		{
+    			recipeService.deleteRecipe(recipeIdx);
+    		}
+       
+    		return "redirect:/recipe/board"; 
+    	}
+
 }
