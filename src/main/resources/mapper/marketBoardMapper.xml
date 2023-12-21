@@ -62,5 +62,10 @@
 	<delete id="deleteMarketBoardContent" parameterType="int">
 		delete from tMarketBoard where nBoardSeq=#{boardSeq}
 	</delete>
+	<update id="updateMarketBoard" parameterType="MarketBoardDto">
+		update tMarketBoard
+		set sBoardTitle=#{boardTitle},sBoardImage=#{boardImage},dtUpdateDate=now()
+		where nBoardSeq=#{boardSeq}
+	</update>
 </mapper>
 

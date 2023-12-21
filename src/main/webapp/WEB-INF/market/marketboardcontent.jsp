@@ -154,11 +154,13 @@ function list()
 				id="answermsg">
 				<button type="button" class="btn-sm btn btn-outline-success" id="btnansweradd">저장</button>	
 			</div>
-		
 			<button type="button" class="btn btn-outline-secondary btn-sm"
-			style="width:80px;"
-			onclick="history.back()">목록</button>
-	
+				style="width:80px;"
+				onclick="history.back()">목록</button>
+			<button type="button" class="btn btn-outline-secondary btn-sm"
+				style="width:80px;"
+				onclick="location.href='./updateform?boardSeq=${mDto.boardSeq}'">수정</button>	
+			
 		
 	
 			<div id="answerend"></div>

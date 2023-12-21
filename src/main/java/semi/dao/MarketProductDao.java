@@ -24,4 +24,9 @@ public class MarketProductDao {
 	{
 		return session.selectOne(nameSpace+"selectDataByProductBoardSeq", boardSeq);
 	}
+	
+	public void updateMarketProduct(MarketProductDto pdto)
+	{
+		session.update(nameSpace+"updateMarketProduct",pdto);
+	}
 }

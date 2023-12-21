@@ -48,4 +48,9 @@ public class MarketBoardDao {
 		session.delete(nameSpace+"deleteMarketBoardContent", boardSeq);
 	}
 	
+	public void updateMarketBoard(MarketBoardDto dto)
+	{
+		session.update(nameSpace+"updateMarketBoard",  dto);
+	}
+	
 }

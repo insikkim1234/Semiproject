@@ -20,4 +20,8 @@ public class MarketProductService {
 	{
 		return marketProductDao.getData(boardSeq);
 	}
+	public void updateMarketProduct(MarketProductDto pdto)
+	{
+		marketProductDao.updateMarketProduct(pdto);
+	}
 }
