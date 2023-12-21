@@ -13,27 +13,27 @@
 		<a href="${pageContext.request.contextPath}/recipe/board">레시피북</a><span class="fs_18 mx-1">></span>
 		<a href="${pageContext.request.contextPath}/recipe/recipeBoardInput">레시피 등록</a>
 	</div>
-		<h3 class="cGreen fw_600 text-center fs_40 my-3">레시피 등록하기</h3>
+		<h3 class="cGreen fw_600 text-center fs_40 my-3">나만의 레시피</h3>
 		<h6 class="cGreen fw_600 mt-4">제목</h6>
-		<input type="text" name="recipeTitle" class="form-control borderGreen"
+		<input type="text" name="recipeTitle" class="form-control borderGreen bg_red"
 		required autofocus value="${recipeTitle}" placeholder="제목">
 		<div class="row mt-3">
 			<div class="col">
 				<h6 class="cGreen fw_600 mt-2">사진</h6>
-				<input type="file" name="upload" class="form-control borderGreen" id="product-input4" onchange="previewImage(this, 'product-preview4')">
+				<input type="file" name="upload" class="form-control borderGreen bg_red" id="product-input4" onchange="previewImage(this, 'product-preview4')">
 				<div id="product-preview4" class="mt-2"></div>
 			</div>
 		</div>
 		<h6 class="cGreen fw_600 mt-3">설명</h6>
-		<textarea name="recipeContent" class="form-control borderGreen" required autofocus rows="3" cols="50" placeholder="설명을 입력해주세요.">${recipeContent}</textarea>
+		<textarea name="recipeContent" class="form-control borderGreen bg_red" required autofocus rows="3" cols="50" placeholder="설명을 입력해주세요.">${recipeContent}</textarea>
 
 		<h6 class="cGreen fw_600 mt-3">조리시간</h6>
-		<input type="text" name="recipeTime" class="form-control borderGreen" required autofocus value="${recipeTime}"
+		<input type="text" name="recipeTime" class="form-control borderGreen bg_red" required autofocus value="${recipeTime}"
 		placeholder="예 : 10분">
 		
 		<h6 class="cGreen fw_600 mt-3"><th>난이도</th></h6>
 		<td>
-			<select class="form-select" name="recipeDifficulty" style="border: 2px solid #11B560;">
+			<select class="form-select bg_red" name="recipeDifficulty" style="border: 2px solid #c63702;">
 			    <option hidden disabled selected style="color: black;">난이도 선택</option>
 			    <option value="쉬움">쉬움</option>
 			    <option value="보통">보통</option>
@@ -41,16 +41,16 @@
 			</select>
 		</td>	
 		<h6 class="cGreen fw_600 mt-3">인분</h6>
-		<input type="text" name="recipeServing" class="form-control borderGreen" autofocus value="${recipeServing}"
+		<input type="text" name="recipeServing" class="form-control borderGreen bg_red" autofocus value="${recipeServing}"
 		placeholder="예 : 1인분">
 		
 		<h6 class="cGreen fw_600 mt-3"><th>재료</th></h6>
 		<td>
 			<div id="ingredient-container">
 				<div class="ingredient-row">
-					<input type="text" name="recipeIngredient" class="form-control borderGreen" required autofocus value="${recipeIngredient}"
+					<input type="text" name="recipeIngredient" class="form-control borderGreen bg_red" required autofocus value="${recipeIngredient}"
 			placeholder="예 : 계란 1개">
-					<button type="button" class="btn btn-outline-success" onclick="addIngredient()">추가</button>
+					<button type="button" class="btn btn-3d red2 mt-3" onclick="addIngredient()">추가</button>
 					<br>
 				</div>
 			</div>
@@ -60,16 +60,16 @@
 		<td>
 			<div id="order-container">
 				<div class="order-row">
-					<textarea name="orderlist[0].recipeOrderContent" class="form-control" required autofocus placeholder="예 : 파를 다듬어 줍니다.">${recipeOrderContent}</textarea>
-					<input type="file" name="orderlist[0].upload" class="form-control" required value="${recipeOrderPhoto}">
-					<button type="button" class="btn btn-outline-success" onclick="addOrder()">추가</button>
+					<textarea name="orderlist[0].recipeOrderContent" class="form-control bg_red borderGreen" required autofocus placeholder="예 : 파를 다듬어 줍니다.">${recipeOrderContent}</textarea>
+					<input type="file" name="orderlist[0].upload" class="form-control bg_red borderGreen mt-1" required value="${recipeOrderPhoto}">
+					<button type="button" class="btn btn-3d red2 mt-3" onclick="addOrder()">추가</button>
 					<br>
 				</div>
 			</div>
 		</td>
 		<div class="text-center">
-			<button type="submit" class="btn btn_product_input mt-3">저장</button>
-			<button type="button" class="btn btn_product_input mt-3 ml-2" onclick="history.back()">이전</button>
+			<button type="submit" class="btn btn-3d red mt-3">저장</button>
+			<button type="button" class="btn btn-3d red mt-3 ml-2" onclick="history.back()">이전</button>
 		</div>
 		
 	</form>

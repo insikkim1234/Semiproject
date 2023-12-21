@@ -181,16 +181,16 @@ function updatePageNavigation(pageInfo) {
        
        });
       
-      $(".simplegrid").css("color","green");
+      $(".simplegrid").css("color","#c12c2f");
       
       $(".simplegrid").click(function(){
-         $(this).css("color","green");
+         $(this).css("color","#c12c2f");
          $(".simplelist").css("color","black");
          grid();
       });
       
       $(".simplelist").click(function(){
-         $(this).css("color","green");
+         $(this).css("color","#c12c2f");
          $(".simplegrid").css("color","black");
          list();
       });
@@ -282,16 +282,16 @@ function updatePageNavigation(pageInfo) {
             <div class="blist">
             <table class="table">
                <thead>
-            <tr>
-               <th width="60">번호</th>
-               <th width="290">사진</th>
-               <th width="90">제목</th>
-               <th width="90">작성자</th>
+            <tr class="text-center">
+               <th width="50">번호</th>
+               <th width="40">사진</th>
+               <th width="250">제목</th>
+               <th width="70">작성자</th>
                <th width="60">작성일</th>
                <th width="50">조회</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
             
             `;
             $.each(datas,function(idx,item){
@@ -325,27 +325,36 @@ function updatePageNavigation(pageInfo) {
 		<a href="${pageContext.request.contextPath}">HOME</a><span class="fs_18 mx-1">></span>
 		<a href="${pageContext.request.contextPath}/recipe/board">레시피북</a>
    </div>
-   <div class="fs_40 fw_600 cGreen text_left mt-3">뭐 먹을까?</div>
-   <form action="#" class="d-flex m-0 justify-content-end mt-3">
+   <!-- <div class="fs_40 fw_600 cGreen text_left mt-3">뭐 먹을까?</div> -->
+   <div class="wrapper mt-3">
+		<div class="focus">
+		    뭐 먹을까?
+		</div>
+		<div class="mask">
+		   <div class="text">뭐 먹을까?</div>
+  		</div>
+	</div>
+   <form action="#" class="d-flex m-0 justify-content-end mt-3 rboard_form">
    <div class="simpleicon" style="margin-right: 10px;">
             <i class="bi bi-grid simplegrid"></i>
             <span style="margin-right: 5px;"></span> 
             <i class="bi bi-list-ul simplelist"></i>
     </div>
-      <input class="form-control me-2" type="text" id="word" placeholder="검색할 레시피 입력" style="width: 200px; border:2px solid #11B560; height: 38px;">
-      <button type="button" class="btn btn_green2 fw_600"  id="btnsearch" style="height: 38px;">검색</button>
+      <input class="form-control me-2 mb-0" type="text" id="word" placeholder="검색할 레시피 입력" style="width: 200px; border:2px solid #c63702;">
+      <button type="button" class="btn-3d red fw_600 ml-2"  id="btnsearch">검색</button>
    </form>
-   <div class="fs_17 bg_green row mt-3 mw_1000">
+   <div class="fs_17 bg_green row mt-3 mw_1000 br_10">
       <div class="col py-3 fw_600">
          <div class="recipetotalcount">
          레시피
       </div>
       </div>
-      <div class="col text-end">
-            <button type="button" class="btn btn_green fw_600 mt-2" id="InputButton">글쓰기</button>
+      <div class="col text-end recipe_insert">
+            <button type="button" class="btn custom-btn btn-12 fw_600 mt-2" id="InputButton"><span>Click!</span><span>레시피 등록</span></button>
         </div>
    </div>
 
 
 <div class="list"></div>
 <div class="pageWrap"></div>
+</div>
