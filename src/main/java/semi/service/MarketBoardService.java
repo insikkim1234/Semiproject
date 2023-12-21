@@ -49,5 +49,10 @@ public class MarketBoardService {
 	{
 		marketBoardDao.deleteMarketBoardContent(boardSeq);
 	}
+	public void updateMarketBoard(MarketBoardDto dto)
+	{
+		marketBoardDao.updateMarketBoard(dto);
+	}
+	
 }
 
