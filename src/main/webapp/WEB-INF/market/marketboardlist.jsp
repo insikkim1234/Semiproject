@@ -60,7 +60,7 @@
 					</a>
 					</td>
 					<td>${dto.userName}</td>
-					<td>${dto.createDate}</td>
+					<td><fmt:formatDate value="${dto.createDate}" pattern="yyyy-MM-dd"/></td>
 					<td>${dto.boardViewCount}</td>
 				</tr>
 			</c:forEach>
