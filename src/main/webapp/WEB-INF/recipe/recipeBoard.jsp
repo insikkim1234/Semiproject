@@ -240,11 +240,12 @@ function updatePageNavigation(pageInfo) {
                      <div class="card-body">
                        <p class="card-text"><b>\${item.recipeTitle}</b></p>
                        <div class="d-flex justify-content-between align-items-center">
-                         <div class="recipe-writer" style="display: inline-block; vertical-align: bottom;">
-                         <img class="user_img" src="<%=NcpObjectStorageService.STORAGE_PROFILE_PHOTO_PATH%>\${item.recipeUserSeq}">
-                           <p style="padding-top: 10px; margin-bottom: 5px;">\${item.recipeUserName}</p>
-                         </div>
-                         <small class="text-body-secondary" style="padding-top: 29px;">조회수\${item.recipeViewCount}</small>
+                      	 <div class="recipe-writer d-flex align-items-center">
+                       		<img class="user_img" src="<%=NcpObjectStorageService.STORAGE_PROFILE_PHOTO_PATH%>\${item.recipeUserSeq}">
+                       		<p class="m-0 ms-2">\${item.recipeUserName}</p>
+                  		 </div>
+                  		<small class="text-body-secondary" style="padding-top: 15px; padding-bottom: 17px;">조회수&nbsp;\${item.recipeViewCount}</small>
+
                          </div>         
                           </div>
                         </div>
