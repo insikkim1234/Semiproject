@@ -15,7 +15,7 @@
         values(#{boardSeq}, #{productPrice}, #{productPlace}, #{productImage1}, #{productImage2}, #{productContent})
     </insert>
     
-    <select id="selectDataByProductBoardSeq" parameterType="int" resultType="MarketProductDto">
+    <select id="selectDataByProductBoardSeq" parameterType="int" resultType="MarketProductDto" resultMap="MarketProductDtoRm">
 		select *
 		from tMarketProduct
 		where nBoardSeq=#{boardSeq}

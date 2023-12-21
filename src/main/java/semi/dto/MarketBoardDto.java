@@ -2,6 +2,7 @@
 
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
@@ -14,8 +15,9 @@ public class MarketBoardDto {
 	private String boardImage;
 	private int boardReplyCount;
 	private int boardViewCount;
-	private String createDate;
-	private String updateDate;
+	
+	private Timestamp createDate;
+	private Timestamp updateDate;
 	private String userName;
 	
 	  @Override

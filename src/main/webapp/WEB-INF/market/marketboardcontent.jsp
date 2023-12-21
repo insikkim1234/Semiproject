@@ -1,3 +1,4 @@
+<%@page import="naver.storage.NcpObjectStorageService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -113,8 +114,36 @@ function list()
 		<a href="${pageContext.request.contextPath}/mboard">벼룩시장</a><span class="fs_18 mx-1">></span>
 		<a href="${pageContext.request.contextPath}/mboard/content">상세 페이지</a>
 	</div>
-<div>
-	<div>
+
+	<div>중고물품 #${mDto.boardSeq}</div>${mDto.boardTitle}
+	<div class="text-end mt-2">
+					<span class="detailWriter"><i class="bi bi-person-fill fs_19"></i></span>
+					<b>${mDto.userName}</b>&nbsp;
+					<span><i class="bi bi-three-dots-vertical"></i></span>&nbsp;
+					<span class="detailViewCount"><i class="bi bi-eye-fill fs_19"></i></span>
+					<b>${mDto.boardViewCount}</b>
+					
+					<div class="col text-end my-1">
+						<span class="detailCreatedAt">작성일 : </span>
+						<b><fmt:formatDate value="${mDto.createDate}" pattern="yyyy-MM-dd"/></b>&nbsp;
+						<span class="detailUpdatedAt">수정일 : </span>
+						<b><fmt:formatDate value="${mDto.updateDate}" pattern="yyyy-MM-dd"/></b> 
+					</div>
+					
+	</div>	
+	<div class="text-center">
+		<img class="detail_img" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${mDto.boardImage}" >
+		<img class="detail_img1" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${pDto.productImage1}" >
+		<img class="detail_img2" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${pDto.productImage2}" >
+	</div>
+	<div class="detailContent">
+				<div class="cGreen fw_600 fs_24 mt-2 nanumfont">가격: ${pDto.productPrice}</div>
+				<div class="cGreen fw_600 fs_24 mt-2 nanumfont">교환 장소 :${pDto.productPlace}</div>
+				<pre class="m-0 py-3 fs_16">${pDto.productContent}</pre>
+	</div>
+	
+		
+	<div class="content-border mt-3 py-2">
 			<div id="answercount">댓글 0</div>
 			<div class="answerlist" style="margin-left:10px;">
 				댓글목록 나올곳
@@ -131,12 +160,12 @@ function list()
 			onclick="history.back()">목록</button>
 	
 		
-	</div> 
-	<div id="answerend"></div>
 	
-</div>
+			<div id="answerend"></div>
+	
+	</div>
 
-<button type="button" class="btn btn-outline-secondary btn-sm"
-			style="width: 80px;"
+				<button type="button" class="btn btn-outline-secondary btn-sm"
+				style="width: 80px;"
 				onclick="location.href='./deletecontent?boardSeq=${mDto.boardSeq}&currentPage=${currentPage}'">삭제</button>
 </body>
