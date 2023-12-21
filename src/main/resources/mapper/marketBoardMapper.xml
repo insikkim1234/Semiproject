@@ -52,8 +52,10 @@
 	</update>
 	
 	<select id="selectDataByMarketBoardSeq" parameterType="int" resultType="MarketBoardDto" resultMap="MarketBoardDtoRm">
-		select *
+		select tMarketBoard.*, tUser.userName
 		from tMarketBoard
+		left join tUser
+		on tMarketBoard.nUserSeq=tUser.userSeq
 		where nBoardSeq=#{boardSeq}
 	</select>
 	
