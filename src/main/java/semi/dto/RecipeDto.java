@@ -20,4 +20,5 @@ public class RecipeDto {
 	private Timestamp recipeUpdatedAt;
 
 	private String recipeUserName;
+	private String recipeUserNickName;
 }
