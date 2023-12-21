@@ -15,10 +15,20 @@
         values(#{boardSeq}, #{productPrice}, #{productPlace}, #{productImage1}, #{productImage2}, #{productContent})
     </insert>
     
-    <select id="selectDataByProductBoardSeq" parameterType="int" resultType="MarketProductDto">
+    <select id="selectDataByProductBoardSeq" parameterType="int" resultType="MarketProductDto" resultMap="MarketProductDtoRm">
 		select *
 		from tMarketProduct
 		where nBoardSeq=#{boardSeq}
 	</select>
+	
+	<update id="updateMarketProduct" parameterType="MarketProductDto">
+		update tMarketProduct
+		set nProductPrice=#{productPrice},
+			sProductPlace=#{productPlace},
+			sProductImage1=#{productImage1},
+			sProductImage2=#{productImage2},
+			sProductContent=#{productContent}
+		where nBoardSeq=#{boardSeq}
+	</update>
 </mapper>
 

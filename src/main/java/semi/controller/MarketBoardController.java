@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import annotation.Login;
+import lombok.AllArgsConstructor;
 import naver.storage.NcpObjectStorageService;
 import semi.config.BoardConfig;
+import semi.dao.MarketBoardDao;
+import semi.dao.MarketProductDao;
 import semi.dto.*;
 import semi.service.MarketBoardService;
 import semi.service.MarketProductService;
@@ -24,7 +27,7 @@ import utils.BoardUtils;
 import semi.service.MarketBoardCommentService;
 
 @Controller
-
+@AllArgsConstructor
 public class MarketBoardController {
 	@Autowired
 	private MarketBoardService marketBoardService;
@@ -34,6 +37,9 @@ public class MarketBoardController {
 	NcpObjectStorageService storageService;
 	@Autowired
 	private MarketBoardCommentService marketBoardCommentService;
+	
+	private MarketBoardDao marketBoardDao;
+	private MarketProductDao marketProductDao;
 
 	@PostMapping("/mboard/insertMarketBoard")
 	public String insertMarketBoard(@Login MemberDto user,@ModelAttribute MarketBoardDto dto, @ModelAttribute MarketProductDto pdto,
@@ -86,6 +92,8 @@ public class MarketBoardController {
 		MarketBoardDto mDto = marketBoardService.getData(boardSeq);
 		MarketProductDto pDto = marketProductService.getData(boardSeq);
 		
+	
+		
 		
 		model.addAttribute("mDto", mDto);
 		model.addAttribute("pDto", pDto);
@@ -115,6 +123,52 @@ public class MarketBoardController {
 
 		return "redirect:/mboard";
 	}
+	@GetMapping("/mboard/updateform")
+	public String updateForm(Model model,@RequestParam int boardSeq)
+	{
+		MarketBoardDto mDto=marketBoardDao.getData(boardSeq);
+		MarketProductDto pDto=marketProductDao.getData(boardSeq);
+		
+		model.addAttribute("mDto",mDto);
+		model.addAttribute("pDto", pDto);
+		return "market/marketupdateform";
+	}
+	
+	@PostMapping("/mboard/updatemarketboard")
+	public String updateMarketBoard(@Login MemberDto user,@ModelAttribute MarketBoardDto dto, @ModelAttribute MarketProductDto pdto,
+			HttpServletRequest request, HttpSession session, @RequestParam MultipartFile upload1,
+			@RequestParam MultipartFile upload2, @RequestParam MultipartFile upload3,
+			@RequestParam String boardTitle, @RequestParam int productPrice,
+			@RequestParam String productPlace, @RequestParam String productContent ,
+			@RequestParam int boardSeq
+			) {
+		String photo = storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+				NcpObjectStorageService.DIR_PHOTO, upload1);
+		String photo2 = storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+				NcpObjectStorageService.DIR_PHOTO, upload2);
+		String photo3 = storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+				NcpObjectStorageService.DIR_PHOTO, upload3);
+
+		dto.setBoardTitle(boardTitle);
+		dto.setBoardSeq(boardSeq);
+		dto.setBoardImage(photo);
+		
+		
+		// 먼저 게시글 정보를 저장하고 게시글의 nBoardSeq를 가져옴
+		marketBoardService.updateMarketBoard(dto);
+		
+		pdto.setProductPrice(productPrice);
+		pdto.setProductPlace(productPlace);
+		pdto.setProductContent(productContent);
+		pdto.setProductImage1(photo2);
+		pdto.setProductImage2(photo3);
+
+		
+		marketProductService.updateMarketProduct(pdto);
+
+		return "redirect:/mboard";
+	}
+	
 
 
 }
