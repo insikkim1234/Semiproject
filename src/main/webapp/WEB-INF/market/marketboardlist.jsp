@@ -9,21 +9,31 @@
 		<a href="${pageContext.request.contextPath}">HOME</a><span class="fs_18 mx-1">></span>
 		<a href="${pageContext.request.contextPath}/mboard">벼룩시장</a>
 	</div>
-	<div class="fs_40 fw_600 cGreen text_left mt-3">이거 어때?</div>
+	<div class="fs_40 fw_600 cGreen text_left mt-3 mboard_effect">
+		<span>이</span><span>거</span><span>&nbsp;</span><span>어</span><span>때</span><span>?</span>
+	</div>
 	<form action="./mboard" class="d-flex m-0 justify-content-end mt-3">
-		<input class="form-control me-2" type="text" name="searchWord" placeholder="검색어 입력" style="width: 200px; border:2px solid #11B560;">
-		<button class="btn btn_green2 fw_600" type="submit">검색</button>
+		<input class="form-control me-2" type="text" name="searchWord" placeholder="검색어 입력" style="width: 200px; border:2px solid #c63702;">
+		<button class="btn-3d red fw_600 ml-2" type="submit">검색</button>
 	</form>
-	<div class="fs_17 bg_green row mt-3 mw_1000">
+	<div class="fs_18 bg_green row mt-3 mw_1000 br_10">
 		<c:if test="${isSearch}">
-			<div class="col py-3 fw_600">총 ${totalCount}개의 거래 검색됨</div>
+			<%-- <div class="col py-3 fw_600">총 ${totalCount}개의 거래 검색됨</div> --%>
+			<div class="animation py-3 col">
+			    <span class="one_text">총 <span style="color: #000; font-size: 18px;">${totalCount}</span>개의 </span>
+			    <span class="two_text">거래 검색됨</span>
+			</div>
 		</c:if>
 		<c:if test="${!isSearch}">
-			<div class="col py-3 fw_600">${totalCount}건의 거래 진행중..</div>
+			<%-- <div class="col py-3 fw_600">${totalCount}건의 거래 진행중..</div> --%>
+			<div class="animation py-3 col">
+			    <span class="one_text">총 <span style="color: #000; font-size: 18px;">${totalCount}</span>개의 </span>
+			    <span class="two_text">거래 진행중</span>
+			</div>
 		</c:if>
 		<div class="col text-end">
-			<button type="button" class="btn btn_green fw_600 mt-2"
-				onclick="location.href='./mboard/form'">나의 물품등록</button>
+			<button type="button" class="btn custom-btn btn-12 fw_600"
+				onclick="location.href='./mboard/form'"><span>Click!</span><span>나의 물품등록</span></button>
 		</div>
 	</div>
 

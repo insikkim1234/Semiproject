@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<div class="navigationbar" >
+<div class="navigationbar" style="background: #ECD260;">
     <tiles:insertAttribute name="navigationbar" />
 </div>
 
