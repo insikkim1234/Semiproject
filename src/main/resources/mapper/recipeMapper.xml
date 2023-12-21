@@ -5,6 +5,7 @@
 		<result property="recipeIdx" column="nRecipeIdx" />
 		<result property="recipeUserSeq" column="nRecipeUserSeq" />
 		<result property="recipeUserName" column="userName" />
+		<result property="recipeUserNickName" column="userNickName" />
 		<result property="recipeTitle" column="sRecipeTitle" />
 		<result property="recipeViewCount" column="nRecipeViewCount" />
 		<result property="recipePhoto" column="sRecipePhoto" />
@@ -25,7 +26,7 @@
 	</insert>
 	
 	<select id="selectAlltRecipe" parameterType="String" resultType="RecipeDto" resultMap="RecipeDtoRm">
-    	select tRecipeBoard.*, tUser.userName from tRecipeBoard
+    	select tRecipeBoard.*, tUser.userName, tUser.userNickName from tRecipeBoard
     	LEFT JOIN tUser ON tRecipeBoard.nRecipeUserSeq = tUser.userSeq
     	<if test="searchword!=null">
       	where sRecipeTitle like concat('%',#{word},'%')

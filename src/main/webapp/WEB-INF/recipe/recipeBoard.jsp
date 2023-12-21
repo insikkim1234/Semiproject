@@ -241,7 +241,7 @@ function updatePageNavigation(pageInfo) {
                        <div class="d-flex justify-content-between align-items-center">
                       	 <div class="recipe-writer d-flex align-items-center">
                       	<img class="user_img" src="<%=NcpObjectStorageService.STORAGE_PROFILE_PHOTO_PATH%>\${item.recipeUserSeq}" onerror="this.src='<%=request.getContextPath()%>/resources/photo/apple.png';">
-                       		<p class="m-0 ms-0">\${item.recipeUserName}</p>
+                       		<p class="m-0 ms-0">\${item.recipeUserNickName}</p>
                   		 </div>
                   		<small class="text-body-secondary" style="padding-top: 15px; padding-bottom: 17px;">조회수&nbsp;\${item.recipeViewCount}</small>
 
@@ -261,6 +261,23 @@ function updatePageNavigation(pageInfo) {
                 }
               });
             }
+   
+   function dateFormat(date) {
+       let month = date.getMonth() + 1;
+       let day = date.getDate();
+       let hour = date.getHours();
+       let minute = date.getMinutes();
+       let second = date.getSeconds();
+
+       month = month >= 10 ? month : '0' + month;
+       day = day >= 10 ? day : '0' + day;
+       hour = hour >= 10 ? hour : '0' + hour;
+       minute = minute >= 10 ? minute : '0' + minute;
+       second = second >= 10 ? second : '0' + second;
+
+       return date.getFullYear() + '-' + month + '-' + day + ' ' + hour + ':' + minute;
+	}
+
    
    function list()
    {
@@ -295,7 +312,9 @@ function updatePageNavigation(pageInfo) {
             
             `;
             $.each(datas,function(idx,item){
-
+            	let createTime = new Date(item.recipeCreatedAt);
+            	
+            	createTime = dateFormat(createTime)
                s+=
                `
                      <tr><td>\${item.recipeIdx}</td>
@@ -306,7 +325,7 @@ function updatePageNavigation(pageInfo) {
                     </td>
                     <td>\${item.recipeTitle}</td>
                     <td>\${item.recipeUserName}</td>
-                    <td>\${item.recipeCreatedAt}</td> 
+                    <td>` +createTime + `</td> 
                     <td>\${item.recipeViewCount}</td></tr>
                `;
             });
