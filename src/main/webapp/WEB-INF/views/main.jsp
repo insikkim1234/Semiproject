@@ -2,147 +2,239 @@
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="root" value="<%=request.getContextPath()%>"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title></title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        .carousel {
+            position: relative
+        }
+        .carousel.pointer-event {
+            -ms-touch-action: pan-y;
+            touch-action: pan-y
+        }
+        .carousel-inner {
+            position: relative;
+            width: 100%;
+            overflow: hidden
+        }
+        .carousel-inner::after {
+            display: block;
+            clear: both;
+            content: ""
+        }
+        .carousel-item {
+            position: relative;
+            display: none;
+            float: left;
+            width: 100%;
+            margin-right: -100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transition: -webkit-transform .2s ease-in-out;
+            transition: transform .2s ease-in-out;
+            transition: transform .2s ease-in-out, -webkit-transform .2s ease-in-out
+        }
+        @media ( prefers-reduced-motion :reduce) {
+            .carousel-item {
+                transition: none
+            }
+        }
+        .carousel-item-next, .carousel-item-prev, .carousel-item.active {
+            display: block
+        }
+        .active.carousel-item-right, .carousel-item-next:not (.carousel-item-left
+	){
+            -webkit-transform: translateX(100%);
+            transform: translateX(100%)
+        }
+        .active.carousel-item-left, .carousel-item-prev:not (.carousel-item-right
+	){
+            -webkit-transform: translateX(-100%);
+            transform: translateX(-100%)
+        }
+        .carousel-fade .carousel-item {
+            opacity: 0;
+            transition-property: opacity;
+            -webkit-transform: none;
+            transform: none
+        }
+        .carousel-fade .carousel-item-next.carousel-item-left, .carousel-fade .carousel-item-prev.carousel-item-right,
+        .carousel-fade .carousel-item.active {
+            z-index: 1;
+            opacity: 1
+        }
+        .carousel-fade .active.carousel-item-left, .carousel-fade .active.carousel-item-right
+        {
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0s .6s
+        }
+        @media ( prefers-reduced-motion :reduce) {
+            .carousel-fade .active.carousel-item-left, .carousel-fade .active.carousel-item-right
+            {
+                transition: none
+            }
+        }
+        .carousel-control-next, .carousel-control-prev {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            z-index: 1;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            width: 15%;
+            color: #fff;
+            text-align: center;
+            opacity: .5;
+            transition: opacity .15s ease
+        }
+        @media ( prefers-reduced-motion :reduce) {
+            .carousel-control-next, .carousel-control-prev {
+                transition: none
+            }
+        }
+        .carousel-control-next:focus, .carousel-control-next:hover,
+        .carousel-control-prev:focus, .carousel-control-prev:hover {
+            color: #fff;
+            text-decoration: none;
+            outline: 0;
+            opacity: .9
+        }
+        .carousel-control-prev {
+            left: 0
+        }
+        .carousel-control-next {
+            right: 0
+        }
+        .carousel-control-next-icon, .carousel-control-prev-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: no-repeat 50%/100% 100%
+        }
+        .carousel-control-prev-icon {
+            background-image:
+                    url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath d='M5.25 0l-4 4 4 4 1.5-1.5L4.25 4l2.5-2.5L5.25 0z'/%3e%3c/svg%3e")
+        }
+        .carousel-control-next-icon {
+            background-image:
+                    url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5L3.75 4l-2.5 2.5L2.75 8l4-4-4-4z'/%3e%3c/svg%3e")
+        }
+        .carousel-indicators {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 15;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-pack: center;
+            justify-content: center;
+            padding-left: 0;
+            margin-right: 15%;
+            margin-left: 15%;
+            list-style: none
+        }
+        .carousel-indicators li {
+            box-sizing: content-box;
+            -ms-flex: 0 1 auto;
+            flex: 0 1 auto;
+            width: 30px;
+            height: 3px;
+            margin-right: 3px;
+            margin-left: 3px;
+            text-indent: -999px;
+            cursor: pointer;
+            background-color: #fff;
+            background-clip: padding-box;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            opacity: .5;
+            transition: opacity .6s ease
+        }
+
+        @media ( prefers-reduced-motion :reduce) {
+            .carousel-indicators li {
+                transition: none
+            }
+        }
+        .carousel-indicators .active {
+            opacity: 1
+        }
+        .carousel-caption {
+            position: absolute;
+            right: 15%;
+            bottom: 20px;
+            left: 15%;
+            z-index: 10;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            color: #fff;
+            text-align: center
+        }
+        #demo {
+            width: 100%;
+            height: 700px;
+            text-align: center;
+        }
+        .carousel-inner>div {
+            width: 100%;
+        }
+        .carousel-inner div:nth-child(1) {
+            background-color: #FFFFFF;
+        }
+        .carousel-inner div:nth-child(2) {
+            background-color: #FFFFFF;
+        }
+        .carousel-inner div:nth-child(3) {
+            background-color: #FFFFFF;
+        }
+    </style>
 </head>
-<body class="d-flex flex-column h-100">
-<main class="flex-shrink-0">
-    <!-- Header-->
-    <header class="bg-dark py-3" style="height: 500px;">
-        <swiper-container class="mySwiper" navigation="true">
-            <swiper-slide>
-                <div class="container px-3">
-                    <div class="row gx-5 align-items-center justify-content-center">
-                        <div class="col-lg-8 col-xl-7 col-xxl-6">
-                            <div class="my-5 text-center text-xl-start">
-                                <h1 class="display-5 fw-bolder text-white mb-2">메인화면 음식</h1>
-                                <p class="lead fw-normal text-white-50 mb-4">음식 설명</p>
-                                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                                    <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features">레시피 보러가기</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-3 d-none d-xl-block text-center">
-                            <img class="img-fluid rounded-3 my-5" src="https://sharon6.com/web/product/big/202206/41b02fb683ce11c4343be7183a85421b.jpg" alt="..." /></div>
-                        </div>
-                 </div>
-            </swiper-slide>
-            <swiper-slide>
-                <div class="container px-3">
-                    <div class="row gx-5 align-items-center justify-content-center">
-                        <div class="col-lg-8 col-xl-7 col-xxl-6">
-                            <div class="my-5 text-center text-xl-start">
-                                <h1 class="display-5 fw-bolder text-white mb-2">벼룩시장</h1>
-                                <p class="lead fw-normal text-white-50 mb-4">음식 설명</p>
-                                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                                    <a class="btn btn-outline-light btn-lg px-4" href="#!">벼룩시장 보러가기</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-3 d-none d-xl-block text-center">
-                            <img class="img-fluid rounded-3 my-5" src="https://sharon6.com/web/product/big/202206/41b02fb683ce11c4343be7183a85421b.jpg" alt="..." /></div>
-                    </div>
-                </div>
-            </swiper-slide>
-        </swiper-container>
+<body>
+<div id="demo" class="carousel slide" data-ride="carousel">
 
-        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+    </ul>
 
-    </header>
-    <!-- Blog preview section-->
-    <section class="py-5">
-        <div class="container px-5 my-5">
-            <div class="row gx-5 justify-content-center">
-                <div class="col-lg-8 col-xl-6">
-                    <div class="text-center">
-                        <h2 class="fw-bolder">커뮤니티</h2>
-                        <p class="lead fw-normal text-muted mb-5">123</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row gx-5">
-                <div class="col-lg-4 mb-5">
-                    <div class="card h-100 shadow border-0">
-                        <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
-                        <div class="card-body p-4">
-                            <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
-                            <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">Blog post title</h5></a>
-                            <p class="card-text mb-0">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                            <div class="d-flex align-items-end justify-content-between">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
-                                    <div class="small">
-                                        <div class="fw-bold">Kelly Rowan</div>
-                                        <div class="text-muted">March 12, 2023 &middot; 6 min read</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 mb-5">
-                    <div class="card h-100 shadow border-0">
-                        <img class="card-img-top" src="https://dummyimage.com/600x350/adb5bd/495057" alt="..." />
-                        <div class="card-body p-4">
-                            <div class="badge bg-primary bg-gradient rounded-pill mb-2">Media</div>
-                            <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">Another blog post title</h5></a>
-                            <p class="card-text mb-0">This text is a bit longer to illustrate the adaptive height of each card. Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                            <div class="d-flex align-items-end justify-content-between">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
-                                    <div class="small">
-                                        <div class="fw-bold">Josiah Barclay</div>
-                                        <div class="text-muted">March 23, 2023 &middot; 4 min read</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 mb-5">
-                    <div class="card h-100 shadow border-0">
-                        <img class="card-img-top" src="https://dummyimage.com/600x350/6c757d/343a40" alt="..." />
-                        <div class="card-body p-4">
-                            <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
-                            <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">The last blog post title is a little bit longer than the others</h5></a>
-                            <p class="card-text mb-0">Some more quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                        <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                            <div class="d-flex align-items-end justify-content-between">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
-                                    <div class="small">
-                                        <div class="fw-bold">Evelyn Martinez</div>
-                                        <div class="text-muted">April 2, 2023 &middot; 10 min read</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+        <div class="carousel-item active" style="width: 100%">
+            <img src="${root}/resources/photo/community.png/" alt="커뮤니티" width="1400" height="700">
         </div>
-    </section>
-</main>
-<!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
-<script src="js/scripts.js"></script>
+        <div class="carousel-item">
+            <img src="${root}/resources/photo/recipebook.png/" alt="레시피북" width="1240" height="700">
+        </div>
+        <div class="carousel-item">
+            <img src="${root}/resources/photo/fleamarket.png/" alt="벼룩시장" width="1240" height="700">
+        </div>
+    </div>
+
+
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev"> <span
+            class="carousel-control-prev-icon"></span>
+    </a> <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+</a>
+</div>
+
 </body>
 </html>
