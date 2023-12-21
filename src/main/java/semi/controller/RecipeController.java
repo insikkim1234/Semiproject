@@ -128,12 +128,17 @@ public class RecipeController {
         recipeService.updateRecipe(updateDto);
         
         List<RecipeOrderDto> orderDtoList = recipeOrderService.getRecipeOrdersById(updateDto.getRecipeIdx());
-
         ArrayList<OrderBean> orderList = (ArrayList<OrderBean>) obList.getOrderlist();
+        
+        int newNum = 0;
+        
         for (int i = 0; i < orderList.size(); i++) {
             OrderBean orderBean = orderList.get(i);
-            if (orderBean.getRecipeOrderContent() == null) continue;
-
+            if (orderBean.getRecipeOrderContent() == null) {
+        		recipeOrderService.deleteRecipeOrderBySeq(orderDtoList.get(i).getRecipeOrderSeq());
+            	continue;
+            }
+            
             // 업로드된 사진을 저장하고 해당 경로를 가져옴
             photo = storageService.uploadFile(
                     NcpObjectStorageService.STORAGE_EATINGALONE,
@@ -143,30 +148,35 @@ public class RecipeController {
             RecipeOrderDto newOrderDto = new RecipeOrderDto();
             if (i < orderDtoList.size()) {
                 newOrderDto.setRecipeOrderSeq(orderDtoList.get(i).getRecipeOrderSeq());
-            }
+            } 
+
         	newOrderDto.setRecipeIdx(updateDto.getRecipeIdx());
-            newOrderDto.setRecipeNumber(i + 1);
+            newOrderDto.setRecipeNumber(newNum + 1);
             newOrderDto.setRecipeOrderContent(orderBean.getRecipeOrderContent());
             newOrderDto.setRecipeOrderPhoto(photo);
             
             // 생성된 엔티티를 서비스를 통해 저장
             recipeOrderService.upsertRecipeOrder(newOrderDto);
+            //recipeService.deleteOrderFragmentRecipe(recipeOrderPhoto);
+            newNum += 1;          
         }
+       
         
         return "redirect:/recipe/board/" + updateDto.getRecipeIdx();
     }
-    	//레시피 삭제 
-    	@PostMapping("/recipe/deleteRecipe")
-    	public String deleteRecipe(@Login MemberDto memberDto, @RequestParam int recipeIdx)
-    	{
-    		RecipeDto dto = recipeService.getData(recipeIdx);
-             
-    		if (memberDto.getUserSeq() == dto.getRecipeUserSeq())
-    		{
-    			recipeService.deleteRecipe(recipeIdx);
-    		}
-       
-    		return "redirect:/recipe/board"; 
-    	}
+    
+	// 레시피 삭제 
+	@PostMapping("/recipe/deleteRecipe")
+	public String deleteRecipe(@Login MemberDto memberDto, @RequestParam int recipeIdx)
+	{
+		RecipeDto dto = recipeService.getData(recipeIdx);
+         
+		if (memberDto.getUserSeq() == dto.getRecipeUserSeq())
+		{
+			recipeService.deleteRecipe(recipeIdx);
+		}
+   
+		return "redirect:/recipe/board"; 
+	}
 
 }

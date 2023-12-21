@@ -29,4 +29,8 @@ public class RecipeOrderDao {
     public void deleteOrderRecipe(RecipeOrderDto orderDto) {
 		session.delete(nameSpace + "deleteOrderRecipe", orderDto);
 	}
+    
+    public void deleteRecipeOrderBySeq(int seq) {
+		session.delete(nameSpace + "deleteRecipeOrderBySeq", seq);
+	}
 }

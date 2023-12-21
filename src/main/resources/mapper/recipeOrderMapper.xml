@@ -20,6 +20,10 @@
 	<delete id="deleteOrderRecipe" parameterType="RecipeOrderDto">
 		delete from tRecipeOrder where nRecipeIdx = #{recipeIdx}
 	</delete>
+	
+	<delete id="deleteRecipeOrderBySeq" parameterType="int">
+		delete from tRecipeOrder where nRecipeOrderSeq = #{recipeOrderSeq}
+	</delete>
 
 	<insert id="upsertRecipeOrder" parameterType="RecipeOrderDto">
 	<![CDATA[
