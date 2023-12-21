@@ -18,10 +18,10 @@
 				<span><i class="bi bi-three-dots-vertical"></i></span>&nbsp;
 				<span class="day"><i class="bi bi-eye-fill fs_17 mr-2"></i><b>${dto.comBoardviewCount}</b></span>
 					
-				<button type="button" class="btn btn-outline-green btn-sm ml-3 fw_500"
+				<button type="button" class="btn-3d red ml-3 fw_500"
 					 onclick="location.href='./updateform?comBoardSeq=${dto.comBoardSeq}'">수정</button>
 						
-				<button type="button" class="btn btn-outline-green btn-sm ml-1 fw_500"
+				<button type="button" class="btn-3d red ml-1 fw_500"
 					 onclick="location.href='./delete?comBoardSeq=${dto.comBoardSeq}'">삭제</button>
 			</div>
 			<div class="col text-right">
@@ -38,21 +38,18 @@
 	 			<form action="./addanswer" method="post">
 	 				<input type="hidden" name="num" value="${dto.comBoardSeq}">
 	 				<div class="input-group content_comment px-2"> 						
-	 					<input type="text" name="nickname" class="input1" placeholder="닉네임">
-	 					<input type="text" name="content" class="col input2" placeholder="댓글">
+	 					<input type="text" name="nickname" class="input1 bg_red" placeholder="닉네임">
+	 					<input type="text" name="content" class="col input2 bg_red" placeholder="댓글">
 	 							
-	 					<button type="submit" class="btn btn-sm btn-outline-green px-3 ml-2">저장</button>
+	 					<button type="submit" class="btn-3d red ml-2">저장</button>
 	 				</div>
 	 			</form>
 	 		</div> 	
 			
 	
-			<div class="text-center">
-				<button type="button" class="btn btn_green3 btn-sm"
-				onclick="location.href='./boardform'">글쓰기</button>
-				
-				<button type="button" class="btn btn_green3 btn-sm"
-				onclick="location.href='./list'">목록</button>
+			<div class="text-center mt-4"> 
+				<button type="button" class="btn-3d red fw_600"
+				onclick="location.href='./list'">목록으로</button>
 			</div>
 		</div>
 	</div>

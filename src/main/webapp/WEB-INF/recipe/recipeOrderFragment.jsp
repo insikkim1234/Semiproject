@@ -34,7 +34,8 @@
 </style>
 
 <div class="mw_1200 rOrderbox mb-5">
-	<div class="div_recipeOrder mt-5">
+	<div class="div_recipeOrder mt-5" style="background: #ecd26017;border-radius: 5px;
+    border: 6px dashed #c12c2f91;">
 		<div class="cGreen fw_600 mt-4 fs_30 nanumfont mw_750">
 			[조리 Step By Step]
 		</div>
@@ -47,6 +48,7 @@
 	            	<div class="rgyPostIt3">Step<c:out value="${orderItem.recipeNumber}" /></div>
 	                <c:out value="${orderItem.recipeOrderContent}" />
 	            </div>
+	            <div class="rtitle_border2 mt-4"></div>
 	        </div>
 	    </c:forEach>
 	</div>

@@ -8,22 +8,44 @@
 		<a href="${pageContext.request.contextPath}">HOME</a><span class="fs_18 mx-1">></span>
 		<a href="${pageContext.request.contextPath}/board/list">자취생 커뮤니티</a>
 	</div>
-	<div class="fs_40 fw_600 cGreen text_left mt-3">자취러 커뮤니티</div>
+	<!-- <div class="fs_40 fw_600 cGreen text_left mt-3">자취러 커뮤니티</div> -->
+	
+	<div class="fs_40 fw_600 cGreen text_left mt-3 board_title">
+	  <span>자</span>
+	  <span>취</span>
+	  <span>러</span>
+	  <span></span>
+	  <span>커</span>
+	  <span>뮤</span>
+	  <span>니</span>
+	  <span>티</span>
+	</div>
+	
 	<form action="./list" class="d-flex m-0 justify-content-end mt-3">
 		<input type="hidden" name = "pageNum" value="${pageDto.curPage}"/>
-		<input class="form-control me-2" type="text" placeholder="검색어 입력" name="searchWord" style="width: 200px; border:2px solid #11B560;">
-		<button class="btn btn_green2 fw_600" type="submit">검색</button>
+		<input class="form-control me-2" type="text" placeholder="검색어 입력" name="searchWord" style="width: 200px; border:2px solid #c63702;">
+		<button class="btn-3d red fw_600 ml-2" type="submit">검색</button>
 	</form>
-	<div class="fs_17 bg_green row mt-3 mw_1000">
+	<div class="fs_18 bg_green row mt-3 mw_1000 br_10">
 		<c:if test="${isSearch}">
-			<div class="col py-3 fw_600">총 ${pageDto.totalCnt}개의 잡담 검색됨</div>
+			<%-- <div class="col py-3 fw_700">총 ${pageDto.totalCnt}개의 잡담 검색됨</div> --%>
+			<div class="animation py-3 col">
+			    <span class="one_text">총 <span style="color: #000; font-size: 18px;">${pageDto.totalCnt}</span>개의 </span>
+			    <span class="two_text">잡담 검색됨...</span>
+			</div>
 		</c:if>
 		<c:if test="${!isSearch}">
-			<div class="col py-3 fw_600">총 ${pageDto.totalCnt}개의 잡담 형성중..</div>
+			<%-- <div class="col py-3 fw_700">총 ${pageDto.totalCnt}개의 잡담 형성중..</div> --%>
+			<div class="animation py-3 col">
+			    <span class="one_text">총 <span style="color: #000; font-size: 18px;">${pageDto.totalCnt}</span>개의 </span>
+			    <span class="two_text">잡담 형성중...</span>
+			</div>
 		</c:if>
 		<div class="col text-end">
-			<button type="button" class="btn btn_green fw_600 mt-2"
-				onclick="location.href='./form'">글쓰기</button>
+			<button type="button" class="btn custom-btn btn-12 fw_600"
+				onclick="location.href='./form'">
+				<span>Click!</span><span>잡담하기</span>
+			</button>
 		</div>
 	</div>
 

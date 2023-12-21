@@ -7,10 +7,26 @@
 <div class="mw_1200">
 	<nav class="navbar navbar-expand-sm d-flex flex-column">
 	  <div class="container-fluid">
-	    <a href="${pageContext.request.contextPath}"> <img
-			src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>eating_alone_mainlogo6.png"
+	    <%-- <a href="${pageContext.request.contextPath}"> <img
+			src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>eating_alone_mainlogo7.png"
 			class="img-fluid ml-1" style="width: 350px;">
 		</a>
+		 --%>
+		<div class="hover__wrap">
+		  <div class="hover__leftright">
+		    <figure class="front">
+		     <a href="${pageContext.request.contextPath}">	
+		      <img src="https://kr.object.ncloudstorage.com/semi-project-eatingalone/photo/eating_alone_mainlogo7.png" alt="" class="img-fluid">
+		    </a>
+		    </figure>
+		    <figure class="back">
+		     <a href="${pageContext.request.contextPath}">
+		      <img src="https://kr.object.ncloudstorage.com/semi-project-eatingalone/photo/eating_alone_mainlogo7.png" alt="" class="img-fluid">
+		    </a>
+		    </figure>
+		  </div>
+		</div>
+		
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
 	      <span class="navbar-toggler-icon"></span>
 	    </button>
@@ -67,10 +83,10 @@
 					  <img src="<%=NcpObjectStorageService.STORAGE_PROFILE_PHOTO_PATH%>${sessionScope.login_member_dto.userSeq}" class="pro_img img-fluid">
 				  </c:otherwise>
 			  </c:choose>
-			  <div class="fs_18 fw_500 cBlack my-auto">${sessionScope.login_member_dto.userNickName}님</div>&nbsp;&nbsp;
+			  <div class="fs_18 fw_500 my-auto" style="color: black">${sessionScope.login_member_dto.userNickName}님</div>&nbsp;&nbsp;
 			  <a href="${pageContext.request.contextPath}/member/logout" class="my-auto">
 				  <button type="submit" class="btn mx-2 p-0">
-					  <div class="fs_16 fw_500 cBlack btn_green4 px-2">로그아웃</div>
+					  <div class="btn-3d red2">로그아웃</div>
 				  </button>
 			  </a>
 		  </c:if>

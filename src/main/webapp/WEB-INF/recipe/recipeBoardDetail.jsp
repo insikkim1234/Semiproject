@@ -5,11 +5,12 @@
 
 <style>
     .div_detail {
-    	width: 1200px;
+    	width: 100%;
 	    box-sizing: border-box;
 	    box-shadow: 10px 15px 30px #49505770;
 	    padding: 50px;
-	    border: 1px solid #19875440;
+	    border-radius: 5px;
+    	border: 6px dashed #c12c2f91;
     }
 
     .div_detailItem {
@@ -38,8 +39,8 @@
     
     .detailInfo {
 	    text-align: center;
-		color:#6b6b6b;
-		border-bottom: 1px solid #6b6b6b;
+		color:#000;
+		border-bottom: 1px solid #000;
 		margin-right:0;
 		margin-left:0;
     }
@@ -61,8 +62,17 @@
 		<a href="${pageContext.request.contextPath}/recipe/board">레시피북</a><span class="fs_18 mx-1">></span>
 		<a href="${pageContext.request.contextPath}/recipe/board/recipeBoardDetail">현재페이지</a>
 	</div>
-	<div class="fs_32 fw_600 cGreen r-detail mt-2">레시피 A to Z</div>
-	<div class="div_detail mt-3">
+	<!-- <div class="fs_32 fw_600 cGreen r-detail mt-2">레시피 A to Z</div> -->
+	<div class="wrapper2 mt-3">
+		<div class="focus2">
+		    레시피 A to Z
+		</div>
+		<div class="mask2">
+		   <div class="text2">레시피 A to Z</div>
+  		</div>
+	</div>
+	<div class="r-detail"></div>
+	<div class="div_detail mt-3" style="background: #ecd26017;">
 		<div class="div_detailItem">
 			<div class="rtitle_border">
 				<div class="fs_28 fw_600 cBlack text-center">
@@ -77,11 +87,12 @@
 				</div>
 				<div class="row">
 					<div class="col">
+						<a href="${pageContext.request.contextPath}/recipe/board" class="btn-3d red2 fw_600">목록</a>
                   		<c:if test="${sessionScope.login_member_dto != null && sessionScope.login_member_dto.userSeq.equals(dto.recipeUserSeq)}">
-	                  		<a class="fs_16 fw_600 btn-outline-green py-1 px-2 mr-2 br_5" style="border-radius: 5px;" href="${pageContext.request.contextPath}/recipe/update/${dto.recipeIdx}">수정</a>
+	                  		<a class="fw_600 btn-3d red2 ml-2" href="${pageContext.request.contextPath}/recipe/update/${dto.recipeIdx}">수정</a>
 	                  		<form action="../deleteRecipe" method="post" class="d-inline-block p-0">
 	                  			<input type="hidden" name="recipeIdx" value="${dto.recipeIdx}" />
-	                     		<button class="fs_16 fw_600 btn-outline-green py-1 px-2 br_5" type="submit" style="border-radius: 5px;">삭제</button>
+	                     		<button class="fw_600 btn-3d red2 fw_600 ml-2" type="submit" style="border-radius: 5px;">삭제</button>
 	                  		</form>
                      	</c:if>
                		</div>
@@ -130,7 +141,7 @@
 			        <c:set var="ingredients" value="${dto.recipeIngredient}" />
 			        <c:forTokens var="ingredient" items="${ingredients}" delims=",">
 			        	<!-- TODO : 이미지 이름 ingredient, ingredient2 중 하나 선택 -->
-			            <i class="bi bi-basket3-fill mr-3 fs_26 cBlack"></i><i class="bi bi-three-dots-vertical mr-2 fs_20 cBlack"></i><div class="rgyPostIt">${ingredient}</div>
+			            <i class="bi bi-basket3-fill mr-3 fs_26" style="color: #000;"></i><i class="bi bi-three-dots-vertical mr-2 fs_20" style="color: #000;"></i><div class="rgyPostIt">${ingredient}</div>
 			            <br/>
 			        </c:forTokens>
 				</c:if>
