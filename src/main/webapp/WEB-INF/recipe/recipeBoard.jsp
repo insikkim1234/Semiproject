@@ -59,7 +59,6 @@
     border-radius: 50%;
     margin: 0 4px -2px 0;
     vertical-align: text-bottom;
-    border: 1px solid gray;
    }
    
    .bg-body-tertiary {
@@ -241,8 +240,8 @@ function updatePageNavigation(pageInfo) {
                        <p class="card-text"><b>\${item.recipeTitle}</b></p>
                        <div class="d-flex justify-content-between align-items-center">
                       	 <div class="recipe-writer d-flex align-items-center">
-                       		<img class="user_img" src="<%=NcpObjectStorageService.STORAGE_PROFILE_PHOTO_PATH%>\${item.recipeUserSeq}">
-                       		<p class="m-0 ms-2">\${item.recipeUserName}</p>
+                      	<img class="user_img" src="<%=NcpObjectStorageService.STORAGE_PROFILE_PHOTO_PATH%>\${item.recipeUserSeq}" onerror="this.src='<%=request.getContextPath()%>/resources/photo/apple.png';">
+                       		<p class="m-0 ms-0">\${item.recipeUserName}</p>
                   		 </div>
                   		<small class="text-body-secondary" style="padding-top: 15px; padding-bottom: 17px;">조회수&nbsp;\${item.recipeViewCount}</small>
 
