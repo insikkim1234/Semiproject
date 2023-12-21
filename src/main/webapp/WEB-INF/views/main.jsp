@@ -217,13 +217,13 @@
     <!-- The slideshow -->
     <div class="carousel-inner">
         <div class="carousel-item active" style="width: 100%">
-            <img src="${root}/resources/photo/community.png/" alt="커뮤니티" width="1400" height="700">
+           <a href="board/list"><img src="${root}/resources/photo/community.png/" alt="커뮤니티" width="1240" height="700"></a>
         </div>
         <div class="carousel-item">
-            <img src="${root}/resources/photo/recipebook.png/" alt="레시피북" width="1240" height="700">
+            <a href="recipe/board"><img src="${root}/resources/photo/recipebook.png/" alt="레시피북" width="1240" height="700"></a>
         </div>
         <div class="carousel-item">
-            <img src="${root}/resources/photo/fleamarket.png/" alt="벼룩시장" width="1240" height="700">
+            <a href="mboard"><img src="${root}/resources/photo/fleamarket.png/" alt="벼룩시장" width="1240" height="700"></a>
         </div>
     </div>
 
