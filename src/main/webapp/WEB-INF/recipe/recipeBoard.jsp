@@ -324,7 +324,7 @@ function updatePageNavigation(pageInfo) {
                        </a>
                     </td>
                     <td>\${item.recipeTitle}</td>
-                    <td>\${item.recipeUserName}</td>
+                    <td>\${item.recipeUserNickName}</td>
                     <td>` +createTime + `</td> 
                     <td>\${item.recipeViewCount}</td></tr>
                `;
