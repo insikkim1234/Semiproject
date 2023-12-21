@@ -44,7 +44,7 @@
 	                <img class="img_recipeOrder" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${orderItem.recipeOrderPhoto}" />
 	            </div>
 	            <div class="col ml-4 fs_19">
-	            	<div class="rgyPostIt3">Step1</div>
+	            	<div class="rgyPostIt3">Step<c:out value="${orderItem.recipeNumber}" /></div>
 	                <c:out value="${orderItem.recipeOrderContent}" />
 	            </div>
 	        </div>
