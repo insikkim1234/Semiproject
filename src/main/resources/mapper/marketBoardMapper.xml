@@ -11,6 +11,7 @@
 		<result property="createDate" column="dtCreateDate" />
 		<result property="updateDate" column="dtUpdateDate" />
 		<result property="userName" column="userName" />
+		<result property="userNickName" column="userNickName" />
 
 	</resultMap>
 
@@ -23,7 +24,7 @@
 	</insert>
 	
 	<select id="selectMarketBoardWithPage" parameterType="Map" resultType="MarketBoardDto" resultMap="MarketBoardDtoRm">
-		select tMarketBoard.*, tUser.userName 
+		select tMarketBoard.*, tUser.userName ,tUser.userNickName
 		from tMarketBoard
 		left join tUser
 		on tMarketBoard.nUserSeq=tUser.userSeq
@@ -52,7 +53,7 @@
 	</update>
 	
 	<select id="selectDataByMarketBoardSeq" parameterType="int" resultType="MarketBoardDto" resultMap="MarketBoardDtoRm">
-		select tMarketBoard.*, tUser.userName
+		select tMarketBoard.*, tUser.userName, tUser.userNickName
 		from tMarketBoard
 		left join tUser
 		on tMarketBoard.nUserSeq=tUser.userSeq

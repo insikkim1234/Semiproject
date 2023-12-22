@@ -115,12 +115,15 @@ public class MarketBoardController {
 	
 	//삭제
 	@GetMapping("/mboard/deletecontent")
-	public String deleteMarketBoardContent(@RequestParam int boardSeq,@RequestParam int currentPage)
+	public String deleteMarketBoardContent(@Login MemberDto memberDto, @RequestParam int boardSeq,@RequestParam int currentPage)
 	{
 		//����
 		System.out.println(boardSeq);
+		MarketBoardDto dto=marketBoardService.getData(boardSeq);
+		
+		
 		marketBoardService.deleteMarketBoardContent(boardSeq);
-
+		
 		return "redirect:/mboard";
 	}
 	@GetMapping("/mboard/updateform")

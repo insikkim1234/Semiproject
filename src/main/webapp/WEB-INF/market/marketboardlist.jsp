@@ -59,7 +59,7 @@
 					${dto.boardTitle}
 					</a>
 					</td>
-					<td>${dto.userName}</td>
+					<td>${dto.userNickName}</td>
 					<td><fmt:formatDate value="${dto.createDate}" pattern="yyyy-MM-dd"/></td>
 					<td>${dto.boardViewCount}</td>
 				</tr>
