@@ -646,7 +646,7 @@ div.rgyPostIt3:hover {
   max-width: 350px;
   position: relative;
   /*  숫자 작을수록 가깝게 보이는  */
-  perspective: 800px;
+  perspective: 1000px;
 }
 .hover__wrap > div img {
   width: 100%;
@@ -674,14 +674,14 @@ div.rgyPostIt3:hover {
   margin:0;
 }
 .hover__leftright:hover .front {
-  transform: rotatey(360deg);
+  transform: rotatey(180deg);
 }
 .hover__leftright .back {
-  transform: rotatey(0deg);
+  transform: rotatey(-180deg);
   margin:0;
 }
 .hover__leftright:hover .back {
-  transform: rotatey(360deg);
+  transform: rotatey(0deg);
 }
 
 
@@ -1120,3 +1120,46 @@ background: linear-gradient(0deg, e9ecefd1 0%, e9ecefd1 100%);
 	 animation-delay: 1.6s;
 }
 
+/*login_effect  */
+	.title_login span {
+    font-size:40px;
+    font-weight:600;
+	color:#c12c2f;
+	display:table-cell;
+	padding: 0 5px;
+	box-shadow:inset 0 0 5px #fff, 0 5px 0 #ECD260;
+    animation:jumb 2s 2;
+	}
+	@keyframes jumb {
+		0% {
+			transform:translateY(0px)
+		}
+		50% {
+			transform:translateY(-30px);
+			box-shadow:0 15px 0 rgb(242, 198, 64);
+		}
+		100% {
+			transform:translateY(0px)	
+		}
+	}
+	.title_login span:nth-child(1) {
+		animation-delay:0s;
+	}
+	.title_login span:nth-child(2) {
+		animation-delay:.1s;	
+	}
+	.title_login span:nth-child(3) {
+		animation-delay:.2s;
+	}
+	.title_login span:nth-child(4) {
+		animation-delay:.3s;	
+	}
+	.title_login span:nth-child(5) {
+		animation-delay:.4s;
+	}
+	.title_login span:nth-child(6) {
+		animation-delay:.5s;	
+	}
+	.title_login span:nth-child(7) {
+		animation-delay:.6s;
+	}
