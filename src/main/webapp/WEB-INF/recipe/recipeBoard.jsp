@@ -103,6 +103,23 @@
     /* 추가적인 스타일을 필요에 따라 적용하세요 */
    }
    
+   .card-text {
+ 	height: 35px;
+   }
+   
+   .d-flex justify-content-between align-items-center {
+   height: 10px;
+   }
+   
+   .col-lg-4 col-md-6 {
+   margin-bottom: 40px; /* 원하는 간격으로 조정해보세요 */
+   }
+   
+   .custom-card-margin {
+  margin-bottom: 20px; /* 원하는 간격으로 조정 */
+   }
+  
+   
 </style>
 
 <script type="text/javascript">
@@ -232,7 +249,7 @@ function updatePageNavigation(pageInfo) {
                s+=
                   `
                  <div class="col-lg-4 col-md-6">
-                   <div class="card border-0">
+                   <div class="card border-0 custom-card-margin">
                      <a href="./board/\${item.recipeIdx}">
                        <img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.recipePhoto}" class="card-img-top custom-img">
                      </a>
@@ -252,7 +269,7 @@ function updatePageNavigation(pageInfo) {
                       `;
                   });
 
-                  s += `</div></div></div>`; // 그리드를 닫아주는 부분
+                  s += `</div></div></div><br>`; // 그리드를 닫아주는 부분
                   $(".list").html(s);
                   
                   successCallback(res);
