@@ -19,6 +19,7 @@ public class MarketBoardDto {
 	private Timestamp createDate;
 	private Timestamp updateDate;
 	private String userName;
+	private String userNickName;
 	
 	  @Override
 	    public String toString() {
