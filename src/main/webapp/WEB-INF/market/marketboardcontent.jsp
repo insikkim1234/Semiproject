@@ -195,16 +195,17 @@ function list()
 			<button type="button" class="btn btn-outline-secondary btn-sm"
 				style="width:80px;"
 				onclick="history.back()">목록</button>
-				
+		<c:if test="${sessionScope.login_member_dto != null && sessionScope.login_member_dto.userSeq.equals(mDto.userSeq)}">	
 			<button type="button" class="btn btn-outline-secondary btn-sm"
 				style="width:80px;"
 				onclick="location.href='./updateform?boardSeq=${mDto.boardSeq}'">수정</button>	
-	
-	</div>
-
-				<button type="button" class="btn btn-outline-secondary btn-sm"
+			<button type="button" class="btn btn-outline-secondary btn-sm"
 				style="width: 80px;"
 				onclick="location.href='./deletecontent?boardSeq=${mDto.boardSeq}&currentPage=${currentPage}'">삭제</button>
+		</c:if>
+	</div>
+
+				
 			</div>
 		</div>
 	</div>
