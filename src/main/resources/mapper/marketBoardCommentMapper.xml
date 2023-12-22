@@ -12,6 +12,8 @@
 		<result property="updateDate" column="dtUpdateDate" />
 		<result property="commentParentSeq" column="nCommentParentSeq" />
 		<result property="commentDepth" column="nCommentDepth" />
+		<result property="userNickName" column="userNickName" />
+		
 	</resultMap> 
 	
  	
@@ -21,7 +23,7 @@
 	</insert>
 	
 	<select id="selectAnswerOfboardSeq" parameterType="int" resultType="MarketBoardCommentDto" resultMap="MarketBoardCommentDtoRm">
-		select tMarketBoardComment.*, tUser.userName, tUser.userEmail
+		select tMarketBoardComment.*, tUser.userNickname
 		from tMarketBoardComment
 		left join tUser
 		on tMarketBoardComment.nUserSeq = tUser.userSeq

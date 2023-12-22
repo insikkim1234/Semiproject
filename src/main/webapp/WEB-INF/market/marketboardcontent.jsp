@@ -86,7 +86,7 @@ function list()
 					`
 					
 					
-					\${item.commentUserName}(\${item.commentUserEmail})<br>
+					\${item.userNickName}<br>
 					<span style="margin-left:20px;">\${item.commentContent}</span>
 					&nbsp;
 					

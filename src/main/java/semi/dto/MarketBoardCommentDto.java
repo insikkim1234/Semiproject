@@ -17,6 +17,6 @@ public class MarketBoardCommentDto {
 	private int commentParentSeq;
 	private int commentDepth;
 	
-	private String commentUserName;
+	private String userNickName;
 	private String commentUserEmail;
 }
