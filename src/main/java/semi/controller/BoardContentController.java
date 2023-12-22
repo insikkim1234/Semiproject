@@ -29,16 +29,16 @@ public class BoardContentController {
 	@GetMapping("/board/content")
 	public String content(Model model,@RequestParam int comBoardSeq )
 	{
-		//조회수 증가
+
 		//num 에 해당하는 dto 얻기
 		BoardDto dto=boardService.getData(comBoardSeq);
 		System.out.println(dto+"sadsa확인");
 
+		//조회수 증가
+		boardService.updateReadCount(dto.getComBoardSeq());
+
 		//model 에 저장
-
-
 		model.addAttribute("dto", dto);
-		
 
 		return "board/content";
 	}

@@ -56,7 +56,11 @@ public class BoardService {
 	{
 		boardDao.deleteBoard(comBoardSeq);
 	}
-	
+
+	public void updateReadCount(int num)
+	{
+		boardDao.updateReadCount(num);
+	}
 	
 	//db insert
 			
@@ -124,10 +128,7 @@ public class BoardService {
 		boardDao.insertBoard(dto);		
 	}
 	
-	public void updateReadCount(int num)
-	{
-		boardDao.updateReadCount(num);
-	}
+
 	
 	
 	public void updateBoard(BoardDto dto)
