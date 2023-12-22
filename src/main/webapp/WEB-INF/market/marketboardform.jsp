@@ -31,17 +31,17 @@
 		<div class="row mt-3">
 			<div class="col">
 				<h6 class="cGreen fw_600 mt-2">대표 사진</h6>
-				<input type="file" name="upload1" class="form-control borderGreen" id="product-input" onchange="previewImage(this, 'product-preview')">
+				<input type="file" name="upload1" class="form-control borderGreen" id="product-input" onchange="previewImage(this, 'product-preview')" required>
 				<div id="product-preview"></div>
 			</div>
 			<div class="col">
 				<h6 class="cGreen fw_600 mt-2">물품 사진 1</h6>
-				<input type="file" name="upload2" class="form-control borderGreen" id="product-input2" onchange="previewImage(this, 'product-preview2')">
+				<input type="file" name="upload2" class="form-control borderGreen" id="product-input2" onchange="previewImage(this, 'product-preview2')" required>
 				<div id="product-preview2"></div>
 			</div>
 			<div class="col">
 				<h6 class="cGreen fw_600 mt-2">물품 사진 2</h6>
-				<input type="file" name="upload3" class="form-control borderGreen" id="product-input3" onchange="previewImage(this, 'product-preview3')">
+				<input type="file" name="upload3" class="form-control borderGreen" id="product-input3" onchange="previewImage(this, 'product-preview3')" required>
 				<div id="product-preview3"></div>
 			</div>
 		</div>
