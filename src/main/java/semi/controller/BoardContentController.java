@@ -24,6 +24,7 @@ import semi.service.BoardService;
 public class BoardContentController {
 	private BoardDao boardDao;
 	private BoardService boardService;
+	private AnswerDao answerDao;
 	
 	//게시판 조회
 	@GetMapping("/board/content")
@@ -72,6 +73,27 @@ public class BoardContentController {
 		boardDao.updateBoard(dto);
 		return "redirect:./content?comBoardSeq="+num;
 	}
+	
+	
+	
+	//댓글 추가
+		@PostMapping("/board/addanswer")
+		public String addAnswer(@ModelAttribute AnswerDto dto,@RequestParam String nickname, @RequestParam String content,
+				@RequestParam int num)
+		{
+			//댓글 추가
+			
+			dto.setComBoardCommentName(nickname);
+			dto.setComBoardCommentMsg(content);
+			dto.setComBoardCommentSeq(num);
+			answerDao.insertAnswer(dto);
+			
+			
+			return "redirect:./content?comBoardSeq="+dto.getComBoardCommentSeq();
+		}
+	
+
+	
 	
 	@GetMapping("/board/delete")
 	public String delete(@RequestParam int comBoardSeq)
