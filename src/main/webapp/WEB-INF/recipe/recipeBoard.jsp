@@ -272,7 +272,7 @@ function updatePageNavigation(pageInfo) {
                s+=
                   `
                  <div class="col-lg-4 col-md-6">
-                   <div class="card border-0 custom-card-margin">
+                   <div class="card yellow_dashed custom-card-margin">
                      <a href="./board/\${item.recipeIdx}">
                        <img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.recipePhoto}" class="card-img-top custom-img">
                      </a>

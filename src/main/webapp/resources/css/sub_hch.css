@@ -1316,3 +1316,16 @@ background: linear-gradient(0deg, e9ecefd1 0%, e9ecefd1 100%);
 	} 
 }
  	
+ .inset_shadow{
+ 	box-shadow: inset 4px 4px 8px -4px #212529;
+ }
+ 
+ .inset_shadow2 {
+    box-shadow: inset 2px 2px 6px -4px #212529;
+}
+
+.yellow_dashed{
+	border:3px dashed #ECD260;
+	box-sizing: border-box;
+	border-radius: 5px;
+}

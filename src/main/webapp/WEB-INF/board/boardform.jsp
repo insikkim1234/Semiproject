@@ -39,18 +39,18 @@
 	</div>
 	<form action="./insertBoard" method="post" enctype="multipart/form-data">
 		<h6 class="cGreen fw_600 mt-4">제목</h6>
-		<input type="text" name="comBoardSubject" class="form-control borderGreen bg_red"
+		<input type="text" name="comBoardSubject" class="form-control borderGreen bg_red inset_shadow"
 			   required autofocus placeholder="제목">
 		<h6 class="cGreen fw_600 mt-2 p-0">사진</h6>
-		<input type="file" name="upload" class="form-control borderGreen bg_red" id="product-input" onchange="previewImage(this, 'product-preview')">
+		<input type="file" name="upload" class="form-control borderGreen bg_red inset_shadow" id="product-input" onchange="previewImage(this, 'product-preview')">
 		<div id="product-preview"></div>
 		<h6 class="cGreen fw_600 mt-3">잡담은 여기에</h6>
-		<textarea name="comBoardContent" class="form-control borderGreen bg_red" required
+		<textarea name="comBoardContent" class="form-control borderGreen bg_red inset_shadow" required
 				  style="width: 100%;height: 200px;"
 				  placeholder="게시글의 내용을 작성해주세요."></textarea>
-		<div class="text-center">
-			<button type="submit" class="btn-3d red fw_600 mt-5">잡담등록</button>
-			<button type="button" class="btn-3d red fw_600 mt-5 ml-2" onclick="history.back()">목록으로</button>
+		<div class="text-center mt-4">
+			<button type="submit" class="btn-3d red fw_600">잡담등록</button>
+			<button type="button" class="btn-3d red fw_600 ml-2" onclick="history.back()">목록으로</button>
 		</div>
 	</form>
 </div>
