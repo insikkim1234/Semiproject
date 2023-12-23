@@ -45,12 +45,14 @@ $(function() {
     });
     $(document).on("click",".ansdel",function(){
     	let commentSeq=$(this).attr("commentSeq");
+    	let boardSeq=$(this).attr("boardSeq");
     	
     	$.ajax({
     		type:"get",
     		dataType:"text",
     		url:"./delete",
-    		data:{"commentSeq":commentSeq},
+    		data:{"commentSeq":commentSeq,
+    			"boardSeq":boardSeq},
     		success:function(res){
     			list();
     		}
@@ -74,34 +76,31 @@ function list()
 		success:function(res){
 			let length=res.length;
 			let datas=res.data;
-			console.log(length);
+			
 			
 			$("#answercount").text("댓글 "+length);
 				
-			let s="";
 				
-			$.each(datas,function(idx,item){
-				
-				s+=					
-					`
-					
-					
-					\${item.userNickName}<br>
-					<span style="margin-left:20px;">\${item.commentContent}</span>
-					&nbsp;
-					
-					<span style="color:gray;font-size:0.9em;">\${item.createDate}</span>
-					
-					<c:if test="\${sessionScope.login_member_dto != null && sessionScope.login_member_dto.userSeq.equals(mDto.userSeq)}">
-					
-					s+=`<i class="bi bi-trash ansdel" commentSeq="\${item.commentSeq}"></i>`;
-					</c:if>
-					`;
-				
-				
-				s+="<br>";
-				s+="<hr>";
+			var s = ''; // 반복문 외부에서 s 변수를 초기화
+
+			$.each(datas, function (idx, item) {
+			    // 각 항목을 s에 추가
+			    s += `
+			        \${item.userNickName}<br>
+			        <span style="margin-left:20px;">\${item.commentContent}</span>
+			        &nbsp;
+			        <span style="color:gray;font-size:0.9em;">\${item.createDate}</span>
+
+			    
+			        <i class="bi bi-trash ansdel" commentSeq="\${item.commentSeq}"
+			         boardSeq="\${item.boardSeq}"></i>
+			    
+			        `;			  
+			     s += "<br>";
+			    s += "<hr>";
 			});
+
+
 		
 			$("div.answerlist").html(s);
 	    }
