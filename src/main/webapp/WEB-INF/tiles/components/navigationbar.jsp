@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <c:set var="root" value="<%=request.getContextPath()%>"/>
-<div style="box-shadow: 0 5px 30px -10px #4950578f">
+<div style="box-shadow: 0 10px 30px -10px #4950578f; border-bottom:3px dashed #c12c2f">
 <div class="mw_1200">
 	<nav class="navbar navbar-expand-sm d-flex flex-column">
 	  <div class="container-fluid">

@@ -335,7 +335,7 @@ a:hover, a:focus {
 }
 
 .blist>.table thead th {
-    border-bottom: 1px solid #4b4b4b;
+    border-bottom: 3px dashed #ECD260;
     border-top: 0;
 }
  .cBlack>a{
