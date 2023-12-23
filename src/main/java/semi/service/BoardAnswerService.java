@@ -11,11 +11,11 @@ public class BoardAnswerService {
 @Autowired
 private AnswerDao answerDao;
 
-private int insertComment(AnswerDto adto)
-{
-	return answerDao.insertComment(adto);
-	
-}
+//private int insertComment(AnswerDto adto)
+//{
+//	return answerDao.insertComment(adto);
+//
+//}
 
 
 
