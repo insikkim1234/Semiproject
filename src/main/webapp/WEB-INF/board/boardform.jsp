@@ -37,6 +37,8 @@
 		<a href="${pageContext.request.contextPath}/board/list">자취생 커뮤니티</a><span class="fs_18 mx-1">></span>
 		<a href="${pageContext.request.contextPath}/board/form">글쓰기</a>
 	</div>
+	<!-- <h3 class="cGreen fw_600 text-center fs_40 my-3">내 입담 뽐내기</h3> -->
+	<h3 data-shadow='SAY Anything!' class="form_title text-center my-3">SAY Anything!</h3>
 	<form action="./insertBoard" method="post" enctype="multipart/form-data">
 		<h6 class="cGreen fw_600 mt-4">제목</h6>
 		<input type="text" name="comBoardSubject" class="form-control borderGreen bg_red inset_shadow"

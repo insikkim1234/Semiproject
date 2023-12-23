@@ -25,39 +25,39 @@
 		</div> --%>
 		<h3 class="cGreen fw_600 text-center fs_40 my-3">나의 물품 판매</h3>
 		<h6 class="cGreen fw_600 mt-4">제목</h6>
-		<input type="text" name="boardTitle" class="form-control borderGreen"
+		<input type="text" name="boardTitle" class="form-control borderGreen bg_red inset_shadow"
 		required autofocus value="${mDto.boardTitle}" placeholder="제목">
 		<div class="row mt-3">
 			<div class="col">
 				<h6 class="cGreen fw_600 mt-2">대표 사진</h6>
-				<input type="file" name="upload1" class="form-control borderGreen" id="product-input" onchange="previewImage(this, 'product-preview')">
+				<input type="file" name="upload1" class="form-control borderGreen bg_red inset_shadow" id="product-input" onchange="previewImage(this, 'product-preview')">
 				<div id="product-preview"></div>
 			</div>
 			<div class="col">
 				<h6 class="cGreen fw_600 mt-2">물품 사진 1</h6>
-				<input type="file" name="upload2" class="form-control borderGreen" id="product-input2" onchange="previewImage(this, 'product-preview2')">
+				<input type="file" name="upload2" class="form-control borderGreen bg_red inset_shadow" id="product-input2" onchange="previewImage(this, 'product-preview2')">
 				<div id="product-preview2"></div>
 			</div>
 			<div class="col">
 				<h6 class="cGreen fw_600 mt-2">물품 사진 2</h6>
-				<input type="file" name="upload3" class="form-control borderGreen" id="product-input3" onchange="previewImage(this, 'product-preview3')">
+				<input type="file" name="upload3" class="form-control borderGreen bg_red inset_shadow" id="product-input3" onchange="previewImage(this, 'product-preview3')">
 				<div id="product-preview3"></div>
 			</div>
 		</div>
 		
 		<h6 class="cGreen fw_600 mt-3">희망 가격</h6>
-		<input type="text" name="productPrice" class="form-control borderGreen" required autofocus value="${pDto.productPrice}"
+		<input type="text" name="productPrice" class="form-control borderGreen bg_red inset_shadow" required autofocus value="${pDto.productPrice}"
 		placeholder="￦ 가격을 입력해주세요. [예 : 5000]">
 		<h6 class="cGreen fw_600 mt-3">거래 희망 장소</h6>
-		<input type="text" name="productPlace" class="form-control borderGreen" autofocus value="${pDto.productPlace}"
+		<input type="text" name="productPlace" class="form-control borderGreen bg_red inset_shadow" autofocus value="${pDto.productPlace}"
 		placeholder="희망하는 거래 위치를 입력해주세요.">
 		<h6 class="cGreen fw_600 mt-3">자세한 설명</h6>
-		<textarea name="productContent" class="form-control borderGreen" required
+		<textarea name="productContent" class="form-control borderGreen bg_red inset_shadow" required
 			style="width: 100%;height: 200px;"
-			placeholder="게시글의 내용을 작성해주세요. "></textarea>
+			placeholder="게시글의 내용을 수정해주세요. "></textarea>
 		<div class="text-center">
-			<button type="submit" class="btn btn_product_input mt-3">물품등록</button>
-			<button type="button" class="btn btn_product_input mt-3 ml-2" onclick="history.back()">목록으로</button>
+			<button type="submit" class="btn-3d red mt-4">수정완료</button>
+			<button type="button" class="btn-3d red mt-4 ml-2" onclick="history.back()">목록으로</button>
 		</div>
 		
 	</form>

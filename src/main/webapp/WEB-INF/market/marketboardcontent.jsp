@@ -123,56 +123,51 @@ function list()
 		<span>고</span><span>민</span><span>하</span><span>다</span><span>&nbsp;</span><span>뺏</span><span>긴</span><span>다</span><span>?</span>
 	</div>
 	<div class="r-detail"></div>
-		<div class="div_detail mt-3">
-			<div class="div_detailItem">
-				<div class="rtitle_border">
-					<div class="fs_28 fw_600 cBlack text-center">
-							<div class="rgyPostIt2 mr-3">중고물품 #${mDto.boardSeq}</div>${mDto.boardTitle}
-					</div>
-					<div class="text-end mt-2">
-						<span class="detailWriter"><i class="bi bi-person-fill fs_19"></i></span>
-						<b>${mDto.userNickName}</b>&nbsp;
-						<span><i class="bi bi-three-dots-vertical"></i></span>&nbsp;
-						<span class="detailViewCount"><i class="bi bi-eye-fill fs_19"></i></span>
-						<b>${mDto.boardViewCount}</b>
-					</div>
-					
-					
-					
-					<div class="col text-end my-1">
-						<span class="detailCreatedAt">작성일 : </span>
-						<b><fmt:formatDate value="${mDto.createDate}" pattern="yyyy-MM-dd"/></b>&nbsp;
-						<span class="detailUpdatedAt">수정일 : </span>
-						<b><fmt:formatDate value="${mDto.updateDate}" pattern="yyyy-MM-dd"/></b> 
-					</div>
-					
-	</div>	
+		<div class="mt-4 content-border">
+			<div class="fs_30 mt-2 fw_600 px-2">${mDto.boardTitle}</div>
+			<div class="row px-2 mt-2">
+				<div class="col">
+					<span><i class="bi bi-person-fill fs_17 mr-2"></i><b>${mDto.userNickName}</b></span>&nbsp;
+					<span><i class="bi bi-three-dots-vertical"></i></span>&nbsp; <span
+						class="day"><i class="bi bi-eye-fill fs_17 mr-2"></i><b>${mDto.boardViewCount}</b></span>
+
+					<c:if test="${sessionScope.login_member_dto != null && sessionScope.login_member_dto.userSeq.equals(mDto.userSeq)}">	
+						<button type="button" class="btn-3d red2 ml-3"
+							onclick="location.href='./updateform?boardSeq=${mDto.boardSeq}'">수정</button>	
+						<button type="button" class="btn-3d red2 ml-1"
+							onclick="location.href='./deletecontent?boardSeq=${mDto.boardSeq}&currentPage=${currentPage}'">삭제</button>
+					</c:if>
+				</div>
+				<div class="col text-right">
+					<span class="detailCreatedAt">작성일 : </span>
+					<b><fmt:formatDate value="${mDto.createDate}" pattern="yyyy-MM-dd"/></b>&nbsp;
+					<span class="detailUpdatedAt">수정일 : </span>
+					<b><fmt:formatDate value="${mDto.updateDate}" pattern="yyyy-MM-dd"/></b> 
+				</div>
+			</div>	
+		</div>	
 	<hr>
-<div class="text-center">
-	<b>대표 사진</b>
-    <img class="detail_img" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${mDto.boardImage}" width="200" height="200">
-	&nbsp;
 	
-</div>
-<br><br>
-<div class="text-center">
-    <div class="d-inline-block">
-    	<b>물품 사진1</b>
-        <img class="detail_img1" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${pDto.productImage1}" width="200" height="200">
-    	&nbsp;
-		
-    </div>
-    <div class="d-inline-block">
-    	<b>물품 사진2</b>
-        <img class="detail_img2" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${pDto.productImage2}" width="200" height="200">
-    	  &nbsp;
-		
-    </div>
-</div>
-	<div class="detailContent">
-				<div class="cGreen fw_600 fs_24 mt-2 nanumfont">가격: ${pDto.productPrice}</div>
-				<div class="cGreen fw_600 fs_24 mt-2 nanumfont">교환 장소 :${pDto.productPlace}</div>
-				<pre class="m-0 py-3 fs_16">${pDto.productContent}</pre>
+	<div class="text-center">
+		<div class="mt-3">
+	    	<img class="img-fluid" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${mDto.boardImage}" style="width: 40%">
+		</div>
+	    <div class="mt-3">
+	        <img class="img-fluid" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${pDto.productImage1}"style="width: 40%">
+	    </div>
+	    <div class="mt-3">
+	        <img class="img-fluid" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${pDto.productImage2}" style="width: 40%">
+	    </div>
+	</div>
+
+	<div class="d-flex justify-content-center">
+		<div class="cGreen fw_600 fs_18 mt-5 bg_red inset_shadow2 borderGreen br_5" style="width: 30%">&nbsp;거래 희망 가격 : ${pDto.productPrice}</div>
+	</div>
+	<div class="d-flex justify-content-center">
+		<div class="cGreen fw_600 fs_18 mt-3 bg_red inset_shadow2 borderGreen br_5" style="width: 30%">&nbsp;거래 희망 장소 : ${pDto.productPlace}</div>
+	</div>
+	<div class="text-center">
+		<pre class="m-0 py-3 fs_17">${pDto.productContent}</pre>
 	</div>
 	
 		
@@ -183,27 +178,16 @@ function list()
 			</div>
 	
 			<div class="answerform input-group">
-				<input type="text" class="form-control" style="width:300px;" placeholder="댓글내용"
+				<input type="text" class="bg_red inset_shadow2 mt-2" style="border:0; width:93%" placeholder="댓글내용"
 				id="answermsg">
-				<button type="button" class="btn-sm btn btn-outline-success" id="btnansweradd">저장</button>	
+				<button type="button" class="btn-3d red ml-3" id="btnansweradd" style="border-radius: 5px;">저장</button>	
 			</div>
-			
-			<button type="button" class="btn btn-outline-secondary btn-sm"
-				style="width:80px;"
-				onclick="history.back()">목록</button>
-		<c:if test="${sessionScope.login_member_dto != null && sessionScope.login_member_dto.userSeq.equals(mDto.userSeq)}">	
-			<button type="button" class="btn btn-outline-secondary btn-sm"
-				style="width:80px;"
-				onclick="location.href='./updateform?boardSeq=${mDto.boardSeq}'">수정</button>	
-			<button type="button" class="btn btn-outline-secondary btn-sm"
-				style="width: 80px;"
-				onclick="location.href='./deletecontent?boardSeq=${mDto.boardSeq}&currentPage=${currentPage}'">삭제</button>
-		</c:if>
 	</div>
-
-				
-			</div>
-		</div>
-	</div>
+	<hr>
+	<div class="text-center">
+		<button type="button" class="btn-3d red mt-3"
+			style="width:80px;" onclick="history.back()">목록으로
+		</button>
+	</div>				
 </div>
 </body>
