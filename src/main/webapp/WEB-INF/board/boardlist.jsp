@@ -70,7 +70,7 @@
 							</a>
 						</td>
 						<td>${dto.userName}</td>
-						<td><fmt:formatDate value="${dto.writeDay}" pattern="yyyy-MM-dd HH:mm"/></td>
+						<td><fmt:formatDate value="${dto.writeDay}" pattern="yyyy-MM-dd"/></td>
 						<td>${dto.comBoardviewCount}</td>
 					</tr>
 				</c:forEach>
