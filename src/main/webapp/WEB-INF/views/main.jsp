@@ -70,7 +70,7 @@ img {
 }
 
 .main_swiper>.swiper-wrapper>.swiper-slide{
-	padding-bottom: 8em;
+	padding-bottom: 7em;
 }
 
 div.main_effect {
@@ -168,7 +168,7 @@ $(document).ready(function () {
       <!-- <p>프로 자취러 진화중..</p> -->
       <div class="main_effect mb-2 text-center fw_600"><span>프</span><span>로</span><span>&nbsp;</span><span>자</span><span>취</span><span>러</span><span>&nbsp;</span><span>진</span><span>화</span><span>중</span><span>.</span><span>.</span><span>!</span></div>
       <div class="bar">
-        <div class="back"></div>
+        <div class="back1"></div>
       </div>
   </div>
   <div class="swiper-pagination"></div>

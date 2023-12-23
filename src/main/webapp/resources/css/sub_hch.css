@@ -1120,6 +1120,15 @@ background: linear-gradient(0deg, e9ecefd1 0%, e9ecefd1 100%);
  .mboard_effect>span:nth-of-type(6) {
 	 animation-delay: 1.6s;
 }
+ .mboard_effect>span:nth-of-type(7) {
+	 animation-delay: 1.7s;
+}
+ .mboard_effect>span:nth-of-type(8) {
+	 animation-delay: 1.8s;
+}
+ .mboard_effect>span:nth-of-type(9) {
+	 animation-delay: 1.9s;
+}
 
 /*login_effect  */
 	.title_login span {
