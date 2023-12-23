@@ -13,19 +13,19 @@ public class AnswerDao {
 	
 	private String nameSpace="semi.dao.AnswerDao.";
 	
-	public void insertAnswer(AnswerDto dto)
+	public void insertAnswer(AnswerDto adto)
 	{
-		session.insert(nameSpace+"insertAnswer", dto);
+		session.insert(nameSpace+"insertAnswer", adto);
 	}
 	
-	public List<AnswerDto> getAnswers(int nComBoardCommentSeq)
+	public List<AnswerDto> getAnswers(int comBoardCommentSeq)
 	{
-		return session.selectList(nameSpace+"selectAnswerByNum",nComBoardCommentSeq);
+		return session.selectList(nameSpace+"selectAnswerByNum",comBoardCommentSeq);
 	
 	}
-	public void deleteAnswer(int nComBoardCommentIdx)
+	public void deleteAnswer(int comBoardCommentIdx)
 	{
-		session.delete(nameSpace+"deleteAnswer", nComBoardCommentIdx);
+		session.delete(nameSpace+"deleteAnswer", comBoardCommentIdx);
 	}
 	
 	
