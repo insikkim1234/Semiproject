@@ -113,22 +113,17 @@ function list()
 </script>
 </head>
 <body>
-<div class="mw_1200">
+<div class="mw_1000">
 	<div class="fw_500 cBlack mt-5">
 		<a href="${pageContext.request.contextPath}">HOME</a><span class="fs_18 mx-1">></span>
 		<a href="${pageContext.request.contextPath}/mboard">벼룩시장</a><span class="fs_18 mx-1">></span>
 		<a href="${pageContext.request.contextPath}/mboard/content">상세 페이지</a>
 	</div>
-	<div class="wrapper2 mt-3">
-		<div class="focus2">
-		    중고마켓
-		</div>
-		<div class="mask2">
-		   <div class="text2">중고마켓</div>
-  		</div>
+	<div class="fs_40 fw_600 cGreen text_left mt-3 mboard_effect">
+		<span>고</span><span>민</span><span>하</span><span>다</span><span>&nbsp;</span><span>뺏</span><span>긴</span><span>다</span><span>?</span>
 	</div>
 	<div class="r-detail"></div>
-		<div class="div_detail mt-3" style="background: #ecd26017;">
+		<div class="div_detail mt-3">
 			<div class="div_detailItem">
 				<div class="rtitle_border">
 					<div class="fs_28 fw_600 cBlack text-center">
