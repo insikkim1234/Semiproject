@@ -42,14 +42,14 @@
 
     <!-- The slideshow -->
     <div class="carousel-inner">
-        <div class="carousel-item active" style="width: 100%">
-           <a href="board/list"><img class="covered" src="${root}/resources/photo/community.png/" alt="커뮤니티"></a>
+        <div class="carousel-item active">
+           <a href="board/list"><img class="covered" src="${root}/resources/photo/comu.png/" alt="커뮤니티"></a>
         </div>
         <div class="carousel-item">
-            <a href="recipe/board"><img class="covered" src="${root}/resources/photo/recipebook.png/" alt="레시피북"></a>
+            <a href="recipe/board"><img class="covered" src="${root}/resources/photo/food.png/" alt="레시피북"></a>
         </div>
         <div class="carousel-item">
-            <a href="mboard"><img class="covered" src="${root}/resources/photo/fleamarket.png/" alt="벼룩시장"></a>
+            <a href="mboard"><img class="covered" src="${root}/resources/photo/flea.png/" alt="벼룩시장"></a>
         </div>
     </div>
 
