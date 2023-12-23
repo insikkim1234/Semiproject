@@ -76,7 +76,7 @@
 			  <c:choose>
 				  <c:when test="${empty sessionScope.login_member_dto.userImage}">
 					  <!-- 기본 이미지 -->
-					  <img src="${root}/resources/photo/apple.png" alt="기본 프로필 사진" class="pro_img img-fluid">
+					  <img src="${root}/resources/photo/tomato.png" alt="기본 프로필 사진" class="pro_img img-fluid">
 				  </c:when>
 				  <c:otherwise>
 					  <!-- 세션에 저장된 사용자 프로필 이미지 -->
