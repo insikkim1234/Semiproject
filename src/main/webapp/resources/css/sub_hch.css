@@ -1,5 +1,6 @@
 @charset "utf-8";
 @import url(https://fonts.googleapis.com/css?family=Signika:700,300,600);
+@import url(https://fonts.googleapis.com/css?family=Righteous);
 *:after, *:before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -426,7 +427,8 @@ a:hover, a:focus {
  
 /*mboardlist.jsp  */
 .mboardlist_body>tr>td>#marketcontent:hover{
-	color: #11B560;
+	color: #c12c2f;
+	font-weight: 600;
 } 
 
 
@@ -1343,3 +1345,45 @@ background: linear-gradient(0deg, e9ecefd1 0%, e9ecefd1 100%);
 .recipe_img{
 	width: 60%;
 }
+
+/*form_title  */
+h3.form_title, h3.form_title:before, h3.form_title:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+  }
+
+h3.form_title {
+  display: inline-block;
+  color: #c12c2f;
+  font-family: 'Righteous', serif;
+  font-size: 60px; 
+  text-shadow: .03em .03em 0 #ECD260;
+  }
+  h3.form_title:after {
+    content: attr(data-shadow);
+    position: absolute;
+    top: .06em; left: -0.09em;
+    z-index: -1;
+    text-shadow: none;
+    background-image:
+      linear-gradient(
+        45deg,
+        transparent 45%,
+        #000,
+        #000 55%,
+        transparent 0
+        );
+    background-size: .05em .05em;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  
+    animation: shad-anim 15s linear infinite;
+    }
+
+@keyframes shad-anim {
+  0% {background-position: 0 0}
+  0% {background-position: 100% -100%}
+  }
+
