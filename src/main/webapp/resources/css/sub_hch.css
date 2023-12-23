@@ -333,12 +333,14 @@ a:hover, a:focus {
 .blist>table {
  /*  border: 2px solid #11B560; */
   box-sizing: border-box; /* box-sizing 속성 설정 */
+  border-bottom: 3px dashed #ECD260;
 }
 
 .blist>.table thead th {
     border-bottom: 3px dashed #ECD260;
     border-top: 0;
 }
+
  .cBlack>a{
  	color:#6b6b6b;
  }

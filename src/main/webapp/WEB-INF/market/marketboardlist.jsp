@@ -73,8 +73,8 @@
 		<div class="col-2">
 		<c:choose>
 			<c:when test="${pageDto.curPage > 1}">
-				<a href="${pageContext.request.contextPath}/mboard?currentPage=1" class="btn_green3 mx-1 fs_18">처음</a>
-				<a href="${pageContext.request.contextPath}/mboard?currentPage=${pageDto.curPage - 1}" class="btn_green3 fs_18">이전</a>
+				<a href="${pageContext.request.contextPath}/mboard?currentPage=1" class="btn-3d red mx-1 fs_18">처음</a>
+				<a href="${pageContext.request.contextPath}/mboard?currentPage=${pageDto.curPage - 1}" class="btn-3d red fs_18">이전</a>
 			</c:when>
 		</c:choose>
 		</div>
