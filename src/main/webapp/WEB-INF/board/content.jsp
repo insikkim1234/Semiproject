@@ -75,11 +75,11 @@ $(document).ready(function () {
 						class="day"><i class="bi bi-eye-fill fs_17 mr-2"></i><b>${dto.comBoardviewCount}</b></span>
 
 					<button type="button"
-						class="btn-3d red ml-3 fw_500"
+						class="btn-3d red2 ml-3 fw_500"
 						onclick="location.href='./updateform?comBoardSeq=${dto.comBoardSeq}'">수정</button>
 
 					<button type="button"
-						class="btn ml-1 fw_500"
+						class="btn-3d red2 ml-1 fw_500"
 						onclick="location.href='./delete?comBoardSeq=${dto.comBoardSeq}'">삭제</button>
 				</div>
 				<div class="col text-right">
@@ -90,7 +90,7 @@ $(document).ready(function () {
 			<div class="content-border mt-3 py-2">
 				<pre style="min-height: 300px;" class="fs_16 px-2">${dto.comBoardContent}</pre>
 				<div class="content-border py-2">
-					<i class="bi bi-chat-dots ml-3 "></i> &nbsp;${acount}
+					<i class="bi bi-chat-dots ml-3 "></i> &nbsp;${dto.acount}
 				</div>
 				<c:forEach var="adto" items="${datas}">
 					<span>${adto.nickname} : ${adto.content}</span>
@@ -101,8 +101,8 @@ $(document).ready(function () {
 
 					<br>
 				</c:forEach>
-				<div style="margin-bottom: 10px; border-bottom: 1px solid #c5c5c5;">
-					<div class="answerlist" style="margin-left: 10px;">댓글목록 나올곳</div>
+				<div style="padding-bottom: 15px; border-bottom: 1px solid #c5c5c5;">
+					<div class="answerlist" style="margin-left: 10px;">댓글</div>
 
 
 
@@ -111,9 +111,9 @@ $(document).ready(function () {
 						<input type="hidden" name=comBoardCommentSeq
 							value="${dto.comBoardSeq}">
 						<div class="input-group content_comment px-2">
-							<input type="text" name="comBoardCommentName" class="input1"
+							<input type="text" name="comBoardCommentName" class="input1 bg_red inset_shadow2"
 								placeholder="닉네임"> <input type="text"
-								name="comBoardCommentMsg" class="col input2" placeholder="댓글">
+								name="comBoardCommentMsg" class="col input2 bg_red inset_shadow2" placeholder="댓글">
 
 							<button type="button" id="saveBtn"
 								class="btn-3d red px-3 ml-2">저장</button>
@@ -121,10 +121,11 @@ $(document).ready(function () {
 					</div>
 
 
+					
+					</div>
 					<div class="text-center mt-4">
 						<button type="button" class="btn-3d red fw_600"
 							onclick="location.href='./list'">목록으로</button>
-					</div>
 					</div>
 				</div>
 			</div>

@@ -24,7 +24,11 @@
 		</if>
 	</select>
 	<select id="selectDataByNum" parameterType="int" resultType="BoardDto" resultMap="BoardDtoRm">
-	select * from tComBoard where nComBoardSeq=#{comBoardSeq}
+	select tComBoard.*, tUser.userName 
+	from tComBoard 
+	left join tUser
+	on tComBoard.nComBoardUserSeq=tUser.userSeq
+	where nComBoardSeq=#{comBoardSeq}
 	</select>
 	<insert id="insertBoard" parameterType="BoardDto">
 		INSERT INTO tComBoard

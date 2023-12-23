@@ -14,12 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 import annotation.Login;
 import semi.dao.MarketBoardCommentDao;
 import semi.dto.MarketBoardCommentDto;
+import semi.dto.MarketBoardDto;
 import semi.dto.MemberDto;
 import semi.service.MarketBoardCommentService;
+import semi.service.MarketBoardService;
 
 @RestController
 public class MarketBoardRestController {
 	@Autowired MarketBoardCommentService marketBoardCommentService;
+	@Autowired MarketBoardService marketBoardService;
 	@Autowired private MarketBoardCommentDao marketBoardCommentDao;
 
 	@PostMapping("/mboard/insertAnswer")
@@ -60,9 +63,15 @@ public class MarketBoardRestController {
 	}
 	
 	@GetMapping("/mboard/delete")
-	public void deleteAnswer(@RequestParam int commentSeq)
+	public void deleteAnswer(@Login MemberDto memberDto, @RequestParam int commentSeq
+			,@RequestParam int boardSeq)
 	{
+		
+		MarketBoardDto mDto=marketBoardService.getData(boardSeq);
+		if(memberDto.getUserSeq()==mDto.getUserSeq())
+		{	
 		marketBoardCommentService.deleteAnswer(commentSeq);
+		}
 	}
 
 	
