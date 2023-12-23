@@ -87,7 +87,7 @@
     flex-wrap: wrap;
     gap: 10px;
     color: #c12c2f;
-    margin-top: 20px; /* 필요한 경우 여유 공간 조정 */
+    margin-bottom: 20px; */ /* 필요한 경우 여유 공간 조정 */
     /* 추가적인 스타일을 필요에 따라 적용하세요 */
    }
 
@@ -264,7 +264,7 @@ function updatePageNavigation(pageInfo) {
             console.log(totalCount);
             showTotalCount(totalCount);
 
-            let s = `<div class="album py-5">
+            let s = `<div class="album pt-5 pb-4" style="border-bottom: 3px solid #ecd260">
             <div class="container"><div class="row row-cols-3">`;
             
             $.each(datas,function(idx,item){
@@ -280,7 +280,7 @@ function updatePageNavigation(pageInfo) {
                        <p class="card-text"><b>\${item.recipeTitle}</b></p>
                        <div class="d-flex justify-content-between align-items-center">
                       	 <div class="recipe-writer d-flex align-items-center">
-                      	<img class="user_img" src="<%=NcpObjectStorageService.STORAGE_PROFILE_PHOTO_PATH%>\${item.recipeUserSeq}" onerror="this.src='<%=request.getContextPath()%>/resources/photo/apple.png';">
+                      	<img class="user_img" src="<%=NcpObjectStorageService.STORAGE_PROFILE_PHOTO_PATH%>\${item.recipeUserSeq}" onerror="this.src='<%=request.getContextPath()%>/resources/photo/tomato.png';">
                        		<p class="m-0 ms-0">\${item.recipeUserNickName}</p>
                   		 </div>
                   		<small class="text-body-secondary" style="padding-top: 15px; padding-bottom: 17px;">조회수&nbsp;\${item.recipeViewCount}</small>
