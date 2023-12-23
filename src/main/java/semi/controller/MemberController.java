@@ -6,6 +6,7 @@ import com.mysql.cj.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 import naver.storage.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ import java.util.HashMap;
 public class MemberController {
     @Autowired
     private ObjectMapper objectMapper;
-
+//
     @Autowired
     private MemberService memberService;
 
@@ -149,8 +150,10 @@ public class MemberController {
     // 로그인 실행 로직 메서드
     @PostMapping("/login")
     public String loginExcute(@ModelAttribute MemberDto memberDto, HttpSession httpSession, RedirectAttributes redirectAttributes) {
-        MemberDto loginMember = memberService.getMember(memberDto);
 
+        System.out.println(memberDto);
+        MemberDto loginMember = memberService.getMember(memberDto);
+        System.out.println(loginMember);
         if (loginMember != null
                 && memberService.validatePassword(memberDto.getUserPassword(), loginMember.getUserPassword())) {
             httpSession.setMaxInactiveInterval(60*60*6);

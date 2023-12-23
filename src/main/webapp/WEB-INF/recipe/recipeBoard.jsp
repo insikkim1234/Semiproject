@@ -79,13 +79,6 @@
         height: 250px; /* 원하는 높이(px 등)로 조정 */
     }
     
-    .pageNumber {
-    color: black; /* 또는 다른 원하는 색상 */
-   }
-   
-    .first-last-page, .prev-next-page {
-    color: black; /* 또는 원하는 다른 색상 */
-   }
    
     .pageWrap {
     display: flex;
@@ -93,6 +86,7 @@
     align-items: center; /* 수직 가운데 정렬 */
     flex-wrap: wrap;
     gap: 10px;
+    color: #c12c2f;
     margin-top: 20px; /* 필요한 경우 여유 공간 조정 */
     /* 추가적인 스타일을 필요에 따라 적용하세요 */
    }
@@ -100,8 +94,54 @@
    .pageNation {
     display: inline-block;
     margin: 5px;
+    color: #c12c2f;
     /* 추가적인 스타일을 필요에 따라 적용하세요 */
    }
+   
+   .card-text {
+ 	height: 35px;
+   }
+   
+   .d-flex justify-content-between align-items-center {
+   height: 10px;
+   }
+   
+   .pageNumber {
+	font-size: 22px;
+	color: #c12c2f;
+	
+   
+	}
+   
+   .col-lg-4 col-md-6 {
+   margin-bottom: 40px; /* 원하는 간격으로 조정해보세요 */
+   }
+   
+   .custom-card-margin {
+  margin-bottom: 20px; /* 원하는 간격으로 조정 */
+   }
+  
+  .btn-3d {
+	position: relative;
+	display: inline-block;
+	font-size: 16px;
+	color: #c12c2f;
+	border-radius: 6px;
+	text-align: center;
+	transition: top .01s linear;
+	text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+	top: -9px;
+    padding: 0 10px;
+    border: 0;
+}
+.btn-3d.red:hover {
+	background-color: #ECD260;
+	color: #c12c2f;
+}
+
+.btn-3d:active {
+	top: 0px;
+}
    
 </style>
 
@@ -118,11 +158,11 @@ function updatePageNavigation(pageInfo) {
     let paginationHTML = `<div class="pageNation">`;
 
     if (pageInfo.currentPage > 1) {
-        paginationHTML += `<a href="/semi/recipe/board?page=1" class="first-last-page"><<</a>`;
+        paginationHTML += `<a href="/semi/recipe/board?page=1" class="btn-3d red"><<</a>`;
     }
 
     if (pageInfo.currentPage > 1) {
-        paginationHTML += `<a href="/semi/recipe/board?page=${pageInfo.currentPage - 1}" class="prev-next-page"><</a>`;
+        paginationHTML += `<a href="/semi/recipe/board?page=${pageInfo.currentPage - 1}" class="btn-3d red"><</a>`;
     }
 
     for (let page = pageInfo.startNav; page <= pageInfo.endNav; page++) {
@@ -130,11 +170,11 @@ function updatePageNavigation(pageInfo) {
     }
 
     if (pageInfo.currentPage < pageInfo.maxPage) {
-        paginationHTML += `<a href="/semi/recipe/board?page=${pageInfo.currentPage + 1}" class="prev-next-page">></a>`;
+        paginationHTML += `<a href="/semi/recipe/board?page=${pageInfo.currentPage + 1}" class="btn-3d red">></a>`;
     }
 
     if (pageInfo.currentPage < pageInfo.maxPage) {
-        paginationHTML += `<a href="/semi/recipe/board?page=${pageInfo.maxPage}" class="first-last-page">>></a>`;
+        paginationHTML += `<a href="/semi/recipe/board?page=${pageInfo.maxPage}" class="btn-3d red">>></a>`;
     }
 
     paginationHTML += `</div>`;
@@ -232,7 +272,7 @@ function updatePageNavigation(pageInfo) {
                s+=
                   `
                  <div class="col-lg-4 col-md-6">
-                   <div class="card border-0">
+                   <div class="card border-0 custom-card-margin">
                      <a href="./board/\${item.recipeIdx}">
                        <img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>\${item.recipePhoto}" class="card-img-top custom-img">
                      </a>
@@ -252,7 +292,7 @@ function updatePageNavigation(pageInfo) {
                       `;
                   });
 
-                  s += `</div></div></div>`; // 그리드를 닫아주는 부분
+                  s += `</div></div></div><br>`; // 그리드를 닫아주는 부분
                   $(".list").html(s);
                   
                   successCallback(res);
@@ -275,7 +315,7 @@ function updatePageNavigation(pageInfo) {
        minute = minute >= 10 ? minute : '0' + minute;
        second = second >= 10 ? second : '0' + second;
 
-       return date.getFullYear() + '-' + month + '-' + day + ' ' + hour + ':' + minute;
+       return date.getFullYear() + '-' + month + '-' + day;
 	}
 
    
@@ -300,12 +340,12 @@ function updatePageNavigation(pageInfo) {
             <table class="table">
                <thead>
             <tr class="text-center">
-               <th width="50">번호</th>
-               <th width="40">사진</th>
-               <th width="250">제목</th>
-               <th width="70">작성자</th>
-               <th width="60">작성일</th>
-               <th width="50">조회</th>
+               <th width="10">번호</th>    
+               <th width="40">사진</th>     
+               <th width="250">제목</th>   
+               <th width="90">작성자</th>   
+               <th width="80">작성일</th>   
+               <th width="50">조회</th>    
             </tr>
             </thead>
             <tbody class="text-center">

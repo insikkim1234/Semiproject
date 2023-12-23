@@ -35,9 +35,9 @@ public class BoardDao {
 		return session.selectList(nameSpace+"selectBoardWithPage", map);
 	}
 	
-	public void updateReadcount(int comBoardSeq)
+	public void updateReadCount(int comBoardSeq)
 	{
-		session.update(nameSpace+"updateReadcount", comBoardSeq);
+		session.update(nameSpace+"updateReadCount", comBoardSeq);
 	}
 	
 	

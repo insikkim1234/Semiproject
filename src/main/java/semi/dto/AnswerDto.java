@@ -6,10 +6,11 @@ import lombok.Data;
 
 @Data
 public class AnswerDto {
-	private int nComBoardCommentIdx;
-	private int nComBoardCommentSeq; //num
-	private String sComBoardCommentName;
-	private String sComBoardCommentMsg;
-	private Timestamp dtWriteday;
+	private int comBoardCommentIdx;
+	private int comBoardCommentSeq; //num
+	private String comBoardCommentName;
+	private String comBoardCommentEmail;
+	private String comBoardCommentMsg;
+	private Timestamp aWriteday;
 	
 }

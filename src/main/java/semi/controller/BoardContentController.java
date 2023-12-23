@@ -24,21 +24,22 @@ import semi.service.BoardService;
 public class BoardContentController {
 	private BoardDao boardDao;
 	private BoardService boardService;
+	private AnswerDao answerDao;
 	
 	//게시판 조회
 	@GetMapping("/board/content")
 	public String content(Model model,@RequestParam int comBoardSeq )
 	{
-		//조회수 증가
+
 		//num 에 해당하는 dto 얻기
 		BoardDto dto=boardService.getData(comBoardSeq);
 		System.out.println(dto+"sadsa확인");
 
+		//조회수 증가
+		boardService.updateReadCount(dto.getComBoardSeq());
+
 		//model 에 저장
-
-
 		model.addAttribute("dto", dto);
-		
 
 		return "board/content";
 	}
@@ -72,6 +73,27 @@ public class BoardContentController {
 		boardDao.updateBoard(dto);
 		return "redirect:./content?comBoardSeq="+num;
 	}
+	
+	
+	
+	//댓글 추가
+		@PostMapping("/board/addanswer")
+		public String addAnswer(@ModelAttribute AnswerDto dto,@RequestParam String nickname, @RequestParam String content,
+				@RequestParam int num)
+		{
+			//댓글 추가
+			
+			dto.setComBoardCommentName(nickname);
+			dto.setComBoardCommentMsg(content);
+			dto.setComBoardCommentSeq(num);
+			answerDao.insertAnswer(dto);
+			
+			
+			return "redirect:./content?comBoardSeq="+dto.getComBoardCommentSeq();
+		}
+	
+
+	
 	
 	@GetMapping("/board/delete")
 	public String delete(@RequestParam int comBoardSeq)

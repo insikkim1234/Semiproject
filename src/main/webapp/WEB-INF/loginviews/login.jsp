@@ -46,12 +46,31 @@
 	</span>
 </div>
 <div class="tablef mt-5"> <!--mt-3클래스추가  -->
-<form action="/semi/member/login" class="signin" method="post">
-    <input type="email" name="userEmail" placeholder="Email Address"><br><br>
-    <input type="password" name="userPassword" placeholder="Password"><br><br>
+	<c:if test="${not empty message}">
+        <div class="message" style="color: red;">${message}</div>
+    </c:if>
+    <form action="/semi/member/login" class="signIn" method="post">
+    <input type="email" id="userEmail" name="userEmail" placeholder="Email Address"><br><br>
+    <input type="password" id="userPassword" name="userPassword" placeholder="Password"><br><br>
     <div class="message">아직 회원이 아니신가요? <a href="/semi/member/register" style="color: #c12c2f; font-weight: 700;">참 쉬운 회원가입</a></div><br>
-    <button type="submit" class="btn-3d red btnlogin fw_500">로그인</button>
+    <button type="submit" id="loginBtn" class="btn-3d red btnlogin fw_500">로그인</button>
 </form>
 </div>
 </body>
+<script>
+    $('#loginBtn').click(function (){
+        if($('#userEmail').val() === ''){
+            alert("필수 입력값을 입력해주세요");
+            $('#userEmail').focus();
+            return;
+        }
+        if($('#userPassword').val() === ''){
+            alert("비밀번호를 입력해주세요");
+            $('#userPassword').focus();
+            return;
+        }
+        $('.signIn').submit();
+    })
+
+</script>
 </html>
