@@ -48,7 +48,7 @@
 		
 		<h6 class="cGreen fw_600 mt-3">희망 가격</h6>
 		<input type="text" name="productPrice" class="form-control borderGreen" required autofocus value="${productPrice}"
-		placeholder="￦ 가격을 입력해주세요.">
+		placeholder="￦ 가격을 입력해주세요. [예 : 5000]">
 		<h6 class="cGreen fw_600 mt-3">거래 희망 장소</h6>
 		<input type="text" name="productPlace" class="form-control borderGreen" autofocus value="${productPlace}"
 		placeholder="희망하는 거래 위치를 입력해주세요.">

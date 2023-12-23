@@ -92,8 +92,10 @@ function list()
 					
 					<span style="color:gray;font-size:0.9em;">\${item.createDate}</span>
 					
-					<i class="bi bi-trash ansdel" commentSeq="\${item.commentSeq}"></i>
+					<c:if test="\${sessionScope.login_member_dto != null && sessionScope.login_member_dto.userSeq.equals(mDto.userSeq)}">
 					
+					s+=`<i class="bi bi-trash ansdel" commentSeq="\${item.commentSeq}"></i>`;
+					</c:if>
 					`;
 				
 				
@@ -135,7 +137,7 @@ function list()
 					</div>
 					<div class="text-end mt-2">
 						<span class="detailWriter"><i class="bi bi-person-fill fs_19"></i></span>
-						<b>${mDto.userName}</b>&nbsp;
+						<b>${mDto.userNickName}</b>&nbsp;
 						<span><i class="bi bi-three-dots-vertical"></i></span>&nbsp;
 						<span class="detailViewCount"><i class="bi bi-eye-fill fs_19"></i></span>
 						<b>${mDto.boardViewCount}</b>
@@ -195,16 +197,17 @@ function list()
 			<button type="button" class="btn btn-outline-secondary btn-sm"
 				style="width:80px;"
 				onclick="history.back()">목록</button>
-				
+		<c:if test="${sessionScope.login_member_dto != null && sessionScope.login_member_dto.userSeq.equals(mDto.userSeq)}">	
 			<button type="button" class="btn btn-outline-secondary btn-sm"
 				style="width:80px;"
 				onclick="location.href='./updateform?boardSeq=${mDto.boardSeq}'">수정</button>	
-	
-	</div>
-
-				<button type="button" class="btn btn-outline-secondary btn-sm"
+			<button type="button" class="btn btn-outline-secondary btn-sm"
 				style="width: 80px;"
 				onclick="location.href='./deletecontent?boardSeq=${mDto.boardSeq}&currentPage=${currentPage}'">삭제</button>
+		</c:if>
+	</div>
+
+				
 			</div>
 		</div>
 	</div>

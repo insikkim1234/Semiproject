@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="board.data.AnswerDao">
+<mapper namespace="semi.dao.AnswerDao">
+<resultMap id="AnswerDtoRm" type="AnswerDto">
+<result property="comBoardCommentIdx" column="nComBoardCommentIdx" />
+<result property="comBoardCommentSeq" column="nComBoardCommentSeq" />
+<result property="comBoardCommentName" column="sComBoardCommentName" />
+<result property="comBoardCommentName" column="sComBoardCommentEmail" />
+<result property="comBoardCommentMsg" column="sComBoardCommentMsg" />
+<result property="awriteday" column="dtWriteday" />
+</resultMap>
+
+
 	<insert id="insertAnswer" parameterType="AnswerDto">
-		insert into tComBoardComment values (null,#{nComBoardCommentSeq},#{sComBoardCommentName},#{sComBoardCommentMsg},now())
+		insert into tComBoardComment (nComBoardCommentSeq,sComBoardCommentName,sComBoardCommentMsg)
+		values (#{comBoardCommentSeq},#{comBoardCommentName},#{comBoardCommentMsg})
 	</insert>
-	<select id="selectAnswerByNum" parameterType="int" resultType="AnswerDto">
-		select * from tComBoardComment where nComBoardCommentSeq=#{nComBoardCommentSeq} order by nComBoardCommentIdx desc
+	<select id="selectAnswerByNum" parameterType="int" resultType="AnswerDto" resultMap="AnswerDtoRm">
+		select * from tComBoardComment where nComBoardCommentSeq=#{comBoardCommentSeq} order by nComBoardCommentIdx desc
 	</select>
 	<delete id="deleteAnwer" parameterType="int">
-	delete from nComBoardCommentIdx where nComBoardCommentIdx=#{nComBoardCommentIdx}
+	delete from nComBoardCommentIdx where nComBoardCommentIdx=#{comBoardCommentIdx}
 	</delete>
 </mapper>
