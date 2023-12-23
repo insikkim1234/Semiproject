@@ -33,15 +33,15 @@
 	    <div class="collapse navbar-collapse mt-auto" id="mynavbar">
 	      <ul class="navbar-nav ml-auto align-center expanded text-center menubtn_effect">
 	        <li class="nav-item mx-4">
-	          <a class="nav-link fs_19 fw_600" href="${pageContext.request.contextPath}/board/list">
-	          <span>자취생 다 모여</span>
-	          <span><i class="bi bi-chat-text-fill mr-2"></i>커뮤니티</span>
-	          </a>
-	        </li>
-	        <li class="nav-item mx-4">
 	          <a class="nav-link fs_19 fw_600" href="${pageContext.request.contextPath}/recipe/board">
 	            <span>오늘 뭐 먹지?</span>
 	          	<span><i class="bi bi-book-fill mr-2"></i>레시피북</span>
+	          </a>
+	        </li>
+	        <li class="nav-item mx-4">
+	          <a class="nav-link fs_19 fw_600" href="${pageContext.request.contextPath}/board/list">
+	          <span>자취생 다 모여</span>
+	          <span><i class="bi bi-chat-text-fill mr-2"></i>커뮤니티</span>
 	          </a>
 	        </li>
 	        <li class="nav-item ml-4">
@@ -61,12 +61,12 @@
 	  <div class="btn-bar member_btns">
 		<c:if test="${sessionScope.login_member_dto==null}">
 			<a href="${pageContext.request.contextPath}/member/login">
-			<button type="submit" class="btn mx-2 p-0 login_rborder">
+			<button type="submit" class="btn-3d red2 mx-2 p-0 login_rborder">
 				<div>로그인</div>
 			</button>
 			</a>
 			<a href="${pageContext.request.contextPath}/member/register">
-				<button type="submit" class="btn  mx-2 p-0">
+				<button type="submit" class="btn-3d red2 mx-2 p-0">
 					<div>회원가입</div>
 				</button>
 			</a>
