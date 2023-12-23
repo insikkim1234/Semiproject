@@ -16,12 +16,12 @@
 		  <div class="hover__leftright">
 		    <figure class="front">
 		     <a href="${pageContext.request.contextPath}">	
-		      <img src="https://kr.object.ncloudstorage.com/semi-project-eatingalone/photo/eating_alone_mainlogo7.png" alt="" class="img-fluid">
+		      <img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>eating_alone_mainlogo8.png" alt="" class="img-fluid">
 		    </a>
 		    </figure>
 		    <figure class="back">
 		     <a href="${pageContext.request.contextPath}">
-		      <img src="https://kr.object.ncloudstorage.com/semi-project-eatingalone/photo/eating_alone_mainlogo7.png" alt="" class="img-fluid">
+		      <img src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>book_logo.png" alt="" class="img-fluid">
 		    </a>
 		    </figure>
 		  </div>

@@ -33,7 +33,7 @@
             margin-left: auto;
             margin-right: auto;
             border: 0;
-            border-bottom: 2px solid #11B560;
+            border-bottom: 2px solid #c12c2f;
             background-color: transparent;
         } /* 보더변경하고 색상변경 */
         .box {
@@ -48,7 +48,7 @@
         }
 
         /*밑에 두 속성 추가  */
-        .regi_input>input[type=submit] {
+        /* .regi_input>input[type=submit] {
             background-color: #11B560;
             border: 2px solid #0E942C;
             border-radius: 10px;
@@ -56,11 +56,16 @@
         .regi_input>input[type=submit]:hover {
             background-color: #EBEE48;
             border: 2px solid #E1A900;
-        }
+        } */
         
         .box>input[type=email],
         .box2>input[type=text]{
         	border:0;
+        }
+        
+        .regi_input>input[type=submit]{
+        	border-bottom: 0;
+        	background: #ffda37;
         }
     </style>
 </head>
@@ -69,8 +74,17 @@
 	<a href="${pageContext.request.contextPath}">HOME</a><span class="fs_18 mx-1">></span>
 	<a href="${pageContext.request.contextPath}/member/register">회원가입</a>
 </div>
-<div class="fs_40 text-center cGreen fw_600 mt-3 mb-5">JOIN US</div>
-<form action="/semi/member/register" method="post" class="regi_input mt-3" enctype="multipart/form-data" onsubmit="return validatePasswords()">
+<div class="fs_40 text-center cGreen fw_600 mt-3 mb-1">JOIN US</div>
+<div class="d-flex justify-content-center">
+	<div class="register_h1">we are
+	  <div class="r_message">
+	    <div class="cGreen">awesome!!!!</div>
+	    <div class="word2">creative.</div>
+	    <div class="word3">interesting.</div>
+	  </div>
+	</div>
+</div>
+<form action="/semi/member/register" method="post" class="regi_input mt-5" enctype="multipart/form-data" onsubmit="return validatePasswords()">
 
     <div class="box d-flex justify-content-between">
         <input type="email" name="userEmail" placeholder="이메일주소(필수)" id="userEmail" required><br>
@@ -90,18 +104,18 @@
     <input type="text" name="userName" placeholder="이름(필수)" required class="mt-4"><br>
 
     <input type="text" name="userPhoneNumber"
-           placeholder="휴대폰번호(ex:010-1234-5678)" class="mt-3" required><br>
+           placeholder="휴대폰번호(ex:010-1234-5678)" class="mt-1" required><br>
 
     <div id="root">
         <div class="contents">
             <div class="upload-box">
-                <label class="file-label fw_600" for="chooseFile">프로필 등록</label>
+                <label class="file-label fw_600 btn-3d red" for="chooseFile">프로필 등록</label>
                 <input class="file" id="chooseFile" type="file" name="uploadFile"
                        accept="image/png, image/jpeg, image/gif">
             </div>
         </div>
     </div><br>
-    <input type="submit" value="회원가입" class="btn_green2" ><br><br>
+    <input type="submit" value="회원가입" class="btn-3d red fw_700 fs_18" ><br><br>
     </form>
     <script>
         // 중복 체크 후 변경 시 체크 해제
@@ -192,6 +206,7 @@
             }
             return true;
         }
+
 
     </script>
     </body>
