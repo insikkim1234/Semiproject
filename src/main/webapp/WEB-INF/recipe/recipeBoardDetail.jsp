@@ -73,10 +73,11 @@
 	</div>
 	<div class="r-detail"></div>
 	<div class="div_detail mt-3" style="background: #ecd26017;">
+		<div class="rgyPostIt2 fw_600">레시피 #${dto.recipeIdx}</div>
 		<div class="div_detailItem">
 			<div class="rtitle_border">
 				<div class="fs_28 fw_600 cBlack text-center">
-					<div class="rgyPostIt2 mr-3">레시피 #${dto.recipeIdx}</div>${dto.recipeTitle}
+					<!-- <div class="rgyPostIt2 mr-3">레시피 #${dto.recipeIdx}</div> -->${dto.recipeTitle}
 				</div>
 				<div class="text-end mt-2">
 					<span class="detailWriter"><i class="bi bi-person-fill fs_19"></i></span>
@@ -141,7 +142,9 @@
 			        <c:set var="ingredients" value="${dto.recipeIngredient}" />
 			        <c:forTokens var="ingredient" items="${ingredients}" delims=",">
 			        	<!-- TODO : 이미지 이름 ingredient, ingredient2 중 하나 선택 -->
+			            <div class="d-flex align-items-center">
 			            <i class="bi bi-basket3-fill mr-3 fs_26" style="color: #000;"></i><i class="bi bi-three-dots-vertical mr-2 fs_20" style="color: #000;"></i><div class="rgyPostIt">${ingredient}</div>
+			            </div>
 			            <br/>
 			        </c:forTokens>
 				</c:if>

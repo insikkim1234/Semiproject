@@ -15,25 +15,25 @@
 	</div>
 		<h3 class="cGreen fw_600 text-center fs_40 my-3">나만의 레시피</h3>
 		<h6 class="cGreen fw_600 mt-4">제목</h6>
-		<input type="text" name="recipeTitle" class="form-control borderGreen bg_red"
+		<input type="text" name="recipeTitle" class="form-control borderGreen bg_red inset_shadow"
 		required autofocus value="${recipeTitle}" placeholder="제목">
 		<div class="row mt-3">
 			<div class="col">
 				<h6 class="cGreen fw_600 mt-2">사진</h6>
-				<input type="file" name="upload" class="form-control borderGreen bg_red" id="product-input4" onchange="previewImage(this, 'product-preview4')">
+				<input type="file" name="upload" class="form-control borderGreen bg_red inset_shadow" id="product-input4" onchange="previewImage(this, 'product-preview4')">
 				<div id="product-preview4" class="mt-2"></div>
 			</div>
 		</div>
 		<h6 class="cGreen fw_600 mt-3">설명</h6>
-		<textarea name="recipeContent" class="form-control borderGreen bg_red" required autofocus rows="3" cols="50" placeholder="설명을 입력해주세요.">${recipeContent}</textarea>
+		<textarea name="recipeContent" class="form-control borderGreen bg_red inset_shadow" required autofocus rows="3" cols="50" placeholder="설명을 입력해주세요.">${recipeContent}</textarea>
 
 		<h6 class="cGreen fw_600 mt-3">조리시간</h6>
-		<input type="text" name="recipeTime" class="form-control borderGreen bg_red" required autofocus value="${recipeTime}"
+		<input type="text" name="recipeTime" class="form-control borderGreen bg_red inset_shadow" required autofocus value="${recipeTime}"
 		placeholder="예 : 10분">
 		
 		<h6 class="cGreen fw_600 mt-3"><th>난이도</th></h6>
 		<td>
-			<select class="form-select bg_red" name="recipeDifficulty" style="border: 2px solid #c63702;">
+			<select class="form-select bg_red inset_shadow" name="recipeDifficulty" style="border: 2px solid #c63702;">
 			    <option hidden disabled selected style="color: black;">난이도 선택</option>
 			    <option value="쉬움">쉬움</option>
 			    <option value="보통">보통</option>
@@ -41,14 +41,14 @@
 			</select>
 		</td>	
 		<h6 class="cGreen fw_600 mt-3">인분</h6>
-		<input type="text" name="recipeServing" class="form-control borderGreen bg_red" autofocus value="${recipeServing}"
+		<input type="text" name="recipeServing" class="form-control borderGreen bg_red inset_shadow" autofocus value="${recipeServing}"
 		placeholder="예 : 1인분">
 		
 		<h6 class="cGreen fw_600 mt-3"><th>재료</th></h6>
 		<td>
 			<div id="ingredient-container">
 				<div class="ingredient-row">
-					<input type="text" name="recipeIngredient" class="form-control borderGreen bg_red" required autofocus value="${recipeIngredient}"
+					<input type="text" name="recipeIngredient" class="form-control borderGreen bg_red inset_shadow" required autofocus value="${recipeIngredient}"
 			placeholder="예 : 계란 1개">
 					<button type="button" class="btn btn-3d red2 mt-3" onclick="addIngredient()">추가</button>
 					<br>
@@ -60,8 +60,8 @@
 		<td>
 			<div id="order-container">
 				<div class="order-row">
-					<textarea name="orderlist[0].recipeOrderContent" class="form-control bg_red borderGreen" required autofocus placeholder="예 : 파를 다듬어 줍니다.">${recipeOrderContent}</textarea>
-					<input type="file" name="orderlist[0].upload" class="form-control bg_red borderGreen mt-1" required value="${recipeOrderPhoto}">
+					<textarea name="orderlist[0].recipeOrderContent" class="form-control bg_red borderGreen inset_shadow" required autofocus placeholder="예 : 파를 다듬어 줍니다.">${recipeOrderContent}</textarea>
+					<input type="file" name="orderlist[0].upload" class="form-control bg_red borderGreen mt-1 inset_shadow" required value="${recipeOrderPhoto}">
 					<button type="button" class="btn btn-3d red2 mt-3" onclick="addOrder()">추가</button>
 					<br>
 				</div>
@@ -81,8 +81,8 @@
         var newRow = document.createElement("div");
         newRow.className = "ingredient-row";
         newRow.innerHTML = '<br>' + 
-        				   '<input type="text" name="recipeIngredient" class="form-control" required autofocus placeholder="예: 계란 1개">' +
-                           '<button type="button" class="btn btn-outline-secondary" onclick="removeIngredient(this)">삭제</button>';
+        				   '<input type="text" name="recipeIngredient" class="form-control bg_red borderGreen inset_shadow" required autofocus placeholder="예: 계란 1개">' +
+                           '<button type="button" class="btn-3d red2 mt-3" onclick="removeIngredient(this)">삭제</button>';
         container.appendChild(newRow);
 	}
 
@@ -101,9 +101,9 @@
         var newRow = document.createElement("div");
         newRow.className = "order-row";
         newRow.innerHTML = '<br>' + 
-					       '<textarea name="orderlist[' + idx + '].recipeOrderContent" class="form-control" required autofocus placeholder="예 : 파를 다듬어 줍니다.">${recipeContent}</textarea>' +
-						   '<input type="file" name="orderlist[' + idx + '].upload" class="form-control" required>' + 
-						   '<button type="button" class="btn btn-outline-secondary" onclick="removeOrder(this)">삭제</button>';
+					       '<textarea name="orderlist[' + idx + '].recipeOrderContent" class="form-control bg_red borderGreen inset_shadow" required autofocus placeholder="예 : 파를 다듬어 줍니다.">${recipeContent}</textarea>' +
+						   '<input type="file" name="orderlist[' + idx + '].upload" class="form-control  bg_red borderGreen inset_shadow mt-1" required>' + 
+						   '<button type="button" class="btn-3d red2 mt-3" onclick="removeOrder(this)">삭제</button>';
 		container.appendChild(newRow);
 	}
 

@@ -76,11 +76,11 @@
 </div>
 <div class="fs_40 text-center cGreen fw_600 mt-3 mb-1">JOIN US</div>
 <div class="d-flex justify-content-center">
-	<div class="register_h1">we are
+	<div class="register_h1">반가워요.
 	  <div class="r_message">
-	    <div class="cGreen">awesome!!!!</div>
-	    <div class="word2">creative.</div>
-	    <div class="word3">interesting.</div>
+	    <div class="word1">Hello.</div>
+	    <div class="word2">こんにちは.</div>
+	    <div class="word3">Hola.</div>
 	  </div>
 	</div>
 </div>
