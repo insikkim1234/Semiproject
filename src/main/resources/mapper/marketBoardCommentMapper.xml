@@ -13,7 +13,6 @@
 		<result property="commentParentSeq" column="nCommentParentSeq" />
 		<result property="commentDepth" column="nCommentDepth" />
 		<result property="userNickName" column="userNickName" />
-		
 	</resultMap> 
 	
  	
@@ -42,6 +41,12 @@
 		from tMarketBoardComment
 		where nCommentSeq=#{commentSeq}
 	</delete>
+
+	<select id="selectAnswerBySeq" parameterType="int" resultType="MarketBoardCommentDto" resultMap="MarketBoardCommentDtoRm" >
+		select tMarketBoardComment.*
+		from tMarketBoardComment
+		where nCommentSeq=#{commentSeq}
+	</select>
   
 </mapper>
 

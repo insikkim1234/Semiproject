@@ -3,28 +3,24 @@
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<input type="hidden" id="boardSeq" value="${mDto.boardSeq}">
-<input type="hidden" id="userSeq" value="${mDto.userSeq}">
-<input type="hidden" id="productPrice" value="${pDto.productPrice}">
-<input type="hidden" id="createDate" value="${mDto.createDate}">
+
+
 <script type="text/javascript">
 $(function() {
 	list();
-    $('#btnansweradd').click(function() {
-    	var userSeq=1;
-        var boardSeq = $('#boardSeq').val();
-        var commentContent = $('#answermsg').val();
+    $('#btnAnswerAdd').click(function() {
+        var boardSeq = ${mDto.boardSeq};
+		var commentContent = $('#answerMsg').val();
         
         if (commentContent.trim() === "") {
         	return;
         }
 		
         $.ajax({
-            url: './insertAnswer',
+            url: './insertMAnswer',
             method: 'POST',
             contentType: 'application/x-www-form-urlencoded',
             data: {
-                userSeq: userSeq,
             	boardSeq: boardSeq,
                 msg: commentContent
             },
@@ -43,20 +39,20 @@ $(function() {
             }
         });
     });
-    $(document).on("click",".ansdel",function(){
+
+    $(document).on("click",".answerDel",function(){
     	let commentSeq=$(this).attr("commentSeq");
     	let boardSeq=$(this).attr("boardSeq");
     	
     	$.ajax({
-    		type:"get",
+    		type:"POST",
     		dataType:"text",
-    		url:"./delete",
+    		url:"./deleteMComment",
     		data:{"commentSeq":commentSeq,
     			"boardSeq":boardSeq},
     		success:function(res){
     			list();
     		}
-    		
     	});
     });
 });
@@ -65,7 +61,7 @@ $(function() {
 	
 function list()
 {
-	let boardSeq=${mDto.boardSeq};
+	let boardSeq = ${mDto.boardSeq};
 	
 	$.ajax({
 		type:"get",
@@ -76,32 +72,27 @@ function list()
 		success:function(res){
 			let length=res.length;
 			let datas=res.data;
-			
-			
-			$("#answercount").text("댓글 "+length);
-				
-				
-			var s = ''; // 반복문 외부에서 s 변수를 초기화
 
+			$("#answercount").text("댓글 "+length);
+
+			var s = '';
+			var sessionSeq = ${sessionScope.login_member_dto.userSeq}
 			$.each(datas, function (idx, item) {
-			    // 각 항목을 s에 추가
 			    s += `
 			        \${item.userNickName}<br>
 			        <span style="margin-left:20px;">\${item.commentContent}</span>
 			        &nbsp;
-			        <span style="color:gray;font-size:0.9em;">\${item.createDate}</span>
+			        <span style="color:gray;font-size:0.9em;">\${item.createDate}</span>`;
 
-			    
-			        <i class="bi bi-trash ansdel" commentSeq="\${item.commentSeq}"
-			         boardSeq="\${item.boardSeq}"></i>
-			    
-			        `;			  
-			     s += "<br>";
+				if (sessionSeq === item.userSeq)
+				{
+					s += `<i class="bi bi-trash answerDel" commentSeq="\${item.commentSeq}"
+			         	boardSeq="\${item.boardSeq}"></i>`;
+				}
+				s += "<br>";
 			    s += "<hr>";
 			});
 
-
-		
 			$("div.answerlist").html(s);
 	    }
 	});
@@ -179,8 +170,8 @@ function list()
 	
 			<div class="answerform input-group">
 				<input type="text" class="bg_red inset_shadow2 mt-2" style="border:0; width:93%" placeholder="댓글내용"
-				id="answermsg">
-				<button type="button" class="btn-3d red ml-3" id="btnansweradd" style="border-radius: 5px;">저장</button>	
+				id="answerMsg">
+				<button type="button" class="btn-3d red ml-3" id="btnAnswerAdd" style="border-radius: 5px;">저장</button>
 			</div>
 	</div>
 	<hr>

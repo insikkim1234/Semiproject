@@ -35,9 +35,7 @@ public class MarketBoardController {
 	private MarketProductService marketProductService;
 	@Autowired
 	NcpObjectStorageService storageService;
-	@Autowired
-	private MarketBoardCommentService marketBoardCommentService;
-	
+
 	private MarketBoardDao marketBoardDao;
 	private MarketProductDao marketProductDao;
 
