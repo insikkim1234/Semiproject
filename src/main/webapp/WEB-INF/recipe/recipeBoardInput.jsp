@@ -14,7 +14,7 @@
 		<a href="${pageContext.request.contextPath}/recipe/recipeBoardInput">레시피 등록</a>
 	</div>
 		<!-- <h3 class="cGreen fw_600 text-center fs_40 my-3">나만의 레시피</h3> -->
-		<h3 data-shadow='My Secret RECIPE' class="form_title text-center my-3">My Secret RECIPE</h3>
+		<h3 data-shadow='My Awesome RECIPE' class="form_title text-center my-3">My Awesome RECIPE</h3>
 		<h6 class="cGreen fw_600 mt-4">제목</h6>
 		<input type="text" name="recipeTitle" class="form-control borderGreen bg_red inset_shadow"
 		required autofocus value="${recipeTitle}" placeholder="제목">
