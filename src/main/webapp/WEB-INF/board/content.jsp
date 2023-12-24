@@ -117,7 +117,6 @@ function getAnswerList()
 			<div class="content-border mt-3 py-2">
 				<pre style="min-height: 300px;" class="fs_16 px-2">${dto.comBoardContent}</pre>
 				<div class="content-border py-2">
-					<i class="bi bi-chat-dots ml-3 "></i>
 					<div id="answerCount">댓글 0</div>
 				</div>
 
