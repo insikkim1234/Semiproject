@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import annotation.Login;
 import semi.dao.MarketBoardCommentDao;
+import semi.dto.AnswerDto;
 import semi.dto.MarketBoardCommentDto;
 import semi.dto.MarketBoardDto;
 import semi.dto.MemberDto;
@@ -25,7 +26,7 @@ public class MarketBoardRestController {
 	@Autowired MarketBoardService marketBoardService;
 	@Autowired private MarketBoardCommentDao marketBoardCommentDao;
 
-	@PostMapping("/mboard/insertAnswer")
+	@PostMapping("/mboard/insertMAnswer")
 	public Map<String, Object> insertAnswer(@Login MemberDto memberDto, @RequestParam int boardSeq, @RequestParam String msg) {
 		Map<String, Object> map = new HashMap<>();
 		
@@ -62,19 +63,15 @@ public class MarketBoardRestController {
 		return resultMap;
 	}
 	
-	@GetMapping("/mboard/delete")
-	public void deleteAnswer(@Login MemberDto memberDto, @RequestParam int commentSeq
-			,@RequestParam int boardSeq)
+	@PostMapping("/mboard/deleteMComment")
+	public void deleteAnswer(@Login MemberDto memberDto, @RequestParam int commentSeq)
 	{
-		
-		MarketBoardDto mDto=marketBoardService.getData(boardSeq);
-		if(memberDto.getUserSeq()==mDto.getUserSeq())
-		{	
-		marketBoardCommentService.deleteAnswer(commentSeq);
+		// 댓글 주인이 나인지만 확인하면 됨. 글의 userseq랑 별개
+
+		MarketBoardCommentDto dto =  marketBoardCommentService.selectAnswerBySeq(commentSeq);
+		if(memberDto.getUserSeq() == dto.getUserSeq())
+		{
+			marketBoardCommentService.deleteAnswer(commentSeq);
 		}
 	}
-
-	
-	
-	
 }

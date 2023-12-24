@@ -36,7 +36,10 @@ public class MarketBoardCommentDao {
 	{
 		session.delete(nameSpace+"deleteComment", commentSeq);
 	}
-	
-	
-	
+
+	public MarketBoardCommentDto selectAnswerBySeq(int commentSeq)
+	{
+		return session.selectOne(nameSpace+"selectAnswerBySeq", commentSeq);
+	}
+
 }

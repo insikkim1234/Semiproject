@@ -24,7 +24,7 @@ public class MarketBoardCommentService {
 	
 	public List<MarketBoardCommentDto> getAnswerBoard(int boardSeq)
 	{
-		return marketBoardCommentDao.getAnswerBoard(boardSeq);
+		return marketBoardCommentDao.getAnswerBoard(boardSeq);	// getAnswerBoard 가 무슨 뜻?
 	}
 	
 	public int getTotalCount(int boardSeq)
@@ -36,7 +36,9 @@ public class MarketBoardCommentService {
 	{
 		marketBoardCommentDao.deleteAnswer(commentSeq);
 	}
-	
-	
-	
+
+	public MarketBoardCommentDto selectAnswerBySeq(int commentSeq)
+	{
+		return marketBoardCommentDao.selectAnswerBySeq(commentSeq);
+	}
 }
