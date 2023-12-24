@@ -69,7 +69,7 @@
 	</div>
 	
 	<div class="container-fluid  mx-auto">
-	<div class="text-center fw_500 fs_18 row">
+	<div class="text-center fw_500 fs_18 row justify-content-center">
 		<div class="col-2">
 		<c:choose>
 			<c:when test="${pageDto.curPage > 1}">
@@ -79,7 +79,7 @@
 		</c:choose>
 		</div>
 		
-		<div class="col-3">
+		<div class="col-2">
 		<c:forEach begin="${pageDto.startPage}" end="${pageDto.endPage}" var="pageNumber">
 			<c:choose>
 				<c:when test="${pageNumber >= 1 and pageNumber <= pageDto.totalPage}">

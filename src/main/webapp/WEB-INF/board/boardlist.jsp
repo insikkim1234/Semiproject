@@ -79,14 +79,17 @@
 	</div>
 </div>
 
-<div class="text-center fw_500 mb-5">
+<div class="container-fluid  mx-auto">
+<div class="text-center fw_500 fs_18 row justify-content-center">
+	<div class="col-2">
 	<c:choose>
 		<c:when test="${pageDto.curPage > 1}">
 			<a href="${pageContext.request.contextPath}/board/list?pageNum=1" class="btn-3d red mx-1 fs_18">처음</a>
 			<a href="${pageContext.request.contextPath}/board/list?pageNum=${pageDto.curPage - 1}" class="btn-3d red fs_18">이전</a>
 		</c:when>
 	</c:choose>
-
+	</div>
+	<div class="col-2">
 	<c:forEach begin="${pageDto.startPage}" end="${pageDto.endPage}" var="pageNumber">
 		<c:choose>
 			<c:when test="${pageNumber >= 1 and pageNumber <= pageDto.totalPage}">
@@ -101,12 +104,14 @@
 			</c:when>
 		</c:choose>
 	</c:forEach>
-
+	</div>
+	<div class="col-2">
 	<c:choose>
 		<c:when test="${pageDto.curPage < pageDto.totalPage}">
 			<span><a href="${pageContext.request.contextPath}/board/list?pageNum=${pageDto.curPage + 1}" class="btn-3d red mx-1 fs_18">다음</a></span>
 			<span><a href="${pageContext.request.contextPath}/board/list?pageNum=${pageDto.totalPage}" class="btn-3d red fs_18">마지막</a ></span>
 		</c:when>
 	</c:choose>
+	</div>
 </div>
-
+</div>

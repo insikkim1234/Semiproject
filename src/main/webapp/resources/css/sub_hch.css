@@ -1389,3 +1389,43 @@ h3.form_title {
   0% {background-position: 100% -100%}
   }
 
+div.form_title, h3.form_title:before, div.form_title:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+div.form_title {
+  display: inline-block;
+  color: #212529;
+  font-family: 'Righteous', serif;
+  font-size: 4vw; 
+  text-shadow: .03em .03em 0 #f19b00;
+  z-index:2;
+  }
+  div.form_title:after {
+    content: attr(data-shadow);
+    position: absolute;
+    top: .06em; left: -0.09em;
+    z-index: -1;
+    text-shadow: none;
+    background-image:
+      linear-gradient(
+        45deg,
+        transparent 45%,
+        #c12c2f,
+        #c12c2f 55%,
+        #c12c2f 0
+        );
+    background-size: .05em .05em;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  
+    animation: shad-anim 15s linear infinite;
+    }
+
+@keyframes shad-anim {
+  0% {background-position: 0 0}
+  0% {background-position: 100% -100%}
+  }
+
