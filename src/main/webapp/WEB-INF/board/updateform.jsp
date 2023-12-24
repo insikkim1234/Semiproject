@@ -2,16 +2,7 @@
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
- 
-<style>
-    .uploadcamera{
-    	font-size: 25px;
-		cursor: pointer;
-    }
-</style>
 
-</head>
-<body>
 <div class="mw_1000">
 	<div class="fw_500 cBlack mt-5">
 		<a href="${pageContext.request.contextPath}">HOME</a><span class="fs_18 mx-1">></span>
@@ -36,5 +27,3 @@
 		</div>
 	</form>
 </div>
-</body>
-</html>

@@ -16,42 +16,28 @@ $(document).ready(function () {
             comBoardCommentMsg: $("input[name='comBoardCommentMsg']").val()
         };
 
-	
-	$.ajax({
-		type:"post",
-		url:"./answerList",
-		data:formData,
-			
-		
-		success:function(res){
-			
-			let datas=res.data;
-			
-			console.log(datas)
-			let s="";
-			
-			$.each(datas,function(idx,item){
-				
-			
+		$.ajax({
+			type:"post",
+			url:"./answerList",
+			data:formData,
+
+			success:function(res){
+				let datas=res.data;
+				let s="";
+				$.each(datas,function(idx,item){
 					s+=
 						`
-				\${item.comBoardCommentName}
-				<span style="margin-left:20px;">\${item.comBoardCommentMsg}</span>
-				&nbsp;
-						
-						`;		
+						\${item.comBoardCommentName}
+						<span style="margin-left:20px;">\${item.comBoardCommentMsg}</span>
+						&nbsp;
+						`;
 					s+="<br>";
 					s+="<hr>";
-			
-			});
-			
-			$(".answerlist").html(s);
+				});
+
+				$(".answerlist").html(s);
 			}
-		
-		
-	});
-	
-	
+		});
     });
 });
 </script>
@@ -103,10 +89,6 @@ $(document).ready(function () {
 				</c:forEach>
 				<div style="padding-bottom: 15px; border-bottom: 1px solid #c5c5c5;">
 					<div class="answerlist" style="margin-left: 10px;">댓글</div>
-
-
-
-
 					<div class="form-table">
 						<input type="hidden" name=comBoardCommentSeq
 							value="${dto.comBoardSeq}">

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import semi.dto.AnswerDto;
+
 @Repository
 public class AnswerDao {
 	@Autowired
@@ -27,6 +28,4 @@ public class AnswerDao {
 	{
 		session.delete(nameSpace+"deleteAnswer", comBoardCommentIdx);
 	}
-	
-	
 }
