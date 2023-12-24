@@ -446,6 +446,7 @@ div.main_effect span:nth-child(13){ animation-delay:.6s; }
     border-radius: 50%;
     width: 29vw;
     aspect-ratio: 1 / 1;  
+  border:9px solid #c12c2f;
 }
 
 .border_box * {
