@@ -16,44 +16,71 @@ $(document).ready(function () {
             comBoardCommentMsg: $("input[name='comBoardCommentMsg']").val()
         };
 
-	
-	$.ajax({
-		type:"post",
-		url:"./answerList",
-		data:formData,
-			
-		
-		success:function(res){
-			
-			let datas=res.data;
-			
-			console.log(datas)
-			let s="";
-			
-			$.each(datas,function(idx,item){
-				
-			
-					s+=
-						`
-				\${item.comBoardCommentName}
-				<span style="margin-left:20px;">\${item.comBoardCommentMsg}</span>
-				&nbsp;
-						
-						`;		
+		$.ajax({
+			type:"post",
+			url:"./answerList",
+			data:formData,
+
+			success:function(res){
+				let datas=res.data;
+				let s="";
+				$("#answerCount").text("댓글 "+res.data.length);
+
+				$.each(datas,function(idx,item){
+					s += `
+			        \${item.comBoardCommentName}<br>
+			        <span style="margin-left:20px;">\${item.comBoardCommentMsg}</span>
+			        &nbsp;`;
 					s+="<br>";
 					s+="<hr>";
-			
-			});
-			
-			$(".answerlist").html(s);
+				});
+
+				$(".answerlist").html(s);
 			}
-		
-		
-	});
-	
-	
+		});
     });
+
+	getAnswerList();
 });
+
+
+function getAnswerList()
+{
+	let boardSeq= ${dto.comBoardSeq};
+
+	$.ajax({
+		type:"get",
+		dataType:"json",
+		url:"./getAnswerList",
+		data:{"boardSeq": boardSeq},
+
+		success:function(res){
+			let length = res.data.length;
+			let datas = res.data;
+
+			$("#answerCount").text("댓글 "+length);
+
+			var s = '';
+			// db에 email, tUser 관련 칼럼이 없어서 세션을 사용할 수 없음
+			// 댓글 삭제에 대한 시나리오 필요
+			// var session = ${sessionScope.login_member_dto != null && sessionScope.login_member_dto.userSeq.equals(mDto.userSeq)};
+			$.each(datas, function (idx, item) {
+				s += `
+			        \${item.comBoardCommentName}<br>
+			        <span style="margin-left:20px;">\${item.comBoardCommentMsg}</span>
+			        &nbsp;`;
+				/*
+				<i class="bi bi-trash ansDel" commentSeq="\${item.comBoardCommentSeq}"
+			         boardSeq="\${item.comBoardCommentSeq}"></i>
+				 */
+				s += "<br>";
+				s += "<hr>";
+			});
+
+			$("div.answerList").html(s);
+		}
+	});
+}
 </script>
 
 
@@ -90,23 +117,11 @@ $(document).ready(function () {
 			<div class="content-border mt-3 py-2">
 				<pre style="min-height: 300px;" class="fs_16 px-2">${dto.comBoardContent}</pre>
 				<div class="content-border py-2">
-					<i class="bi bi-chat-dots ml-3 "></i> &nbsp;${dto.acount}
+					<div id="answerCount">댓글 0</div>
 				</div>
-				<c:forEach var="adto" items="${datas}">
-					<span>${adto.nickname} : ${adto.content}</span>
-					<span style="margin-left: 20px; color: gray; font-size: 0.9em;">
-						<fmt:formatDate value="${adto.awriteday}"
-							pattern="yyyy-MM-dd HH:mm" />
-					</span>
 
-					<br>
-				</c:forEach>
 				<div style="padding-bottom: 15px; border-bottom: 1px solid #c5c5c5;">
-					<div class="answerlist" style="margin-left: 10px;">댓글</div>
-
-
-
-
+					<div class="answerList" style="margin-left: 10px;">댓글</div>
 					<div class="form-table">
 						<input type="hidden" name=comBoardCommentSeq
 							value="${dto.comBoardSeq}">
@@ -119,15 +134,12 @@ $(document).ready(function () {
 								class="btn-3d red px-3 ml-2">저장</button>
 						</div>
 					</div>
-
-
-					
-					</div>
-					<div class="text-center mt-4">
-						<button type="button" class="btn-3d red fw_600"
-							onclick="location.href='./list'">목록으로</button>
-					</div>
+				</div>
+				<div class="text-center mt-4">
+					<button type="button" class="btn-3d red fw_600"
+						onclick="location.href='./list'">목록으로</button>
 				</div>
 			</div>
 		</div>
+	</div>
 </body>
