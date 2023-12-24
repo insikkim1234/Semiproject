@@ -61,12 +61,12 @@
 	  <div class="btn-bar member_btns">
 		<c:if test="${sessionScope.login_member_dto==null}">
 			<a href="${pageContext.request.contextPath}/member/login">
-			<button type="submit" class="btn-3d red2 mx-2 p-0 login_rborder">
+			<button type="submit" class="btn-3d red2 mx-2 mt-2 p-0 login_rborder">
 				<div>로그인</div>
 			</button>
 			</a>
 			<a href="${pageContext.request.contextPath}/member/register">
-				<button type="submit" class="btn-3d red2 mx-2 p-0">
+				<button type="submit" class="btn-3d red2 mt-2 mx-2 p-0">
 					<div>회원가입</div>
 				</button>
 			</a>
