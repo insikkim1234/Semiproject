@@ -109,6 +109,7 @@
    .pageNumber {
 	font-size: 22px;
 	color: #c12c2f;
+	margin-right: 5px; /* 페이지 번호 사이의 간격 조정 */
 	
    
 	}
@@ -133,6 +134,7 @@
 	top: -9px;
     padding: 0 10px;
     border: 0;
+    margin-right: 10px; /* 버튼 사이의 간격 조정 */
 }
 .btn-3d.red:hover {
 	background-color: #ECD260;
@@ -142,6 +144,7 @@
 .btn-3d:active {
 	top: 0px;
 }
+
    
 </style>
 
@@ -158,11 +161,11 @@ function updatePageNavigation(pageInfo) {
     let paginationHTML = `<div class="pageNation">`;
 
     if (pageInfo.currentPage > 1) {
-        paginationHTML += `<a href="/semi/recipe/board?page=1" class="btn-3d red"><<</a>`;
+        paginationHTML += `<a href="/semi/recipe/board?page=1" class="btn-3d red">처음</a>`;
     }
 
     if (pageInfo.currentPage > 1) {
-        paginationHTML += `<a href="/semi/recipe/board?page=${pageInfo.currentPage - 1}" class="btn-3d red"><</a>`;
+        paginationHTML += `<a href="/semi/recipe/board?page=${pageInfo.currentPage - 1}" class="btn-3d red">이전</a>`;
     }
 
     for (let page = pageInfo.startNav; page <= pageInfo.endNav; page++) {
@@ -170,11 +173,11 @@ function updatePageNavigation(pageInfo) {
     }
 
     if (pageInfo.currentPage < pageInfo.maxPage) {
-        paginationHTML += `<a href="/semi/recipe/board?page=${pageInfo.currentPage + 1}" class="btn-3d red">></a>`;
+        paginationHTML += `<a href="/semi/recipe/board?page=${pageInfo.currentPage + 1}" class="btn-3d red">다음</a>`;
     }
 
     if (pageInfo.currentPage < pageInfo.maxPage) {
-        paginationHTML += `<a href="/semi/recipe/board?page=${pageInfo.maxPage}" class="btn-3d red">>></a>`;
+        paginationHTML += `<a href="/semi/recipe/board?page=${pageInfo.maxPage}" class="btn-3d red">마지막</a>`;
     }
 
     paginationHTML += `</div>`;
