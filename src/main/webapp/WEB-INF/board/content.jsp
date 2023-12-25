@@ -31,6 +31,8 @@ $(document).ready(function () {
 			        \${item.comBoardCommentName}<br>
 			        <span style="margin-left:20px;">\${item.comBoardCommentMsg}</span>
 			        &nbsp;`;
+			        $("#answerMsg").val("");
+			        $("#answerID").val("");
 					s+="<br>";
 					s+="<hr>";
 				});
@@ -127,7 +129,7 @@ function getAnswerList()
 							value="${dto.comBoardSeq}">
 						<div class="input-group content_comment px-2">
 							<input type="text" name="comBoardCommentName" class="input1 bg_red inset_shadow2"
-								placeholder="닉네임"> <input type="text"
+							id="answerID" placeholder="닉네임"> <input type="text" id="answerMsg"
 								name="comBoardCommentMsg" class="col input2 bg_red inset_shadow2" placeholder="댓글">
 
 							<button type="button" id="saveBtn"
