@@ -30,6 +30,7 @@ $(function() {
                 // 성공적으로 저장된 경우 추가 작업 수행
                 // 예를 들어, 화면에 새로운 댓글을 추가하는 등의 작업 수행 가능
                 list();
+                $("#answerMsg").val("");
                 
             },
             error: function(xhr, status, error) {
