@@ -54,4 +54,12 @@ public class BoardContentController {
 
 		return "redirect:./content?comBoardSeq="+num;
 	}
+	//게시글 삭제
+    @GetMapping("/board/delete")
+    public String deleteBoard(@RequestParam int comBoardSeq)
+    {
+        boardService.deleteBoard(comBoardSeq);
+        return "redirect:./list";
+    }
+	
 }
