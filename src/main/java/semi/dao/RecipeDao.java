@@ -2,6 +2,7 @@ package semi.dao;
 
 import java.util.List;
 
+import com.mysql.cj.util.StringUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +38,14 @@ public class RecipeDao {
 		return session.selectOne(nameSpace+"totalCountOfRecipe",word);
 	}
 	
-	public List<RecipeDto> getSearchRecipe(String word, PageInfo pageInfo) {
+	public List<RecipeDto> getRecipeBySearchWord(String word, PageInfo pageInfo) {
 		//word에 검색단어가 안들어 있을 경우 null값을 보내야 where문이 실행안된다
-	    word=word==null || word.length()==0?null:word;
+		if (StringUtils.isNullOrEmpty(word)) word = null;
+
 	    int limit = pageInfo.getBoardLimit();
-	      int currentPage = pageInfo.getCurrentPage();
-	      int offset = (currentPage - 1) * limit;
-	      RowBounds rowBounds = new RowBounds(offset, limit);
+		int currentPage = pageInfo.getCurrentPage();
+		int offset = (currentPage - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
 	      
 	    return session.selectList(nameSpace+"selectAlltRecipe",word,rowBounds);
 	}
