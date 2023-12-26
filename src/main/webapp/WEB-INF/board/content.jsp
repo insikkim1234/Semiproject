@@ -121,12 +121,12 @@ function getAnswerList()
 			</div>
 
 			<div class="content-border mt-3 py-2">
-				<pre style="min-height: 300px;" class="fs_16 px-2">
+				<div class="fs_16 px-2">
 					${dto.comBoardContent}
-					<c:if test="${dto.comBoardPhoto != null && dto.comBoardPhoto != ''}" >
-						<img class="img-fluid" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${dto.comBoardPhoto}" style="width: 40%">
+				</div>
+				<c:if test="${dto.comBoardPhoto != null && dto.comBoardPhoto != ''}" >
+						<div class="text-center my-3"><img class="img-fluid text-center" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${dto.comBoardPhoto}" style="width: 40%"></div>
 					</c:if>
-				</pre>
 				<div class="content-border py-2">
 					<div id="answerCount">댓글 0</div>
 				</div>
