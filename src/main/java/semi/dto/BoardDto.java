@@ -20,4 +20,5 @@ public class BoardDto {
 
     private int comBoardUserSeq;
     private String userName;
+    private String userNickName;
 }

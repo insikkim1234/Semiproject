@@ -14,7 +14,7 @@
 		<result property="writeDay" column="dtWriteDay" />
 		<result property="updateDay" column="dtUpdateDay" />
 		<result property="comBoardPhoto" column="sComBoardPhoto" />
-
+		<result property="userNickName" column="userNickName" />
 	</resultMap>
 
 	<select id="totalCountOfBoard" resultType="int" parameterType="String">
@@ -38,7 +38,7 @@
 		select * from tComBoard order by nComBoardSeq desc
 	</select>
 	<select id="selectBoardWithPage" parameterType="Map" resultType="BoardDto" resultMap="BoardDtoRm">
-		select tComBoard.*, tUser.userName from tComBoard
+		select tComBoard.*, tUser.userName, tUser.userNickName from tComBoard
 		LEFT JOIN tUser ON tComBoard.nComBoardUserSeq = tUser.userSeq
 		<if test="searchWord != null">
 			where sComBoardSubject like concat('%',#{searchWord},'%')
