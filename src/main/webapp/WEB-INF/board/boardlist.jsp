@@ -69,7 +69,7 @@
 							${dto.comBoardSubject}
 							</a>
 						</td>
-						<td>${dto.userName}</td>
+						<td>${dto.userNickName}</td>
 						<td><fmt:formatDate value="${dto.writeDay}" pattern="yyyy-MM-dd"/></td>
 						<td>${dto.comBoardviewCount}</td>
 					</tr>
