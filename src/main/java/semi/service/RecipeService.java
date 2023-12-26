@@ -4,7 +4,10 @@ import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import semi.dao.RecipeDao;
+import semi.dto.PageInfo;
 import semi.dto.RecipeDto;
+
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -36,6 +39,10 @@ public class RecipeService {
 	//레시피 삭제
 	public void deleteRecipe(int recipeIdx) {
 		recipeDao.deleteRecipe(recipeIdx);
+	}
+
+	public List<RecipeDto> getRecipeBySearchWord(String searchWord, PageInfo pageInfo) {
+		return recipeDao.getRecipeBySearchWord(searchWord, pageInfo);
 	}
 
 }

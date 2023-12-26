@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import semi.dao.RecipeDao;
+import semi.dto.PageDto;
 import semi.dto.PageInfo;
 import semi.dto.RecipeOrderDto;
 import semi.service.RecipeOrderService;
 import semi.service.RecipeService;
+import utils.BoardUtils;
 
 @RestController
 public class RecipeRestController {
@@ -25,13 +27,13 @@ public class RecipeRestController {
    HashMap<String,Object> getSearchList(
          @RequestParam(required = false) String word, @RequestParam(value = "page", required = false, defaultValue = "1") Integer page)
     {
-      int totalCount = recipeService.getTotalCount(word);
-      PageInfo pageInfo = this.getPageInfo(page, totalCount);
-      HashMap<String, Object> resultMap = new HashMap<String, Object>();
-      
-      //총 레시피 개수 얻기
+        int totalCount = recipeService.getTotalCount(word);
+        PageInfo pageInfo = this.getPageInfo(page, totalCount);
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+
+        //총 레시피 개수 얻기
         resultMap.put("pageInfo", pageInfo);
-        resultMap.put("data", recipeDao.getSearchRecipe(word,pageInfo));
+        resultMap.put("data", recipeService.getRecipeBySearchWord(word,pageInfo));
         resultMap.put("totalCount", totalCount);
         
        return resultMap;
