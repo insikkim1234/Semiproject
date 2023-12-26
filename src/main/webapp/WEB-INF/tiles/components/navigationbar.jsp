@@ -80,7 +80,7 @@
 				  </c:when>
 				  <c:otherwise>
 					  <!-- 세션에 저장된 사용자 프로필 이미지 -->
-					  <img src="<%=NcpObjectStorageService.STORAGE_PROFILE_PHOTO_PATH%>${sessionScope.login_member_dto.userSeq}" class="pro_img img-fluid">
+					  <img src="<%=NcpObjectStorageService.STORAGE_PROFILE_PHOTO_PATH%>${sessionScope.login_member_dto.userSeq}" class="pro_img img-fluid" style="aspect-ratio: 1/1;">
 				  </c:otherwise>
 			  </c:choose>
 			  <div class="fs_18 fw_500 my-auto" style="color: black">${sessionScope.login_member_dto.userNickName}님</div>&nbsp;&nbsp;

@@ -162,9 +162,7 @@ public class MemberController {
             System.out.println("로그인 성공");
 
             String redirectUrl = (String) httpSession.getAttribute("redirectUrl");
-            System.out.println("redirectUrl = " + redirectUrl);
             httpSession.removeAttribute("redirectUrl");
-            System.out.println("MemberController.loginExcute");
 
             if (StringUtils.isNullOrEmpty(redirectUrl)) {
                 return "redirect:/";

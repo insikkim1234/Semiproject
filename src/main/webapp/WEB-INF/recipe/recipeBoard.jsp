@@ -145,6 +145,9 @@
 	top: 0px;
 }
 
+.pageNation>.pageNumber:hover{
+	color: #000;
+}
    
 </style>
 
@@ -154,7 +157,7 @@ function successCallback(res) {
     // Ajax 성공 시 반환된 pageInfo 객체를 받아온다고 가정
     let pageInfo = res.pageInfo;
     updatePageNavigation(pageInfo);
-   }
+}
       
 function updatePageNavigation(pageInfo) {
     let pageWrap = document.querySelector('.pageWrap');
@@ -165,7 +168,7 @@ function updatePageNavigation(pageInfo) {
     }
 
     if (pageInfo.currentPage > 1) {
-        paginationHTML += `<a href="/semi/recipe/board?page=${pageInfo.currentPage - 1}" class="btn-3d red">이전</a>`;
+        paginationHTML += `<a href="/semi/recipe/board?page=\${pageInfo.currentPage - 1}" class="btn-3d red">이전</a>`;
     }
 
     for (let page = pageInfo.startNav; page <= pageInfo.endNav; page++) {
@@ -173,71 +176,57 @@ function updatePageNavigation(pageInfo) {
     }
 
     if (pageInfo.currentPage < pageInfo.maxPage) {
-        paginationHTML += `<a href="/semi/recipe/board?page=${pageInfo.currentPage + 1}" class="btn-3d red">다음</a>`;
+        paginationHTML += `<a href="/semi/recipe/board?page=\${pageInfo.currentPage + 1}" class="btn-3d red">다음</a>`;
     }
 
     if (pageInfo.currentPage < pageInfo.maxPage) {
-        paginationHTML += `<a href="/semi/recipe/board?page=${pageInfo.maxPage}" class="btn-3d red">마지막</a>`;
+        paginationHTML += `<a href="/semi/recipe/board?page=\${pageInfo.maxPage}" class="btn-3d red">마지막</a>`;
     }
 
     paginationHTML += `</div>`;
     pageWrap.innerHTML = paginationHTML;
-
-    let pageNumberLinks = document.querySelectorAll('.pageNumber');
-    pageNumberLinks.forEach(link => {
-        link.addEventListener('click', function (event) {
-            event.preventDefault();
-            let page = this.getAttribute('href').split('=')[1];
-            window.location.href = `/semi/recipe/board?page=\${page}`;
-            // 이 부분에서 해당 페이지의 데이터를 가져오는 Ajax 요청을 보내세요
-            // 가져온 데이터를 처리하여 화면에 보여줄 수 있도록 구현합니다
-        });
-    });
 }
 
 
-   let searchword="";
+let searchword="";
+
+let isGrid = true;
    
-   let isGrid = true;
-   
-   $(function(){
-      grid(); //처음 시작시 그리드모양
-      
-      var word = document.getElementById("word");
-     
-      word.addEventListener("keyup", function (event) {
-          if (event.keyCode === 13) {
-              document.getElementById("btnsearch").click();
-            }
-       });
-       
-      $("#btnsearch").click(function() {
-       //  alert(1);
-       searchword=$("#word").val();
-       if (isGrid) {
-         grid();
-       }
-       else {
-          list();
-       }
-       
-       });
-      
-      $(".simplegrid").css("color","#c12c2f");
-      
-      $(".simplegrid").click(function(){
-         $(this).css("color","#c12c2f");
-         $(".simplelist").css("color","black");
-         grid();
-      });
-      
-      $(".simplelist").click(function(){
-         $(this).css("color","#c12c2f");
-         $(".simplegrid").css("color","black");
-         list();
-      });
-      
-   });
+$(function(){
+    grid(); //처음 시작시 그리드모양
+
+    var word = document.getElementById("word");
+
+    word.addEventListener("keyup", function (event) {
+      if (event.keyCode === 13) {
+          document.getElementById("btnsearch").click();
+        }
+    });
+
+    $("#btnsearch").click(function() {
+        searchword=$("#word").val();
+        if (isGrid) {
+            grid();
+        }
+        else {
+            list();
+        }
+    });
+
+    $(".simplegrid").css("color","#c12c2f");
+
+    $(".simplegrid").click(function(){
+     $(this).css("color","#c12c2f");
+     $(".simplelist").css("color","black");
+     grid();
+    });
+
+    $(".simplelist").click(function(){
+     $(this).css("color","#c12c2f");
+     $(".simplegrid").css("color","black");
+     list();
+    });
+});
 
    function showTotalCount(totalCount) {
        let t = `총&nbsp;`;
@@ -299,7 +288,7 @@ function updatePageNavigation(pageInfo) {
                   $(".list").html(s);
                   
                   successCallback(res);
-                  updatePageNavigation(pageInfo);
+                  //updatePageNavigation(pageInfo);
                
                 }
               });
