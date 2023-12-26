@@ -27,7 +27,7 @@
 			name="comBoardContent" required="required" class="form-control borderGreen bg_red inset_shadow">${dto.comBoardContent}</textarea>
 				
 		<div class="text-center mt-2">
-			<button type="submit" class="btn-3d red mt-3">잡담등록</button>
+			<button type="submit" class="btn-3d red mt-3">수정등록</button>
 			<button type="button" class="btn-3d red mt-3 ml-2" onclick="history.back()">목록으로</button>
 		</div>
 	</form>
@@ -45,7 +45,7 @@
 					const img = document.createElement('img');
 					img.src = e.target.result;
 					img.alt = file.name;
-					img.style.width = '95%'; // 이미지 크기 조절
+					img.style.width = '55%'; // 이미지 크기 조절
 					/* img.style.marginRight = '5px';
                     img.style.marginLeft = '5px'; */
 					preview.appendChild(img);
