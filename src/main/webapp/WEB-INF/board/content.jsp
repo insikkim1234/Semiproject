@@ -1,5 +1,6 @@
+<%@ page import="naver.storage.NcpObjectStorageService" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript">
@@ -117,7 +118,12 @@ function getAnswerList()
 			</div>
 
 			<div class="content-border mt-3 py-2">
-				<pre style="min-height: 300px;" class="fs_16 px-2">${dto.comBoardContent}</pre>
+				<pre style="min-height: 300px;" class="fs_16 px-2">
+					${dto.comBoardContent}
+					<c:if test="${dto.comBoardPhoto != null && dto.comBoardPhoto != ''}" >
+						<img class="img-fluid" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${dto.comBoardPhoto}" style="width: 40%">
+					</c:if>
+				</pre>
 				<div class="content-border py-2">
 					<div id="answerCount">댓글 0</div>
 				</div>
