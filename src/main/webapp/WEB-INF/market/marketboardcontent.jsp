@@ -170,7 +170,7 @@ function list()
 			</div>
 	
 			<div class="answerform input-group">
-				<input type="text" class="bg_red inset_shadow2 mt-2" style="border:0; width:93%" placeholder="댓글내용"
+				<input type="text" class="bg_red inset_shadow2 mt-2 br_5" style="border:0; width:93%" placeholder="댓글내용"
 				id="answerMsg">
 				<button type="button" class="btn-3d red ml-3" id="btnAnswerAdd" style="border-radius: 5px;">저장</button>
 			</div>
