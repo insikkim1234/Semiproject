@@ -104,6 +104,8 @@ function getAnswerList()
 					<span><i class="bi bi-three-dots-vertical"></i></span>&nbsp; <span
 						class="day"><i class="bi bi-eye-fill fs_17 mr-2"></i><b>${dto.comBoardviewCount}</b></span>
 
+					<c:if test="${sessionScope.login_member_dto != null && sessionScope.login_member_dto.userSeq.equals(dto.comBoardUserSeq)}">
+
 					<button type="button"
 						class="btn-3d red2 ml-3 fw_500"
 						onclick="location.href='./updateform?comBoardSeq=${dto.comBoardSeq}'">수정</button>
@@ -111,9 +113,10 @@ function getAnswerList()
 					<button type="button"
 						class="btn-3d red2 ml-1 fw_500"
 						onclick="location.href='./delete?comBoardSeq=${dto.comBoardSeq}'">삭제</button>
+					</c:if>
 				</div>
 				<div class="col text-right">
-					<fmt:formatDate value="${dto.writeDay}" pattern="yyyy-MM-dd HH:mm" />
+					<fmt:formatDate value="${dto.writeDay}" pattern="yyyy-MM-dd" />
 				</div>
 			</div>
 
