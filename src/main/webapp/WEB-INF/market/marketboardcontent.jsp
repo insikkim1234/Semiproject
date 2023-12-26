@@ -166,11 +166,11 @@ function list()
 	<div class="content-border mt-3 py-2">
 			<div id="answercount">댓글 0</div>
 			<div class="answerlist" style="margin-left:10px;">
-				댓글목록 나올곳
+				댓글
 			</div>
 	
 			<div class="answerform input-group">
-				<input type="text" class="bg_red inset_shadow2 mt-2" style="border:0; width:93%" placeholder="댓글내용"
+				<input type="text" class="bg_red inset_shadow2 mt-2 br_5" style="border:0; width:93%" placeholder="댓글내용"
 				id="answerMsg">
 				<button type="button" class="btn-3d red ml-3" id="btnAnswerAdd" style="border-radius: 5px;">저장</button>
 			</div>
