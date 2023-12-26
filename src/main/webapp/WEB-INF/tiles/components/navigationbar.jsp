@@ -33,7 +33,7 @@
 	    <div class="collapse navbar-collapse mt-auto" id="mynavbar">
 	      <ul class="navbar-nav ml-auto align-center expanded text-center menubtn_effect">
 	        <li class="nav-item mx-4">
-	          <a class="nav-link fs_20 fw_600" href="${pageContext.request.contextPath}/recipe/board">
+	          <a class="nav-link fs_20 fw_600" href="${pageContext.request.contextPath}/recipe/board? ">
 	            <span>오늘 뭐 먹지?</span>
 	          	<span style="text-shadow:1px 1px hsl(50, 75%, 45%), 2px 2px hsl(50, 45%, 45%), 3px 3px hsl(50, 45%, 45%), 4px 4px hsl(50, 75%, 45%);"><i class="bi bi-book-fill mr-2"></i>레시피북</span>
 	          </a>
