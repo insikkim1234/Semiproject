@@ -1,5 +1,6 @@
 package semi.controller;
 
+import naver.storage.NcpObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.AllArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 import semi.dto.BoardDto;
 import semi.service.BoardService;
 
@@ -18,6 +20,7 @@ import semi.service.BoardService;
 public class BoardContentController {
 	@Autowired
 	private BoardService boardService;
+	@Autowired private NcpObjectStorageService storageService;
 
 	//게시판 조회
 	@GetMapping("/board/content")
@@ -47,8 +50,14 @@ public class BoardContentController {
 	//게시판 수정
 	@PostMapping("/board/updateprocess")
 	public String update(@ModelAttribute BoardDto dto,
-			@RequestParam int num )
+						 @RequestParam(required = false) MultipartFile upload,
+						 @RequestParam int num )
 	{
+		if (!upload.isEmpty()) {
+			String fileName = storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
+					NcpObjectStorageService.DIR_PHOTO, upload);
+			dto.setComBoardPhoto(fileName);
+		}
 		dto.setComBoardSeq(num);
 		boardService.updateBoard(dto);
 
