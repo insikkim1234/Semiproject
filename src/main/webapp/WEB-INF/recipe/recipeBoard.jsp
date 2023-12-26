@@ -145,6 +145,9 @@
 	top: 0px;
 }
 
+.pageNation>.pageNumber:hover{
+	color: #000;
+}
    
 </style>
 
