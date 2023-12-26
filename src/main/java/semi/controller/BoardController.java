@@ -51,7 +51,7 @@ public class BoardController {
 	@PostMapping("/insertBoard")
 	public String insertBoard(@Login MemberDto user, BoardDto boardDto, MultipartFile upload) {
 		String photo = storageService.uploadFile(NcpObjectStorageService.STORAGE_EATINGALONE,
-				NcpObjectStorageService.DIR_USER_PROFILE_PHOTO, upload);
+				NcpObjectStorageService.DIR_PHOTO, upload);
 
 		boardDto.setComBoardPhoto(photo);
 
