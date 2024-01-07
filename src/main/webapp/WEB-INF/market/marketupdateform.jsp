@@ -1,3 +1,4 @@
+<%@page import="naver.storage.NcpObjectStorageService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -30,18 +31,18 @@
 		<div class="row mt-3">
 			<div class="col">
 				<h6 class="cGreen fw_600 mt-2">대표 사진</h6>
-				<input type="file" name="upload1" class="form-control borderGreen bg_red inset_shadow" id="product-input" onchange="previewImage(this, 'product-preview')">
-				<div id="product-preview"></div>
+				<input type="file" name="upload1" class="form-control borderGreen bg_red inset_shadow" id="product-input" onchange="previewImage(this, 'product-preview')" required>
+				<div id="product-preview"><img class="img-fluid" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${mDto.boardImage}" style="width: 40%"></div>
 			</div>
 			<div class="col">
 				<h6 class="cGreen fw_600 mt-2">물품 사진 1</h6>
-				<input type="file" name="upload2" class="form-control borderGreen bg_red inset_shadow" id="product-input2" onchange="previewImage(this, 'product-preview2')">
-				<div id="product-preview2"></div>
+				<input type="file" name="upload2" class="form-control borderGreen bg_red inset_shadow" id="product-input2" onchange="previewImage(this, 'product-preview2')" required>
+				<div id="product-preview2"><img class="img-fluid" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${pDto.productImage1}"style="width: 40%"></div>
 			</div>
 			<div class="col">
 				<h6 class="cGreen fw_600 mt-2">물품 사진 2</h6>
-				<input type="file" name="upload3" class="form-control borderGreen bg_red inset_shadow" id="product-input3" onchange="previewImage(this, 'product-preview3')">
-				<div id="product-preview3"></div>
+				<input type="file" name="upload3" class="form-control borderGreen bg_red inset_shadow" id="product-input3" onchange="previewImage(this, 'product-preview3')" required>
+				<div id="product-preview3"><img class="img-fluid" src="<%=NcpObjectStorageService.STORAGE_PHOTO_PATH%>${pDto.productImage2}" style="width: 40%"></div>
 			</div>
 		</div>
 		
@@ -55,7 +56,7 @@
 		<h6 class="cGreen fw_600 mt-3">자세한 설명</h6>
 		<textarea name="productContent" class="form-control borderGreen bg_red inset_shadow" required
 			style="width: 100%;height: 200px;"
-			placeholder="게시글의 내용을 수정해주세요. "></textarea>
+			placeholder="게시글의 내용을 수정해주세요. " >${pDto.productContent}</textarea>
 		<div class="text-center">
 			<button type="submit" class="btn-3d red mt-4">수정완료</button>
 			<button type="button" class="btn-3d red mt-4 ml-2" onclick="history.back()">목록으로</button>
